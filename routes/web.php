@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\DeterminacionesController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.index');
-});
+// Route::get('/', function () {
+//     // $pdf=App::make('dompdf.wrapper');
+//     $pdf=PDF::loadHTML('<h1>Hola mundo desde FAcade</h1>');
+//     return $pdf->stream();
+// });
+Route::get('/',[IndexController::class,'index'])->name('index');
+Route::get('/PDFDeterminaciones',[DeterminacionesController::class,'pdf'])->name('pdf-determinaciones');
