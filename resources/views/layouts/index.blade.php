@@ -4,10 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <title>Tijuana @yield('Titulo')</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 
 <body>
@@ -22,6 +21,8 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
     </div>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('js')
 </body>
 
 </html>

@@ -1,0 +1,46 @@
+body {
+    background-image: url(../img/bg/back.jpg);
+    background-repeat: repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    width: 100%;
+    height: 100%;
+    margin-top: 0%;
+    padding-top: 0px;
+}
+
+.jumbotron {
+    margin-top: 0%;
+    margin-bottom: 0%;
+    padding-top: 4%;
+    padding-bottom: 1%;
+}
+
+.padding {
+    padding-right: 15%;
+    padding-left: 15%;
+}
+line{
+    opacity: .1;
+}
+#mysearch {
+    background: url(https://img.icons8.com/external-sbts2018-outline-color-sbts2018/40/000000/external-search-ecommerce-basic-1-sbts2018-outline-color-sbts2018.png) no-repeat 3px 5px;
+    background-size: 25px;
+    width: 300px;
+    padding: 10px 10px 10px 30px;
+  }
+  @media all and (max-width: 800px) {
+    #mysearch {
+        background: url(https://img.icons8.com/external-sbts2018-outline-color-sbts2018/40/000000/external-search-ecommerce-basic-1-sbts2018-outline-color-sbts2018.png) no-repeat 3px 5px;
+        background-size: 25px;
+        width: 100px;
+        padding: 10px 10px 10px 30px;
+      }
+  }
