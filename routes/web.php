@@ -3,6 +3,7 @@
 use App\Http\Controllers\DeterminacionesController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MandamientoController;
+use App\Http\Controllers\RequerimientoController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     // $pdf=App::make('dompdf.wrapper');
-//     $pdf=PDF::loadHTML('<h1>Hola mundo desde FAcade</h1>');
-//     return $pdf->stream();
-// });
 Route::get('/',[IndexController::class,'index'])->name('index');
+//Mandamiento pdf
 Route::get('/PDFMandamiento',[MandamientoController::class,'pdf'])->name('pdf-mandamiento');
+//Requerimiento Pdf
+Route::get('/PDFRequerimiento',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');

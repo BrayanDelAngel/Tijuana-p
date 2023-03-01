@@ -55,7 +55,10 @@
                     Determinaciones Fiscales</a>
                     <a class="dropdown-item" href="{{ route('pdf-mandamiento') }}">
                         <i class="fas fa-balance-scale"></i>
-                        Prueba deter</a>
+                        Prueba Mandamiento</a>
+                    <a class="dropdown-item" href="{{ route('pdf-requerimiento') }}">
+                        <i class="fas fa-balance-scale"></i>
+                        Prueba Requerimiento</a>
             </ul>
         </div>
     </div>

@@ -94,8 +94,15 @@
         }
 
         p {
-            font-size: 11.5px;
+            font-size: 11.5px !important;
             font-family: Arial, Helvetica, sans-serif;
+            font-weight: normal !important;
+        }
+
+        ol,
+        li {
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .data {
@@ -152,10 +159,13 @@
             margin-left: 200px;
             margin-right: 50px;
         }
-        .ordena{
-            margin-top: 32%;
+
+        .ordena {
+            margin-top: 35%;
         }
+
         .firm {
+            margin-top: 50px;
             margin-left: 150px;
             margin-right: 150px;
             font-size: 14px;
@@ -227,7 +237,7 @@
             VI, 47 fracción XII, 111, 112, 114, 115, 123 y demás aplicables del código fiscal del Estado de Baja
             California en vigor, y en base a los siguientes:</p>
         <div>
-            <p class="bold text-center">R E S U L T A N D O S</p>
+            <p class="text-center"><span class="bold">R E S U L T A N D O S</span></p>
             <ol style="list-style-type:upper-roman">
                 <li>
                     <p class="text-justify">Que están obligado a la contratación de los servicios de agua potable y
@@ -324,7 +334,7 @@
                     </p>
                 </li>
             </ol>
-            <p class="bold text-center">C O N S I D E R A N D O</p>
+            <p class="text-center"><span class="bold">C O N S I D E R A N D O</span></p>
             <p class="text-justify">
                 <span class="bold">PRIMERO.</span>
                 Que la Subrecaudacion de Rentas adscrita a la Comisión Estatal de Servicios Públicos de Tijuana es
@@ -361,7 +371,7 @@
                 Comisión Estatal de Servicios Públicos de Tijuana, autoridad que:
             </p>
             <div class="ordena">
-                <p class="bold text-center">O R D E N A</p>
+                <p class="text-center"><span class="bold">O R D E N A</span></p>
                 <p class="text-justify">
                     <span class="bold">PRIMERO.</span>
                     Requiérase a ________________________________, titular el contrato número _____________,
@@ -519,6 +529,9 @@
                             <th>DESCRIPCIÓN DE
                                 CONCEPTO
                             </th>
+                            <th>ADEUDO CONSUMO
+                                DE AGUA Y ALCANTARILLADO
+                            </th>
                             <th>RECARGOS
                             </th>
                             <th>MULTAS</th>
@@ -533,10 +546,11 @@
                             <td class="text-center">$0.00</td>
                             <td class="text-center">$0.00</td>
                             <td class="text-center">$0.00</td>
+                            <td class="text-center">$0.00</td>
                         </tr>
                         <tr>
                             <td class="text-center">Total del adeudo requerido</td>
-                            <td class="text-center bold" colspan="4">$0,000.00 (Cantidad con letra 00/100 Moneda
+                            <td class="text-center bold" colspan="5">$0,000.00 (Cantidad con letra 00/100 Moneda
                                 Nacional)
                             </td>
                         </tr>
@@ -594,12 +608,18 @@
                     son insuficientes para cubrir los créditos fiscales conforme al Código Fiscal del Estado de Baja
                     California.
                 </p>
-                <p class="bold">
-                    Notifíquese y cúmplase.
+                <p>
+                    <span class="bold">
+                        Notifíquese y cúmplase.
+                        <span class="bold">
                 </p>
-                <p class="bold">Así lo acordó y firma el Subrecaudador de Rentas adscrito a la Comisión Estatal de
-                    Servicios Públicos de
-                    Tijuana.</p>
+                <p>
+                    <span class="bold">
+                        Así lo acordó y firma el Subrecaudador de Rentas adscrito a la Comisión Estatal de
+                        Servicios Públicos de
+                        Tijuana.
+                    </span>
+                </p>
             </div>
             <div class="firm">
                 <p class="text-center">
