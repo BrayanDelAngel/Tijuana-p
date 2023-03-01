@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DeterminacionesController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\MandamientoController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,4 @@ use Illuminate\Support\Facades\Route;
 //     return $pdf->stream();
 // });
 Route::get('/',[IndexController::class,'index'])->name('index');
-Route::get('/PDFDeterminaciones',[DeterminacionesController::class,'pdf'])->name('pdf-determinaciones');
+Route::get('/PDFMandamiento',[MandamientoController::class,'pdf'])->name('pdf-mandamiento');
