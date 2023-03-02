@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[IndexController::class,'index'])->name('index');
-//Mandamiento pdf
+//Buscador
+Route::post('/search',[IndexController::class,'show'])->name('search');
+/*Rutas de Mandamiento */
 Route::get('/PDFMandamiento',[MandamientoController::class,'pdf'])->name('pdf-mandamiento');
-/*Rutas de Requerimiento*/
-Route::get('/formR',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
-//Requerimiento Pdf
-Route::get('/PDFRequerimiento',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');
 Route::get('/formM',[MandamientoController::class,'index'])->name('formulario-mandamiento');
 Route::post('/guardarM',[MandamientoController::class,'store'])->name('guardar-mandamiento');
-//buscador
-Route::post('/search',[IndexController::class,'show'])->name('search');
+/*Rutas de Requerimiento*/
+Route::get('/formR',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
+Route::post('/guardarR',[MandamientoController::class,'store'])->name('guardar-requerimiento');
+Route::get('/PDFRequerimiento',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');

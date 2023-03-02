@@ -2,16 +2,10 @@
 @section('titulo')
     Requerimiento
 @endsection
+@section('css')
+<link href="{{ asset('css/addInput.css') }}" rel="stylesheet">
+@endsection
 @section('contenido')
-    <style>
-        .puntero {
-            cursor: pointer;
-        }
-
-        .ocultar {
-            display: none;
-        }
-    </style>
     <div class="container position-static">
         <div class="mt-4">
             <h2 style="text-shadow: 0px 0px 2px #717171;"><img src="https://img.icons8.com/color/47/null/signature.png" />
@@ -20,7 +14,7 @@
         </div>
         <hr>
         <div class="p-3 mx-auto">
-            <form action="{{ route('guardar-mandamiento')}}" method="post" novalidate>
+            <form action="{{ route('guardar-requerimiento')}}" method="post" novalidate>
                 @csrf
                 <div class="row">
                     <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
@@ -220,6 +214,24 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row align-items-start form-row">
+                            <div class="col-md-6">
+                                <div class="md-form form-group">
+                                    <label for="sobrerecaudador" class="form-label mb-2">Sobrerecaudador:*</label>
+                                    <input type="text"
+                                        class="form-control mb-2
+                                            @error('sobrerecaudador')
+                                            border border-danger rounded-2
+                                            @enderror"
+                                        id="sobrerecaudador" name="sobrerecaudador" value="{{ old('sobrerecaudador') }}">
+                                    @error('sobrerecaudador')
+                                        <div class="text-danger text-center">
+                                            El campo sobrerecaudador es requerido
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="p-2 rounded-4 col-md-4"
                         style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
@@ -253,7 +265,6 @@
                         </div>
                         <div id="contenedor"></div>
                     </div>
-
                 </div>
                 <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
                     <div class="text-white m-2 align-items-end" style="text-align:right;">
@@ -315,59 +326,7 @@
         </div>
         <hr>
     </div>
-    <script>
-        let agregar = document.getElementById('agregar');
-        let contenido = document.getElementById('contenedor');
-
-        let boton_enviar = document.querySelector('#enviar_contacto')
-
-        agregar.addEventListener('click', e => {
-            e.preventDefault();
-            let clonado = document.querySelector('.clonar');
-            let clon = clonado.cloneNode(true);
-
-            contenido.appendChild(clon).classList.remove('clonar');
-
-            let remover_ocutar = contenido.lastChild.childNodes[1].querySelectorAll('button');
-            remover_ocutar[0].classList.remove('ocultar');
-        });
-
-        contenido.addEventListener('click', e => {
-            e.preventDefault();
-            if (e.target.classList.contains('puntero')) {
-                let contenedor = e.target.parentNode.parentNode;
-
-                contenedor.parentNode.removeChild(contenedor);
-            }
-        });
-
-
-        // boton_enviar.addEventListener('click', e => {
-        //     e.preventDefault();
-
-        //     const formulario = document.querySelector('#form_contacto');
-        //     const form = new FormData(formulario);
-
-        //     const peticion = {
-        //         body:form,
-        //         method:'POST'
-        //     };
-
-        //     fetch('php/inserta-contacto.php',peticion)
-        //         .then(res => res.json())
-        //         .then(res => {
-        //             if (res['respuesta']) {
-        //                 alert(res['mensaje']);
-        //                 formulario.reset();
-        //             }else{
-        //                 alert(res['mensaje']);
-        //             }
-
-        //         });
-
-
-        // });
-    </script>
 @endsection
 @section('js')
+<script src="{{ asset('js/addInput.js') }}"></script>
 @endsection

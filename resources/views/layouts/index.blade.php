@@ -6,27 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tijuana - @yield('titulo')</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
-   
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bg.css') }}" rel="stylesheet">
     <link href="{{ asset('css/carga.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('img/icons/implementtaIcon.png') }}">
     @routes
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-</script>
-    
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css"
         id="theme-styles">
     @yield('css')
 </head>
 
 {{-- <body onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload=""> --}}
-    <body >
+
+<body>
     {{-- Spinner de caraga --}}
     <div id="contenedor_carga">
         <div id="carga">
@@ -104,11 +97,16 @@
                     width="200" height="85" alt=""></a>
         </form>
     </footer>
-    
+
     <script src="{{ asset('js/offLoaderSpinner.js') }}"></script>
     {{-- <script src="{{ asset('js/bloqueos.js') }}"></script> --}}
-    
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
     @yield('js')
 </body>
 
