@@ -22,6 +22,8 @@ class MandamientoController extends Controller
     public function pdf()
     {
         $pdf = Pdf::loadView('pdf.mandamiento');
+        // setPaper('')->
+        //A4 -> carta
         return $pdf->stream();
     }
 }
