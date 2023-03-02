@@ -90,8 +90,9 @@
 
         .bold {
             font-weight: 800;
-            font-weight: bold;
+            font-weight: bold !important;
         }
+        
 
         p {
             font-size: 11.5px !important;
@@ -518,6 +519,7 @@
                     </tbody>
                 </table>
                 <p class="bold">TOTAL, DEL ADEUDO REQUERIDO</p>
+                
                 <p>
                     De acuerdo con el cálculo detallado, el importe actualizado a la emisión del presente instrumento
                     queda

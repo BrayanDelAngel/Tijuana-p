@@ -89,7 +89,7 @@
 
         .bold {
             font-weight: 800;
-            font-weight: bold;
+            font-weight: bold !important;
         }
 
         p {
