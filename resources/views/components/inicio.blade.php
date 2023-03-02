@@ -44,5 +44,7 @@
     </div>
 @endsection
 @section('js')
-    
+    {{-- Script de la ruta y del buscador --}}
+    <script src="{{ asset('js/search.js') }}" type="module"></script>
+    <script src="{{ asset('js/rutas.js') }}"></script>
 @endsection

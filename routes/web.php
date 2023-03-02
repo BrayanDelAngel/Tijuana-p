@@ -25,3 +25,5 @@ Route::get('/formR',[RequerimientoController::class,'index'])->name('formulario-
 Route::get('/PDFRequerimiento',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');
 Route::get('/formM',[MandamientoController::class,'index'])->name('formulario-mandamiento');
 Route::post('/guardarM',[MandamientoController::class,'store'])->name('guardar-mandamiento');
+//buscador
+Route::post('/search',[IndexController::class,'show'])->name('search');
