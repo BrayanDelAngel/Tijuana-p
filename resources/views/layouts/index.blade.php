@@ -10,7 +10,6 @@
     <link href="{{ asset('css/bg.css') }}" rel="stylesheet">
     <link href="{{ asset('css/carga.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('img/icons/implementtaIcon.png') }}">
-    <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css"
         id="theme-styles">
     @yield('css')
@@ -42,13 +41,13 @@
             </ul>
         </div>
     </nav>
-    <div class="navbar navbar-expand-lg navbar-dark bg-dark line" style="opacity: .9">
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark line">
         <div class="btn-group  ms-auto" style="margin-right: 100px">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Tijuana Predial
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu bg-white">
                 <h6 class="dropdown-header">Utilidades de la plaza</h6>
                 <a class="dropdown-item" href="{{ route('index') }}">
                     <i class="fas fa-balance-scale"></i>
@@ -62,6 +61,9 @@
                 <a class="dropdown-item" href="{{ route('formulario-requerimiento') }}">
                     <i class="fas fa-balance-scale"></i>
                     Form Requerimiento</a>
+                <a class="dropdown-item" href="{{ route('formulario-mandamiento') }}">
+                    <i class="fas fa-balance-scale"></i>
+                    Form Mandamiento</a>
             </ul>
         </div>
     </div>

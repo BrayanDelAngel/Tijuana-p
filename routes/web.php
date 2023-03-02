@@ -23,3 +23,5 @@ Route::get('/PDFMandamiento',[MandamientoController::class,'pdf'])->name('pdf-ma
 Route::get('/formR',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
 //Requerimiento Pdf
 Route::get('/PDFRequerimiento',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');
+Route::get('/formM',[MandamientoController::class,'index'])->name('formulario-mandamiento');
+Route::post('/guardarM',[MandamientoController::class,'store'])->name('guardar-mandamiento');
