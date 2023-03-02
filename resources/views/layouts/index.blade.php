@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tijuana @yield('Titulo')</title>
+    <title>Tijuana @yield('titulo')</title>
     @routes
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bg.css') }}" rel="stylesheet">
@@ -53,12 +53,15 @@
                 <a class="dropdown-item" href="{{ route('index') }}">
                     <i class="fas fa-balance-scale"></i>
                     Determinaciones Fiscales</a>
-                    <a class="dropdown-item" href="{{ route('pdf-mandamiento') }}">
-                        <i class="fas fa-balance-scale"></i>
-                        Prueba Mandamiento</a>
-                    <a class="dropdown-item" href="{{ route('pdf-requerimiento') }}">
-                        <i class="fas fa-balance-scale"></i>
-                        Prueba Requerimiento</a>
+                <a class="dropdown-item" href="{{ route('pdf-mandamiento') }}">
+                    <i class="fas fa-balance-scale"></i>
+                    Prueba Mandamiento</a>
+                <a class="dropdown-item" href="{{ route('pdf-requerimiento') }}">
+                    <i class="fas fa-balance-scale"></i>
+                    Prueba Requerimiento</a>
+                <a class="dropdown-item" href="{{ route('formulario-requerimiento') }}">
+                    <i class="fas fa-balance-scale"></i>
+                    Form Requerimiento</a>
             </ul>
         </div>
     </div>

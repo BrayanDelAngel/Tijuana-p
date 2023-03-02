@@ -19,5 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[IndexController::class,'index'])->name('index');
 //Mandamiento pdf
 Route::get('/PDFMandamiento',[MandamientoController::class,'pdf'])->name('pdf-mandamiento');
+/*Rutas de Requerimiento*/
+Route::get('/formR',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
 //Requerimiento Pdf
 Route::get('/PDFRequerimiento',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');
