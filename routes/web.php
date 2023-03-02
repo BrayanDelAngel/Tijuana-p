@@ -5,6 +5,8 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MandamientoController;
 use App\Http\Controllers\RequerimientoController;
 use Illuminate\Support\Facades\Route;
+use Svg\Tag\Rect;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,5 +27,5 @@ Route::get('/formM/{cuenta}',[MandamientoController::class,'index'])->name('form
 Route::post('/guardarM',[MandamientoController::class,'store'])->name('guardar-mandamiento');
 /*Rutas de Requerimiento*/
 Route::get('/formR/{cuenta}',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
-Route::post('/guardarR',[MandamientoController::class,'store'])->name('guardar-requerimiento');
+Route::post('/guardarR',[RequerimientoController::class,'store'])->name('guardar-requerimiento');
 Route::get('/PDFRequerimiento',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');

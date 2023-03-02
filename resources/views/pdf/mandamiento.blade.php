@@ -5,173 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>PDF</title>
-    <style>
-        @page {
-            margin: 0px;
-        }
-
-        header {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            height: 100px;
-            /** Extra personal styles **/
-            background-color: #952F57;
-            color: white;
-            text-align: center;
-            line-height: 35px;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0px;
-            left: 0px;
-            right: 0px;
-            height: 50px;
-
-            /** Extra personal styles **/
-            background-color: #03a9f4;
-            color: white;
-            text-align: center;
-            line-height: 35px;
-        }
-
-        .imgHeader1 {
-            float: left;
-            width: 4cm;
-            height: 2cm;
-            background-color: #952F57;
-            margin-top: 15px;
-            margin-left: 15px;
-        }
-
-        .imgHeader2 {
-            float: right;
-            width: 4.52cm;
-            height: 1.76cm;
-            background-color: #952F57;
-            margin-top: 15px;
-            margin-right: 15px;
-        }
-
-        .infoHeader {
-            position: absolute;
-            text-align: center;
-            margin: auto;
-            right: 40px;
-            left: 30px;
-            top: 60px;
-            height: 100px;
-            width: 400px;
-            font-size: 0.8em;
-            line-height: 12px;
-            font: serif;
-            font-weight: 800;
-        }
-
-        body {
-            margin-top: 2.8cm;
-            margin-left: 1.7cm;
-            margin-right: 1.3cm;
-            margin-bottom: 2cm;
-            font-family: Arial, Helvetica, sans-serif;
-
-        }
-
-        .text-justify {
-            text-align: justify;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .bold {
-            font-weight: 800;
-            font-weight: bold !important;
-        }
-        
-
-        p {
-            font-size: 11.5px !important;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: normal !important;
-        }
-
-        ol,
-        li {
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .data {
-            position: relative;
-            top: -5px;
-            margin-left: 360px;
-            line-height: 10px !important;
-        }
-
-        .data-center {
-            margin-left: 22%;
-        }
-
-        h4 {
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .align-right {
-            text-align: right;
-        }
-
-        #right {
-            position: relative;
-            margin-left: 50%;
-            margin-top: -5%;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid #273746;
-            border-collapse: collapse;
-        }
-
-        table {
-            width: 680px;
-        }
-
-        th {
-            font-weight: normal;
-            font-size: 12px;
-        }
-
-        td {
-            min-width: 50px;
-            max-width: 100px;
-            font-weight: normal;
-            font-size: 12px;
-        }
-
-        .article {
-            position: relative;
-            margin-left: 200px;
-            margin-right: 50px;
-        }
-
-        .ordena {
-            margin-top: 35%;
-        }
-
-        .firm {
-            margin-top: 50px;
-            margin-left: 150px;
-            margin-right: 150px;
-            font-size: 14px;
-        }
-    </style>
+    <link href="C:/wamp64/www/Tijuana-p/public/css/pdf.css" rel="stylesheet">
 </head>
 
 <body>
@@ -183,7 +19,6 @@
         <img class="imgHeader2" src="{{ public_path('img/pdf/cespt_blanco.png') }}">
     </header>
     {{-- <footer>
-        <img src="{{ public_path('img/pdf/logo_BC_escudo.png') }}" width="100%" height="100%" />
     </footer> --}}
     <main>
         <h4 class="text-center">MANDAMIENTO DE EJECUCIÓN</h4>
@@ -519,7 +354,7 @@
                     </tbody>
                 </table>
                 <p class="bold">TOTAL, DEL ADEUDO REQUERIDO</p>
-                
+
                 <p>
                     De acuerdo con el cálculo detallado, el importe actualizado a la emisión del presente instrumento
                     queda
@@ -635,7 +470,14 @@
             </div>
         </div>
     </main>
-
+    {{-- <script type="text/php">
+        if ( isset($pdf) ) {
+            $pdf->page_script('
+                $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "lighter");
+                $pdf->text(270, 800, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 9);
+            ');
+        }
+    </script> --}}
 </body>
 
 </html>
