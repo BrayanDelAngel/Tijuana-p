@@ -21,9 +21,9 @@ Route::get('/',[IndexController::class,'index'])->name('index');
 Route::post('/search',[IndexController::class,'show'])->name('search');
 /*Rutas de Mandamiento */
 Route::get('/PDFMandamiento',[MandamientoController::class,'pdf'])->name('pdf-mandamiento');
-Route::get('/formM',[MandamientoController::class,'index'])->name('formulario-mandamiento');
+Route::get('/formM/{cuenta}',[MandamientoController::class,'index'])->name('formulario-mandamiento');
 Route::post('/guardarM',[MandamientoController::class,'store'])->name('guardar-mandamiento');
 /*Rutas de Requerimiento*/
-Route::get('/formR',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
+Route::get('/formR/{cuenta}',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
 Route::post('/guardarR',[MandamientoController::class,'store'])->name('guardar-requerimiento');
 Route::get('/PDFRequerimiento',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');
