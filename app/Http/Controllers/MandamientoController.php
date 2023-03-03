@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cobranzaExternaHistoricos;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class MandamientoController extends Controller
 {
-    public function index()
+    public function index($cuenta)
     {
-        return view('components.formMandamiento');
+       
+        //  $sql=cobranzaExternaHistoricos::all()->where('cobranzaExternaHistoricosWS3.NoCta','=',$cuenta)->paginate(5);
+        //  $sql=cobranzaExternaHistoricos::all()->paginate(5);
+        $sql= cobranzaExternaHistoricos::select(['NoCta','anio','mes'])->where('NoCta',$cuenta)->get();
+        // dd($sql);
+        return view('components.formMandamiento',['cobranza'=>$sql]);
     }
     public function store(Request $request)
     {

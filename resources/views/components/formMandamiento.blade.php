@@ -288,45 +288,23 @@
                             </tr>
                         </thead>
                         <tbody class="table-light text-center">
-                            <tr>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                                <td>&nbsp;&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="text-center">Totales</td>
-                                <td class="text-center">$ &nbsp;&nbsp;</td>
-                                <td class="text-center">$ &nbsp;&nbsp;</td>
-                                <td class="text-center">$ &nbsp;&nbsp;</td>
-                                <td class="text-center">$ &nbsp;&nbsp;</td>
-                            </tr>
+                        @foreach ($cobranza as $item )
+                        <tr>
+                            <td>{{$item->mes}}</td>
+                            <td>{{$item->anio}}</td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;</td>
+                        </tr>
+                        @endforeach
+                        <tr>
+                            <td colspan="2" class="text-center">Totales</td>
+                            <td class="text-center">$ &nbsp;&nbsp;</td>
+                            <td class="text-center">$ &nbsp;&nbsp;</td>
+                            <td class="text-center">$ &nbsp;&nbsp;</td>
+                            <td class="text-center">$ &nbsp;&nbsp;</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
