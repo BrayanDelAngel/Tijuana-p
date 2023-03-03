@@ -16,7 +16,9 @@ class MandamientoController extends Controller
         //  $sql=cobranzaExternaHistoricos::all()->paginate(5);
         $existe=DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
         if(($existe[0]->c)==0){
-            dd("no existe");
+            return  redirect()->action(
+                [IndexController::class, 'index']
+            )->with('error', 'error');
         }
         else{
             $sql= cobranzaExternaHistoricos::select(['NoCta','anio','mes'])->where('NoCta',$cuenta)->get();

@@ -14,12 +14,17 @@
     @routes
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css"
         id="theme-styles">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('css')
 </head>
 
 {{-- <body onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload=""> --}}
 
 <body>
+    @if (session('error'))
+    {{-- Muestra de sweetalert en caso de error de petición --}}
+        <script src="{{ asset('js/sweetAlert/accessDenied.js') }}"></script>
+    @endif
     {{-- Spinner de caraga --}}
     <div id="contenedor_carga">
         <div id="carga">
@@ -88,7 +93,6 @@
 
     <script src="{{ asset('js/offLoaderSpinner.js') }}"></script>
     {{-- <script src="{{ asset('js/bloqueos.js') }}"></script> --}}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
