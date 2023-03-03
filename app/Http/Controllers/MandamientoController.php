@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\cobranzaExternaHistoricos;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Support\Facades\DB;
 
 class MandamientoController extends Controller
 {
@@ -13,9 +14,15 @@ class MandamientoController extends Controller
        
         //  $sql=cobranzaExternaHistoricos::all()->where('cobranzaExternaHistoricosWS3.NoCta','=',$cuenta)->paginate(5);
         //  $sql=cobranzaExternaHistoricos::all()->paginate(5);
-        $sql= cobranzaExternaHistoricos::select(['NoCta','anio','mes'])->where('NoCta',$cuenta)->get();
-        // dd($sql);
-        return view('components.formMandamiento',['cobranza'=>$sql]);
+        $existe=DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
+        if(($existe[0]->c)==0){
+            dd("no existe");
+        }
+        else{
+            $sql= cobranzaExternaHistoricos::select(['NoCta','anio','mes'])->where('NoCta',$cuenta)->get();
+            // dd($sql);
+            return view('components.formMandamiento',['cobranza'=>$sql]);
+        }
     }
     public function store(Request $request)
     {
