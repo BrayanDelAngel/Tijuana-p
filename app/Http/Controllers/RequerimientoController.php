@@ -26,6 +26,7 @@ class RequerimientoController extends Controller
     }
     public function store(Request $request)
     {
+        
         return '<script type="text/javascript">window.open("PDFRequerimiento")</script>' .
             redirect()->action(
                 [IndexController::class, 'index']

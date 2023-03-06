@@ -52,18 +52,18 @@
                                             border border-danger rounded-2
                                             @enderror"
                                                 name="oficio">
-                                            @error('oficio')
-                                                <div class="text-danger text-center">
-                                                    @if ($message == 'El campo oficio ya ha sido tomado.')
-                                                        El campo oficio ya ha sido tomado.
-                                                    @else
-                                                        El campo oficio es requerido
-                                                    @endif
-                                                </div>
-                                            @enderror
                                             <input type="text" class="form-control mb-2" value="/{{ date('Y') }}"
                                                 disabled>
                                         </div>
+                                        @error('oficio')
+                                            <div class="text-danger text-center">
+                                                @if ($message == 'El campo oficio ya ha sido tomado.')
+                                                    El campo oficio ya ha sido tomado.
+                                                @else
+                                                    El campo oficio es requerido
+                                                @endif
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -251,6 +251,37 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-6 ">
+                                    <label for="periodo" class="form-label mb-2">Periodo*</label>
+                                    <div class="d-flex">
+                                        <div class="md-form form-group">
+                                            <input type="date"
+                                                class="form-control mb-2
+                                                    @error('p1')
+                                                    border border-danger rounded-2
+                                                    @enderror"
+                                                id="p1" name="p1" value="{{ old('p1') }}">
+                                            @error('p1')
+                                                <div class="text-danger text-center">
+                                                    El campo periodo inicio es requerido
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="md-form form-group ">
+                                            <input type="date"
+                                                class="form-control mb-2
+                                                    @error('p2')
+                                                    border border-danger rounded-2
+                                                    @enderror"
+                                                id="p2" name="p2" value="{{ old('p2') }}">
+                                            @error('p2')
+                                                <div class="text-danger text-center">
+                                                    El campo periodo fin es requerido
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -276,7 +307,7 @@
                                     name="ejecutor[]">
                                 @error('ejecutor')
                                     <div class="text-danger text-center">
-                                        El campo es requerido
+                                        El campo ejecutor es requerido
                                     </div>
                                 @enderror
                                 <button class="btn btn-warning puntero ocultar mt-4"
@@ -312,23 +343,23 @@
                             </tr>
                         </thead>
                         <tbody class="table-light text-center">
-                        @foreach ($cobranza as $item )
-                        <tr>
-                            <td>{{$mes[($item->mes)-1]}}</td>
-                            <td>{{$item->anio}}</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                        </tr>
-                        @endforeach
-                        <tr>
-                            <td colspan="2" class="text-center">Totales</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                        </tr>
+                            @foreach ($cobranza as $item)
+                                <tr>
+                                    <td>{{ $mes[$item->mes - 1] }}</td>
+                                    <td>{{ $item->anio }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="2" class="text-center">Totales</td>
+                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
