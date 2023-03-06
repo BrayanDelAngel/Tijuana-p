@@ -26,7 +26,31 @@ class RequerimientoController extends Controller
     }
     public function store(Request $request)
     {
+//         dd($request->ejecutor);
+
+
+       
+        $request->validate([
+            'ncredito' => ['required'],
+            'ejecutor.0' => ['required','array'],
+            'oficio' =>  ['required'],
+            'propietario' =>  ['required'],
+            'clavec' =>  ['required'],
+            'serie' => ['required'],
+            'domicilio' =>  ['required'],
+            'mandamiento' =>  ['required'],
+            'emision' =>  ['required'],
+            'cuenta' =>  ['required'],
+            'tservicio' =>  ['required'],
+            'remision' =>  ['required'],
+            'notificacion' =>  ['required'],
+            'sobrerecaudador' =>  ['required'],
+    ]);
+       
         
+       
+
+        dd($request->all());
         return '<script type="text/javascript">window.open("PDFRequerimiento")</script>' .
             redirect()->action(
                 [IndexController::class, 'index']

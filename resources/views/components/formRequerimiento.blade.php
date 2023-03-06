@@ -248,14 +248,14 @@
                         </div>
                         <div class="clonar col-md-8 text-center ">
                             <div class="row align-items-start" style="margin-left: 10%">
-                                <label for="ejecutor" class="form-label">Notificador y/o Ejecutor:*</label>
-                                <input type="text" value="{{ old('ejecutor') }}" id="ejecutor"
+                                <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
+                                <input type="text" value="{{ old('ejecutor.0') }}" id="ejecutor.0"
                                     class="form-control mb-2
-                                                    @error('ejecutor')
+                                                    @error('ejecutor.0')
                                                     border border-danger rounded-2
                                                     @enderror"
                                     name="ejecutor[]">
-                                @error('ejecutor')
+                                @error('ejecutor.0')
                                     <div class="text-danger text-center">
                                         El campo es requerido
                                     </div>
