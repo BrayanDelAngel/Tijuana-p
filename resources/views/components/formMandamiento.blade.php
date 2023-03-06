@@ -291,13 +291,13 @@
                             <span class="bg-success rounded-2 p-2"><img
                                     src="https://img.icons8.com/fluency/30/null/group.png" />Ejecutores</span>
                         </div>
-                        <div class="col-md-4 my-auto" style="margin-left: 80%">
+                        <div class="col-md-4 my-auto" style="margin-left: 260px">
                             <button class="btn btn-primary" type="button" id="agregar">
                                 <img src="https://img.icons8.com/fluency/24/null/add.png" />
                             </button>
                         </div>
-                        <div class="clonar col-md-8 text-center ">
-                            <div class="row align-items-start" style="margin-left: 10%">
+                        <div class="clonar col-md-8 text-center " style="margin-left: 2%">
+                            <div class="row align-items-start">
                                 <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
                                 <input type="text" value="{{ old('ejecutor.0') }}" id="ejecutor.0"
                                     class="form-control mb-2
@@ -311,7 +311,7 @@
                                     </div>
                                 @enderror
                                 <button class="btn btn-warning puntero ocultar mt-4"
-                                    style="width: 5%; position: absolute; left: 78%;" type="button">
+                                    style="width: 5%; position: absolute; left: 77%;" type="button">
                                     <img src="https://img.icons8.com/fluency/24/null/minus.png" />
                                 </button>
                             </div>
