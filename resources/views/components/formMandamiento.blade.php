@@ -296,9 +296,9 @@
                                 <img src="https://img.icons8.com/fluency/24/null/add.png" />
                             </button>
                         </div>
-                        <div class="clonar col-md-8 text-center " style="margin-left: 2%">
-                            <div class="row align-items-start">
-                                <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
+                        <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
+                        <div class="clonar col-md-9 text-center" style="margin-left: 2%">
+                            <div class=" align-items-start d-flex">
                                 <input type="text" value="{{ old('ejecutor.0') }}" id="ejecutor.0"
                                     class="form-control mb-2
                                                     @error('ejecutor.0')
@@ -307,11 +307,11 @@
                                     name="ejecutor[]">
                                 @error('ejecutor.0')
                                     <div class="text-danger text-center">
-                                        El campo es requerido
+                                        El campo ejecutor es requerido
                                     </div>
                                 @enderror
-                                <button class="btn btn-warning puntero ocultar mt-4"
-                                    style="width: 5%; position: absolute; left: 77%;" type="button">
+                                <button class="btn btn-warning puntero ocultar" style="margin-left: 1%"
+                                    style="width: 22%;" type="button">
                                     <img src="https://img.icons8.com/fluency/24/null/minus.png" />
                                 </button>
                             </div>
