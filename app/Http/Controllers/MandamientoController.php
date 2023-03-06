@@ -23,7 +23,10 @@ class MandamientoController extends Controller
             $date=implementta::select('Cuenta','Clave','Propietario','TipoServicio','SerieMedidor',DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
             ->where('implementta.Cuenta',$cuenta)
             ->get();
-            return view('components.formMandamiento',['cobranza'=>$sql,'date'=>$date]);
+           
+            $mes=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre"];
+            return view('components.formMandamiento',['cobranza'=>$sql,'date'=>$date,'mes'=>$mes]);
+            
         }
     }
     public function store(Request $request)

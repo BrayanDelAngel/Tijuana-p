@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="md-form form-group">
-                                    <label for="emision" class="form-label mb-2">Fecha emisión de
+                                    <label for="emision" class="form-label mb-2">Fecha del
                                         requerimiento:*</label>
                                     <input type="date"
                                         class="form-control mb-2
@@ -182,8 +182,8 @@
                         <div class="row align-items-start form-row">
                             <div class="col-md-6">
                                 <div class="md-form form-group">
-                                    <label for="remision" class="form-label mb-2">Fecha remisión de
-                                        requerimiento:*</label>
+                                    <label for="remision" class="form-label mb-2">Fecha de la remisión del
+                                        credito fiscal:*</label>
                                     <input type="date"
                                         class="form-control mb-2
                                             @error('remision')
