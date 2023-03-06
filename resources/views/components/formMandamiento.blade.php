@@ -36,7 +36,7 @@
                                             name="credito" value="{{ old('credito') }}" placeholder="Crédito">
                                         @error('credito')
                                             <div class="text-danger text-center">
-                                                {{ $message }}
+                                                El campo crédito número es requerido.
                                             </div>
                                         @enderror
                                     </div>
@@ -181,7 +181,7 @@
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
                                         <label for="determinacion" class="form-label mb-2">Fecha de
-                                            determinacion:*</label>
+                                            determinación:*</label>
                                         <input type="date"
                                             class="form-control mb-2
                                         @error('determinacion')
@@ -190,7 +190,7 @@
                                             id="determinacion" name="determinacion" value="{{ old('determinacion') }}">
                                         @error('determinacion')
                                             <div class="text-danger text-center">
-                                                El campo determinacion es requerido
+                                                El campo determinación es requerido
                                             </div>
                                         @enderror
                                     </div>
@@ -200,7 +200,7 @@
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
                                         <label for="ndeterminacion" class="form-label mb-2">Fecha de notificacion
-                                            determinacion:*</label>
+                                            determinación:*</label>
                                         <input type="date"
                                             class="form-control mb-2
                                         @error('ndeterminacion')
@@ -210,7 +210,7 @@
                                             value="{{ old('ndeterminacion') }}">
                                         @error('ndeterminacion')
                                             <div class="text-danger text-center">
-                                                El campo notificacion determinacion es requerido
+                                                El campo notificación determinación es requerido
                                             </div>
                                         @enderror
                                     </div>

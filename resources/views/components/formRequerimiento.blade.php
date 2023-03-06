@@ -36,7 +36,7 @@
                                             name="ncredito" value="{{ old('ncredito') }}" placeholder="Número de Credito">
                                         @error('ncredito')
                                             <div class="text-danger text-center">
-                                                {{ $message }}
+                                                El campo número crédito es requerido.
                                             </div>
                                         @enderror
                                     </div>
@@ -193,7 +193,7 @@
                                             id="remision" name="remision" value="{{ old('remision') }}">
                                         @error('remision')
                                             <div class="text-danger text-center">
-                                                El campo remision es requerido
+                                                El campo remisión es requerido
                                             </div>
                                         @enderror
                                     </div>
@@ -201,7 +201,7 @@
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
                                         <label for="notificacion" class="form-label mb-2">Fecha notificación de la
-                                            determinacion:*</label>
+                                            determinación:*</label>
                                         <input type="date"
                                             class="form-control mb-2
                                             @error('notificacion')
@@ -210,7 +210,7 @@
                                             id="notificacion" name="notificacion" value="{{ old('notificacion') }}">
                                         @error('notificacion')
                                             <div class="text-danger text-center">
-                                                El campo notificacion es requerido
+                                                El campo notificación es requerido
                                             </div>
                                         @enderror
                                     </div>
