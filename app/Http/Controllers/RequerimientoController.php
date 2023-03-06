@@ -11,28 +11,23 @@ class RequerimientoController extends Controller
 {
     public function index($cuenta)
     {
-        $existe=DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
-        if(($existe[0]->c)==0){
+        $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
+        if (($existe[0]->c) == 0) {
             return  redirect()->action(
                 [IndexController::class, 'index']
             )->with('error', 'error');
-        }
-        else{
-            $date=implementta::select('Cuenta','Clave','Propietario','TipoServicio','SerieMedidor',DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
-            ->where('implementta.Cuenta',$cuenta)
-            ->get();
-            return view('components.formRequerimiento',['date'=>$date]);
+        } else {
+            $date = implementta::select('Cuenta', 'Clave', 'Propietario', 'TipoServicio', 'SerieMedidor', DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
+                ->where('implementta.Cuenta', $cuenta)
+                ->get();
+            return view('components.formRequerimiento', ['date' => $date]);
         }
     }
     public function store(Request $request)
     {
-//         dd($request->ejecutor);
-
-
-       
         $request->validate([
             'ncredito' => ['required'],
-            'ejecutor.0' => ['required','array'],
+            'ejecutor.0' => ['required', 'array'],
             'oficio' =>  ['required'],
             'propietario' =>  ['required'],
             'clavec' =>  ['required'],
@@ -45,11 +40,7 @@ class RequerimientoController extends Controller
             'remision' =>  ['required'],
             'notificacion' =>  ['required'],
             'sobrerecaudador' =>  ['required'],
-    ]);
-       
-        
-       
-
+        ]);
         dd($request->all());
         return '<script type="text/javascript">window.open("PDFRequerimiento")</script>' .
             redirect()->action(

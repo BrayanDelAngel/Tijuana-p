@@ -30,7 +30,23 @@ class MandamientoController extends Controller
     public function store(Request $request)
     {
        
-        
+        $request->validate([
+            'ncredito' => ['required'],
+            'ejecutor.0' => ['required', 'array'],
+            'oficio' =>  ['required'],
+            'propietario' =>  ['required'],
+            'clavec' =>  ['required'],
+            'serie' => ['required'],
+            'domicilio' =>  ['required'],
+            'mandamiento' =>  ['required'],
+            'emision' =>  ['required'],
+            'cuenta' =>  ['required'],
+            'tservicio' =>  ['required'],
+            'remision' =>  ['required'],
+            'notificacion' =>  ['required'],
+            'sobrerecaudador' =>  ['required'],
+        ]);
+        dd($request->all());
         return '<script type="text/javascript">window.open("PDFMandamiento")</script>' .
             redirect()->action(
                 [IndexController::class, 'index']

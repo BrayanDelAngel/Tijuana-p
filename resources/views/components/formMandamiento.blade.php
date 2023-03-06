@@ -285,8 +285,8 @@
                             </div>
                         </div>
                     @endforeach
-                    <div
-                        class="p-2 rounded-4 col-md-4"style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
+                    <div class="p-2 rounded-4 col-md-4"
+                        style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
                         <div class="text-white m-2 align-items-end" style="text-align:right;">
                             <span class="bg-success rounded-2 p-2"><img
                                     src="https://img.icons8.com/fluency/30/null/group.png" />Ejecutores</span>
@@ -298,16 +298,16 @@
                         </div>
                         <div class="clonar col-md-8 text-center ">
                             <div class="row align-items-start" style="margin-left: 10%">
-                                <label for="ejecutor" class="form-label">Notificador y/o Ejecutor:*</label>
-                                <input type="text" value="{{ old('ejecutor') }}" id="ejecutor"
+                                <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
+                                <input type="text" value="{{ old('ejecutor.0') }}" id="ejecutor.0"
                                     class="form-control mb-2
-                                                    @error('ejecutor')
+                                                    @error('ejecutor.0')
                                                     border border-danger rounded-2
                                                     @enderror"
                                     name="ejecutor[]">
-                                @error('ejecutor')
+                                @error('ejecutor.0')
                                     <div class="text-danger text-center">
-                                        El campo ejecutor es requerido
+                                        El campo es requerido
                                     </div>
                                 @enderror
                                 <button class="btn btn-warning puntero ocultar mt-4"
