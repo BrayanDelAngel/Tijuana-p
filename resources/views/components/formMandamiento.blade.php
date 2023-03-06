@@ -3,7 +3,7 @@
     Mandamiento
 @endsection
 @section('css')
-<link href="{{ asset('css/addInput.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/addInput.css') }}" rel="stylesheet">
 @endsection
 @section('contenido')
     <div class="container position-static">
@@ -14,222 +14,246 @@
         </div>
         <hr>
         <div class="p-3 mx-auto">
-            <form action="{{ route('guardar-mandamiento')}}" method="post" novalidate>
+            <form action="{{ route('guardar-mandamiento') }}" method="post" novalidate>
                 @csrf
                 <div class="row">
-                    <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
-                        <div class="text-white m-2 align-items-end" style="text-align:right;">
-                            <span class="bg-success rounded-2 p-2"><img
-                                    src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Datos Generales</span>
-                        </div>
-                        <div class="row align-items-start form-row">
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="folio" class="form-label">Folio:*</label>
-                                    <input type="text" id="folio"
-                                        class="form-control mb-2 
-                                        @error('folio')
+                    @foreach ($date as $item)
+                        <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
+                            <div class="text-white m-2 align-items-end" style="text-align:right;">
+                                <span class="bg-success rounded-2 p-2"><img
+                                        src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Datos
+                                    Generales</span>
+                            </div>
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="credito" class="form-label">Crédito Número*</label>
+                                        <input type="text" id="credito"
+                                            class="form-control mb-2 
+                                        @error('credito')
                                         border border-danger rounded-2
                                         @enderror"
-                                        name="folio" value="{{ old('folio') }}" placeholder="Folio">
-                                    @error('folio')
-                                        <div class="text-danger text-center">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="creditof" class="form-label">Credito fiscal:*</label>
-                                    <div class="input-group mb-6">
-                                        <input type="text" class="form-control mb-2" value="TP/PAE/" disabled>
-                                        <input type="text" value="{{ old('creditof') }}" id="creditof"
-                                            class="form-control mb-2
-                                            @error('creditof')
-                                            border border-danger rounded-2
-                                            @enderror"
-                                            name="creditof">
-                                        @error('creditof')
+                                            name="credito" value="{{ old('credito') }}" placeholder="Crédito">
+                                        @error('credito')
                                             <div class="text-danger text-center">
-                                                @if ($message == 'El campo creditof ya ha sido tomado.')
-                                                    El campo credito fiscal ya ha sido tomado.
-                                                @else
-                                                    El campo credito fiscal es requerido
-                                                @endif
+                                                {{ $message }}
                                             </div>
                                         @enderror
-                                        <input type="text" class="form-control mb-2" value="/{{ date('Y') }}"
-                                            disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="oficio" class="form-label">Oficio:*</label>
+                                        <div class="input-group mb-6">
+                                            <input type="text" class="form-control mb-2" value="TP/PAE/" disabled>
+                                            <input type="text" value="{{ old('oficio') }}" id="oficio"
+                                                class="form-control mb-2
+                                            @error('oficio')
+                                            border border-danger rounded-2
+                                            @enderror"
+                                                name="oficio">
+                                            @error('oficio')
+                                                <div class="text-danger text-center">
+                                                    @if ($message == 'El campo oficio ya ha sido tomado.')
+                                                        El campo oficio ya ha sido tomado.
+                                                    @else
+                                                        El campo oficio es requerido
+                                                    @endif
+                                                </div>
+                                            @enderror
+                                            <input type="text" class="form-control mb-2" value="/{{ date('Y') }}"
+                                                disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="propietario" class="form-label">Propietario:*</label>
+                                        <input type="text" value="{{ $item->Propietario }}" id="propietario"
+                                            class="form-control mb-2
+                                            @error('propietario')
+                                            border border-danger rounded-2
+                                            @enderror"
+                                            name="propietario" readonly>
+                                        @error('propietario')
+                                            <div class="text-danger text-center">
+                                                El campo propietario es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="clavec" class="form-label">Clave Castastral:*</label>
+                                        <input type="text" class="form-control mb-2" id="clavec" name="clavec"
+                                            value="{{ $item->Clave }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="domicilio" class="form-label">Domicilio*</label>
+                                        <input type="text" value="{{ $item->Domicilio }}" id="domicilio"
+                                            class="form-control mb-2
+                                        @error('domicilio')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            name="domicilio" readonly>
+                                        @error('domicilio')
+                                            <div class="text-danger text-center">
+                                                El campo domicilio es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="mandamiento" class="form-label mb-2">Fecha emisión de
+                                            mandamiento:*</label>
+                                        <input type="date"
+                                            class="form-control mb-2
+                                        @error('mandamiento')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            id="mandamiento" name="emision" value="{{ old('mandamiento') }}">
+                                        @error('mandamiento')
+                                            <div class="text-danger text-center">
+                                                El campo mandamiento es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="cuenta" class="form-label mb-2">Cuenta:*</label>
+                                        <input type="text" value="{{ $item->Cuenta }}" readonly
+                                            class="form-control mb-2
+                                        @error('cuenta')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            id="cuenta" name="cuenta">
+                                        @error('cuenta')
+                                            <div class="text-danger text-center">
+                                                El campo cuenta es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="tservicio" class="form-label mb-2">Tipo de servicio:*</label>
+                                        <input type="text"
+                                            class="form-control mb-2
+                                        @error('tservicio')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            id="tservicio" name="tservicio" value="{{ $item->TipoServicio }}">
+                                        @error('tservicio')
+                                            <div class="text-danger text-center">
+                                                El campo servicio es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="serie" class="form-label mb-2">Serie medidor:*</label>
+                                        <input type="text"
+                                            class="form-control mb-2
+                                        @error('serie')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            id="serie" name="serie" value="{{ $item->SerieMedidor }}">
+                                        @error('serie')
+                                            <div class="text-danger text-center">
+                                                El campo serie es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="determinacion" class="form-label mb-2">Fecha de
+                                            determinacion:*</label>
+                                        <input type="date"
+                                            class="form-control mb-2
+                                        @error('determinacion')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            id="determinacion" name="determinacion" value="{{ old('determinacion') }}">
+                                        @error('determinacion')
+                                            <div class="text-danger text-center">
+                                                El campo determinacion es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="ndeterminacion" class="form-label mb-2">Fecha de notificacion
+                                            determinacion:*</label>
+                                        <input type="date"
+                                            class="form-control mb-2
+                                        @error('ndeterminacion')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            id="ndeterminacion" name="ndeterminacion"
+                                            value="{{ old('ndeterminacion') }}">
+                                        @error('ndeterminacion')
+                                            <div class="text-danger text-center">
+                                                El campo notificacion determinacion es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="notificacion" class="form-label mb-2">Fecha notificación de
+                                            requerimiento:*</label>
+                                        <input type="date"
+                                            class="form-control mb-2
+                                        @error('notificacion')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            id="notificacion" name="notificacion" value="{{ old('notificacion') }}">
+                                        @error('notificacion')
+                                            <div class="text-danger text-center">
+                                                El campo notificacion es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="sobrerecaudador" class="form-label mb-2">Sobrerecaudador:*</label>
+                                        <input type="text"
+                                            class="form-control mb-2
+                                                @error('sobrerecaudador')
+                                                border border-danger rounded-2
+                                                @enderror"
+                                            id="sobrerecaudador" name="sobrerecaudador"
+                                            value="{{ old('sobrerecaudador') }}">
+                                        @error('sobrerecaudador')
+                                            <div class="text-danger text-center">
+                                                El campo sobrerecaudador es requerido
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row align-items-start form-row">
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="contribuyente" class="form-label">Contribuyente:*</label>
-                                    <input type="text" value="{{ old('contribuyente') }}" id="contribuyente"
-                                        class="form-control mb-2
-                                            @error('contribuyente')
-                                            border border-danger rounded-2
-                                            @enderror"
-                                        name="contribuyente" readonly>
-                                    @error('contribuyente')
-                                        <div class="text-danger text-center">
-                                            El campo contribuyente es requerido
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="clavec" class="form-label">Clave Castastral:*</label>
-                                    <input type="text" class="form-control mb-2" id="clavec" name="clavec"
-                                        value="{{ old('clavec') }}" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row align-items-start form-row">
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="domicilio" class="form-label">Domicilio*</label>
-                                    <input type="text" value="{{ old('domicilio') }}" id="domicilio"
-                                        class="form-control mb-2
-                                        @error('domicilio')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                        name="domicilio" readonly>
-                                    @error('domicilio')
-                                        <div class="text-danger text-center">
-                                            El campo domicilio es requerido
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="mandamiento" class="form-label mb-2">Fecha emisión de
-                                        mandamiento:*</label>
-                                    <input type="date"
-                                        class="form-control mb-2
-                                        @error('mandamiento')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                        id="mandamiento" name="emision" value="{{ old('mandamiento') }}">
-                                    @error('mandamiento')
-                                        <div class="text-danger text-center">
-                                            El campo mandamiento es requerido
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row align-items-start form-row">
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="cuenta" class="form-label mb-2">Cuenta:*</label>
-                                    <input type="text" value="{{ old('cuenta') }}" readonly
-                                        class="form-control mb-2
-                                        @error('cuenta')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                        id="cuenta" name="cuenta">
-                                    @error('cuenta')
-                                        <div class="text-danger text-center">
-                                            El campo cuenta es requerido
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="tservicio" class="form-label mb-2">Tipo de servicio:*</label>
-                                    <input type="text"
-                                        class="form-control mb-2
-                                        @error('tservicio')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                        id="tservicio" name="tservicio" value="{{ old('tservicio') }}">
-                                    @error('tservicio')
-                                        <div class="text-danger text-center">
-                                            El campo servicio es requerido
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row align-items-start form-row">
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="serie" class="form-label mb-2">Serie medidor:*</label>
-                                    <input type="text"
-                                        class="form-control mb-2
-                                        @error('serie')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                        id="serie" name="serie" value="{{ old('serie') }}">
-                                    @error('serie')
-                                        <div class="text-danger text-center">
-                                            El campo serie es requerido
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="determinacion" class="form-label mb-2">Fecha de determinacion:*</label>
-                                    <input type="date"
-                                        class="form-control mb-2
-                                        @error('determinacion')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                        id="determinacion" name="determinacion" value="{{ old('determinacion') }}">
-                                    @error('determinacion')
-                                        <div class="text-danger text-center">
-                                            El campo determinacion es requerido
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row align-items-start form-row">
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="ndeterminacion" class="form-label mb-2">Fecha de notificacion
-                                        determinacion:*</label>
-                                    <input type="date"
-                                        class="form-control mb-2
-                                        @error('ndeterminacion')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                        id="ndeterminacion" name="ndeterminacion" value="{{ old('ndeterminacion') }}">
-                                    @error('ndeterminacion')
-                                        <div class="text-danger text-center">
-                                            El campo notificacion determinacion es requerido
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="md-form form-group">
-                                    <label for="notificacion" class="form-label mb-2">Fecha notificación de
-                                        requerimiento:*</label>
-                                    <input type="date"
-                                        class="form-control mb-2
-                                        @error('notificacion')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                        id="notificacion" name="notificacion" value="{{ old('notificacion') }}">
-                                    @error('notificacion')
-                                        <div class="text-danger text-center">
-                                            El campo notificacion es requerido
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                     <div
                         class="p-2 rounded-4 col-md-4"style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
                         <div class="text-white m-2 align-items-end" style="text-align:right;">
@@ -288,23 +312,23 @@
                             </tr>
                         </thead>
                         <tbody class="table-light text-center">
-                        @foreach ($cobranza as $item )
-                        <tr>
-                            <td>{{$item->mes}}</td>
-                            <td>{{$item->anio}}</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                        </tr>
-                        @endforeach
-                        <tr>
-                            <td colspan="2" class="text-center">Totales</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                        </tr>
+                            @foreach ($cobranza as $item)
+                                <tr>
+                                    <td>{{ $item->mes }}</td>
+                                    <td>{{ $item->anio }}</td>
+                                    <td>&nbsp;&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;&nbsp;</td>
+                                    <td>&nbsp;&nbsp;</td>
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="2" class="text-center">Totales</td>
+                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -394,5 +418,5 @@
     </div>
 @endsection
 @section('js')
-<script src="{{ asset('js/addInput.js') }}"></script>
+    <script src="{{ asset('js/addInput.js') }}"></script>
 @endsection

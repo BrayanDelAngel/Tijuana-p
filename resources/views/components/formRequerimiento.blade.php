@@ -17,6 +17,7 @@
             <form action="{{ route('guardar-requerimiento')}}" method="post" novalidate>
                 @csrf
                 <div class="row">
+                    @foreach ($date as $item )
                     <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
                         <div class="text-white m-2 align-items-end" style="text-align:right;">
                             <span class="bg-success rounded-2 p-2"><img
@@ -25,14 +26,14 @@
                         <div class="row align-items-start form-row">
                             <div class="col-md-6">
                                 <div class="md-form form-group">
-                                    <label for="folio" class="form-label">Folio:*</label>
-                                    <input type="text" id="folio"
+                                    <label for="ncredito" class="form-label">Número de Credito:*</label>
+                                    <input type="text" id="ncredito"
                                         class="form-control mb-2 
-                                            @error('folio')
+                                            @error('ncredito')
                                             border border-danger rounded-2
                                             @enderror"
-                                        name="folio" value="{{ old('folio') }}" placeholder="Folio">
-                                    @error('folio')
+                                        name="ncredito" value="{{ old('ncredito') }}" placeholder="Número de Credito">
+                                    @error('ncredito')
                                         <div class="text-danger text-center">
                                             {{ $message }}
                                         </div>
@@ -41,21 +42,21 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="md-form form-group">
-                                    <label for="creditof" class="form-label">Credito fiscal:*</label>
+                                    <label for="oficio" class="form-label">Oficio:*</label>
                                     <div class="input-group mb-6">
                                         <input type="text" class="form-control mb-2" value="TP/PAE/" disabled>
-                                        <input type="text" value="{{ old('creditof') }}" id="creditof"
+                                        <input type="text" value="{{ old('oficio') }}" id="oficio"
                                             class="form-control mb-2
-                                                @error('creditof')
+                                                @error('oficio')
                                                 border border-danger rounded-2
                                                 @enderror"
-                                            name="creditof">
-                                        @error('creditof')
+                                            name="oficio">
+                                        @error('oficio')
                                             <div class="text-danger text-center">
                                                 @if ($message == 'El campo creditof ya ha sido tomado.')
-                                                    El campo credito fiscal ya ha sido tomado.
+                                                    El campo oficio ya ha sido tomado.
                                                 @else
-                                                    El campo credito fiscal es requerido
+                                                    El campo oficio es requerido
                                                 @endif
                                             </div>
                                         @enderror
@@ -70,16 +71,16 @@
                         <div class="row align-items-start form-row">
                             <div class="col-md-4">
                                 <div class="md-form form-group">
-                                    <label for="contribuyente" class="form-label">Contribuyente:*</label>
-                                    <input type="text" value="{{ old('contribuyente') }}" id="contribuyente"
+                                    <label for="propietario" class="form-label">Propietario:*</label>
+                                    <input type="text" value="{{ $item->Propietario }}" id="contribuyente"
                                         class="form-control mb-2
-                                                @error('contribuyente')
+                                                @error('propietario')
                                                 border border-danger rounded-2
                                                 @enderror"
-                                        name="contribuyente" readonly>
-                                    @error('contribuyente')
+                                        name="propietario" readonly>
+                                    @error('propietario')
                                         <div class="text-danger text-center">
-                                            El campo contribuyente es requerido
+                                            El campo propietario es requerido
                                         </div>
                                     @enderror
                                 </div>
@@ -88,7 +89,7 @@
                                 <div class="md-form form-group">
                                     <label for="clavec" class="form-label">Clave Castastral:*</label>
                                     <input type="text" class="form-control mb-2" id="clavec" name="clavec"
-                                        value="{{ old('clavec') }}" readonly>
+                                        value="{{ $item->Clave }}" readonly>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -99,7 +100,7 @@
                                             @error('serie')
                                             border border-danger rounded-2
                                             @enderror"
-                                        id="serie" name="serie" value="{{ old('serie') }}">
+                                        id="serie" name="serie" value="{{ $item->SerieMedidor}}">
                                     @error('serie')
                                         <div class="text-danger text-center">
                                             El campo serie es requerido
@@ -112,7 +113,7 @@
                             <div class="col-md-6">
                                 <div class="md-form form-group">
                                     <label for="domicilio" class="form-label">Domicilio*</label>
-                                    <input type="text" value="{{ old('domicilio') }}" id="domicilio"
+                                    <input type="text" value="{{ $item->Domicilio }}" id="domicilio"
                                         class="form-control mb-2
                                             @error('domicilio')
                                             border border-danger rounded-2
@@ -147,7 +148,7 @@
                             <div class="col-md-6">
                                 <div class="md-form form-group">
                                     <label for="cuenta" class="form-label mb-2">Cuenta:*</label>
-                                    <input type="text" value="{{ old('cuenta') }}" readonly
+                                    <input type="text" value="{{ $item->Cuenta }}" readonly
                                         class="form-control mb-2
                                             @error('cuenta')
                                             border border-danger rounded-2
@@ -168,7 +169,7 @@
                                             @error('tservicio')
                                             border border-danger rounded-2
                                             @enderror"
-                                        id="tservicio" name="tservicio" value="{{ old('tservicio') }}">
+                                        id="tservicio" name="tservicio" value="{{ $item->TipoServicio }}">
                                     @error('tservicio')
                                         <div class="text-danger text-center">
                                             El campo servicio es requerido
@@ -198,8 +199,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="md-form form-group">
-                                    <label for="notificacion" class="form-label mb-2">Fecha notificación de
-                                        requerimiento:*</label>
+                                    <label for="notificacion" class="form-label mb-2">Fecha notificación de la
+                                        determinacion:*</label>
                                     <input type="date"
                                         class="form-control mb-2
                                             @error('notificacion')
@@ -233,6 +234,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     <div class="p-2 rounded-4 col-md-4"
                         style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
                         <div class="text-white m-2 align-items-end" style="text-align:right;">

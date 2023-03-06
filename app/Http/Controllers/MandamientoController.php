@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cobranzaExternaHistoricos;
+use App\Models\implementta;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\DB;
@@ -11,9 +12,6 @@ class MandamientoController extends Controller
 {
     public function index($cuenta)
     {
-       
-        //  $sql=cobranzaExternaHistoricos::all()->where('cobranzaExternaHistoricosWS3.NoCta','=',$cuenta)->paginate(5);
-        //  $sql=cobranzaExternaHistoricos::all()->paginate(5);
         $existe=DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
         if(($existe[0]->c)==0){
             return  redirect()->action(
@@ -22,8 +20,10 @@ class MandamientoController extends Controller
         }
         else{
             $sql= cobranzaExternaHistoricos::select(['NoCta','anio','mes'])->where('NoCta',$cuenta)->get();
-            // dd($sql);
-            return view('components.formMandamiento',['cobranza'=>$sql]);
+            $date=implementta::select('Cuenta','Clave','Propietario','TipoServicio','SerieMedidor',DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
+            ->where('implementta.Cuenta',$cuenta)
+            ->get();
+            return view('components.formMandamiento',['cobranza'=>$sql,'date'=>$date]);
         }
     }
     public function store(Request $request)
