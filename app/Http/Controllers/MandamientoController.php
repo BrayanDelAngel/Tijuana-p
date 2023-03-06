@@ -20,8 +20,10 @@ class MandamientoController extends Controller
         }
         else{
             $sql= cobranzaExternaHistoricos::select(['NoCta','anio','mes'])->where('NoCta',$cuenta)->get();
-            // dd($sql);
-            return view('components.formMandamiento',['cobranza'=>$sql]);
+            $mes=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Nobiembre","Diciembre"];
+
+            // dd($mes[1]);
+            return view('components.formMandamiento',['cobranza'=>$sql,'mes'=>$mes]);
         }
     }
     public function store(Request $request)

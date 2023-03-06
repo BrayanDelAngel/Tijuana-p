@@ -290,7 +290,7 @@
                         <tbody class="table-light text-center">
                         @foreach ($cobranza as $item )
                         <tr>
-                            <td>{{$item->mes}}</td>
+                            <td>{{$mes[($item->mes)-1]}}</td>
                             <td>{{$item->anio}}</td>
                             <td>&nbsp;&nbsp;</td>
                             <td>&nbsp;</td>
