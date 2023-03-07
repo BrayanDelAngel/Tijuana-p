@@ -33,7 +33,7 @@
                                         @error('credito')
                                         border border-danger rounded-2
                                         @enderror"
-                                            name="credito" value="{{ old('credito') }}" placeholder="Crédito">
+                                            name="credito" value="{{ $item->Numero }}" placeholder="Crédito">
                                         @error('credito')
                                             <div class="text-danger text-center">
                                                 El campo crédito número es requerido.
@@ -46,7 +46,7 @@
                                         <label for="oficio" class="form-label">Oficio:*</label>
                                         <div class="input-group mb-6">
                                             <input type="text" class="form-control mb-2" value="TP/PAE/" disabled>
-                                            <input type="text" value="{{ old('oficio') }}" id="oficio"
+                                            <input type="text" value="{{ $item->Oficio }}" id="oficio"
                                                 class="form-control mb-2
                                             @error('oficio')
                                             border border-danger rounded-2
@@ -206,8 +206,7 @@
                                         @error('ndeterminacion')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="ndeterminacion" name="ndeterminacion"
-                                            value="{{ old('ndeterminacion') }}">
+                                            id="ndeterminacion" name="ndeterminacion" value="{{ $item->Fecha_noti_d }}">
                                         @error('ndeterminacion')
                                             <div class="text-danger text-center">
                                                 El campo notificación determinación es requerido
@@ -242,8 +241,7 @@
                                                 @error('sobrerecaudador')
                                                 border border-danger rounded-2
                                                 @enderror"
-                                            id="sobrerecaudador" name="sobrerecaudador"
-                                            value="{{ old('sobrerecaudador') }}">
+                                            id="sobrerecaudador" name="sobrerecaudador" value="{{ $item->Recaudador }}">
                                         @error('sobrerecaudador')
                                             <div class="text-danger text-center">
                                                 El campo sobrerecaudador es requerido
@@ -253,33 +251,18 @@
                                 </div>
                                 <div class="col-md-6 ">
                                     <label for="periodo" class="form-label mb-2">Periodo*</label>
-                                    <div class="d-flex">
-                                        <div class="md-form form-group">
-                                            <input type="date"
-                                                class="form-control mb-2
+                                    <div class="md-form form-group">
+                                        <input type="text"
+                                            class="form-control mb-2 text-center
                                                     @error('p1')
                                                     border border-danger rounded-2
                                                     @enderror"
-                                                id="p1" name="p1" value="{{ old('p1') }}">
-                                            @error('p1')
-                                                <div class="text-danger text-center">
-                                                    El campo periodo inicio es requerido
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="md-form form-group ">
-                                            <input type="date"
-                                                class="form-control mb-2
-                                                    @error('p2')
-                                                    border border-danger rounded-2
-                                                    @enderror"
-                                                id="p2" name="p2" value="{{ old('p2') }}">
-                                            @error('p2')
-                                                <div class="text-danger text-center">
-                                                    El campo periodo fin es requerido
-                                                </div>
-                                            @enderror
-                                        </div>
+                                            id="p1" name="p1" value="{{ $periodoI . ' al ' . $periodoF }}" readonly>
+                                        @error('p1')
+                                            <div class="text-danger text-center">
+                                                El campo periodo inicio es requerido
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

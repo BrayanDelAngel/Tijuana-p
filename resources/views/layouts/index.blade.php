@@ -25,6 +25,10 @@
     {{-- Muestra de sweetalert en caso de error de petición --}}
         <script src="{{ asset('js/sweetAlert/accessDenied.js') }}"></script>
     @endif
+    @if (session('accessDeniedMandamiento'))
+    {{-- Muestra de sweetalert en caso que no haya  hecho un requerimiento --}}
+        <script src="{{ asset('js/sweetAlert/accessDeniedMandamiento.js') }}"></script>
+    @endif
     {{-- Spinner de caraga --}}
     <div id="contenedor_carga">
         <div id="carga">
