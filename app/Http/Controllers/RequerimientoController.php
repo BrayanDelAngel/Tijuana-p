@@ -25,6 +25,26 @@ class RequerimientoController extends Controller
             $date = implementta::select('Cuenta', 'Clave', 'Propietario', 'TipoServicio', 'SerieMedidor', DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
                 ->where('implementta.Cuenta', $cuenta)
                 ->get();
+                
+            //validamos el tipo de servicio
+            if ($date[0]->TipoServicio=="C") {
+                $ts="COMERCIAL";
+            } else if($date[0]->TipoServicio=="R") {
+                $ts='RESIDENCIAL';
+            }
+            else if($date[0]->TipoServicio=="I") {
+                $ts="INDUSTRIAL";
+            }
+            else if($date[0]->TipoServicio=="G") {
+                $ts="GOBIERNO";
+            }
+            else if($date[0]->TipoServicio=="") {
+                $ts="NO APLICA";
+            }
+            else {
+                $ts=$date[0]->TipoServicio;
+            }
+            
             //validar si esta cuenta ya tiene un requerimiento
             $count_r = DB::select('select count(id) as c from requerimientosA where cuenta = ?', [$cuenta]);
             //si existe
@@ -35,8 +55,10 @@ class RequerimientoController extends Controller
                 $oficio = 0;
             }
             $adeudo = DB::select('select sum(saldoCorriente) as sumaCorriente, sum(saldoIvaCor) as sumaIVA, sum(saldoAtraso) as sumaAtraso, sum(saldoRezago) as sumaRezago, sum(recargosAcum) as sumaRecargoAcomulado, sum(ivaReacum) as IVARezagoAcomulado from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
+            //obtenemos el periodo en el    ue se esta evaluando
+            //se cincatena la fecha maxima y minima 
             $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
-            return view('components.formRequerimiento', ['date' => $date, 'oficio' => $oficio,'periodo'=>$periodo]);
+            return view('components.formRequerimiento', ['date' => $date, 'oficio' => $oficio,'periodo'=>$periodo,'ts'=>$ts]);
         }
     }
     public function store(Request $request)
