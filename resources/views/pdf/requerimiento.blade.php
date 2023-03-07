@@ -21,14 +21,17 @@
         <img src="{{ public_path('img/pdf/logo_BC_escudo.png') }}" width="100%" height="100%" />
     </footer> --}}
     <main>
+        @foreach ($items as $item)
+            
+       
         <h4 class="text-center">REQUERIMIENTO DE PAGO</h4>
         <div class="data">
             <div class="data-center">
                 <p>
-                    Crédito número: ________
+                    Crédito número: <span class="bold underline" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->numeroc}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </p>
                 <p>
-                    Oficio: _______ /_______ /20____
+                    Oficio: <span class="bold underline">TP/PAE/0000{{$item->oficio}}/{{date('Y')}}</span>
                 </p>
             </div>
             <p>
@@ -36,10 +39,10 @@
             </p>
         </div>
         <p class="text-justify">
-            <span class="bold"> Nombre:</span> _______________________________________________, propietario y/o
+            <span class="bold"> Nombre:</span> <span>{{$item->propietario}}</span>, propietario y/o
             Usuario y/o Copropietario y/o Representante Legal y/o responsable Solidario y/o Legalmente Interesado.
             <br />
-            <span class="bold">Del predio ubicado en:</span> ________________________________________________de
+            <span class="bold">Del predio ubicado en:</span> <span>{{$item->domicilio}}</span> de
             Tijuana, Baja California.
         </p>
         <p>
@@ -223,7 +226,7 @@
             </div>
         </div>
     </main>
-
+    @endforeach
 </body>
 
 </html>

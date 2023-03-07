@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class requerimientosA extends Model
+class ejecutores_ra extends Model
 {
-    protected $table = 'requerimientosA';
+    
+    protected $table = 'ejecutores_ra';
     public $timestamps = false;
 }
