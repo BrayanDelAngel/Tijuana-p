@@ -241,6 +241,22 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-6 ">
+                                    <label for="periodo" class="form-label mb-2">Periodo*</label>
+                                    <div class="md-form form-group">
+                                        <input type="text"
+                                            class="form-control mb-2 text-center
+                                                    @error('periodo')
+                                                    border border-danger rounded-2
+                                                    @enderror"
+                                            id="periodo" name="periodo" value="{{ $periodo[0]->periodo }}" readonly>
+                                        @error('periodo')
+                                            <div class="text-danger text-center">
+                                                El campo periodo es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endforeach

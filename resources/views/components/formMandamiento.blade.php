@@ -274,14 +274,14 @@
                             <span class="bg-success rounded-2 p-2"><img
                                     src="https://img.icons8.com/fluency/30/null/group.png" />Ejecutores</span>
                         </div>
-                        <div class="col-md-4 my-auto" style="margin-left: 260px">
+                        <div class="col-md-4 my-auto" style="margin-left: 80%">
                             <button class="btn btn-primary" type="button" id="agregar">
                                 <img src="https://img.icons8.com/fluency/24/null/add.png" />
                             </button>
                         </div>
-                        <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
-                        <div class="clonar col-md-9 text-center" style="margin-left: 2%">
-                            <div class=" align-items-start d-flex">
+                        <div class="clonar col-md-8 text-center ">
+                            <div class="row align-items-start" style="margin-left: 10%">
+                                <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
                                 <input type="text" value="{{ old('ejecutor.0') }}" id="ejecutor.0"
                                     class="form-control mb-2
                                                     @error('ejecutor.0')
@@ -290,11 +290,11 @@
                                     name="ejecutor[]">
                                 @error('ejecutor.0')
                                     <div class="text-danger text-center">
-                                        El campo ejecutor es requerido
+                                        El campo es requerido
                                     </div>
                                 @enderror
-                                <button class="btn btn-warning puntero ocultar" style="margin-left: 1%"
-                                    style="width: 22%;" type="button">
+                                <button class="btn btn-warning puntero ocultar mt-4"
+                                    style="width: 5%; position: absolute; left: 78%;" type="button">
                                     <img src="https://img.icons8.com/fluency/24/null/minus.png" />
                                 </button>
                             </div>

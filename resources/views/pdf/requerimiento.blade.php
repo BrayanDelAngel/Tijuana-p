@@ -28,14 +28,14 @@
         <div class="data">
             <div class="data-center">
                 <p>
-                    Crédito número: <span class="bold underline" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->numeroc}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    Crédito número: <span>{{$item->numeroc}}</span>
                 </p>
                 <p>
-                    Oficio: <span class="bold underline">TP/PAE/0000{{$item->oficio}}/{{date('Y')}}</span>
+                    Oficio: <span class="underline">TP/PAE/0000{{$item->oficio}}/{{date('Y')}}</span>
                 </p>
             </div>
             <p>
-                Tijuana, Baja California a __________ de________ de 20___
+                Tijuana, Baja California a {{$item->fechar}}
             </p>
         </div>
         <p class="text-justify">
@@ -46,16 +46,16 @@
             Tijuana, Baja California.
         </p>
         <p>
-            <span class="bold"> Cuenta:</span> _______________
+            <span class="bold"> Cuenta:</span> <span>{{$item->cuenta}}</span>
         </p>
         <p id="right">
-            <span class="bold"> Tipo de servicio:</span> ________________
+            <span class="bold"> Tipo de servicio:</span> 
         </p>
         <p>
-            <span class="bold"> Clave catastral:</span> _______________
+            <span class="bold"> Clave catastral:</span> <span>{{$item->clavec}}</span>
         </p>
         <p id="right">
-            <span class="bold"> Serie medidor:</span> __________________
+            <span class="bold"> Serie medidor:</span> <span>{{$item->seriem}}</span>
         </p>
 
 
@@ -65,7 +65,7 @@
                 de Servicios Públicos de Tijuana.</span>
         </p>
         <p class="text-justify">La Subrecaudación de Rentas adscrita a la Comisión Estatal de Servicios Públicos de
-            Tijuana, hace constar de la remisión del crédito fiscal número ________ de fecha _______________, emitida
+            Tijuana, hace constar de la remisión del crédito fiscal número <span>{{$item->numeroc}}</span> de fecha {{$item->fechar}}, emitida
             por la
             Comisión Estatal de Servicios Públicos de Tijuana, derivado que el usuario no realizo el pago de los
             derechos de consumo de agua potable, de los períodos del ________________ al ________________ con el objeto
