@@ -21,11 +21,12 @@
     {{-- <footer>
     </footer> --}}
     <main>
+        @foreach ($items as $item)
         <h4 class="text-center">MANDAMIENTO DE EJECUCIÓN</h4>
         <div class="data">
             <div class="data-center">
                 <p>
-                    Crédito número: ________
+                    Crédito número:<span class="bold underline" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->numeroc}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </p>
                 <p>
                     Oficio: _______ /_______ /20____
@@ -469,6 +470,7 @@
                 </p>
             </div>
         </div>
+        @endforeach
     </main>
     {{-- <script type="text/php">
         if ( isset($pdf) ) {
