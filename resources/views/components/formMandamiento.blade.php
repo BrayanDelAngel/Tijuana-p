@@ -18,6 +18,7 @@
                 @csrf
                 <div class="row">
                     @foreach ($date as $item)
+                    <input type="hidden" name="id" value="{{$item->id}}">
                         <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
@@ -33,7 +34,7 @@
                                         @error('credito')
                                         border border-danger rounded-2
                                         @enderror"
-                                            name="credito" value="{{ $item->Numero }}" placeholder="Crédito">
+                                            name="credito" value="{{ $item->Numero }}" placeholder="Crédito" disabled>
                                         @error('credito')
                                             <div class="text-danger text-center">
                                                 El campo crédito número es requerido.
@@ -45,13 +46,13 @@
                                     <div class="md-form form-group">
                                         <label for="oficio" class="form-label">Oficio:*</label>
                                         <div class="input-group mb-6">
-                                            <input type="text" class="form-control mb-2" value="TP/PAE/" disabled>
+                                            <input type="text" class="form-control mb-2" value="CESPT/EDM/000" disabled>
                                             <input type="text" value="{{ $item->Oficio }}" id="oficio"
                                                 class="form-control mb-2
                                             @error('oficio')
                                             border border-danger rounded-2
                                             @enderror"
-                                                name="oficio">
+                                                name="oficio" disabled>
                                             <input type="text" class="form-control mb-2" value="/{{ date('Y') }}"
                                                 disabled>
                                         </div>
@@ -76,7 +77,7 @@
                                             @error('propietario')
                                             border border-danger rounded-2
                                             @enderror"
-                                            name="propietario" readonly>
+                                            name="propietario" disabled>
                                         @error('propietario')
                                             <div class="text-danger text-center">
                                                 El campo propietario es requerido
@@ -88,7 +89,7 @@
                                     <div class="md-form form-group">
                                         <label for="clavec" class="form-label">Clave Castastral:*</label>
                                         <input type="text" class="form-control mb-2" id="clavec" name="clavec"
-                                            value="{{ $item->Clave }}" readonly>
+                                            value="{{ $item->Clave }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +102,7 @@
                                         @error('domicilio')
                                         border border-danger rounded-2
                                         @enderror"
-                                            name="domicilio" readonly>
+                                            name="domicilio" disabled>
                                         @error('domicilio')
                                             <div class="text-danger text-center">
                                                 El campo domicilio es requerido
@@ -118,7 +119,7 @@
                                         @error('mandamiento')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="mandamiento" name="emision" value="{{ old('mandamiento') }}">
+                                            id="mandamiento" name="mandamiento" value="{{ old('mandamiento') }}">
                                         @error('mandamiento')
                                             <div class="text-danger text-center">
                                                 El campo mandamiento es requerido
@@ -131,7 +132,7 @@
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
                                         <label for="cuenta" class="form-label mb-2">Cuenta:*</label>
-                                        <input type="text" value="{{ $item->Cuenta }}" readonly
+                                        <input type="text" value="{{ $item->Cuenta }}" disabled
                                             class="form-control mb-2
                                         @error('cuenta')
                                         border border-danger rounded-2
@@ -152,7 +153,7 @@
                                         @error('tservicio')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="tservicio" name="tservicio" value="{{ $item->TipoServicio }}">
+                                            id="tservicio" name="tservicio" value="{{ $item->TipoServicio }}" disabled>
                                         @error('tservicio')
                                             <div class="text-danger text-center">
                                                 El campo servicio es requerido
@@ -170,7 +171,7 @@
                                         @error('serie')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="serie" name="serie" value="{{ $item->SerieMedidor }}">
+                                            id="serie" name="serie" value="{{ $item->SerieMedidor }}" disabled>
                                         @error('serie')
                                             <div class="text-danger text-center">
                                                 El campo serie es requerido
@@ -206,7 +207,7 @@
                                         @error('ndeterminacion')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="ndeterminacion" name="ndeterminacion" value="{{ $item->Fecha_noti_d }}">
+                                            id="ndeterminacion" name="ndeterminacion" value="{{ $item->Fecha_noti_d }}" disabled>
                                         @error('ndeterminacion')
                                             <div class="text-danger text-center">
                                                 El campo notificación determinación es requerido
@@ -254,11 +255,11 @@
                                     <div class="md-form form-group">
                                         <input type="text"
                                             class="form-control mb-2 text-center
-                                                    @error('p1')
+                                                    @error('periodo')
                                                     border border-danger rounded-2
                                                     @enderror"
-                                            id="p1" name="p1" value="{{ $periodoI . ' al ' . $periodoF }}" readonly>
-                                        @error('p1')
+                                            id="periodo" name="periodo" value="{{ $item->periodo}}" disabled>
+                                        @error('periodo')
                                             <div class="text-danger text-center">
                                                 El campo periodo inicio es requerido
                                             </div>

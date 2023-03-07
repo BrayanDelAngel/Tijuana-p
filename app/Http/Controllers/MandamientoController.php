@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\cobranzaExternaHistoricos;
+use App\Models\ejecutores_ma;
+use App\Models\mandamientosA;
 use App\Models\requerimientosA;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -25,47 +27,112 @@ class MandamientoController extends Controller
                 )->with('accessDeniedMandamiento', 'error');
             } else {
                 $sql = cobranzaExternaHistoricos::select(['NoCta', 'anio', 'mes'])->where('NoCta', $cuenta)->orderBy('anio', 'ASC')->get();
-                $count = cobranzaExternaHistoricos::select('anio', 'mes')->where('NoCta', $cuenta)->orderBy('anio', 'ASC')->count();
-                $periodo = cobranzaExternaHistoricos::select('anio', 'mes')->where('NoCta', $cuenta)->orderBy('anio', 'ASC')->get();
-                $date = requerimientosA::select('numeroc as Numero','oficio as Oficio','fechar as Fecha_r','cuenta as Cuenta', 'clavec as Clave', 
-                'frc as Fecha_remi_c','fnd as Fecha_noti_d','propietario as Propietario', 'tipo_s as TipoServicio', 'seriem as SerieMedidor', 'domicilio as Domicilio','sobrerecaudador as Recaudador')
+               
+                $date = requerimientosA::select(
+                    'numeroc as Numero',
+                    'oficio as Oficio',
+                    'fechar as Fecha_r',
+                    'cuenta as Cuenta',
+                    'clavec as Clave',
+                    'frc as Fecha_remi_c',
+                    'fnd as Fecha_noti_d',
+                    'propietario as Propietario',
+                    'tipo_s as TipoServicio',
+                    'seriem as SerieMedidor',
+                    'domicilio as Domicilio',
+                    'sobrerecaudador as Recaudador',
+                    'id',
+                    'periodo'
+                )
                     ->where('requerimientosA.cuenta', $cuenta)
                     ->get();
-                $periodoI=$periodo[0]->anio.'-'.$periodo[0]->mes;
-                $periodoF=$periodo[$count-1]->anio.'-'.$periodo[$count-1]->mes;
+               
                 $mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Nobiembre", "Diciembre"];
-                return view('components.formMandamiento', ['cobranza' => $sql, 'date' => $date, 'mes' => $mes,'periodoI'=>$periodoI,'periodoF'=>$periodoF]);
+                return view('components.formMandamiento', ['cobranza' => $sql, 'date' => $date, 'mes' => $mes]);
             }
         }
     }
     public function store(Request $request)
     {
+        if (($request->ejecutor[0]) == null) {
+            $request->validate([
+
+                'ejecutor.0' => 'required|array',
+
+            ]);
+        }
 
         $request->validate([
-            'ncredito' => ['required'],
-            'ejecutor.0' => ['required', 'array'],
-            'oficio' =>  ['required'],
-            'propietario' =>  ['required'],
-            'clavec' =>  ['required'],
-            'serie' => ['required'],
-            'domicilio' =>  ['required'],
             'mandamiento' =>  ['required'],
-            'emision' =>  ['required'],
-            'cuenta' =>  ['required'],
-            'tservicio' =>  ['required'],
-            'remision' =>  ['required'],
+            'determinacion' => ['required'],
             'notificacion' =>  ['required'],
             'sobrerecaudador' =>  ['required'],
         ]);
-        dd($request->all());
-        return '<script type="text/javascript">window.open("PDFMandamiento")</script>' .
-            redirect()->action(
-                [IndexController::class, 'index']
-            );
+      
+        //validar si esta cuenta ya tiene un mandamiento
+        $count_r = DB::select('select count(id) as c from mandamientosA where id_r = ?', [$request->id]);
+        //si existe
+        if (($count_r[0]->c) != 0) {
+            dd($request->all());
+            //consultar el id del mandamiento
+            $id = DB::select('select id from mandamientosA where id_r = ?', [$request->id]);
+            //eliminamos los ejecutores existentes
+            $deleted = DB::delete('delete ejecutores_ma where id_m = ?', [$id[0]->id]);
+            //declaramos que se va a modificar el registro de requerimiento
+            $r = mandamientosA::findOrFail($id[0]->id);
+            
+        }
+        //no existe
+        else {
+           
+            //declaramos que se creara un nuevo registro en mandamientosA
+            $r = new mandamientosA();
+        }
+        //guardamos los datos en requerimientosA
+        $r->fm = $request->mandamiento;
+        $r->fd = $request->determinacion;
+        $r->fnr = $request->notificacion;
+        $r->sobrerecaudador = $request->sobrerecaudador;
+        $r->id_r = $request->id;
+        $r->save();
+
+        //validamos si se guardaron los datos
+        if ($r->save()) {
+            //consultamos su id
+            $id = DB::select('select id from mandamientosA where id_r = ?', [$request->id]);
+            //recorremos el array de los ejecutores
+            for ($i = 0; $i < count($request->ejecutor); $i++) {
+                //declaramos que se hara un nuevo registro en ejecutores_ra
+                $e = new ejecutores_ma();
+                $e->ejecutor = $request->ejecutor[$i];
+                $e->id_r = $id[0]->id;
+                $e->save();
+            }
+            //si se guardaron los datos retornamos el pdf
+            if ($e->save()) {
+
+                return '<script type="text/javascript">window.open("PDFMandamiento/' . $request->id . '")</script>' .
+                    redirect()->action(
+                        [IndexController::class, 'index']
+                    );
+            } else {
+                dd("error");
+            }
+        } else {
+            dd("error");
+        }
+
+
+        
     }
-    public function pdf()
+    public function pdf($id)
     {
-        $pdf = Pdf::loadView('pdf.mandamiento');
+        $datos=requerimientosA::
+                select(['propietario','domicilio','oficio','numeroc'])
+                ->where('id',$id)
+                ->get();
+
+        $pdf = Pdf::loadView('pdf.mandamiento',['items'=>$datos]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();

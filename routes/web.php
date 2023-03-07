@@ -22,7 +22,7 @@ Route::get('/',[IndexController::class,'index'])->name('index');
 //Buscador
 Route::post('/search',[IndexController::class,'show'])->name('search');
 /*Rutas de Mandamiento */
-Route::get('/PDFMandamiento',[MandamientoController::class,'pdf'])->name('pdf-mandamiento');
+Route::get('/PDFMandamiento/{id}',[MandamientoController::class,'pdf'])->name('pdf-mandamiento');
 Route::get('/formM/{cuenta}',[MandamientoController::class,'index'])->name('formulario-mandamiento');
 Route::post('/guardarM',[MandamientoController::class,'store'])->name('guardar-mandamiento');
 /*Rutas de Requerimiento*/
