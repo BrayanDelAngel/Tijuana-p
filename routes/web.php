@@ -28,4 +28,4 @@ Route::post('/guardarM',[MandamientoController::class,'store'])->name('guardar-m
 /*Rutas de Requerimiento*/
 Route::get('/formR/{cuenta}',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
 Route::post('/guardarR',[RequerimientoController::class,'store'])->name('guardar-requerimiento');
-Route::get('/PDFRequerimiento',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');
+Route::get('/PDFRequerimiento/{cuenta}',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');

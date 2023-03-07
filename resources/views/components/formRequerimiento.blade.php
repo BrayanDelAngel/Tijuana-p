@@ -16,8 +16,10 @@
         <div class="p-3 mx-auto">
             <form action="{{ route('guardar-requerimiento') }}" method="post" novalidate>
                 @csrf
+                
                 <div class="row">
                     @foreach ($date as $item)
+                    <input type="hidden" name="cuenta" value="{{$item->Cuenta}}">
                         <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
@@ -45,8 +47,13 @@
                                     <div class="md-form form-group">
                                         <label for="oficio" class="form-label">Oficio:*</label>
                                         <div class="input-group mb-6">
-                                            <input type="text" class="form-control mb-2" value="TP/PAE/" disabled>
-                                            <input type="text" value="{{ old('oficio') }}" id="oficio"
+                                            <input type="text" class="form-control mb-2" value="TP/PAE/0000" disabled>
+                                            @if ($oficio!=0)
+                                                
+                                            @else
+                                                {{$oficio="";}}
+                                            @endif
+                                            <input type="text" value="{{ $oficio }}" id="oficio"
                                                 class="form-control mb-2
                                                 @error('oficio')
                                                 border border-danger rounded-2
@@ -57,7 +64,7 @@
                                         </div>
                                         @error('oficio')
                                             <div class="text-danger text-center">
-                                                @if ($message == 'El campo creditof ya ha sido tomado.')
+                                                @if ($message == "The oficio has already been taken.")
                                                     El campo oficio ya ha sido tomado.
                                                 @else
                                                     El campo oficio es requerido
