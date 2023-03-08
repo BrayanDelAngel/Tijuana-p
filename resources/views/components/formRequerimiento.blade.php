@@ -47,7 +47,7 @@
                                     <div class="md-form form-group">
                                         <label for="oficio" class="form-label">Oficio:*</label>
                                         <div class="input-group mb-6">
-                                            <input type="text" class="form-control mb-2" value="TP/PAE/0000" disabled>
+                                            <input type="text" class="form-control mb-2" value="CESPT/EDM/000" disabled>
                                             @if ($oficio!=0)
                                                 
                                             @else
@@ -177,7 +177,7 @@
                                             @error('tservicio')
                                             border border-danger rounded-2
                                             @enderror"
-                                            id="tservicio" name="tservicio" value="{{ $item->TipoServicio }}">
+                                            id="tservicio" name="tservicio" value="{{ $ts }}">
                                         @error('tservicio')
                                             <div class="text-danger text-center">
                                                 El campo servicio es requerido

@@ -105,7 +105,7 @@ class MandamientoController extends Controller
                 //declaramos que se hara un nuevo registro en ejecutores_ra
                 $e = new ejecutores_ma();
                 $e->ejecutor = $request->ejecutor[$i];
-                $e->id_r = $id[0]->id;
+                $e->id_m = $id[0]->id;
                 $e->save();
             }
             //si se guardaron los datos retornamos el pdf
