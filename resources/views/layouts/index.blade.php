@@ -58,16 +58,13 @@
         <div class="btn-group  ms-auto" style="margin-right: 100px">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                Tijuana Predial
+                Tijuana Agua
             </button>
             <ul class="dropdown-menu bg-white">
                 <h6 class="dropdown-header">Utilidades de la plaza</h6>
                 <a class="dropdown-item" href="{{ route('index') }}">
                     <i class="fas fa-balance-scale"></i>
                     Determinaciones Fiscales</a>
-                    <a class="dropdown-item" href="{{ route('pdf-determinacion') }}">
-                        <i class="fas fa-balance-scale"></i>
-                        Pdf Determinaciones</a>
             </ul>
         </div>
     </div>

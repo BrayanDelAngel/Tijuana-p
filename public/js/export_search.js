@@ -108,10 +108,10 @@ export class search {
                             ${propietario}
                         </td>
                         <td class="table-light" style="text-align:center;">
-                        <!--<a class="btn btn-outline-dark btn-sm" onClick="determinaciones('${cuenta}')"
+                        <a class="btn btn-outline-dark btn-sm" onClick="determinacion('${cuenta}')"
                         style="padding:0%;border:0px;" data-toggle="tooltip" data-placement="left"
-                        title="Determinacion de Credito Fiscal"><img
-                            src="https://img.icons8.com/color/30/7950F2/signing-a-document.png" /> Determinacion</a>-->
+                        title="Determinacion"><img
+                            src="https://img.icons8.com/color/30/7950F2/signing-a-document.png" /> Determinacion</a>
                         <a class="btn btn-outline-dark btn-sm" onClick="requerimiento('${cuenta}')"
                         style="padding:0%;border:0px;" data-toggle="tooltip" data-placement="bottom"
                         title="Requerimiento" name="requerimiento"><img
@@ -119,7 +119,7 @@ export class search {
                         Requerimiento</a>
                         <a class="btn btn-outline-dark btn-sm" onClick="mandamiento('${cuenta}')"
                         style="padding:0%;border:0px;" data-toggle="tooltip" data-placement="right"
-                        title="Madamiento de Ejecucion Predial" name="mandamiento"><img
+                        title="Madamiento" name="mandamiento"><img
                             src="https://img.icons8.com/fluency/30/000000/general-ledger.png" />
                         Mandamiento</a>
                         <!--<a class="btn btn-outline-dark btn-sm" onClick="embargo('${cuenta}')"

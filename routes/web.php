@@ -18,16 +18,18 @@ use Svg\Tag\Rect;
 |
 */
 
-Route::get('/',[IndexController::class,'index'])->name('index');
+Route::get('/', [IndexController::class, 'index'])->name('index');
 //Buscador
-Route::post('/search',[IndexController::class,'show'])->name('search');
+Route::post('/search', [IndexController::class, 'show'])->name('search');
 /*Rutas de Mandamiento */
-Route::get('/PDFMandamiento/{id}',[MandamientoController::class,'pdf'])->name('pdf-mandamiento');
-Route::get('/formM/{cuenta}',[MandamientoController::class,'index'])->name('formulario-mandamiento');
-Route::post('/guardarM',[MandamientoController::class,'store'])->name('guardar-mandamiento');
+Route::get('/PDFMandamiento/{id}', [MandamientoController::class, 'pdf'])->name('pdf-mandamiento');
+Route::get('/formM/{cuenta}', [MandamientoController::class, 'index'])->name('formulario-mandamiento');
+Route::post('/guardarM', [MandamientoController::class, 'store'])->name('guardar-mandamiento');
 /*Rutas de Requerimiento*/
-Route::get('/formR/{cuenta}',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
-Route::post('/guardarR',[RequerimientoController::class,'store'])->name('guardar-requerimiento');
-Route::get('/PDFRequerimiento/{cuenta}',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');
+Route::get('/formR/{cuenta}', [RequerimientoController::class, 'index'])->name('formulario-requerimiento');
+Route::post('/guardarR', [RequerimientoController::class, 'store'])->name('guardar-requerimiento');
+Route::get('/PDFRequerimiento/{cuenta}', [RequerimientoController::class, 'pdf'])->name('pdf-requerimiento');
 //Determinaciones
-Route::get('/PDFDeterminaciones',[DeterminacionController::class,'pdf'])->name('pdf-determinacion');
+Route::get('/formD/{cuenta}', [DeterminacionController::class, 'index'])->name('formulario-determinacion');
+Route::post('/guardarD', [DeterminacionController::class, 'store'])->name('guardar-determinacion');
+Route::get('/PDFDeterminacion', [DeterminacionController::class, 'pdf'])->name('pdf-determinacion');
