@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DeterminacionesController;
+use App\Http\Controllers\DeterminacionController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MandamientoController;
 use App\Http\Controllers\RequerimientoController;
@@ -29,3 +29,5 @@ Route::post('/guardarM',[MandamientoController::class,'store'])->name('guardar-m
 Route::get('/formR/{cuenta}',[RequerimientoController::class,'index'])->name('formulario-requerimiento');
 Route::post('/guardarR',[RequerimientoController::class,'store'])->name('guardar-requerimiento');
 Route::get('/PDFRequerimiento/{cuenta}',[RequerimientoController::class,'pdf'])->name('pdf-requerimiento');
+//Determinaciones
+Route::get('/PDFDeterminaciones',[DeterminacionController::class,'pdf'])->name('pdf-determinacion');

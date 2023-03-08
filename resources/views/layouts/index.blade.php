@@ -65,6 +65,9 @@
                 <a class="dropdown-item" href="{{ route('index') }}">
                     <i class="fas fa-balance-scale"></i>
                     Determinaciones Fiscales</a>
+                    <a class="dropdown-item" href="{{ route('pdf-determinacion') }}">
+                        <i class="fas fa-balance-scale"></i>
+                        Pdf Determinaciones</a>
             </ul>
         </div>
     </div>

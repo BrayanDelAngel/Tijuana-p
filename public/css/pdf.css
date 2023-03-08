@@ -121,7 +121,9 @@ h4 {
     margin-left: 50%;
     margin-top: -5%;
 }
-
+.mr-50{
+    margin-right: 50px;
+}
 table,
 th,
 td {
@@ -150,7 +152,10 @@ td {
     margin-left: 200px;
     margin-right: 50px;
 }
-
+.article2 {
+    position: relative;
+    margin-left: 100px;
+}
 .ordena {
     margin-top: 35%;
 }
