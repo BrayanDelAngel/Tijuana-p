@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Luecano\NumeroALetras\NumeroALetras;
 
 class RequerimientoController extends Controller
 {
@@ -34,9 +35,9 @@ class RequerimientoController extends Controller
             } else {
                 $oficio = 0;
             }
-            $adeudo = DB::select('select sum(saldoCorriente) as sumaCorriente, sum(saldoIvaCor) as sumaIVA, sum(saldoAtraso) as sumaAtraso, sum(saldoRezago) as sumaRezago, sum(recargosAcum) as sumaRecargoAcomulado, sum(ivaReacum) as IVARezagoAcomulado from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
+            // $adeudo = DB::select('select sum(saldoCorriente) as sumaCorriente, sum(saldoIvaCor) as sumaIVA, sum(saldoAtraso) as sumaAtraso, sum(saldoRezago) as sumaRezago, sum(recargosAcum) as sumaRecargoAcomulado, sum(ivaReacum) as IVARezagoAcomulado from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
             $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
-            return view('components.formRequerimiento', ['date' => $date, 'oficio' => $oficio,'periodo'=>$periodo]);
+            return view('components.formRequerimiento', ['date' => $date, 'oficio' => $oficio, 'periodo' => $periodo]);
         }
     }
     public function store(Request $request)
@@ -133,11 +134,19 @@ class RequerimientoController extends Controller
     }
     public function pdf($cuenta)
     {
-        $datos = requerimientosA::select(['propietario', 'domicilio', 'oficio', 'numeroc', DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"), 
-        'clavec','seriem','cuenta'])
+
+        $datos = requerimientosA::select([
+            'propietario', 'domicilio', 'oficio', 'numeroc', DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
+            'clavec', 'seriem', 'cuenta', 'periodo', DB::raw("format(fnd,'dd'' de ''MMMM','es-es') as fd"), 'fnd','sobrerecaudador'
+        ])
             ->where('cuenta', $cuenta)
             ->get();
-        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos]);
+        $formato = new NumeroALetras();
+        $f = strtotime($datos[0]->fnd);
+        $anio = date("Y",$f);
+        $conversion = $formato->toString($anio);
+        $fechaNotiDeter = $datos[0]->fd .' de '.mb_strtolower(substr($conversion, 0, -1),"UTF-8");
+        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos,'fechaNotiDeter'=>$fechaNotiDeter]);
         return $pdf->stream();
     }
 }

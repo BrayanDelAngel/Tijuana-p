@@ -68,7 +68,7 @@
             Tijuana, hace constar de la remisión del crédito fiscal número <span>{{$item->numeroc}}</span> de fecha {{$item->fechar}}, emitida
             por la
             Comisión Estatal de Servicios Públicos de Tijuana, derivado que el usuario no realizo el pago de los
-            derechos de consumo de agua potable, de los períodos del ________________ al ________________ con el objeto
+            derechos de consumo de agua potable, de los períodos del <span>{{$item->periodo}}</span> con el objeto
             de que se inicie el procedimiento administrativo de ejecución para obtener la satisfacción del crédito
             fiscal, conforme a las atribuciones y facultades conferidas por los artículos 19, 20 y 21, de la Ley de las
             Comisiones Estatales de Servicios Públicos del Estado de Baja California; artículos 1, 2 fracciones I, II,
@@ -115,7 +115,7 @@
                 </li>
                 <li>
                     <p class="text-justify">
-                        Que el día de _______________ del dos mil_____________, le fue debidamente notificada,
+                        Que el día de {{$fechaNotiDeter}}, le fue debidamente notificada,
                         determinación y liquidación de crédito de los servicios de agua potable, con número de crédito
                         16 y toda vez que vencido el plazo que le fue conferido por ley, sin que hasta la presente fecha
                         se haya registrado pago alguno a su favor y no obra en nuestros registros recurso administrativo
@@ -176,13 +176,13 @@
                 </tbody>
             </table>
             <p class="text-justify">
-                Por lo reseñado, el C.ELVIA ROSARIO LUQUE BAEZ Subrecaudador de Rentas Adscrita a la Comisión Estatal de
+                Por lo reseñado, el C.{{$item->sobrerecaudador}} Subrecaudador de Rentas Adscrita a la Comisión Estatal de
                 Servicios Públicos de Tijuana, autoridad que:
             </p>
             <p class="text-center"><span class="bold">O R D E N A</span></p>
             <p class="text-justify">
                 <span class="bold">PRIMERO.</span>
-                Requiérase a ________________ titular el contrato número _________, ubicado en: ____________,
+                Requiérase a {{$item->propietario}} titular el contrato número {{$item->cuenta}}, ubicado en: {{$item->domicilio}},
                 __________________, el pago del crédito fiscal a su cargo, que ya ha quedado precisado,
                 actualizado junto con los gastos accesorios causados a la fecha de emisión del presente requerimiento de
                 pago, otorgándole un plazo de seis días hábiles para que efectué el pago, apercibiéndolo que en caso de
