@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <img class="imgHeader1" src="{{ public_path('img/pdf/logo_BC_escudo.png') }}">
+        <img class="imgHeader1" src="{{ public_path('img/pdf/logo_baja_blanco.png') }}">
         <span class="infoHeader">GOBIERNO DEL ESTADO DE BAJA CALIFORNIIA COMISION ESTATAL DE SERVICIOS PUBLICOS DE
             TIJUANA
             BLVD. FEDERICO BENITEZ #4057, COL. 20 DE NOVIEMBRE</span>

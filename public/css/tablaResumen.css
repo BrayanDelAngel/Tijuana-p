@@ -1,0 +1,43 @@
+.table,
+.th,
+.td {
+    font-size: 10px !important;
+}
+
+.table {
+    position: relative !important;
+    left: -1.1cm !important;
+    width: 110% !important;
+}
+.table2{
+    width: 50%;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+/*No tocar */
+/*Contenido del head  (th) trasformando a vertical*/
+.th h6 {
+    transform-origin: 50% 50%;
+    transform: rotate(270deg);
+    position: static;
+    width: 30px;
+    padding-top: 5px;
+    vertical-align: top;
+    font-size: 10px !important;
+    font-weight: normal !important;
+    text-align: center;
+}
+/*Si tocar*/
+/* Ancho de la cabecera de la tabla */
+.th {
+    height: 400px !important;
+}
+.td,
+.tr {
+    white-space: nowrap;
+    text-align: center;
+    padding: 2px 2px 2px 2px;
+    min-width: 5% !important;
+    max-width: 10% !important;
+    height: 1%;
+}

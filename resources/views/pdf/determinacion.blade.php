@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PDF</title>
     <link href="C:/wamp64/www/Tijuana-p/public/css/pdf.css" rel="stylesheet">
+    <link href="C:/wamp64/www/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <img class="imgHeader1" src="{{ public_path('img/pdf/logo_BC_escudo.png') }}">
+        <img class="imgHeader1" src="{{ public_path('img/pdf/logo_baja_blanco.png') }}">
         <span class="infoHeader">GOBIERNO DEL ESTADO DE BAJA CALIFORNIIA COMISION ESTATAL DE SERVICIOS PUBLICOS DE
             TIJUANA
             BLVD. FEDERICO BENITEZ #4057, COL. 20 DE NOVIEMBRE</span>
@@ -283,15 +284,366 @@
             del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
             septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
         </p>
-    <p class="text-justify">
-        <span class="bold">Recargos para el año 2014.</span>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2014.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
+            California <span class="bold">para el ejercicio fiscal de 2014,</span> fue publicada en el Periódico
+            Oficial del Estado de Baja California
+            de fecha 31 de diciembre de 2013, la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%,
+            marzo
+            de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de
+            2.25%,
+            octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2015.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
+            California <span class="bold">para el ejercicio fiscal de 2015,</span> fue publicada en el Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2014, la tasa de recargos por el mes de enero fue de 2.25%, febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2016.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
+            California <span class="bold">para el ejercicio fiscal de 2016,</span> fue publicada en el Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2015, la tasa de recargos por el mes de enero fue de 2.25%, febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2017.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 segundo párrafo de la Ley de Ingresos del Estado de Baja
+            California <span class="bold">para el ejercicio fiscal de 2017,</span> fue publicada en el Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2016, la tasa de recargos por el mes de enero de 2.25%, febrero de
+            2.25%, marzo de 2.25% abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2018.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
+            California <span class="bold">para el ejercicio fiscal de 2018,</span> fue publicada en el Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2017, la tasa de recargos por el mes de enero fue de 2.25%, febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2019.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
+            California <span class="bold">para el ejercicio fiscal de 2019,</span> fue publicada en el Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2018, la tasa de recargos por el mes de enero fue de 2.25%, febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2020.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 35 párrafo segundo de la Ley de Ingresos del Estado de Baja
+            California <span class="bold">para el ejercicio fiscal de 2020,</span> fue publicada en el Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2019, la tasa de recargos por el mes de enero fue de 2.25%, febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2021.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 35 Ley de Ingresos del Estado de Baja California <span
+                class="bold">para el
+                ejercicio fiscal de 2021,</span> fue publicada en el Periódico Oficial del Estado de Baja California de
+            fecha 28 de
+            diciembre de 2020, la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%,
+            abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre
+            de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2022</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 Ley de Ingresos del Estado de Baja California <span
+                class="bold">para el
+                ejercicio fiscal de 2022,</span> fue publicada en el Periódico Oficial del Estado de Baja California de
+            fecha 31 de
+            diciembre de 2021,
+            la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de 2.25%,
+            mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de 2.25%,
+            noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2023.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 36 de la Ley de Ingresos del Estado de Baja California <span
+                class="bold">para
+                el ejercicio fiscal de 2023,</span> publicada en el Periódico Oficial del Estado de Baja California de
+            fecha 21 de
+            diciembre de 2022, cuando no se cubran las contribuciones dentro de los plazos señalados en las
+            disposiciones fiscales, se pagarán recargos por concepto de indemnización al fisco la tasa de 2.25% mensual,
+            la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de 2.25%,
+            mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de 2.25%,
+            noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        <p class="bold text-justify">Suma de las tasas de recargos calculados en forma mensual para los derechos por periodos
+            facturados vencidos</p>
+        <p class="text-justify">En lo que concierne a los periodos facturados vencidos para efectos del pago de consumo de agua potable, la
+            suma de las tasas de recargos será desde el vencimiento del plazo para el pago a que se refiere el último
+            párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
+            California, correspondiente al periodo comprendido <span class="bold">__________ al ____________</span>,
+            en que se haya incurrido en
+            mora para cada uno de los periodos facturados vencidos y hasta la fecha de la presente resolución
+            liquidatoria, misma que se determinó de la forma siguiente:</p>
+        <p class="bold text-justify">DOSGLOCE DE LOS PERIODOS FACTURADOS VENCIDOS Y RECARGOS QUE CONFORMAN EL MONTO TOTAL DEL
+            CRÉDITO FISCAL</p>
+
+        <table class="table">
+            <thead class="thead">
+                <tr class="tr">
+                    <th class="th">
+                        <h6>Meses de adeudo</h6>
+                    </th>
+                    <th class="th">
+                        <h6>Periodo de consumo facturado</h6>
+                    </th>
+                    <th class="th">
+                        <h6>Fecha de vencimiento</h6>
+                    </th>
+                    <th class="th">
+                        <h6>Lectura facturada en m3</h6>
+                    </th>
+                    <th class="th">
+                        <h6>Tarifa art. 11 enciso a)</h6>
+                    </th>
+                    <th class="th">
+                        <h6>
+                            Tarifa art. 11 excedente del básico en m3 de la Ley de Ingresos del
+                            Estado de Baja
+                            <br />
+                            California ejercicios fiscales anteriores al 2020;
+                            actualmente art 10.
+                        </h6>
+                    </th>
+                    <th class="th">
+                        <h6>Suma de tarifas</h6>
+                    </th>
+                    <th class="th">
+                        <h6>
+                            Factor de actualización (capítulo I Ley de Ingresos vigente a la
+                            fecha de facturación)
+                        </h6>
+                    </th>
+                    <th class="th">
+                        <h6>Saldo Atraso</h6>
+                    </th>
+                    <th class="th">
+                        <h6>Saldo Rezago</h6>
+                    </th>
+                    <th class="th">
+                        <h6>
+                            Total del periodo facturado (ley de ingresos vigente a la
+                            <br />
+                            fecha de la facturación)
+                        </h6>
+                    </th>
+                    <th class="th">
+                        <h6>
+                            Tasa de interés por adeudo mensual vencido
+                            (artículo 37 ley de ingresos del estado)
+                        </h6>
+                    </th>
+                    <th class="th">
+                        <h6>
+                            Importe mensual por concepto de recargos (adeudo del periodo
+                            <br />
+                            facturado x tasa de interés por adeudo mensual vencido)
+                        </h6>
+                    </th>
+                    <th class="th">
+                        <h6>
+                            Recargos acumulados por mensualidades vencidas
+                            <br />
+                            (meses de adeudo x importe mensual por concepto de recargos )
+                            <br />este importe no puede ser mayor al adeudo del periodo facturado
+                        </h6>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr class="tr">
+                    <td class="td">1</td>
+                    <td class="td">06/01/2023-07/02/2023</td>
+                    <td class="td">19/02/2023</td>
+                    <td class="td">50</td>
+                    <td class="td">$124.86</td>
+                    <td class="td">$2,775.60</td>
+                    <td class="td">$2,900.46</td>
+                    <td class="td">1.7</td>
+                    <td class="td">$1,484.07</td>
+                    <td class="td">$137,741.82</td>
+                    <td class="td">$142,126.35</td>
+                    <td class="td">2.25</td>
+                    <td class="td">$3,080.78</td>
+                    <td class="td">$97,746.53</td>
+                </tr>
+            </tbody>
+        </table>
         <br />
-        De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
-        California <span class="bold">para el ejercicio fiscal de 2014,</span> fue publicada en el Periódico Oficial del Estado de Baja California
-        de fecha 31 de diciembre de 2013, la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo
-        de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%,
-        octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-    </p>
+        <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">$________ ______________</span>
+        </p>
+        <p class="text-justify">De acuerdo al artículo 11 de la Ley de Ingresos para los ejercicios fiscales de los
+            años <span class="bold"> 2008, 2009, 2010,
+                2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 y 2019; </span>ículo 10, de la Ley de Ingresos para el
+            ejercicio
+            fiscal 2020 , 2021; artículo 9, de la Ley de Ingresos para el ejercicio fiscal 2022,2023 vigente en cada año
+            las Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de Agua”, se
+            actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir el Índice
+            Nacional de Precios al Consumidor, que se publique en el Diario Oficial de la Federación por el Instituto
+            Nacional de Estadística y Geografía, o por la dependencia federal que en sustitución de ésta lo publique,
+            del último mes inmediato anterior al mes por el cual se hace el ajuste, entre el citado índice del penúltimo
+            mes inmediato anterior al del mismo mes que se actualiza. Los Índices Nacionales de Precios al Consumidor se
+            publicarán los días 10 de cada mes en el Diario Oficial de la Federación o por la dependencia
+            correspondiente. En caso de que a la fecha de la actualización no se haya publicado el índice citado, se
+            tomarán los últimos publicados. </p>
+        <p class="text-justify bold">Fórmula para determinar factor de actualización mensual</p>
+        <p class="text-justify">
+            INPC del último mes inmediato anterior al mes por el cual se hace el ajuste
+            <br />
+            INPC del penúltimo mes inmediato anterior al del mismo mes que se actualiza
+        </p>
+        <p class="bold"> para el año 2023 se agregará al factor de actualización un 0.5% acumulable cada mes</p>
+
+        <p class="text-justify">
+            Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el
+            último párrafo del
+            artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja California, en
+            relación con lo previsto por el artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d),
+            e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años, <span
+                class="bold"> 2003, 2004,
+                2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 y 2019;</span>
+            ;artículo 10,
+            sección lll y IV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley
+            de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9, sección V y Vl, inciso
+            A), numeral 1, subinciso a),
+            b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
+                class="bold">2021, 2022;</span>
+            artículo 9, sección V y Vl, inciso A), numeral 1, subincisos a), b), c), d), e), f), g), h), i), j), k) y l)
+            de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2023;</span> toda vez
+            que omitió efectuar el pago de los derechos
+            generados por consumo de agua potable que le fueron facturados por periodo mensual dentro del plazo
+            a que se
+            refiere el primer dispositivo legal aludido en este párrafo, generando en suma por concepto de
+            recargos
+            acumulados la cantidad de
+            <span class="bold">$________ __________________</span>
+        </p>
+        <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número <span
+                class="bold">_________</span>, por la suma de 
+            <span class="bold">$_________ _________ </span>, integrado de la siguiente forma:
+        </p>
+        <br />
+        <table class="table2">
+            <thead>
+                <tr>
+                    <th>Concepto
+                    </th>
+                    <th>Importe
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Corriente</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>IVA Corriente</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Atraso</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Rezago</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Recargos Consumo</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Convenio De Agua</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Recargos Convenio De Agua</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Convenio De Obra</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Recargos Convenio De Obra</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Recargos Convenio De Obra</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Gastos De Ejecución</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Otros Servicios</td>
+                    <td>$</td>
+                </tr>
+                <tr>
+                    <td>Saldo Total</td>
+                    <td>$</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="text-justify">
+            La cantidad anterior y los recargos causados sobre las contribuciones omitidas, deberán ser enteradas en las
+            oficinas de Recaudación de la Comisión Estatal de Servicios Públicos de Tijuana, dentro de los quince días
+            siguientes a aquel en que haya surtido efecto la notificación de la presente determinación, de conformidad
+            con lo dispuesto por el artículo 16 último párrafo de la Ley que Reglamenta el Servicio de Agua Potable en
+            el Estado de Baja California en relación con el artículo 23 primer párrafo, fracción I, y 24 del Código
+            Fiscal del Estado de Baja California vigente, en caso de que sea omiso en su pago, el crédito fiscal
+            determinado en el presente documento, será turnado para su cobro a la Sub Recaudación de Rentas adscrita a
+            la Comisión Estatal de Servicios Públicos de Tijuana.
+        </p>
+        <p class="text-justify">
+            Queda enterado que podrá interponer de conformidad con el artículo 181 del Código Fiscal del Estado de Baja
+            California, el recurso de revocación ante esta autoridad o juicio contencioso administrativo en contra de la
+            presente resolución, ante el Tribunal Estatal de Justicia Administrativa del Estado de Baja California,
+            dentro del plazo de <span class="bold">QUINCE DIAS</span> hábiles siguientes a la fecha en que surta
+            efectos su notificación, de
+            conformidad con lo previsto en el último párrafo del artículo 45 de la Ley del Tribunal Estatal de Justicia
+            Administrativa de Baja California, en tratándose de algunas de las materias a que se refiere el artículo 2º
+            del citado ordenamiento legal.
+        </p>
+        <p>Notifíquese personalmente.</p>
+        <p class="text-center bold">
+            A T E N T A M E N T E
+        </p>
+        <p class="firm bold text-center">
+            _____________________________________________
+            <br/>
+            Dr. Víctor Daniel Amador Barragán
+            Director General de la Comisión Estatal de Servicios Públicos de Tijuana.
+
+        </p>
     </main>
 </body>
 
