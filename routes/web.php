@@ -32,4 +32,4 @@ Route::get('/PDFRequerimiento/{cuenta}', [RequerimientoController::class, 'pdf']
 //Determinaciones
 Route::get('/formD/{cuenta}', [DeterminacionController::class, 'index'])->name('formulario-determinacion');
 Route::post('/guardarD', [DeterminacionController::class, 'store'])->name('guardar-determinacion');
-Route::get('/PDFDeterminacion', [DeterminacionController::class, 'pdf'])->name('pdf-determinacion');
+Route::get('/PDFDeterminacion/{id}', [DeterminacionController::class, 'pdf'])->name('pdf-determinacion');

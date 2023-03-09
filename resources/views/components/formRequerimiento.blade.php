@@ -19,7 +19,7 @@
                 
                 <div class="row">
                     @foreach ($date as $item)
-                    <input type="hidden" name="cuenta" value="{{$item->Cuenta}}">
+                    <input type="hidden" name="id_d" value="{{$item->id}}">
                         <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
@@ -27,7 +27,7 @@
                                     Generales</span>
                             </div>
                             <div class="row align-items-start form-row">
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="md-form form-group">
                                         <label for="ncredito" class="form-label">Número de Credito:*</label>
                                         <input type="text" id="ncredito"
@@ -35,7 +35,7 @@
                                             @error('ncredito')
                                             border border-danger rounded-2
                                             @enderror"
-                                            name="ncredito" value="{{ old('ncredito') }}" placeholder="Número de Credito">
+                                            name="ncredito" value="{{$item->folio }}" placeholder="Número de Credito" disabled>
                                         @error('ncredito')
                                             <div class="text-danger text-center">
                                                 El campo número crédito es requerido.
@@ -47,18 +47,14 @@
                                     <div class="md-form form-group">
                                         <label for="oficio" class="form-label">Oficio:*</label>
                                         <div class="input-group mb-6">
-                                            <input type="text" class="form-control mb-2" value="CESPT/EDM/000" disabled>
-                                            @if ($oficio!=0)
-                                                
-                                            @else
-                                                {{$oficio="";}}
-                                            @endif
-                                            <input type="text" value="{{ $oficio }}" id="oficio"
+                                            <input type="text" class="form-control mb-2" value="CESPT/EDM/" disabled>
+                                          
+                                            <input type="text" value="{{ $folio }}" id="oficio" 
                                                 class="form-control mb-2
                                                 @error('oficio')
                                                 border border-danger rounded-2
                                                 @enderror"
-                                                name="oficio">
+                                                name="oficio" disabled>
                                             <input type="text" class="form-control mb-2" value="/{{ date('Y') }}"
                                                 disabled>
                                         </div>
@@ -73,11 +69,34 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="md-form form-group">
+                                        <label for="cuenta" class="form-label mb-2">Cuenta:*</label>
+                                        <input type="text" value="{{ $item->Cuenta }}" disabled
+                                            class="form-control mb-2
+                                            @error('cuenta')
+                                            border border-danger rounded-2
+                                            @enderror"
+                                            id="cuenta" name="cuenta">
+                                        @error('cuenta')
+                                            <div class="text-danger text-center">
+                                                El campo cuenta es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
 
                             </div>
 
                             <div class="row align-items-start form-row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <div class="md-form form-group">
+                                        <label for="clavec" class="form-label">Clave Castastral:*</label>
+                                        <input type="text" class="form-control mb-2" id="clavec" name="clavec"
+                                            value="{{ $item->Clave }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="md-form form-group">
                                         <label for="propietario" class="form-label">Propietario:*</label>
                                         <input type="text" value="{{ $item->Propietario }}" id="contribuyente"
@@ -85,7 +104,7 @@
                                                 @error('propietario')
                                                 border border-danger rounded-2
                                                 @enderror"
-                                            name="propietario" readonly>
+                                            name="propietario" disabled>
                                         @error('propietario')
                                             <div class="text-danger text-center">
                                                 El campo propietario es requerido
@@ -93,14 +112,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="md-form form-group">
-                                        <label for="clavec" class="form-label">Clave Castastral:*</label>
-                                        <input type="text" class="form-control mb-2" id="clavec" name="clavec"
-                                            value="{{ $item->Clave }}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
+                                
+                                <div class="col-md-3">
                                     <div class="md-form form-group">
                                         <label for="serie" class="form-label mb-2">Serie medidor:*</label>
                                         <input type="text"
@@ -108,7 +121,7 @@
                                             @error('serie')
                                             border border-danger rounded-2
                                             @enderror"
-                                            id="serie" name="serie" value="{{ $item->SerieMedidor }}">
+                                            id="serie" name="serie" value="{{ $item->SerieMedidor }}" disabled>
                                         @error('serie')
                                             <div class="text-danger text-center">
                                                 El campo serie es requerido
@@ -118,7 +131,7 @@
                                 </div>
                             </div>
                             <div class="row align-items-start form-row">
-                                <div class="col-md-6">
+                                <div class="col-md-10">
                                     <div class="md-form form-group">
                                         <label for="domicilio" class="form-label">Domicilio*</label>
                                         <input type="text" value="{{ $item->Domicilio }}" id="domicilio"
@@ -126,10 +139,67 @@
                                             @error('domicilio')
                                             border border-danger rounded-2
                                             @enderror"
-                                            name="domicilio" readonly>
+                                            name="domicilio" disabled>
                                         @error('domicilio')
                                             <div class="text-danger text-center">
                                                 El campo domicilio es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                               
+                                
+                            </div>
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6 ">
+                                    <label for="periodo" class="form-label mb-2">Periodo Facturado*</label>
+                                    <div class="md-form form-group">
+                                        <input type="text"
+                                            class="form-control mb-2 text-center
+                                                    @error('periodo')
+                                                    border border-danger rounded-2
+                                                    @enderror"
+                                            id="periodo" name="periodo" value="{{$item->periodo }}" disabled>
+                                        @error('periodo')
+                                            <div class="text-danger text-center">
+                                                El campo periodo es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="tservicio" class="form-label mb-2">Tipo de servicio:*</label>
+                                        <input type="text"
+                                            class="form-control mb-2
+                                            @error('tservicio')
+                                            border border-danger rounded-2
+                                            @enderror"
+                                            id="tservicio" name="tservicio" value="{{ $ts }}" >
+                                        @error('tservicio')
+                                            <div class="text-danger text-center">
+                                                El campo servicio es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <label for="remision" class="form-label mb-2">Fecha de la remisión del
+                                            credito fiscal:*</label>
+                                        <input type="date"
+                                            class="form-control mb-2
+                                            @error('remision')
+                                            border border-danger rounded-2
+                                            @enderror"
+                                            id="remision" name="remision" value="{{$item->fechad }}" disabled>
+                                        @error('remision')
+                                            <div class="text-danger text-center">
+                                                El campo remisión es requerido
                                             </div>
                                         @enderror
                                     </div>
@@ -151,60 +221,9 @@
                                         @enderror
                                     </div>
                                 </div>
+                               
                             </div>
                             <div class="row align-items-start form-row">
-                                <div class="col-md-6">
-                                    <div class="md-form form-group">
-                                        <label for="cuenta" class="form-label mb-2">Cuenta:*</label>
-                                        <input type="text" value="{{ $item->Cuenta }}" readonly
-                                            class="form-control mb-2
-                                            @error('cuenta')
-                                            border border-danger rounded-2
-                                            @enderror"
-                                            id="cuenta" name="cuenta">
-                                        @error('cuenta')
-                                            <div class="text-danger text-center">
-                                                El campo cuenta es requerido
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="md-form form-group">
-                                        <label for="tservicio" class="form-label mb-2">Tipo de servicio:*</label>
-                                        <input type="text"
-                                            class="form-control mb-2
-                                            @error('tservicio')
-                                            border border-danger rounded-2
-                                            @enderror"
-                                            id="tservicio" name="tservicio" value="{{ $ts }}">
-                                        @error('tservicio')
-                                            <div class="text-danger text-center">
-                                                El campo servicio es requerido
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row align-items-start form-row">
-                                <div class="col-md-6">
-                                    <div class="md-form form-group">
-                                        <label for="remision" class="form-label mb-2">Fecha de la remisión del
-                                            credito fiscal:*</label>
-                                        <input type="date"
-                                            class="form-control mb-2
-                                            @error('remision')
-                                            border border-danger rounded-2
-                                            @enderror"
-                                            id="remision" name="remision" value="{{ old('remision') }}">
-                                        @error('remision')
-                                            <div class="text-danger text-center">
-                                                El campo remisión es requerido
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
                                         <label for="notificacion" class="form-label mb-2">Fecha notificación de la
@@ -222,8 +241,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row align-items-start form-row">
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
                                         <label for="sobrerecaudador" class="form-label mb-2">Sobrerecaudador:*</label>
@@ -241,22 +258,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6 ">
-                                    <label for="periodo" class="form-label mb-2">Periodo*</label>
-                                    <div class="md-form form-group">
-                                        <input type="text"
-                                            class="form-control mb-2 text-center
-                                                    @error('periodo')
-                                                    border border-danger rounded-2
-                                                    @enderror"
-                                            id="periodo" name="periodo" value="{{ $periodo[0]->periodo }}" readonly>
-                                        @error('periodo')
-                                            <div class="text-danger text-center">
-                                                El campo periodo es requerido
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     @endforeach
