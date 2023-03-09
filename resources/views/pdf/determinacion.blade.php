@@ -392,16 +392,19 @@
             mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de 2.25%,
             noviembre de 2.25% y diciembre de 2.25%.
         </p>
-        <p class="bold text-justify">Suma de las tasas de recargos calculados en forma mensual para los derechos por periodos
+        <p class="bold text-justify">Suma de las tasas de recargos calculados en forma mensual para los derechos por
+            periodos
             facturados vencidos</p>
-        <p class="text-justify">En lo que concierne a los periodos facturados vencidos para efectos del pago de consumo de agua potable, la
+        <p class="text-justify">En lo que concierne a los periodos facturados vencidos para efectos del pago de consumo
+            de agua potable, la
             suma de las tasas de recargos será desde el vencimiento del plazo para el pago a que se refiere el último
             párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
             California, correspondiente al periodo comprendido <span class="bold">__________ al ____________</span>,
             en que se haya incurrido en
             mora para cada uno de los periodos facturados vencidos y hasta la fecha de la presente resolución
             liquidatoria, misma que se determinó de la forma siguiente:</p>
-        <p class="bold text-justify">DOSGLOCE DE LOS PERIODOS FACTURADOS VENCIDOS Y RECARGOS QUE CONFORMAN EL MONTO TOTAL DEL
+        <p class="bold text-justify">DOSGLOCE DE LOS PERIODOS FACTURADOS VENCIDOS Y RECARGOS QUE CONFORMAN EL MONTO
+            TOTAL DEL
             CRÉDITO FISCAL</p>
 
         <table class="table">
@@ -544,8 +547,8 @@
             acumulados la cantidad de
             <span class="bold">$________ __________________</span>
         </p>
-        <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número <span
-                class="bold">_________</span>, por la suma de 
+        <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número
+            <span class="bold">_________</span>, por la suma de
             <span class="bold">$_________ _________ </span>, integrado de la siguiente forma:
         </p>
         <br />
@@ -639,7 +642,7 @@
         </p>
         <p class="firm bold text-center">
             _____________________________________________
-            <br/>
+            <br />
             Dr. Víctor Daniel Amador Barragán
             Director General de la Comisión Estatal de Servicios Públicos de Tijuana.
 
