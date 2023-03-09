@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cobranzaExternaHistoricos;
+use App\Models\determinacionesA;
 use App\Models\ejecutores_ra;
 use App\Models\implementta;
 use App\Models\requerimientosA;
@@ -16,76 +17,96 @@ class RequerimientoController extends Controller
 {
     public function index($cuenta)
     {
+        //validamos si la cuenta existe en la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
+        //si no existe mandamos un error
         if (($existe[0]->c) == 0) {
             return  redirect()->action(
                 [IndexController::class, 'index']
             )->with('error', 'error');
-        } else {
-            //consultamos los datos ya tenidos del propietario
-            $date = implementta::select('Cuenta', 'Clave', 'Propietario', 'TipoServicio', 'SerieMedidor', DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
+        } 
+        //si existe
+        else {
+            //consultamos si ya tiene una determinacion
+            $determinacion = DB::select('select count(cuenta) as c from determinacionesA where cuenta=?', [$cuenta]);
+            //si no tiene mandamos un alert que primero nececita una determinacion
+            if (($determinacion[0]->c) == 0) {
+                return  redirect()->action(
+                    [IndexController::class, 'index']
+                )->with('accessDeniedRequerimiento', 'error');
+            } 
+            //en caso que ya tiene una determinacion
+            else {
+                //consultamos los datos para la tabla
+                $sql = cobranzaExternaHistoricos::select(['NoCta', 'anio', 'mes'])->where('NoCta', $cuenta)->orderBy('anio', 'ASC')->get();
+                //consultamos el id de la determinacion
+                $id = DB::select('select id from determinacionesA where cuenta = ?', [$cuenta]);
+                //consultamos los datos de la tabla de determinacion
+                $date = determinacionesA::select(
+                    'folio',
+                    'propietario as Propietario',
+                    'clavec as Clave',
+                    'seriem as SerieMedidor',
+                    'domicilio as Domicilio',
+                    'cuenta as Cuenta',
+
+                    'fechad',
+                    'id',
+                    'periodo'
+                )
+                    ->where('id', $id[0]->id)
+                    ->get();
+                $tipos = implementta::select('TipoServicio')
                 ->where('implementta.Cuenta', $cuenta)
                 ->get();
-                
-            //validamos el tipo de servicio
-            if ($date[0]->TipoServicio=="C") {
-                $ts="COMERCIAL";
-            } else if($date[0]->TipoServicio=="R") {
-                $ts='RESIDENCIAL';
+                //validamos el tipo de servicio
+                if ($tipos[0]->TipoServicio=="C") {
+                    $ts="COMERCIAL";
+                } else if($tipos[0]->TipoServicio=="R") {
+                    $ts='RESIDENCIAL';
+                }
+                else if($tipos[0]->TipoServicio=="I") {
+                    $ts="INDUSTRIAL";
+                }
+                else if($tipos[0]->TipoServicio=="G") {
+                    $ts="GOBIERNO";
+                }
+                else if($tipos[0]->TipoServicio=="") {
+                    $ts="NO APLICA";
+                }
+                else {
+                    $ts=$tipos[0]->TipoServicio;
+                }
+                //establecemos los ceros en los folios
+                $folio=$date[0]->folio;
+                $longitud=strlen($folio);
+                if($longitud<=5){
+                    while($longitud<5){
+                        $folio="0".$folio;
+                        $longitud=strlen($folio);
+                    }
+                }
+               
+                return view('components.formRequerimiento', ['date' => $date, 'folio' => $folio,'ts'=>$ts]);
             }
-            else if($date[0]->TipoServicio=="I") {
-                $ts="INDUSTRIAL";
-            }
-            else if($date[0]->TipoServicio=="G") {
-                $ts="GOBIERNO";
-            }
-            else if($date[0]->TipoServicio=="") {
-                $ts="NO APLICA";
-            }
-            else {
-                $ts=$date[0]->TipoServicio;
-            }
-            
-            //validar si esta cuenta ya tiene un requerimiento
-            $count_r = DB::select('select count(id) as c from requerimientosA where cuenta = ?', [$cuenta]);
-            //si existe
-            if (($count_r[0]->c) != 0) {
-                $oficio_c = DB::select('select oficio from requerimientosA where cuenta = ?', [$cuenta]);
-                $oficio = $oficio_c[0]->oficio;
-            } else {
-                $oficio = 0;
-            }
-            $adeudo = DB::select('select sum(saldoCorriente) as sumaCorriente, sum(saldoIvaCor) as sumaIVA, sum(saldoAtraso) as sumaAtraso, sum(saldoRezago) as sumaRezago, sum(recargosAcum) as sumaRecargoAcomulado, sum(ivaReacum) as IVARezagoAcomulado from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
-            //obtenemos el periodo en el    ue se esta evaluando
-            //se cincatena la fecha maxima y minima 
-            $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
-            return view('components.formRequerimiento', ['date' => $date, 'oficio' => $oficio,'periodo'=>$periodo,'ts'=>$ts]);
         }
     }
     public function store(Request $request)
     {
         // dd($request->ejecutor);
+        
+
+        $request->validate([
+            'emision' =>  ['required'],
+            'tservicio' =>  ['required'],
+            'notificacion' =>  ['required'],
+            'sobrerecaudador' =>  ['required'],
+        ]);
         if (($request->ejecutor[0]) == null) {
             $request->validate([
                 'ejecutor.0' => 'required|array',
             ]);
         }
-
-        $request->validate([
-            'ncredito' => ['required'],
-            'oficio' =>  ['required'],
-            'propietario' =>  ['required'],
-            'clavec' =>  ['required'],
-            'serie' => ['required'],
-            'domicilio' =>  ['required'],
-            'periodo' =>  ['required'],
-            'emision' =>  ['required'],
-            'cuenta' =>  ['required'],
-            'tservicio' =>  ['required'],
-            'remision' =>  ['required'],
-            'notificacion' =>  ['required'],
-            'sobrerecaudador' =>  ['required'],
-        ]);
 
         //validar si esta cuenta ya tiene un requerimiento
         $count_r = DB::select('select count(id) as c from requerimientosA where cuenta = ?', [$request->cuenta]);
