@@ -408,7 +408,7 @@
             CRÉDITO FISCAL</p>
 
         <table class="table">
-            <thead class="thead">
+            
                 <tr class="tr">
                     <th class="th">
                         <h6>Meses de adeudo</h6>
@@ -478,7 +478,7 @@
                         </h6>
                     </th>
                 </tr>
-            </thead>
+            
             <tbody class="tbody">
                 @foreach ($items as $item)  
                 <tr class="tr">

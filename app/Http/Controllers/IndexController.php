@@ -13,12 +13,14 @@ class IndexController extends Controller
     public function show(Request $request){
         $data=trim($request->valor);
         $result=DB::table('dbo.implementta')
-        ->select(['Cuenta as Clave','Propietario',])
+        ->select(['Cuenta as Clave','Propietario as p',])
         ->where('Cuenta','like',$data)->limit(5)
         ->get();
+        $Propietario=str_replace("¥", "Ñ",$result[0]->p);
         return response()->json([
             "estado"=>1,
-            "result"=>$result
+            "result"=>$result,
+            "p"=>$Propietario
         ]);
         
     }

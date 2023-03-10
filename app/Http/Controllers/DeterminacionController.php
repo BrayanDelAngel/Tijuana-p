@@ -128,7 +128,7 @@ class DeterminacionController extends Controller
     public function pdf($id)
     {
         $cuenta=determinacionesA::select(['cuenta'])->where('id',$id)->first();
-        $tabla=tabla_da::all();
+        $tabla=tabla_da::where('cuenta',$cuenta->cuenta)->orderBy('meses','ASC')->get();
         $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla]);
         // setPaper('')->
         //A4 -> carta

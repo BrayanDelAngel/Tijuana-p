@@ -92,7 +92,7 @@
                             <div class="col-md-4">
                                 <div class="md-form form-group">
                                     <label for="propietario" class="form-label">Propietario:*</label>
-                                    <input type="text" value="{{ $item->Propietario }}" id="propietario"
+                                    <input type="text" value="{{ str_replace("¥", "Ñ",$item->Propietario)}}" id="propietario"
                                         class="form-control mb-2
                                                 @error('propietario')
                                                 border border-danger rounded-2

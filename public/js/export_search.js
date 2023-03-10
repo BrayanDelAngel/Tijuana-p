@@ -64,6 +64,7 @@ export class search {
             if (data.result != "") {
                 //Muestre en pantalla el resultado
                 let arrayc = data.result;
+                let p = data.p;
                 this.ul_add_li.innerHTML = `
                 <table class="table table-hover table-sm table-dark my-2">
                 <thead class="table-dark">
@@ -76,7 +77,7 @@ export class search {
                 </table>`;
                 let n = 0;
                 //Llamamos la funcion show_list_each_data para listar los datos
-                this.Show_list_each_data(arrayc, valor, n);
+                this.Show_list_each_data(arrayc,p, valor, n);
             }
             //Si no que mande mensaje que no se encontro la cuenta
             else {
@@ -89,14 +90,15 @@ export class search {
         }
     }
     //Funcion de enlistar
-    Show_list_each_data(arrayc, valor, n) {
+    Show_list_each_data(arrayc,p, valor, n) {
         for (let item of arrayc) {
             n++;
             //Estraemos datos y hacemos comparacion de que no en nulos
             let cuenta = item.Clave;
-            let propietario = "";
+            
+            let propietario = p;
              
-                propietario = item.Propietario;
+                
             
             //Enlistar los datos
             this.ul_add_li.innerHTML += `
