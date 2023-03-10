@@ -28,7 +28,7 @@
         <div class="data">
             <div class="data-center">
                 <p>
-                    Crédito número: <span>{{$item->numeroc}}</span>
+                    Crédito número: <span>{{$item->folio}}</span>
                 </p>
                 <p>
                     Oficio: <span class="underline">TP/PAE/0000{{$item->oficio}}/{{date('Y')}}</span>

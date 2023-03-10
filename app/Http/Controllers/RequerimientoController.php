@@ -24,7 +24,7 @@ class RequerimientoController extends Controller
             return  redirect()->action(
                 [IndexController::class, 'index']
             )->with('error', 'error');
-        } 
+        }
         //si existe
         else {
             //consultamos si ya tiene una determinacion
@@ -34,7 +34,7 @@ class RequerimientoController extends Controller
                 return  redirect()->action(
                     [IndexController::class, 'index']
                 )->with('accessDeniedRequerimiento', 'error');
-            } 
+            }
             //en caso que ya tiene una determinacion
             else {
                 //consultamos los datos para la tabla
@@ -57,37 +57,33 @@ class RequerimientoController extends Controller
                     ->where('id', $id[0]->id)
                     ->get();
                 $tipos = implementta::select('TipoServicio')
-                ->where('implementta.Cuenta', $cuenta)
-                ->get();
+                    ->where('implementta.Cuenta', $cuenta)
+                    ->get();
                 //validamos el tipo de servicio
-                if ($tipos[0]->TipoServicio=="C") {
-                    $ts="COMERCIAL";
-                } else if($tipos[0]->TipoServicio=="R") {
-                    $ts='RESIDENCIAL';
-                }
-                else if($tipos[0]->TipoServicio=="I") {
-                    $ts="INDUSTRIAL";
-                }
-                else if($tipos[0]->TipoServicio=="G") {
-                    $ts="GOBIERNO";
-                }
-                else if($tipos[0]->TipoServicio=="") {
-                    $ts="NO APLICA";
-                }
-                else {
-                    $ts=$tipos[0]->TipoServicio;
+                if ($tipos[0]->TipoServicio == "C") {
+                    $ts = "COMERCIAL";
+                } else if ($tipos[0]->TipoServicio == "R") {
+                    $ts = 'RESIDENCIAL';
+                } else if ($tipos[0]->TipoServicio == "I") {
+                    $ts = "INDUSTRIAL";
+                } else if ($tipos[0]->TipoServicio == "G") {
+                    $ts = "GOBIERNO";
+                } else if ($tipos[0]->TipoServicio == "") {
+                    $ts = "NO APLICA";
+                } else {
+                    $ts = $tipos[0]->TipoServicio;
                 }
                 //establecemos los ceros en los folios
-                $folio=$date[0]->folio;
-                $longitud=strlen($folio);
-                if($longitud<=5){
-                    while($longitud<5){
-                        $folio="0".$folio;
-                        $longitud=strlen($folio);
+                $folio = $date[0]->folio;
+                $longitud = strlen($folio);
+                if ($longitud <= 5) {
+                    while ($longitud < 5) {
+                        $folio = "0" . $folio;
+                        $longitud = strlen($folio);
                     }
                 }
-               
-                return view('components.formRequerimiento', ['date' => $date, 'folio' => $folio,'ts'=>$ts]);
+
+                return view('components.formRequerimiento', ['date' => $date, 'folio' => $folio, 'ts' => $ts]);
             }
         }
     }
@@ -105,13 +101,13 @@ class RequerimientoController extends Controller
             ]);
         }
         //validar si esta cuenta ya tiene un requerimiento
-        $count_r=requerimientosA::count('id_d',$request->id_d);
+        $count_r = requerimientosA::count('id_d', $request->id_d);
         //si existe
         if ($count_r != 0) {
             //consultar el id del requerimiento
-            $id=requerimientosA::select('id')->where('id_d',$request->id_d)->first();
+            $id = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
             //eliminamos los ejecutores existentes
-            $ejecutores_ra=ejecutores_ra::where('id_r',$id->id)->delete();
+            $ejecutores_ra = ejecutores_ra::where('id_r', $id->id)->delete();
             //declaramos que se va a modificar el registro de requerimiento
             $r = requerimientosA::findOrFail($id->id);
         }
@@ -121,17 +117,17 @@ class RequerimientoController extends Controller
             $r = new requerimientosA();
         }
         //guardamos los datos en requerimientosA
-        $r->id_d=$request->id_d;
-        $r->fechar=$request->emision;
-        $r->fechand=$request->notificacion;
-        $r->sobrerecaudador=$request->sobrerecaudador;
-        $r->tipo_s=$request->tservicio;
+        $r->id_d = $request->id_d;
+        $r->fechar = $request->emision;
+        $r->fechand = $request->notificacion;
+        $r->sobrerecaudador = $request->sobrerecaudador;
+        $r->tipo_s = $request->tservicio;
         $r->save();
         //validamos si se guardaron los datos
         if ($r->save()) {
             //consultamos su id
-            $requirimiento=requerimientosA::select('id')->where('id_d',$request->id_d)->first();
-            $id=$requirimiento->id;
+            $requirimiento = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
+            $id = $requirimiento->id;
             //recorremos el array de los ejecutores
             for ($i = 0; $i < count($request->ejecutor); $i++) {
                 //declaramos que se hara un nuevo registro en ejecutores_ra
@@ -155,22 +151,19 @@ class RequerimientoController extends Controller
     }
     public function pdf($id)
     {
-
-        // $datos = determinacionesA::select([
-        //     'propietario', 'domicilio', 'folio', 'numeroc','razons', DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
-        //     'clavec', 'seriem', 'cuenta', 'periodo', DB::raw("format(fnd,'dd'' de ''MMMM','es-es') as fd"), 'fnd','sobrerecaudador'
-        // ])
-        //     ->where('id', $id)
-        //     ->get();
-            $datos=determinacionesA::join('requerimientosA as r','r.id_d','=','determinacionesA.id')
-            ->select('id','folio','fechad','')->get();
-            dd($datos);
+        $datos = determinacionesA::join('requerimientosA as r', 'r.id_d', '=', 'determinacionesA.id')
+            ->select(['r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM','es-es') as fechad"), 
+            'cuenta', 'propietario', 'domicilio', 'clavec','r.tipo_s','seriem','razons','periodo', 'fechand',
+            DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"), 
+            DB::raw("format(fechand,'dd'' de ''MMMM','es-es') as fd",
+            'sobrerecaudador','id_d'),])
+            ->get();
         $formato = new NumeroALetras();
-        $f = strtotime($datos[0]->fnd);
-        $anio = date("Y",$f);
+        $f = strtotime($datos[0]->fechand);
+        $anio = date("Y", $f);
         $conversion = $formato->toString($anio);
-        $fechaNotiDeter = $datos[0]->fd .' de '.mb_strtolower(substr($conversion, 0, -1),"UTF-8");
-        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos,'fechaNotiDeter'=>$fechaNotiDeter]);
+        $fechaNotiDeter = $datos[0]->fd . ' de ' . mb_strtolower(substr($conversion, 0, -1), "UTF-8");
+        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter]);
         return $pdf->stream();
     }
 }
