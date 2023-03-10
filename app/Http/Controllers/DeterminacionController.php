@@ -14,8 +14,7 @@ use App\Models\tabla_da;
 
 class DeterminacionController extends Controller
 {
-    public function index($cuenta)
-    {
+    public function exec($cuenta){
         //validamos si la cuenta existe dentro de la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
         //si no existe mandamos un error
@@ -26,6 +25,34 @@ class DeterminacionController extends Controller
         } 
         //si existe
         else {
+        
+        $date = implementta::select('TipoServicio')
+                ->where('implementta.Cuenta', $cuenta)
+                ->get();
+
+        //validamos el tipo de servicio
+        if ($date[0]->TipoServicio=="R"||$date[0]->TipoServicio=="RESIDENCIAL") {
+            $ts='DOMESTICO';
+        }
+        else {
+            $ts='NO DOMESTICO';
+        }
+        //mandamos a llamar al stored procedure
+        $exec=DB::select("exec calcula_tijuana_A ?,?",array($cuenta,$ts));
+        //si se ejecuta el procedimiento mandamos a llamar a la funcion index
+        if($exec){
+            return redirect()->action(
+                     [DeterminacionController::class, 'index'], ['cuenta' => $cuenta]
+                 ); 
+            
+        }
+        }
+    }
+
+    public function index($cuenta)
+    {
+        
+        
             //consultamos los datos ya tenidos del propietario
             $date = implementta::select('Cuenta', 'Clave', 'Propietario', 'TipoServicio', 'SerieMedidor', DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
                 ->where('implementta.Cuenta', $cuenta)
@@ -52,13 +79,10 @@ class DeterminacionController extends Controller
             //obtenemos el periodo en el    ue se esta evaluando
             //se cincatena la fecha maxima y minima 
             $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
-            $exec=DB::select("exec calcula_tijuana_A ?,?",array($cuenta,$ts));
-            // DB::select(DB::raw("exec calcula_tijuana_A :Param1, :Param2"),[
-            //     ':Param1' => $cuenta,
-            //     ':Param2' => $ts,
-            // ]);
+            
+            
             return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio,'periodo'=>$periodo,'ts'=>$ts]);
-        }
+        
     }
     public function store(Request $request)
     {
