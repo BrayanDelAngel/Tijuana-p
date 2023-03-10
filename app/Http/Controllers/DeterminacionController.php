@@ -10,6 +10,7 @@ use Svg\Tag\Rect;
 use Illuminate\Support\Facades\DB;
 use App\Models\implementta;
 use App\Models\requerimientosA;
+use App\Models\tabla_da;
 
 class DeterminacionController extends Controller
 {
@@ -51,6 +52,11 @@ class DeterminacionController extends Controller
             //obtenemos el periodo en el    ue se esta evaluando
             //se cincatena la fecha maxima y minima 
             $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
+            $exec=DB::select("exec calcula_tijuana_A ?,?",array($cuenta,$ts));
+            // DB::select(DB::raw("exec calcula_tijuana_A :Param1, :Param2"),[
+            //     ':Param1' => $cuenta,
+            //     ':Param2' => $ts,
+            // ]);
             return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio,'periodo'=>$periodo,'ts'=>$ts]);
         }
     }
@@ -121,7 +127,9 @@ class DeterminacionController extends Controller
     }
     public function pdf($id)
     {
-        $pdf = Pdf::loadView('pdf.determinacion');
+        $cuenta=determinacionesA::select(['cuenta'])->where('id',$id)->first();
+        $tabla=tabla_da::all();
+        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();

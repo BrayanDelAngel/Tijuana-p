@@ -480,22 +480,24 @@
                 </tr>
             </thead>
             <tbody class="tbody">
+                @foreach ($items as $item)  
                 <tr class="tr">
-                    <td class="td">1</td>
-                    <td class="td">06/01/2023-07/02/2023</td>
-                    <td class="td">19/02/2023</td>
-                    <td class="td">50</td>
-                    <td class="td">$124.86</td>
-                    <td class="td">$2,775.60</td>
-                    <td class="td">$2,900.46</td>
-                    <td class="td">1.7</td>
-                    <td class="td">$1,484.07</td>
-                    <td class="td">$137,741.82</td>
-                    <td class="td">$142,126.35</td>
+                    <td class="td">{{$item->meses}}</td>
+                    <td class="td">{{$item->periodo}}</td>
+                    <td class="td">{{$item->fechaVencimiento}}</td>
+                    <td class="td">{{$item->lecturaFacturada}}</td>
+                    <td class="td">${{number_format($item->tarifa1,2)}}</td>
+                    <td class="td">${{number_format($item->tarifa2,2)}}</td>
+                    <td class="td">${{number_format($item->sumaTarifas,2)}}</td>
+                    <td class="td">{{number_format($item->factor,2)}}</td>
+                    <td class="td">${{number_format($item->saldoAtraso,2)}}</td>
+                    <td class="td">${{number_format($item->saldoRezago,2)}}</td>
+                    <td class="td">${{number_format($item->totalPeriodo,2)}}</td>
                     <td class="td">2.25</td>
-                    <td class="td">$3,080.78</td>
-                    <td class="td">$97,746.53</td>
-                </tr>
+                    <td class="td">${{number_format($item->importeMensual,2)}}</td>
+                    <td class="td">${{number_format($item->RecargosAcumulados,2)}}</td>
+             </tr>
+                @endforeach
             </tbody>
         </table>
         <br />
