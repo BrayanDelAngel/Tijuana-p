@@ -30,6 +30,7 @@ Route::get('/formR/{cuenta}', [RequerimientoController::class, 'index'])->name('
 Route::post('/guardarR', [RequerimientoController::class, 'store'])->name('guardar-requerimiento');
 Route::get('/PDFRequerimiento/{cuenta}', [RequerimientoController::class, 'pdf'])->name('pdf-requerimiento');
 //Determinaciones
+Route::get('/calculo/{cuenta}', [DeterminacionController::class, 'exec']);
 Route::get('/formD/{cuenta}', [DeterminacionController::class, 'index'])->name('formulario-determinacion');
 Route::post('/guardarD', [DeterminacionController::class, 'store'])->name('guardar-determinacion');
 Route::get('/PDFDeterminacion/{id}', [DeterminacionController::class, 'pdf'])->name('pdf-determinacion');

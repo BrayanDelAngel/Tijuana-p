@@ -1,9 +1,15 @@
 // //Declaraciones de las rutas en base a una funcion se carga desde el archivo export_search.js
+// function determinacion(cuenta) {
+//     var contenedor = document.getElementById('contenedor_carga');
+//     contenedor.style.visibility = '';
+//     contenedor.style.opacity = '0.9';
+//     window.location.href = "/formD/" + cuenta;
+// }
 function determinacion(cuenta) {
     var contenedor = document.getElementById('contenedor_carga');
     contenedor.style.visibility = '';
     contenedor.style.opacity = '0.9';
-    window.location.href = "/formD/" + cuenta;
+    window.location.href = "/calculo/" + cuenta;
 }
 function requerimiento(cuenta) {
     var contenedor = document.getElementById('contenedor_carga');
