@@ -151,6 +151,7 @@ class RequerimientoController extends Controller
     }
     public function pdf($id)
     {
+        //Consulta de la determinacion y del requerimiento
         $datos = determinacionesA::join('requerimientosA as r', 'r.id_d', '=', 'determinacionesA.id')
             ->select(['r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM','es-es') as fechad"), 
             'cuenta', 'propietario', 'domicilio', 'clavec','r.tipo_s','seriem','razons','periodo', 'fechand',
@@ -158,11 +159,17 @@ class RequerimientoController extends Controller
             DB::raw("format(fechand,'dd'' de ''MMMM','es-es') as fd",
             'sobrerecaudador','id_d'),])
             ->get();
+            //Llamando a la libreria para darle un formato 
         $formato = new NumeroALetras();
+        //Convirtiendo la fecha en fecha corta
         $f = strtotime($datos[0]->fechand);
+        //Extrayendo el año
         $anio = date("Y", $f);
+        //Convirtiendo el año en letra ejemplo 2020 en dos mil veite
         $conversion = $formato->toString($anio);
+        //Concatenando la fecha
         $fechaNotiDeter = $datos[0]->fd . ' de ' . mb_strtolower(substr($conversion, 0, -1), "UTF-8");
+        //Lamando el pdf 
         $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter]);
         return $pdf->stream();
     }

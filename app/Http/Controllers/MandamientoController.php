@@ -20,33 +20,19 @@ class MandamientoController extends Controller
                 [IndexController::class, 'index']
             )->with('error', 'error');
         } else {
-            $requerimiento = DB::select('select count(cuenta) as c from requerimientosA where cuenta=?', [$cuenta]);
-            if (($requerimiento[0]->c) == 0) {
+            // $requerimiento = DB::select('select count(cuenta) as c from requerimientosA where cuenta=?', [$cuenta]);
+            $requerimiento=requerimientosA::join('determinacionesA as d', 'd.id', '=', 'requerimientosA.id_d')->
+            select('cuenta')->
+            where('cuenta',$cuenta)->count();
+            if (($requerimiento) == 0) {
                 return  redirect()->action(
                     [IndexController::class, 'index']
                 )->with('accessDeniedMandamiento', 'error');
             } else {
                 $sql = cobranzaExternaHistoricos::select(['NoCta', 'anio', 'mes'])->where('NoCta', $cuenta)->orderBy('anio', 'ASC')->get();
-               
-                $date = requerimientosA::select(
-                    'numeroc as Numero',
-                    'oficio as Oficio',
-                    'fechar as Fecha_r',
-                    'cuenta as Cuenta',
-                    'clavec as Clave',
-                    'frc as Fecha_remi_c',
-                    'fnd as Fecha_noti_d',
-                    'propietario as Propietario',
-                    'tipo_s as TipoServicio',
-                    'seriem as SerieMedidor',
-                    'domicilio as Domicilio',
-                    'sobrerecaudador as Recaudador',
-                    'id',
-                    'periodo'
-                )
-                    ->where('requerimientosA.cuenta', $cuenta)
-                    ->get();
-               
+                $date=requerimientosA::join('determinacionesA as d', 'd.id', '=', 'requerimientosA.id_d')->
+                where('cuenta',$cuenta)->first();
+                dd($requerimiento);
                 $mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Nobiembre", "Diciembre"];
                 return view('components.formMandamiento', ['cobranza' => $sql, 'date' => $date, 'mes' => $mes]);
             }
