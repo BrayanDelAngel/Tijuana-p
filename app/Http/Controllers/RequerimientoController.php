@@ -93,9 +93,6 @@ class RequerimientoController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request->ejecutor);
-        
-
         $request->validate([
             'emision' =>  ['required'],
             'tservicio' =>  ['required'],
@@ -107,64 +104,45 @@ class RequerimientoController extends Controller
                 'ejecutor.0' => 'required|array',
             ]);
         }
-
         //validar si esta cuenta ya tiene un requerimiento
-        $count_r = DB::select('select count(id) as c from requerimientosA where cuenta = ?', [$request->cuenta]);
+        $count_r=requerimientosA::count('id_d',$request->id_d);
         //si existe
-        if (($count_r[0]->c) != 0) {
+        if ($count_r != 0) {
             //consultar el id del requerimiento
-            $id = DB::select('select id from requerimientosA where cuenta = ?', [$request->cuenta]);
+            $id=requerimientosA::select('id')->where('id_d',$request->id_d)->first();
             //eliminamos los ejecutores existentes
-            $deleted = DB::delete('delete ejecutores_ra where id_r = ?', [$id[0]->id]);
+            $ejecutores_ra=ejecutores_ra::where('id_r',$id->id)->delete();
             //declaramos que se va a modificar el registro de requerimiento
-            $r = requerimientosA::findOrFail($id[0]->id);
-            //validamos que si el oficio es diferente al que inserto que sea unico
-            //consultamos su oficio
-            $oficio = DB::select('select oficio from requerimientosA where cuenta = ?', [$request->cuenta]);
-            if ($oficio[0]->oficio != $request->oficio) {
-                $request->validate([
-                    'oficio' =>  ['unique:requerimientosA'],
-                ]);
-            }
+            $r = requerimientosA::findOrFail($id->id);
         }
         //no existe
         else {
-            $request->validate([
-                'oficio' =>  ['unique:requerimientosA'],
-            ]);
             //declaramos que se creara un nuevo registro en requerimientosA
             $r = new requerimientosA();
         }
         //guardamos los datos en requerimientosA
-        $r->numeroc = $request->ncredito;
-        $r->oficio = $request->oficio;
-        $r->fechar = $request->emision;
-        $r->propietario = $request->propietario;
-        $r->domicilio = $request->domicilio;
-        $r->cuenta = $request->cuenta;
-        $r->clavec = $request->clavec;
-        $r->tipo_s = $request->tservicio;
-        $r->seriem = $request->serie;
-        $r->frc = $request->remision;
-        $r->fnd = $request->notificacion;
-        $r->sobrerecaudador = $request->sobrerecaudador;
-        $r->periodo = $request->periodo;
+        $r->id_d=$request->id_d;
+        $r->fechar=$request->emision;
+        $r->fechand=$request->notificacion;
+        $r->sobrerecaudador=$request->sobrerecaudador;
+        $r->tipo_s=$request->tservicio;
         $r->save();
         //validamos si se guardaron los datos
         if ($r->save()) {
             //consultamos su id
-            $id = DB::select('select id from requerimientosA where cuenta = ?', [$request->cuenta]);
+            $requirimiento=requerimientosA::select('id')->where('id_d',$request->id_d)->first();
+            $id=$requirimiento->id;
             //recorremos el array de los ejecutores
             for ($i = 0; $i < count($request->ejecutor); $i++) {
                 //declaramos que se hara un nuevo registro en ejecutores_ra
                 $e = new ejecutores_ra();
                 $e->ejecutor = $request->ejecutor[$i];
-                $e->id_r = $id[0]->id;
+                $e->id_r = $id;
                 $e->save();
             }
             //si se guardaron los datos retornamos el pdf
             if ($e->save()) {
-                return '<script type="text/javascript">window.open("PDFRequerimiento/' . $request->cuenta . '")</script>' .
+                return '<script type="text/javascript">window.open("PDFRequerimiento/' . $request->id_d . '")</script>' .
                     redirect()->action(
                         [IndexController::class, 'index']
                     );
@@ -175,15 +153,18 @@ class RequerimientoController extends Controller
             dd("error");
         }
     }
-    public function pdf($cuenta)
+    public function pdf($id)
     {
 
-        $datos = requerimientosA::select([
-            'propietario', 'domicilio', 'oficio', 'numeroc', DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
-            'clavec', 'seriem', 'cuenta', 'periodo', DB::raw("format(fnd,'dd'' de ''MMMM','es-es') as fd"), 'fnd','sobrerecaudador'
-        ])
-            ->where('cuenta', $cuenta)
-            ->get();
+        // $datos = determinacionesA::select([
+        //     'propietario', 'domicilio', 'folio', 'numeroc','razons', DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
+        //     'clavec', 'seriem', 'cuenta', 'periodo', DB::raw("format(fnd,'dd'' de ''MMMM','es-es') as fd"), 'fnd','sobrerecaudador'
+        // ])
+        //     ->where('id', $id)
+        //     ->get();
+            $datos=determinacionesA::join('requerimientosA as r','r.id_d','=','determinacionesA.id')
+            ->select('id','folio','fechad','')->get();
+            dd($datos);
         $formato = new NumeroALetras();
         $f = strtotime($datos[0]->fnd);
         $anio = date("Y",$f);
