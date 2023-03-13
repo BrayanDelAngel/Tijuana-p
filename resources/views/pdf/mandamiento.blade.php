@@ -256,38 +256,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                            <td>&nbsp;&nbsp;</td>
-                        </tr>
+                        @foreach ($t_adeudo as $item)
+                                <tr>
+                                    <td>{{ $item->mes }}</td>
+                                    <td>{{ $item->anio }}</td>
+                                    <td>${{number_format($item->totalPeriodo,2)}}</td>
+                                    <td>${{number_format($item->RecargosAcumulados,2)}}</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        
                     </tbody>
                     <tfoot>
                         <tr>

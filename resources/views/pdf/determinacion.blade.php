@@ -25,7 +25,7 @@
         <p class="align-right mr-50 bold">FOLIO: CESPT/EDM/______/{{ date('Y') }}</p>
         <p class="align-right"><span class="bold">Tijuana B.C,</span> ___________________</p>
         <p class="">
-            <span class="bold"> CUENTA:</span> _____________
+            <span class="bold"> CUENTA:</span> {{$cuenta}}
             <br />
             <span class="bold"> USUARIO:</span> _________________________________
             <br />

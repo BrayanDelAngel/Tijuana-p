@@ -38,9 +38,15 @@ class MandamientoController extends Controller
             } 
             //en caso que ya tiene un requerimiento puede pasar a las operaciones previas
             else {
-                //consultamos
-                $periodo=tabla_da::select(['anio','mes'])
+                //consultamos la tabla de adeudo
+                $t_adeudo=tabla_da::select(['anio','mes','totalPeriodo','RecargosAcumulados'])
                 ->where('cuenta',$cuenta)->orderBy('meses','ASC')->get();
+                //consultamos los totales de la tabla de adeudo
+                $totales = DB::table('tabla_da')
+                 ->select([DB::raw("sum(totalPeriodo) as TP"),DB::raw("sum(RecargosAcumulados) as RA")])
+                 ->where('cuenta',$cuenta)
+                 ->get();
+                //consultamos los datos del form
                 $date = determinacionesA::join('requerimientosA as r','determinacionesA.id','=','r.id_d')
                 ->select(
                     'folio',
@@ -70,7 +76,7 @@ class MandamientoController extends Controller
                 }
                
                 $mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Nobiembre", "Diciembre"];
-                return view('components.formMandamiento', ['periodo' => $periodo, 'date' => $date, 'mes' => $mes,'folio'=>$folio]);
+                return view('components.formMandamiento', ['t_adeudo' => $t_adeudo, 'date' => $date, 'mes' => $mes,'folio'=>$folio,'totales'=>$totales]);
             }
         }
     }
@@ -144,9 +150,12 @@ class MandamientoController extends Controller
         //mando a llamar los datos para el pdf
         $datos=determinacionesA::join('requerimientosA as r','determinacionesA.id','=','r.id_d')
             ->join('mandamientosA as m','r.id','=','m.id_r')
-            ->select(['propietario','domicilio','folio'])
+            ->select(['propietario','domicilio','folio','cuenta'])
             ->where('m.id',$id)
             ->get();
+        
+         $t_adeudo=tabla_da::select(['anio','mes','totalPeriodo','RecargosAcumulados'])
+            ->where('cuenta',$datos[0]->cuenta)->orderBy('meses','ASC')->get();
         //agregamos los ceros correspondientes al oficio
         $folio = $datos[0]->folio;
         $longitud = strlen($folio);
@@ -157,7 +166,7 @@ class MandamientoController extends Controller
             }
         }
         
-        $pdf = Pdf::loadView('pdf.mandamiento',['items'=>$datos,'folio'=>$folio]);
+        $pdf = Pdf::loadView('pdf.mandamiento',['items'=>$datos,'folio'=>$folio,'t_adeudo'=>$t_adeudo]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();

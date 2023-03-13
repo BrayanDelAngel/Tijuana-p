@@ -327,20 +327,21 @@
                             </tr>
                         </thead>
                         <tbody class="table-light text-center">
-                            @foreach ($periodo as $item)
+                            @foreach ($t_adeudo as $item)
                                 <tr>
                                     <td>{{ $mes[$item->mes - 1] }}</td>
                                     <td>{{ $item->anio }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>${{number_format($item->totalPeriodo,2)}}</td>
+                                    <td>${{number_format($item->RecargosAcumulados,2)}}</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                             @endforeach
+                            
                             <tr>
                                 <td colspan="2" class="text-center">Totales</td>
-                                <td class="text-center">$ &nbsp;&nbsp;</td>
-                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                                <td class="text-center">${{number_format($totales[0]->TP,2)}}</td>
+                                <td class="text-center">${{number_format($totales[0]->RA,2)}}</td>
                                 <td class="text-center">$ &nbsp;&nbsp;</td>
                                 <td class="text-center">$ &nbsp;&nbsp;</td>
                             </tr>

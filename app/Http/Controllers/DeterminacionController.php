@@ -145,7 +145,7 @@ class DeterminacionController extends Controller
         $cuenta=determinacionesA::select(['cuenta'])->where('id',$id)->first();
         $tabla=tabla_da::select(['meses','periodo','fechaVencimiento','lecturaFacturada','tarifa1','sumaTarifas','tarifa2','factor','saldoAtraso','saldoRezago','totalPeriodo','importeMensual','RecargosAcumulados'])
         ->where('cuenta',$cuenta->cuenta)->orderBy('meses','ASC')->get();
-        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla]);
+        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla,'cuenta'=>$cuenta->cuenta]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();
