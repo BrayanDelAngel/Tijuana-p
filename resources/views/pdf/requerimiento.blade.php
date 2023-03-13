@@ -31,7 +31,7 @@
                     Crédito número: <span>{{$item->folio}}</span>
                 </p>
                 <p>
-                    Oficio: <span class="underline">"CESPT/EDM/{{$folio}}/{{date('Y')}}</span>
+                    Oficio: <span class="underline">CESPT/EDM/{{$folio}}/{{date('Y')}}</span>
                 </p>
             </div>
             <p>
@@ -49,7 +49,7 @@
             <span class="bold"> Cuenta:</span> <span>{{$item->cuenta}}</span>
         </p>
         <p id="right">
-            <span class="bold"> Tipo de servicio:</span> 
+            <span class="bold"> Tipo de servicio:</span> <span>{{$item->tipo_s}}</span>
         </p>
         <p>
             <span class="bold"> Clave catastral:</span> <span>{{$item->clavec}}</span>
@@ -183,7 +183,7 @@
             <p class="text-justify">
                 <span class="bold">PRIMERO.</span>
                 Requiérase a {{$item->propietario}} titular el contrato número {{$item->cuenta}}, ubicado en: {{$item->domicilio}},
-                __________________, el pago del crédito fiscal a su cargo, que ya ha quedado precisado,
+                el pago del crédito fiscal a su cargo, que ya ha quedado precisado,
                 actualizado junto con los gastos accesorios causados a la fecha de emisión del presente requerimiento de
                 pago, otorgándole un plazo de seis días hábiles para que efectué el pago, apercibiéndolo que en caso de
                 no realizar el pago se iniciara el procedimiento económico coactivo en su contra, embargando bienes

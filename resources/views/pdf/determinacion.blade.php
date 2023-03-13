@@ -22,22 +22,22 @@
         <img src="{{ public_path('img/pdf/logo_BC_escudo.png') }}" width="100%" height="100%" />
     </footer> --}}
     <main>
-        <p class="align-right mr-50 bold">FOLIO: CESPT/EDM/______/{{ date('Y') }}</p>
-        <p class="align-right"><span class="bold">Tijuana B.C,</span> ___________________</p>
+        <p class="align-right mr-50 bold">FOLIO: CESPT/EDM/{{ $data->folio }}/{{ date('Y') }}</p>
+        <p class="align-right"><span class="bold">Tijuana B.C,</span> {{ $data->fechad }}</p>
         <p class="">
-            <span class="bold"> CUENTA:</span> {{$cuenta}}
+            <span class="bold"> CUENTA:</span> {{ $data->cuenta }}
             <br />
-            <span class="bold"> USUARIO:</span> _________________________________
+            <span class="bold"> USUARIO:</span> {{ $data->propietario }}
             <br />
-            <span class="bold"> DIRECCIÓN:</span> ___________________________________________
+            <span class="bold"> DIRECCIÓN:</span> {{ $data->domicilio }}
             <br />
-            <span class="bold">CLAVE CATASTRAL:</span> __________
+            <span class="bold">CLAVE CATASTRAL:</span> {{ $data->clavec }}
             <br />
-            <span class="bold"> TIPO DE SERVICIO:</span> _________
+            <span class="bold"> TIPO DE SERVICIO:</span> {{ $data->tipo_s }}
             <br />
-            <span class="bold"> NÚMERO DE MEDIDOR:</span> ________
+            <span class="bold"> NÚMERO DE MEDIDOR:</span> {{ $data->seriem }}
             <br />
-            <span class="bold"> RAZON SOCIAL:</span>______________
+            <span class="bold"> RAZON SOCIAL:</span>{{ $data->razons }}
             <br />
             <span class="bold">PRESENTE. -</span>
         </p>
@@ -55,8 +55,8 @@
             de Baja California; artículo 14 BIS del Código Fiscal para el estado de baja california para el ejercicio
             fiscal 2023; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta el Servicio de Agua Potable en el
             Estado de Baja California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f),
-            g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                class="bold">_______</span>; artículo 10,
+            g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años
+            <span class="bold">{{ $anioformat }}</span>; artículo 10,
             sección lll y IV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley
             de Ingresos para el ejercicio fiscal 2020; artículo 9, sección V y Vl, inciso A), numeral 1, subinciso a),
             b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal 2021 y 2022,
@@ -68,16 +68,18 @@
         <p class="text-justify">
             En virtud que de acuerdo a la información registrada en los archivos digitales del sistema electrónico de la
             Comisión Estatal de Servicios Públicos de Tijuana a cargo de la usuaria <span
-                class="bold">_________</span>, quien se
+                class="bold">{{ $data->propietario }}</span>, quien se
             encuentra
-            registrada como Titular de la cuenta número <span class="bold">__________</span>, con número de medidor
-            <span class="bold">_________</span>, de uso <span class="bold">__________</span>,
+            registrada como Titular de la cuenta número <span class="bold">{{ $data->cuenta }}</span>, con número de
+            medidor
+            <span class="bold">{{ $data->seriem }}</span>, de uso <span class="bold">{{ $data->tipo_s }}</span>,
             del domicilio ubicado en «domicilio»de esta ciudad de Tijuana, Baja California, con clave catastral número
-            <span class="bold">__________</span> se desprende que ha omitido cubrir las contribuciones generadas por
+            <span class="bold">{{ $data->clavec }}</span> se desprende que ha omitido cubrir las contribuciones
+            generadas por
             los derechos
             relativos al
             servicio de consumo agua potable por los diversos periodos consecutivos facturados que comprenden del
-            <span class="bold">__________</span> al <span class="bold">__________</span>, toda vez que los
+            <span class="bold">{{ $data->periodo }}</span>, toda vez que los
             referidos derechos no fueron cubiertos de
             conformidad con lo
             establecido por el artículo 16 último párrafo de la Ley que Reglamenta el Servicio de Agua Potable en el
@@ -131,9 +133,9 @@
             Ejercicio Fiscales 2011, 2012, 2013, 2014, 2016, 2017, 2018 y 2019; el artículo 35 de la Ley de Ingresos
             para el Estado de Baja California para el Ejercicio Fiscal 2020, 2021; el artículo 21 de la Ley de las
             Comisiones Estatales de Servicios Públicos del Estado de Baja California, se procede a establecer el
-            monto total del crédito de acuerdo al desglose de los periodos facturados comprendidos del <span
-                class="bold">__________</span>
-            al <span class="bold">__________</span> asimismo, se procede a determinar el importe de los recargos
+            monto total del crédito de acuerdo al desglose de los periodos facturados comprendidos del
+            <span class="bold">{{ $data->periodo }}</span> asimismo, se procede a determinar el importe de los
+            recargos
             generados por concepto de
             indemnización al fisco estatal por la falta de pago oportuno de las contribuciones a su cargo, los que
             se obtienen de multiplicar las contribuciones omitidas determinadas, por las tasas de recargos, para lo
@@ -399,7 +401,7 @@
             de agua potable, la
             suma de las tasas de recargos será desde el vencimiento del plazo para el pago a que se refiere el último
             párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
-            California, correspondiente al periodo comprendido <span class="bold">__________ al ____________</span>,
+            California, correspondiente al periodo comprendido <span class="bold">{{ $data->periodo }}</span>,
             en que se haya incurrido en
             mora para cada uno de los periodos facturados vencidos y hasta la fecha de la presente resolución
             liquidatoria, misma que se determinó de la forma siguiente:</p>
@@ -408,95 +410,95 @@
             CRÉDITO FISCAL</p>
 
         <table class="table">
-            
-                <tr class="tr">
-                    <th class="th">
-                        <h6>Meses de adeudo</h6>
-                    </th>
-                    <th class="th">
-                        <h6>Periodo de consumo facturado</h6>
-                    </th>
-                    <th class="th">
-                        <h6>Fecha de vencimiento</h6>
-                    </th>
-                    <th class="th">
-                        <h6>Lectura facturada en m3</h6>
-                    </th>
-                    <th class="th">
-                        <h6>Tarifa art. 11 enciso a)</h6>
-                    </th>
-                    <th class="th">
-                        <h6>
-                            Tarifa art. 11 excedente del básico en m3 de la Ley de Ingresos del
-                            Estado de Baja
-                            <br />
-                            California ejercicios fiscales anteriores al 2020;
-                            actualmente art 10.
-                        </h6>
-                    </th>
-                    <th class="th">
-                        <h6>Suma de tarifas</h6>
-                    </th>
-                    <th class="th">
-                        <h6>
-                            Factor de actualización (capítulo I Ley de Ingresos vigente a la
-                            fecha de facturación)
-                        </h6>
-                    </th>
-                    <th class="th">
-                        <h6>Saldo Atraso</h6>
-                    </th>
-                    <th class="th">
-                        <h6>Saldo Rezago</h6>
-                    </th>
-                    <th class="th">
-                        <h6>
-                            Total del periodo facturado (ley de ingresos vigente a la
-                            <br />
-                            fecha de la facturación)
-                        </h6>
-                    </th>
-                    <th class="th">
-                        <h6>
-                            Tasa de interés por adeudo mensual vencido
-                            (artículo 37 ley de ingresos del estado)
-                        </h6>
-                    </th>
-                    <th class="th">
-                        <h6>
-                            Importe mensual por concepto de recargos (adeudo del periodo
-                            <br />
-                            facturado x tasa de interés por adeudo mensual vencido)
-                        </h6>
-                    </th>
-                    <th class="th">
-                        <h6>
-                            Recargos acumulados por mensualidades vencidas
-                            <br />
-                            (meses de adeudo x importe mensual por concepto de recargos )
-                            <br />este importe no puede ser mayor al adeudo del periodo facturado
-                        </h6>
-                    </th>
-                </tr>
-            
+
+            <tr class="tr">
+                <th class="th">
+                    <h6>Meses de adeudo</h6>
+                </th>
+                <th class="th">
+                    <h6>Periodo de consumo facturado</h6>
+                </th>
+                <th class="th">
+                    <h6>Fecha de vencimiento</h6>
+                </th>
+                <th class="th">
+                    <h6>Lectura facturada en m3</h6>
+                </th>
+                <th class="th">
+                    <h6>Tarifa art. 11 enciso a)</h6>
+                </th>
+                <th class="th">
+                    <h6>
+                        Tarifa art. 11 excedente del básico en m3 de la Ley de Ingresos del
+                        Estado de Baja
+                        <br />
+                        California ejercicios fiscales anteriores al 2020;
+                        actualmente art 10.
+                    </h6>
+                </th>
+                <th class="th">
+                    <h6>Suma de tarifas</h6>
+                </th>
+                <th class="th">
+                    <h6>
+                        Factor de actualización (capítulo I Ley de Ingresos vigente a la
+                        fecha de facturación)
+                    </h6>
+                </th>
+                <th class="th">
+                    <h6>Saldo Atraso</h6>
+                </th>
+                <th class="th">
+                    <h6>Saldo Rezago</h6>
+                </th>
+                <th class="th">
+                    <h6>
+                        Total del periodo facturado (ley de ingresos vigente a la
+                        <br />
+                        fecha de la facturación)
+                    </h6>
+                </th>
+                <th class="th">
+                    <h6>
+                        Tasa de interés por adeudo mensual vencido
+                        (artículo 37 ley de ingresos del estado)
+                    </h6>
+                </th>
+                <th class="th">
+                    <h6>
+                        Importe mensual por concepto de recargos (adeudo del periodo
+                        <br />
+                        facturado x tasa de interés por adeudo mensual vencido)
+                    </h6>
+                </th>
+                <th class="th">
+                    <h6>
+                        Recargos acumulados por mensualidades vencidas
+                        <br />
+                        (meses de adeudo x importe mensual por concepto de recargos )
+                        <br />este importe no puede ser mayor al adeudo del periodo facturado
+                    </h6>
+                </th>
+            </tr>
+
             <tbody class="tbody">
-                @foreach ($items as $item)  
-                <tr class="tr">
-                    <td class="td">{{$item->meses}}</td>
-                    <td class="td">{{$item->periodo}}</td>
-                    <td class="td">{{$item->fechaVencimiento}}</td>
-                    <td class="td">{{$item->lecturaFacturada}}</td>
-                    <td class="td">${{number_format($item->tarifa1,2)}}</td>
-                    <td class="td">${{number_format($item->tarifa2,2)}}</td>
-                    <td class="td">${{number_format($item->sumaTarifas,2)}}</td>
-                    <td class="td">{{number_format($item->factor,2)}}</td>
-                    <td class="td">${{number_format($item->saldoAtraso,2)}}</td>
-                    <td class="td">${{number_format($item->saldoRezago,2)}}</td>
-                    <td class="td">${{number_format($item->totalPeriodo,2)}}</td>
-                    <td class="td">2.25</td>
-                    <td class="td">${{number_format($item->importeMensual,2)}}</td>
-                    <td class="td">${{number_format($item->RecargosAcumulados,2)}}</td>
-             </tr>
+                @foreach ($items as $item)
+                    <tr class="tr">
+                        <td class="td">{{ $item->meses }}</td>
+                        <td class="td">{{ $item->periodo }}</td>
+                        <td class="td">{{ $item->fechaVencimiento }}</td>
+                        <td class="td">{{ $item->lecturaFacturada }}</td>
+                        <td class="td">${{ number_format($item->tarifa1, 2) }}</td>
+                        <td class="td">${{ number_format($item->tarifa2, 2) }}</td>
+                        <td class="td">${{ number_format($item->sumaTarifas, 2) }}</td>
+                        <td class="td">{{ number_format($item->factor, 2) }}</td>
+                        <td class="td">${{ number_format($item->saldoAtraso, 2) }}</td>
+                        <td class="td">${{ number_format($item->saldoRezago, 2) }}</td>
+                        <td class="td">${{ number_format($item->totalPeriodo, 2) }}</td>
+                        <td class="td">2.25</td>
+                        <td class="td">${{ number_format($item->importeMensual, 2) }}</td>
+                        <td class="td">${{ number_format($item->RecargosAcumulados, 2) }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

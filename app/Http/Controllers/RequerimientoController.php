@@ -158,7 +158,7 @@ class RequerimientoController extends Controller
         //Consulta de la determinacion y del requerimiento
         $datos = determinacionesA::join('requerimientosA as r', 'r.id_d', '=', 'determinacionesA.id')
             ->select(['r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM','es-es') as fechad"), 
-            'cuenta', 'propietario', 'domicilio', 'clavec','r.tipo_s','seriem','razons','periodo', 'fechand',
+            'cuenta', 'propietario', 'domicilio', 'clavec','r.tipo_s as tipo_s','seriem','razons','periodo', 'fechand',
             DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"), 
             DB::raw("format(fechand,'dd'' de ''MMMM','es-es') as fd",
             'sobrerecaudador','id_d'),])

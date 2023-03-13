@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\implementta;
 use App\Models\requerimientosA;
 use App\Models\tabla_da;
+use NumberFormatter;
 
 class DeterminacionController extends Controller
 {
@@ -142,10 +143,35 @@ class DeterminacionController extends Controller
     }
     public function pdf($id)
     {
-        $cuenta=determinacionesA::select(['cuenta'])->where('id',$id)->first();
+        //Informacion del propietario
+        $data=determinacionesA::select('cuenta','folio','fechad','domicilio','clavec','tipo_s','seriem','razons','periodo','propietario')->where('id',$id)->first();
+        //Informacion de la tabla generada del propietario
         $tabla=tabla_da::select(['meses','periodo','fechaVencimiento','lecturaFacturada','tarifa1','sumaTarifas','tarifa2','factor','saldoAtraso','saldoRezago','totalPeriodo','importeMensual','RecargosAcumulados'])
-        ->where('cuenta',$cuenta->cuenta)->orderBy('meses','ASC')->get();
-        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla,'cuenta'=>$cuenta->cuenta]);
+        ->where('cuenta',$data->cuenta)->orderBy('meses','ASC')->get();
+        //Se extrae los años que debe el propietario
+        $años=tabla_da::select('anio')
+        ->where('cuenta',$data->cuenta)->orderBy('anio','ASC')->groupBy('anio')->get();
+        //Se hace el conteo de los años totales
+        $countAños=tabla_da::select('anio')->distinct('anio')->where('cuenta',$data->cuenta)->count();
+        //Variable acomuladora
+        $anioformat='';
+        //Se he un recorrido
+        for ($i=0; $i < $countAños; $i++) { 
+            //si el ultimo dato 
+            if($i==($countAños-1)){
+                // en el amcomulador se le agrega un Y
+                $anioformat=$anioformat.' y '.$años[$i]->anio;
+            }
+            else if($i==($countAños-2)){
+                // si es el penultimo no se le agrega el ','
+                $anioformat=$anioformat.$años[$i]->anio.'';
+            }
+            else{
+                // si no re acomulan los años y se les agrega las ','
+                $anioformat=$anioformat.$años[$i]->anio.',';
+            }
+        }
+        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla,'data'=>$data,'anioformat'=>$anioformat]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();
