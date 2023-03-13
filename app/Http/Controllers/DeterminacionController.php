@@ -44,15 +44,12 @@ class DeterminacionController extends Controller
             return redirect()->action(
                      [DeterminacionController::class, 'index'], ['cuenta' => $cuenta]
                  ); 
-            
         }
         }
     }
 
     public function index($cuenta)
     {
-        
-        
             //consultamos los datos ya tenidos del propietario
             $date = implementta::select('Cuenta', 'Clave', 'Propietario', 'TipoServicio', 'SerieMedidor', DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
                 ->where('implementta.Cuenta', $cuenta)
@@ -79,10 +76,7 @@ class DeterminacionController extends Controller
             //obtenemos el periodo en el    ue se esta evaluando
             //se cincatena la fecha maxima y minima 
             $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
-            
-            
             return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio,'periodo'=>$periodo,'ts'=>$ts]);
-        
     }
     public function store(Request $request)
     {
@@ -95,15 +89,12 @@ class DeterminacionController extends Controller
             'domicilio' =>  ['required'],
             'razons' =>  ['required'],
         ]);
-       
-
         //validar si esta cuenta ya tiene una determinacion
         $count_d = DB::select('select count(id) as c from determinacionesA where cuenta = ?', [$request->cuenta]);
         //si existe
         if (($count_d[0]->c) != 0) {
             //consultar el id de la determinacion
             $id = DB::select('select id from determinacionesA where cuenta = ?', [$request->cuenta]);
-           
             //declaramos que se va a modificar el registro de la determinacion
             $r = determinacionesA::findOrFail($id[0]->id);
             //validamos que si el oficio es diferente al que inserto que sea unico
@@ -152,7 +143,8 @@ class DeterminacionController extends Controller
     public function pdf($id)
     {
         $cuenta=determinacionesA::select(['cuenta'])->where('id',$id)->first();
-        $tabla=tabla_da::where('cuenta',$cuenta->cuenta)->orderBy('meses','ASC')->get();
+        $tabla=tabla_da::select(['meses','periodo','fechaVencimiento','lecturaFacturada','tarifa1','sumaTarifas','tarifa2','factor','saldoAtraso','saldoRezago','totalPeriodo','importeMensual','RecargosAcumulados'])
+        ->where('cuenta',$cuenta->cuenta)->orderBy('meses','ASC')->get();
         $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla]);
         // setPaper('')->
         //A4 -> carta

@@ -292,6 +292,7 @@
                                     <img src="https://img.icons8.com/fluency/24/null/minus.png" />
                                 </button>
                             </div>
+                            
                         </div>
                         <div id="contenedor"></div>
                     </div>

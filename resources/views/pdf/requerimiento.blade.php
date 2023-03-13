@@ -31,7 +31,7 @@
                     Crédito número: <span>{{$item->folio}}</span>
                 </p>
                 <p>
-                    Oficio: <span class="underline">TP/PAE/0000{{$item->oficio}}/{{date('Y')}}</span>
+                    Oficio: <span class="underline">"CESPT/EDM/{{$folio}}/{{date('Y')}}</span>
                 </p>
             </div>
             <p>

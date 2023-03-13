@@ -34,7 +34,7 @@
                                         @error('credito')
                                         border border-danger rounded-2
                                         @enderror"
-                                            name="credito" value="{{ $item->Numero }}" placeholder="Crédito" disabled>
+                                            name="credito" value="{{ $item->folio }}" placeholder="Crédito" disabled>
                                         @error('credito')
                                             <div class="text-danger text-center">
                                                 El campo crédito número es requerido.
@@ -46,8 +46,8 @@
                                     <div class="md-form form-group">
                                         <label for="oficio" class="form-label">Oficio:*</label>
                                         <div class="input-group mb-6">
-                                            <input type="text" class="form-control mb-2" value="CESPT/EDM/000" disabled>
-                                            <input type="text" value="{{ $item->Oficio }}" id="oficio"
+                                            <input type="text" class="form-control mb-2" value="CESPT/EDM/" disabled>
+                                            <input type="text" value="{{ $folio }}" id="oficio"
                                                 class="form-control mb-2
                                             @error('oficio')
                                             border border-danger rounded-2
@@ -112,15 +112,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
-                                        <label for="mandamiento" class="form-label mb-2">Fecha emisión de
+                                        <label for="fecham" class="form-label mb-2">Fecha emisión de
                                             mandamiento:*</label>
                                         <input type="date"
                                             class="form-control mb-2
-                                        @error('mandamiento')
+                                        @error('fecham')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="mandamiento" name="mandamiento" value="{{ old('mandamiento') }}">
-                                        @error('mandamiento')
+                                            id="fecham" name="fecham" value="{{ old('fecham') }}">
+                                        @error('fecham')
                                             <div class="text-danger text-center">
                                                 El campo mandamiento es requerido
                                             </div>
@@ -188,7 +188,7 @@
                                         @error('determinacion')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="determinacion" name="determinacion" value="{{ old('determinacion') }}">
+                                            id="determinacion" name="determinacion" value="{{$item->fechand }}" disabled>
                                         @error('determinacion')
                                             <div class="text-danger text-center">
                                                 El campo determinación es requerido
@@ -291,7 +291,7 @@
                                     name="ejecutor[]">
                                 @error('ejecutor.0')
                                     <div class="text-danger text-center">
-                                        El campo es requerido
+                                        El campo Notificador y/o Ejecutor es requerido
                                     </div>
                                 @enderror
                                 <button class="btn btn-warning puntero ocultar mt-4"
