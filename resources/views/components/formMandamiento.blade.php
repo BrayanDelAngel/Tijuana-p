@@ -327,7 +327,7 @@
                             </tr>
                         </thead>
                         <tbody class="table-light text-center">
-                            @foreach ($cobranza as $item)
+                            @foreach ($periodo as $item)
                                 <tr>
                                     <td>{{ $mes[$item->mes - 1] }}</td>
                                     <td>{{ $item->anio }}</td>

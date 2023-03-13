@@ -41,7 +41,6 @@ class MandamientoController extends Controller
                 //consultamos
                 $periodo=tabla_da::select(['anio','mes'])
                 ->where('cuenta',$cuenta)->orderBy('meses','ASC')->get();
-               
                 $date = determinacionesA::join('requerimientosA as r','determinacionesA.id','=','r.id_d')
                 ->select(
                     'folio',
@@ -71,7 +70,7 @@ class MandamientoController extends Controller
                 }
                
                 $mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Nobiembre", "Diciembre"];
-                return view('components.formMandamiento', ['cobranza' => $periodo, 'date' => $date, 'mes' => $mes,'folio'=>$folio]);
+                return view('components.formMandamiento', ['periodo' => $periodo, 'date' => $date, 'mes' => $mes,'folio'=>$folio]);
             }
         }
     }

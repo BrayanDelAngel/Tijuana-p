@@ -101,9 +101,12 @@ class RequerimientoController extends Controller
             ]);
         }
         //validar si esta cuenta ya tiene un requerimiento
-        $count_r = requerimientosA::count('id_d', $request->id_d);
+        $validar=requerimientosA::join('determinacionesA as d','requerimientosA.id_d','=','d.id')
+        ->where('d.id',$request->id_d)
+        ->count();
         //si existe
-        if ($count_r != 0) {
+       
+        if ($validar != 0) {
             //consultar el id del requerimiento
             $id = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
             //eliminamos los ejecutores existentes
@@ -139,7 +142,7 @@ class RequerimientoController extends Controller
             }
             //si se guardaron los datos retornamos el pdf
             if ($e->save()) {
-                return '<script type="text/javascript">window.open("PDFRequerimiento/' . $request->id_d . '")</script>' .
+                return '<script type="text/javascript">window.open("PDFRequerimiento/' . $id . '")</script>' .
                     redirect()->action(
                         [IndexController::class, 'index']
                     );
@@ -159,6 +162,7 @@ class RequerimientoController extends Controller
             DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"), 
             DB::raw("format(fechand,'dd'' de ''MMMM','es-es') as fd",
             'sobrerecaudador','id_d'),])
+            ->where('r.id',$id)
             ->get();
         //convertivos la fecha en año para convertirlo en texto y concatenarlo con la fecha fd
         $formato = new NumeroALetras();
