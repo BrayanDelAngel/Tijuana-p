@@ -124,12 +124,11 @@ export class search {
                         title="Madamiento" name="mandamiento"><img
                             src="https://img.icons8.com/fluency/30/000000/general-ledger.png" />
                         Mandamiento</a>
-                        <!--<a class="btn btn-outline-dark btn-sm" onClick="embargo('${cuenta}')"
+                        <a class="btn btn-outline-dark btn-sm" onClick="pdf('${cuenta}')"
                         style="padding:0%;border:0px;" data-toggle="tooltip"
-                        data-placement="right" title="Acta de Embargo" name="embargo">
-                        <img src="https://img.icons8.com/fluency/30/null/document.png" />
-                        Embargo</a>-->
-                            
+                        data-placement="right" title="Pdf generados" name="pdf">
+                        <img src="https://img.icons8.com/fluency/30/null/pdf.png"/>
+                        PDF</a>
                         </td> 
                     </tr>
                 </tbody>

@@ -4,6 +4,47 @@
 @endsection
 @section('contenido')
     {{-- Generando el token de validaciones para el envio --}}
+    @if (session('error_empty'))
+        <script src="{{ asset('js/sweetAlert/error_empty.js') }}"></script>
+    @endif
+    @if (session('pdf'))
+        <script>
+            let determinacion = `{{ Session::get('determinacion') }}`;
+            let requerimiento = `{{ Session::get('requerimiento') }}`;
+            let mandamiento = `{{ Session::get('mandamiento') }}`;
+            (async () => {
+                const {
+                    value: fruit
+                } = await Swal.fire({
+                    title: 'Accesos directos de pdf creados',
+                    input: 'select',
+                    inputOptions: {
+                        'Formatos': {
+                            determinacion: 'Determinación',
+                            requerimiento: 'Requerimiento',
+                            mandamiento: 'Mandamiento',
+                        },
+                    },
+
+                    inputPlaceholder: 'Selecciona un pdf',
+                    showCancelButton: true,
+                    inputValidator: (value) => {
+                        return new Promise((resolve) => {
+                            if (value === 'determinacion') {
+                                resolve()
+                            } else {
+                                resolve('You need to select oranges :)')
+                            }
+                        })
+                    }
+                })
+
+                if (fruit) {
+                    Swal.fire(`You selected: ${fruit}`)
+                }
+            })()
+        </script>
+    @endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container">
         <div class="my-2">

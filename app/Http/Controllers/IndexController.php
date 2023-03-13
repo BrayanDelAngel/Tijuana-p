@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\determinacionesA;
+use App\Models\requerimientosA;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,6 +24,20 @@ class IndexController extends Controller
             "result"=>$result,
             "p"=>$Propietario
         ]);
-        
+    }
+    public function pdf($cuenta){
+        $determinacion=determinacionesA::select('cuenta')->where('cuenta',$cuenta)->first();
+        if($determinacion->cuenta==''){
+            return back()->with('error_empty','No hay pdfs generados');
+        }
+        $requerimiento=requerimientosA::join('determinacionesA as d', 'd.id', '=', 'requerimientosA.id_d')
+        ->select('cuenta')->where('cuenta',$cuenta)->first();
+        $mandamiento=determinacionesA::join('requerimientosA as r','determinacionesA.id','=','r.id_d')
+        ->join('mandamientosA as m','r.id','=','m.id_r')
+        ->select('cuenta')->where('cuenta',$cuenta)->first();
+        return back()->with('pdf','pdf')
+        ->with('determinacion', $determinacion->cuenta)
+        ->with('requerimiento', $requerimiento->cuenta)
+        ->with('mandamiento', $mandamiento->cuenta);
     }
 }

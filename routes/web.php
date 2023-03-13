@@ -21,6 +21,8 @@ use Svg\Tag\Rect;
 Route::get('/', [IndexController::class, 'index'])->name('index');
 //Buscador
 Route::post('/search', [IndexController::class, 'show'])->name('search');
+//PDF existente
+Route::get('/pdf/{cuenta}', [IndexController::class, 'pdf'])->name('pdf');
 /*Rutas de Mandamiento */
 Route::get('/PDFMandamiento/{id}', [MandamientoController::class, 'pdf'])->name('pdf-mandamiento');
 Route::get('/formM/{cuenta}', [MandamientoController::class, 'index'])->name('formulario-mandamiento');
