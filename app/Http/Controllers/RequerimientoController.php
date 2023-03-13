@@ -107,6 +107,7 @@ class RequerimientoController extends Controller
             //consultar el id del requerimiento
             $id = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
             //eliminamos los ejecutores existentes
+           
             $ejecutores_ra = ejecutores_ra::where('id_r', $id->id)->delete();
             //declaramos que se va a modificar el registro de requerimiento
             $r = requerimientosA::findOrFail($id->id);
@@ -158,12 +159,23 @@ class RequerimientoController extends Controller
             DB::raw("format(fechand,'dd'' de ''MMMM','es-es') as fd",
             'sobrerecaudador','id_d'),])
             ->get();
+        //convertivos la fecha en año para convertirlo en texto y concatenarlo con la fecha fd
         $formato = new NumeroALetras();
         $f = strtotime($datos[0]->fechand);
         $anio = date("Y", $f);
         $conversion = $formato->toString($anio);
         $fechaNotiDeter = $datos[0]->fd . ' de ' . mb_strtolower(substr($conversion, 0, -1), "UTF-8");
-        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter]);
+        //establecemos los ceros en los folios
+        $folio = $datos[0]->folio;
+        $longitud = strlen($folio);
+        if ($longitud <= 5) {
+            while ($longitud < 5) {
+                $folio = "0" . $folio;
+                $longitud = strlen($folio);
+            }
+        }
+        //declaramos la variable pdf y mandamos los parametros
+        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter,'folio'=>$folio]);
         return $pdf->stream();
     }
 }

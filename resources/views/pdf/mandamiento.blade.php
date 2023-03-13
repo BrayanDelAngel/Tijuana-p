@@ -26,10 +26,10 @@
         <div class="data">
             <div class="data-center">
                 <p>
-                    Crédito número:<span class="bold underline" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->numeroc}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    Crédito número:<span class="bold underline" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->folio}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </p>
                 <p>
-                    Oficio: _______ /_______ /20____
+                    Oficio: <span class="underline">"CESPT/EDM/{{$folio}}/{{date('Y')}}</span>
                 </p>
             </div>
             <p>
