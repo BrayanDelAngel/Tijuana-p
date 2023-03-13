@@ -183,7 +183,7 @@
                                             @error('razons')
                                             border border-danger rounded-2
                                             @enderror"
-                                        id="razons" name="razons" value="">
+                                        id="razons" name="razons" value="CASA HABITACION">
                                     @error('razons')
                                         <div class="text-danger text-center">
                                             El campo razon social es requerido
@@ -258,23 +258,23 @@
                             <tbody class="table-light">
                                 <tr>
                                     <td>Corriente</td>
-                                    <td>$</td>
+                                    <td>${{number_format($t_adeudo->sumaTarifas,2)}}</td>
                                 </tr>
                                 <tr>
                                     <td>IVA Corriente</td>
-                                    <td>$</td>
+                                    <td>${{number_format($t_adeudo->saldoIvaCor,2)}}</td>
                                 </tr>
                                 <tr>
                                     <td>Atraso</td>
-                                    <td>$</td>
+                                    <td>${{number_format($t_adeudo->saldoAtraso,2)}}</td>
                                 </tr>
                                 <tr>
                                     <td>Rezago</td>
-                                    <td>$</td>
+                                    <td>${{number_format($t_adeudo->saldoRezago,2)}}</td>
                                 </tr>
                                 <tr>
                                     <td>Recargos Consumo</td>
-                                    <td>$</td>
+                                    <td>${{number_format($t_adeudo->RecargosAcumulados,2)}}</td>
                                 </tr>
                                 <tr>
                                     <td>Convenio De Agua</td>

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\implementta;
 use App\Models\requerimientosA;
 use App\Models\tabla_da;
+use Luecano\NumeroALetras\NumeroALetras;
 
 class DeterminacionController extends Controller
 {
@@ -73,10 +74,13 @@ class DeterminacionController extends Controller
                 $folio = 0;
             }
             $adeudo = DB::select('select sum(saldoCorriente) as sumaCorriente, sum(saldoIvaCor) as sumaIVA, sum(saldoAtraso) as sumaAtraso, sum(saldoRezago) as sumaRezago, sum(recargosAcum) as sumaRecargoAcomulado, sum(ivaReacum) as IVARezagoAcomulado from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
+            //obtenemos los datos de la tabla de resumen
+            $t_adeudo = tabla_da::select(['sumaTarifas','saldoIvaCor','saldoAtraso', 'saldoRezago','RecargosAcumulados'])
+                    ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
             //obtenemos el periodo en el    ue se esta evaluando
             //se cincatena la fecha maxima y minima 
             $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
-            return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio,'periodo'=>$periodo,'ts'=>$ts]);
+            return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio,'periodo'=>$periodo,'ts'=>$ts,'t_adeudo'=>$t_adeudo]);
     }
     public function store(Request $request)
     {
@@ -145,7 +149,20 @@ class DeterminacionController extends Controller
         $cuenta=determinacionesA::select(['cuenta'])->where('id',$id)->first();
         $tabla=tabla_da::select(['meses','periodo','fechaVencimiento','lecturaFacturada','tarifa1','sumaTarifas','tarifa2','factor','saldoAtraso','saldoRezago','totalPeriodo','importeMensual','RecargosAcumulados'])
         ->where('cuenta',$cuenta->cuenta)->orderBy('meses','ASC')->get();
-        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla,'cuenta'=>$cuenta->cuenta]);
+         //obtenemos los datos de la tabla de resumen
+        $t_adeudo = tabla_da::select(['sumaTarifas','saldoIvaCor','saldoAtraso', 'saldoRezago','RecargosAcumulados'])
+            ->where('cuenta',$cuenta->cuenta)->orderBy('meses', 'ASC')->first();
+        //convertiremos los recargos acumulados a texto
+        $formatter = new NumeroALetras();
+        //extraemos el entero de los recargos
+        $entero = floor($t_adeudo->RecargosAcumulados);
+        //extraemos el decimal
+        $decimal = round($t_adeudo->RecargosAcumulados - $entero, 2) * 100;
+        //convertimos en texto el entero
+        $texto_entero = $formatter->toMoney($entero);
+        //concatenamos para obtener todo el texto
+        $ra ='$'.number_format($t_adeudo->RecargosAcumulados,2).'**(' . $texto_entero . ' ' . $decimal . '/100 M.N.)**';
+        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla,'cuenta'=>$cuenta->cuenta,'t_adeudo'=>$t_adeudo,'ra'=>$ra]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();
