@@ -9,39 +9,58 @@
     @endif
     @if (session('pdf'))
         <script>
-            let determinacion = `{{ Session::get('determinacion') }}`;
-            let requerimiento = `{{ Session::get('requerimiento') }}`;
-            let mandamiento = `{{ Session::get('mandamiento') }}`;
             (async () => {
-                const {
-                    value: fruit
-                } = await Swal.fire({
-                    title: 'Accesos directos de pdf creados',
-                    input: 'select',
-                    inputOptions: {
-                        'Formatos': {
-                            determinacion: 'Determinación',
-                            requerimiento: 'Requerimiento',
-                            mandamiento: 'Mandamiento',
-                        },
-                    },
-
-                    inputPlaceholder: 'Selecciona un pdf',
+                await Swal.fire({
+                    title: '{{ session('pdf') }}',
                     showCancelButton: true,
-                    inputValidator: (value) => {
-                        return new Promise((resolve) => {
-                            if (value === 'determinacion') {
-                                resolve()
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Obtener',
+                    html: 
+                    '<input type="hidden" value="{{ Session::get('determinacion') }}" id="determinacion" name="determinacion" class="swal2-input">' +
+                    '<input type="hidden" value="{{ Session::get('requerimiento') }}" id="requerimiento" name="requerimiento" class="swal2-input">' +
+                    '<input type="hidden" value="{{ Session::get('mandamiento') }}" id="mandamiento" name="mandamiento" class="swal2-input">' +
+                        `<select class="form-select form-select-lg mb-3" id="pdf" data-style="btn-warning" data-live-search="true" >
+                        <option value="0"  selected>Seleccione un pdf</option>
+                        @if ("{{ Session::get('determinacion') != '' }}")
+                            <option value="1">Determinación</option>
+                        @endif
+                        @if ("{{ Session::get('requerimiento') != '' }}")
+                            <option value="2">Requerimiento</option>
+                        @endif
+                        @if ("{{ Session::get('mandamiento') != '' }}")
+                            <option value="3">Mandamiento</option>
+                        @endif
+                        </select>`,
+                    preConfirm: () => {
+                        return [
+                            document.getElementById('determinacion').value,
+                            document.getElementById('requerimiento').value,
+                            document.getElementById('mandamiento').value,
+                        ]
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const determinacion = document.getElementById('determinacion').value
+                        const requerimiento = document.getElementById('requerimiento').value
+                        const mandamiento = document.getElementById('mandamiento').value
+                        const pdf = document.getElementById('pdf').value
+                            if (pdf == 1) {
+                                window.open(`PDFDeterminacion/${determinacion}`)
+                            } else if (pdf == 2) {
+                                window.open(`PDFRequerimiento/${requerimiento}`)
+                            } else if (pdf == 3) {
+                                window.open(`PDFMandamiento/${mandamiento}`)
                             } else {
-                                resolve('You need to select oranges :)')
+                                Swal.fire({
+                                icon: 'error',
+                                title: 'Seleccione una opción valida',
+                                showConfirmButton: false,
+                                timer: 3000
+                                })
                             }
-                        })
                     }
                 })
-
-                if (fruit) {
-                    Swal.fire(`You selected: ${fruit}`)
-                }
             })()
         </script>
     @endif

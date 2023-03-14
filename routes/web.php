@@ -30,7 +30,7 @@ Route::post('/guardarM', [MandamientoController::class, 'store'])->name('guardar
 /*Rutas de Requerimiento*/
 Route::get('/formR/{cuenta}', [RequerimientoController::class, 'index'])->name('formulario-requerimiento');
 Route::post('/guardarR', [RequerimientoController::class, 'store'])->name('guardar-requerimiento');
-Route::get('/PDFRequerimiento/{cuenta}', [RequerimientoController::class, 'pdf'])->name('pdf-requerimiento');
+Route::get('/PDFRequerimiento/{id}', [RequerimientoController::class, 'pdf'])->name('pdf-requerimiento');
 //Determinaciones
 Route::get('/calculo/{cuenta}', [DeterminacionController::class, 'exec']);
 Route::get('/formD/{cuenta}', [DeterminacionController::class, 'index'])->name('formulario-determinacion');

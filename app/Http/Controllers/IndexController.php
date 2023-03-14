@@ -26,18 +26,19 @@ class IndexController extends Controller
         ]);
     }
     public function pdf($cuenta){
-        $determinacion=determinacionesA::select('cuenta')->where('cuenta',$cuenta)->first();
-        if($determinacion->cuenta==''){
+        $determinacion=determinacionesA::select('id')->where('cuenta',$cuenta)->first();
+        if($determinacion->id==''){
             return back()->with('error_empty','No hay pdfs generados');
         }
         $requerimiento=requerimientosA::join('determinacionesA as d', 'd.id', '=', 'requerimientosA.id_d')
-        ->select('cuenta')->where('cuenta',$cuenta)->first();
+        ->select('requerimientosA.id as id')->where('cuenta',$cuenta)->first();
         $mandamiento=determinacionesA::join('requerimientosA as r','determinacionesA.id','=','r.id_d')
         ->join('mandamientosA as m','r.id','=','m.id_r')
-        ->select('cuenta')->where('cuenta',$cuenta)->first();
-        return back()->with('pdf','pdf')
-        ->with('determinacion', $determinacion->cuenta)
-        ->with('requerimiento', $requerimiento->cuenta)
-        ->with('mandamiento', $mandamiento->cuenta);
+        ->select('m.id as id')->where('cuenta',$cuenta)->first();
+        return back()->with('pdf','Accesos directos de pdf creados')
+        ->with('cuenta', $cuenta)
+        ->with('determinacion', $determinacion->id)
+        ->with('requerimiento', $requerimiento->id)
+        ->with('mandamiento', $mandamiento->id);
     }
 }
