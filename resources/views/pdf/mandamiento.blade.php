@@ -37,23 +37,23 @@
             </p>
         </div>
         <p class="text-justify">
-            <span class="bold"> Nombre:</span> _______________________________________________, propietario y/o
+            <span class="bold"> Nombre:</span> {{$item->propietario}}, propietario y/o
             Usuario y/o Copropietario y/o Representante Legal y/o responsable Solidario y/o Legalmente Interesado.
             <br />
-            <span class="bold">Del predio ubicado en:</span> ________________________________________________de
+            <span class="bold">Del predio ubicado en:</span>{{$item->domicilio}} de
             Tijuana, Baja California.
         </p>
         <p>
-            <span class="bold"> Cuenta:</span> _______________
+            <span class="bold"> Cuenta:</span> {{$item->cuenta}} 
         </p>
         <p id="right">
             <span class="bold"> Tipo de servicio:</span> ________________
         </p>
         <p>
-            <span class="bold"> Clave catastral:</span> _______________
+            <span class="bold"> Clave catastral:</span> {{$item->clavec}} 
         </p>
         <p id="right">
-            <span class="bold"> Serie medidor:</span> __________________
+            <span class="bold"> Serie medidor:</span> {{$item->seriem}} 
         </p>
 
 
@@ -65,8 +65,8 @@
         <p class="text-justify">Tijuana, Baja California a _________ del mes de _________ del dos mil __________ esta
             Subrecaudacion de
             Rentas adscrita a la Comisión Estatal de Servicios Públicos de Tijuana, da cuenta de la remisión del crédito
-            fiscal determinado por la citada Comisión Estatal, de la que se desprende que la cuenta ___________________
-            a nombre de _______________________________ a la fecha no se ha cubierto el pago de la liquidación número
+            fiscal determinado por la citada Comisión Estatal, de la que se desprende que la cuenta {{$item->cuenta}} 
+            a nombre de {{$item->propietario}} a la fecha no se ha cubierto el pago de la liquidación número
             __________________ de fecha ________ del mes de _____________ de 20___; esta autoridad en ejercicio de los
             artículos 6, 59 primer párrafo, fracción III, segundo párrafo del Reglamento Interno de la Secretaría de
             Hacienda del Estado de Baja California, así como con fundamento en los artículos 1,2 fracciones I, II, VIII,

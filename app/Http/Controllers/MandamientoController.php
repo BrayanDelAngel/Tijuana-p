@@ -167,7 +167,7 @@ class MandamientoController extends Controller
         //mando a llamar los datos para el pdf
         $datos = determinacionesA::join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
             ->join('mandamientosA as m', 'r.id', '=', 'm.id_r')
-            ->select(['propietario', 'domicilio', 'folio', 'cuenta'])
+            ->select(['propietario', 'domicilio', 'folio', 'cuenta','clavec','seriem'])
             ->where('m.id', $id)
             ->get();
 
