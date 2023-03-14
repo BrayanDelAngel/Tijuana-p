@@ -13,66 +13,16 @@
         <div class="p-3 mx-auto">
             <form action="" method="post" novalidate>
                 @csrf
-                <div class="p-2 rounded-4 col-md-12" style=" background-color: #E8ECEF; border: inherit;">
-                    <div class="text-white m-2 align-items-end" style="text-align:right;">
-                        <span class="bg-success rounded-2 p-2"><img
-                                src="https://img.icons8.com/fluency/30/null/withdrawal.png" />Agregar tarifa</span>
-                    </div>
-                    <div class="row align-items-start form-row">
-                        <div class="col-md-4">
-                            <div class="md-form form-group">
-                                <label for="propietario" class="form-label">Propietario:*</label>
-                                <input type="text" value="" id="propietario"
-                                    class="form-control mb-2
-                                            @error('propietario')
-                                            border border-danger rounded-2
-                                            @enderror"
-                                    name="propietario">
-                                @error('propietario')
-                                    <div class="text-danger text-center">
-                                        El campo propietario es requerido
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="md-form form-group">
-                                <label for="seriem" class="form-label mb-2">Serie medidor:*</label>
-                                <input type="text"
-                                    class="form-control mb-2
-                                        @error('seriem')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                    id="seriem" name="seriem" value="">
-                                @error('seriem')
-                                    <div class="text-danger text-center">
-                                        El campo serie medidor es requerido
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="md-form form-group">
-                                <label for="fechad" class="form-label mb-2">Fecha de la determinación:*</label>
-                                <input type="date"
-                                    class="form-control mb-2
-                                        @error('fechad')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                    id="fechad" name="fechad" value="">
-                                @error('fechad')
-                                    <div class="text-danger text-center">
-                                        El campo fecha determinación es requerido
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
                     <div class="text-white m-2 align-items-end" style="text-align:right;">
                         <span class="bg-primary rounded-2 p-2"><img
                                 src="https://img.icons8.com/fluency/30/null/money.png" />Resumen</span>
+                    </div>
+                    <div class="d-flex" style="margin-left: 85%">
+                        <button type="submit" class="btn btn-primary">
+                            <img src="https://img.icons8.com/fluency/30/null/add-dollar.png"/>
+                            Agregar
+                        </button>
                     </div>
                     <table class="table table-hover table-sm table-dark my-2 mx-auto text-center" style="width: 450px;">
                         <thead class="table-dark text-center">
@@ -112,21 +62,35 @@
                             </tr>
                         </thead>
                         <tbody class="table-light">
-                        @foreach ($tarifas as $item)
-                            <tr>
-                                <td>{{$item->anio}}</td>
-                                <td>{{$item->bim}}</td>
-                                <td>{{number_format($item->factor,2)}}</td>
-                                <td>{{number_format($item->tarifa,2)}}</td>
-                                <td>{{number_format($item->factor2,2)}}</td>
-                                <td>{{number_format($item->tarifa2,2)}}</td>
-                                <td>accion</td>
-                            </tr>
+                            @foreach ($tarifas as $item)
+                                <tr>
+                                    <td>{{ $item->anio }}</td>
+                                    <td>{{ $item->bim }}</td>
+                                    <td>{{ number_format($item->factor, 2) }}</td>
+                                    <td>{{ number_format($item->tarifa, 2) }}</td>
+                                    <td>{{ number_format($item->factor2, 2) }}</td>
+                                    <td>{{ number_format($item->tarifa2, 2) }}</td>
+                                    <td>
+                                        <button type="button" id="btnmodal" class="btn btn-light btn-sm"
+                                            data-bs-toggle="modal" 
+                                            data-anio="{{ $item->anio }}"
+                                            data-bim="{{ $item->bim }}"
+                                            data-factor="{{ number_format($item->factor, 2) }}"
+                                            data-tarifa="{{ number_format($item->tarifa, 2) }}"
+                                            data-factor2="{{ number_format($item->factor2, 2) }}"
+                                            data-tarifa2="{{ number_format($item->tarifa2, 2) }}"
+                                            data-bs-target="#exampleModal">
+                                            <img src="https://img.icons8.com/fluency/30/null/edit-file.png" />
+                                        </button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex" style="margin-left: 25%;margin-right: 25%">
+                        {{ $tarifas->links() }}
+                    </div>
                 </div>
-
                 <div class="form-row p-4">
                     <div class="col">
                         <div style="text-align:right;">
@@ -143,6 +107,54 @@
         </div>
         <hr>
     </div>
+    {{-- Modal de la tafira --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tarifa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="post" novalidate>
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="anio" class="form-label">Año</label>
+                            <input type="text" class="form-control" id="anio" name="anio" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mes" class="form-label">Mes</label>
+                            <input type="text" class="form-control" id="mes" name="mes" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tarifa1" class="form-label">Tarifa Domestico</label>
+                            <input type="text" class="form-control" id="tarifa1" name="tarifa1" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="factor1" class="form-label">Factor Domestico</label>
+                            <input type="text" class="form-control" id="factor1" name="factor1" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tarifa2" class="form-label">Tarifa No Domestico</label>
+                            <input type="text" class="form-control" id="tarifa2" name="tarifa2" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="factor2" class="form-label">Factor No Domestico</label>
+                            <input type="text" class="form-control" id="factor2" name="factor2" readonly>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><img
+                                src="https://img.icons8.com/fluency/24/null/cancel.png" />
+                            Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('js')
+{{-- Carga del modal con datos --}}
+<script src="{{ asset('js/modalPredial.js') }}"></script>
 @endsection
