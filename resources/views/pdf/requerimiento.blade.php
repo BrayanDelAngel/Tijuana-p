@@ -28,10 +28,10 @@
         <div class="data">
             <div class="data-center">
                 <p>
-                    Crédito número: <span>{{$item->folio}}</span>
+                    Crédito número: <span class="bold">{{$item->folio}}</span>
                 </p>
                 <p>
-                    Oficio: <span class="underline">CESPT/EDM/{{$folio}}/{{date('Y')}}</span>
+                    Oficio: <span class="underline bold">CESPT/EDM/{{$folio}}/{{date('Y')}}</span>
                 </p>
             </div>
             <p>
@@ -65,10 +65,10 @@
                 de Servicios Públicos de Tijuana.</span>
         </p>
         <p class="text-justify">La Subrecaudación de Rentas adscrita a la Comisión Estatal de Servicios Públicos de
-            Tijuana, hace constar de la remisión del crédito fiscal número <span>{{$item->numeroc}}</span> de fecha {{$item->fechar}}, emitida
+            Tijuana, hace constar de la remisión del crédito fiscal número <span class="bold">{{$item->numeroc}}</span> de fecha <span class="bold">{{$item->fechar}}</span>, emitida
             por la
             Comisión Estatal de Servicios Públicos de Tijuana, derivado que el usuario no realizo el pago de los
-            derechos de consumo de agua potable, de los períodos del <span>{{$item->periodo}}</span> con el objeto
+            derechos de consumo de agua potable, de los períodos del <span class="bold">{{$item->periodo}}</span> con el objeto
             de que se inicie el procedimiento administrativo de ejecución para obtener la satisfacción del crédito
             fiscal, conforme a las atribuciones y facultades conferidas por los artículos 19, 20 y 21, de la Ley de las
             Comisiones Estatales de Servicios Públicos del Estado de Baja California; artículos 1, 2 fracciones I, II,
@@ -115,7 +115,7 @@
                 </li>
                 <li>
                     <p class="text-justify">
-                        Que el día de {{$fechaNotiDeter}}, le fue debidamente notificada,
+                        Que el día de <span class="bold">{{$fechaNotiDeter}}</span>, le fue debidamente notificada,
                         determinación y liquidación de crédito de los servicios de agua potable, con número de crédito
                         16 y toda vez que vencido el plazo que le fue conferido por ley, sin que hasta la presente fecha
                         se haya registrado pago alguno a su favor y no obra en nuestros registros recurso administrativo
@@ -159,30 +159,29 @@
                 <tbody>
                     <tr>
                         <td>Totales</td>
-                        <td>$</td>
-                        <td>$</td>
-                        <td>$</td>
-                        <td>$</td>
-                        <td>$</td>
-                        <td>$</td>
-                        <td>$</td>
+                        <td>${{number_format($t_adeudo_t->totalPeriodo,2)}}</td>
+                                <td>${{number_format($t_adeudo_t->RecargosAcumulados,2)}}</td>
+                                <td>$</td>
+                                <td>$</td>
+                                <td>$</td>
+                                <td>$</td>
+                                <td>${{number_format($t_adeudo_t->total,2)}}</td>
                     </tr>
                     <tr>
                         <td>Total, del adeudo requerido</td>
-                        <td>$</td>
-                        <td>$</td>
-                        <td colspan="5">$</td>
+                        
+                        <td class="text-center bold" colspan="7">{{$tar}}</td>
                     </tr>
                 </tbody>
             </table>
             <p class="text-justify">
-                Por lo reseñado, el C.{{$item->sobrerecaudador}} Subrecaudador de Rentas Adscrita a la Comisión Estatal de
+                Por lo reseñado, el <span class="bold">C.{{$item->sobrerecaudador}}</span> Subrecaudador de Rentas Adscrita a la Comisión Estatal de
                 Servicios Públicos de Tijuana, autoridad que:
             </p>
             <p class="text-center"><span class="bold">O R D E N A</span></p>
             <p class="text-justify">
                 <span class="bold">PRIMERO.</span>
-                Requiérase a {{$item->propietario}} titular el contrato número {{$item->cuenta}}, ubicado en: {{$item->domicilio}},
+                Requiérase a <span class="bold">{{$item->propietario}}</span> titular el contrato número <span class="bold">{{$item->cuenta}}</span>, ubicado en: <span class="bold">{{$item->domicilio}}</span>,
                 el pago del crédito fiscal a su cargo, que ya ha quedado precisado,
                 actualizado junto con los gastos accesorios causados a la fecha de emisión del presente requerimiento de
                 pago, otorgándole un plazo de seis días hábiles para que efectué el pago, apercibiéndolo que en caso de

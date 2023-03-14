@@ -250,7 +250,7 @@
                                             border border-danger rounded-2
                                             @enderror"
                                             id="sobrerecaudador" name="sobrerecaudador"
-                                            value="{{ old('sobrerecaudador') }}">
+                                            value="ELVIA ROSARIO LUQUE BAEZ">
                                         @error('sobrerecaudador')
                                             <div class="text-danger text-center">
                                                 El campo sobrerecaudador es requerido
@@ -327,16 +327,18 @@
                             </tr>
                         </thead>
                         <tbody class="table-light text-center">
+                        
                             <tr>
                                 <td>Totales</td>
+                                <td>${{number_format($t_adeudo_t->totalPeriodo,2)}}</td>
+                                <td>${{number_format($t_adeudo_t->RecargosAcumulados,2)}}</td>
                                 <td>$</td>
                                 <td>$</td>
                                 <td>$</td>
                                 <td>$</td>
-                                <td>$</td>
-                                <td>$</td>
-                                <td>$</td>
+                                <td>${{number_format($t_adeudo_t->total,2)}}</td>
                             </tr>
+                        
                         </tbody>
                     </table>
                 </div>

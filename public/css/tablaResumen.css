@@ -1,13 +1,15 @@
 .table,
 .th,
 .td {
-    font-size: 10px !important;
+    font-size: 8px !important;
 }
 
 .table {
     position: relative !important;
-    left: -1.1cm !important;
-    width: 110% !important;
+    
+    width: 105% !important;
+    
+    margin-bottom: 1cm !important;
 }
 .table2{
     width: 50%;
