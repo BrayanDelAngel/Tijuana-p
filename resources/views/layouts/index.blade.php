@@ -69,6 +69,9 @@
                 <a class="dropdown-item" href="{{ route('index') }}">
                     <i class="fas fa-balance-scale"></i>
                     Determinaciones Fiscales</a>
+                <a class="dropdown-item" href="{{ route('tarifas') }}">
+                    <img src="https://img.icons8.com/fluency/24/null/cash-register.png"/>
+                    Tarifas</a>
             </ul>
         </div>
     </div>
