@@ -22,7 +22,7 @@
         <img src="{{ public_path('img/pdf/logo_BC_escudo.png') }}" width="100%" height="100%" />
     </footer> --}}
     <main>
-        <p class="align-right mr-50 bold">FOLIO: CESPT/EDM/{{ $data->folio }}/{{ date('Y') }}</p>
+        <p class="align-right mr-50 bold">FOLIO: CESPT/EDM/{{ $folio }}/{{ date('Y') }}</p>
         <p class="align-right"><span class="bold">Tijuana B.C,</span> {{ $data->fechad }}</p>
         <p class="">
             <span class="bold"> CUENTA:</span> {{ $data->cuenta }}
@@ -503,7 +503,7 @@
             </tbody>
         </table>
         <br />
-        <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">$________ ______________</span>
+        <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">{{$tp}}</span>
         </p>
         <p class="text-justify">De acuerdo al artículo 11 de la Ley de Ingresos para los ejercicios fiscales de los
             años <span class="bold"> 2008, 2009, 2010,

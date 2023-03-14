@@ -7,6 +7,7 @@ use App\Models\determinacionesA;
 use App\Models\ejecutores_ra;
 use App\Models\implementta;
 use App\Models\requerimientosA;
+use App\Models\tabla_da;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
@@ -56,6 +57,9 @@ class RequerimientoController extends Controller
                 )
                     ->where('id', $id[0]->id)
                     ->get();
+                //obtenemos los datos de la tabla adeudo
+                $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados',DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
+                    ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
                 $tipos = implementta::select('TipoServicio')
                     ->where('implementta.Cuenta', $cuenta)
                     ->get();
@@ -83,7 +87,7 @@ class RequerimientoController extends Controller
                     }
                 }
 
-                return view('components.formRequerimiento', ['date' => $date, 'folio' => $folio, 'ts' => $ts]);
+                return view('components.formRequerimiento', ['date' => $date, 'folio' => $folio, 'ts' => $ts,'t_adeudo_t'=>$t_adeudo_t]);
             }
         }
     }
@@ -164,6 +168,9 @@ class RequerimientoController extends Controller
             'sobrerecaudador','id_d'),])
             ->where('r.id',$id)
             ->get();
+        //obtenemos los datos de la tabla adeudo
+        $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados',DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
+        ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->first();
         //convertivos la fecha en año para convertirlo en texto y concatenarlo con la fecha fd
         $formato = new NumeroALetras();
         //Convirtiendo la fecha en fecha corta
@@ -183,8 +190,21 @@ class RequerimientoController extends Controller
                 $longitud = strlen($folio);
             }
         }
+        //convertiremos el total del adeudo requerido en letras
+        $formatter = new NumeroALetras();
+        //obtenemos el total del adeuto requerido
+        $total_ar = $t_adeudo_t->total;
+        //extraemos el entero
+        $entero = floor($total_ar);
+        //extraemos el decimal
+        $decimal = round($total_ar - $entero, 2) * 100;
+
+        //convertimos en texto el entero
+        $texto_entero = $formatter->toMoney($entero);
+        //concatenamos para obtener todo el texto
+        $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
         //declaramos la variable pdf y mandamos los parametros
-        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter,'folio'=>$folio]);
+        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter,'folio'=>$folio,'t_adeudo_t'=>$t_adeudo_t,'tar'=>$tar]);
         return $pdf->stream();
     }
 }

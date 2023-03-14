@@ -147,7 +147,17 @@ class DeterminacionController extends Controller
     public function pdf($id)
     {
         //Informacion del propietario
-        $data=determinacionesA::select('cuenta','folio','fechad','domicilio','clavec','tipo_s','seriem','razons','periodo','propietario')->where('id',$id)->first();
+        $data=determinacionesA::select('cuenta','folio',
+        DB::raw("format(fechad,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechad"),
+        'domicilio','clavec','tipo_s','seriem','razons','periodo','propietario')->where('id',$id)->first();
+        $folio = $data->folio;
+        $longitud = strlen($folio);
+        if ($longitud <= 5) {
+            while ($longitud < 5) {
+                $folio = "0" . $folio;
+                $longitud = strlen($folio);
+            }
+        }
         //Informacion de la tabla generada del propietario
         $tabla=tabla_da::select(['meses','periodo','fechaVencimiento','lecturaFacturada','tarifa1','sumaTarifas','tarifa2','factor','saldoAtraso','saldoRezago','totalPeriodo','importeMensual','RecargosAcumulados'])
         ->where('cuenta',$data->cuenta)->orderBy('meses','ASC')->get();
@@ -189,7 +199,18 @@ class DeterminacionController extends Controller
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $ra ='$'.number_format($t_adeudo->RecargosAcumulados,2).'**(' . $texto_entero . ' ' . $decimal . '/100 M.N.)**';
-        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla,'cuenta'=>$cuenta->cuenta,'t_adeudo'=>$t_adeudo,'ra'=>$ra,'data'=>$data,'anioformat'=>$anioformat]);
+
+        //convertiremos el totalPeriodo a texto
+        //extraemos el entero de los recargos
+        $entero2 = floor($t_adeudo->totalPeriodo);
+        //extraemos el decimal
+        $decimal2 = round($t_adeudo->totalPeriodo - $entero2, 2) * 100;
+        //convertimos en texto el entero
+        $texto_entero2 = $formatter->toMoney($entero2);
+        //concatenamos para obtener todo el texto
+        //concatenamos para obtener todo el texto
+        $tp ='$'.number_format($t_adeudo->totalPeriodo,2).'**(' . $texto_entero2 . ' ' . $decimal2 . '/100 M.N.)**';
+        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla,'cuenta'=>$cuenta->cuenta,'t_adeudo'=>$t_adeudo,'ra'=>$ra,'data'=>$data,'anioformat'=>$anioformat,'tp'=>$tp,'folio'=>$folio]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();
