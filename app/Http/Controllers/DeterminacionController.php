@@ -189,7 +189,7 @@ class DeterminacionController extends Controller
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $ra ='$'.number_format($t_adeudo->RecargosAcumulados,2).'**(' . $texto_entero . ' ' . $decimal . '/100 M.N.)**';
-        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla,'cuenta'=>$cuenta->cuenta,'t_adeudo'=>$t_adeudo,'ra'=>$ra,,'data'=>$data,'anioformat'=>$anioformat]);
+        $pdf = Pdf::loadView('pdf.determinacion',['items'=>$tabla,'cuenta'=>$cuenta->cuenta,'t_adeudo'=>$t_adeudo,'ra'=>$ra,'data'=>$data,'anioformat'=>$anioformat]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();
