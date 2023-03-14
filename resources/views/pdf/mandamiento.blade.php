@@ -29,7 +29,7 @@
                     Crédito número:<span class="bold underline" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->folio}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </p>
                 <p>
-                    Oficio: <span class="underline">"CESPT/EDM/{{$folio}}/{{date('Y')}}</span>
+                    Oficio: <span class="underline">CESPT/EDM/{{$folio}}/{{date('Y')}}</span>
                 </p>
             </div>
             <p>
@@ -238,7 +238,7 @@
                     California, como se detalla a continuación:
                 </p>
                 <table>
-                    <thead>
+                    
                         <tr>
                             <th colspan="2">PERIODO</th>
                             <th rowspan="2">ADEUDO POR CONSUMO DE AGUA Y ALCANTARILLADO</th>
@@ -254,7 +254,7 @@
                                 AÑO
                             </th>
                         </tr>
-                    </thead>
+                
                     <tbody>
                         @foreach ($t_adeudo as $item)
                                 <tr>
@@ -263,7 +263,7 @@
                                     <td>${{number_format($item->totalPeriodo,2)}}</td>
                                     <td>${{number_format($item->RecargosAcumulados,2)}}</td>
                                     <td></td>
-                                    <td></td>
+                                    <td>${{number_format($item->total,2)}}</td>
                                 </tr>
                             @endforeach
                         
@@ -271,10 +271,10 @@
                     <tfoot>
                         <tr>
                             <td colspan="2" class="text-center">Totales</td>
+                            <td class="text-center">${{number_format($totales[0]->TP,2)}}</td>
+                            <td class="text-center">${{number_format($totales[0]->RA,2)}}</td>
                             <td class="text-center">$ &nbsp;&nbsp;</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
-                            <td class="text-center">$ &nbsp;&nbsp;</td>
+                            <td class="text-center">${{number_format($totales[0]->total,2)}}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -359,16 +359,16 @@
                     <tbody>
                         <tr>
                             <td class="text-center">Totales</td>
+                            <td class="text-center">${{number_format($t_adeudor->totalPeriodo,2)}}</td>
+                            <td class="text-center">${{number_format($t_adeudor->RecargosAcumulados,2)}}</td>
                             <td class="text-center">$0.00</td>
                             <td class="text-center">$0.00</td>
-                            <td class="text-center">$0.00</td>
-                            <td class="text-center">$0.00</td>
-                            <td class="text-center">$0.00</td>
+                            <td class="text-center">${{$total_ar}}</td>
                         </tr>
                         <tr>
                             <td class="text-center">Total del adeudo requerido</td>
-                            <td class="text-center bold" colspan="5">$0,000.00 (Cantidad con letra 00/100 Moneda
-                                Nacional)
+                            
+                            <td class="text-center bold" colspan="5">${{$total_ar}}{{$tar}}
                             </td>
                         </tr>
                     </tbody>

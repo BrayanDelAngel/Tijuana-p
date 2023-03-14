@@ -549,7 +549,7 @@
             refiere el primer dispositivo legal aludido en este párrafo, generando en suma por concepto de
             recargos
             acumulados la cantidad de
-            <span class="bold">$________ __________________</span>
+            <span class="bold">{{$ra}}</span>
         </p>
         <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número
             <span class="bold">_________</span>, por la suma de
@@ -568,23 +568,23 @@
             <tbody>
                 <tr>
                     <td>Corriente</td>
-                    <td>$</td>
+                    <td>${{number_format($t_adeudo->sumaTarifas,2)}}</td>
                 </tr>
                 <tr>
                     <td>IVA Corriente</td>
-                    <td>$</td>
+                    <td>${{number_format($t_adeudo->saldoIvaCor,2)}}</td>
                 </tr>
                 <tr>
                     <td>Atraso</td>
-                    <td>$</td>
+                    <td>${{number_format($t_adeudo->saldoAtraso,2)}}</td>
                 </tr>
                 <tr>
                     <td>Rezago</td>
-                    <td>$</td>
+                    <td>${{number_format($t_adeudo->saldoRezago,2)}}</td>
                 </tr>
                 <tr>
                     <td>Recargos Consumo</td>
-                    <td>$</td>
+                    <td>${{number_format($t_adeudo->RecargosAcumulados,2)}}</td>
                 </tr>
                 <tr>
                     <td>Convenio De Agua</td>

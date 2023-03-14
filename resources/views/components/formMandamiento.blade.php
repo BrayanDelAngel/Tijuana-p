@@ -334,7 +334,7 @@
                                     <td>${{number_format($item->totalPeriodo,2)}}</td>
                                     <td>${{number_format($item->RecargosAcumulados,2)}}</td>
                                     <td></td>
-                                    <td></td>
+                                    <td>${{number_format($item->total,2)}}</td>
                                 </tr>
                             @endforeach
                             
@@ -343,7 +343,7 @@
                                 <td class="text-center">${{number_format($totales[0]->TP,2)}}</td>
                                 <td class="text-center">${{number_format($totales[0]->RA,2)}}</td>
                                 <td class="text-center">$ &nbsp;&nbsp;</td>
-                                <td class="text-center">$ &nbsp;&nbsp;</td>
+                                <td class="text-center">${{number_format($totales[0]->total,2)}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -402,15 +402,15 @@
                         <tbody class="table-light text-center">
                             <tr>
                                 <td class="text-center">Totales</td>
+                                <td class="text-center">${{number_format($t_adeudor->totalPeriodo,2)}}</td>
+                                <td class="text-center">${{number_format($t_adeudor->RecargosAcumulados,2)}}</td>
                                 <td class="text-center">$0.00</td>
                                 <td class="text-center">$0.00</td>
-                                <td class="text-center">$0.00</td>
-                                <td class="text-center">$0.00</td>
-                                <td class="text-center">$0.00</td>
+                                <td class="text-center">${{$total_ar}}</td>
                             </tr>
                             <tr>
                                 <td class="text-center">Total del adeudo requerido</td>
-                                <td class="text-center bold" colspan="5">$
+                                <td class="text-center bold" colspan="5">${{$total_ar}}{{$tar}}
                                 </td>
                             </tr>
                         </tbody>
