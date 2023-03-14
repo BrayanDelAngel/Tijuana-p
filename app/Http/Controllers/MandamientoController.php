@@ -171,8 +171,6 @@ class MandamientoController extends Controller
             ->where('m.id', $id)
             ->get();
 
-        $t_adeudo = tabla_da::select(['anio', 'mes', 'totalPeriodo', 'RecargosAcumulados'])
-            ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->get();
         //consultamos la tabla de adeudo
         $t_adeudo = tabla_da::select(['anio', 'mes', 'totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
             ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->get();

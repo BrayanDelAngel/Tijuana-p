@@ -73,7 +73,7 @@ class DeterminacionController extends Controller
             } else {
                 $folio = 0;
             }
-            $adeudo = DB::select('select sum(saldoCorriente) as sumaCorriente, sum(saldoIvaCor) as sumaIVA, sum(saldoAtraso) as sumaAtraso, sum(saldoRezago) as sumaRezago, sum(recargosAcum) as sumaRecargoAcomulado, sum(ivaReacum) as IVARezagoAcomulado from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
+            
             //obtenemos los datos de la tabla de resumen
             $t_adeudo = tabla_da::select(['sumaTarifas','saldoIvaCor','saldoAtraso', 'saldoRezago','RecargosAcumulados'])
                     ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
@@ -177,7 +177,7 @@ class DeterminacionController extends Controller
         $cuenta=determinacionesA::select('cuenta')
         ->where('id',$id)->first();
          //obtenemos los datos de la tabla de resumen
-        $t_adeudo = tabla_da::select(['sumaTarifas','saldoIvaCor','saldoAtraso', 'saldoRezago','RecargosAcumulados'])
+        $t_adeudo = tabla_da::select(['sumaTarifas','saldoIvaCor','saldoAtraso', 'saldoRezago','RecargosAcumulados','totalPeriodo'])
             ->where('cuenta',$cuenta->cuenta)->orderBy('meses', 'ASC')->first();
         //convertiremos los recargos acumulados a texto
         $formatter = new NumeroALetras();
