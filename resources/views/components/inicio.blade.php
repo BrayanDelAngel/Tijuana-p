@@ -10,7 +10,7 @@
     @if (session('pdf'))
         <script>
             (async () => {
-                const { value: determinacion,requerimiento,mandamiento,pdf } = await Swal.fire({ 
+                 await Swal.fire({ 
                     title: '{{ session('pdf') }}',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
