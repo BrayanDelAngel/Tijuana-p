@@ -27,6 +27,7 @@ Route::get('/pdf/{cuenta}', [IndexController::class, 'pdf'])->name('pdf');
 //Tarifas para que agreguen ellos
 Route::get('/tarifas', [TarifasController::class, 'index'])->name('tarifas');
 Route::post('/tarifas', [TarifasController::class, 'store'])->name('guardar-tarifas');
+Route::post('/tarifas-editar', [TarifasController::class, 'update'])->name('editar-tarifas');
 /*Rutas de Mandamiento */
 Route::get('/PDFMandamiento/{id}', [MandamientoController::class, 'pdf'])->name('pdf-mandamiento');
 Route::get('/formM/{cuenta}', [MandamientoController::class, 'index'])->name('formulario-mandamiento');
