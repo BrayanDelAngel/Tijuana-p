@@ -58,7 +58,7 @@ class RequerimientoController extends Controller
                     ->where('id', $id[0]->id)
                     ->get();
                 //obtenemos los datos de la tabla adeudo
-                $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados',DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
+                $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
                     ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
                 $tipos = implementta::select('TipoServicio')
                     ->where('implementta.Cuenta', $cuenta)
@@ -87,7 +87,7 @@ class RequerimientoController extends Controller
                     }
                 }
 
-                return view('components.formRequerimiento', ['date' => $date, 'folio' => $folio, 'ts' => $ts,'t_adeudo_t'=>$t_adeudo_t]);
+                return view('components.formRequerimiento', ['date' => $date, 'folio' => $folio, 'ts' => $ts, 't_adeudo_t' => $t_adeudo_t]);
             }
         }
     }
@@ -105,16 +105,16 @@ class RequerimientoController extends Controller
             ]);
         }
         //validar si esta cuenta ya tiene un requerimiento
-        $validar=requerimientosA::join('determinacionesA as d','requerimientosA.id_d','=','d.id')
-        ->where('d.id',$request->id_d)
-        ->count();
+        $validar = requerimientosA::join('determinacionesA as d', 'requerimientosA.id_d', '=', 'd.id')
+            ->where('d.id', $request->id_d)
+            ->count();
         //si existe
-       
+
         if ($validar != 0) {
             //consultar el id del requerimiento
             $id = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
             //eliminamos los ejecutores existentes
-           
+
             $ejecutores_ra = ejecutores_ra::where('id_r', $id->id)->delete();
             //declaramos que se va a modificar el registro de requerimiento
             $r = requerimientosA::findOrFail($id->id);
@@ -161,16 +161,21 @@ class RequerimientoController extends Controller
     {
         //Consulta de la determinacion y del requerimiento
         $datos = determinacionesA::join('requerimientosA as r', 'r.id_d', '=', 'determinacionesA.id')
-            ->select(['r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM','es-es') as fechad"), 
-            'cuenta', 'propietario', 'domicilio', 'clavec','r.tipo_s as tipo_s','seriem','razons','periodo', 'fechand',
-            DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"), 
-            DB::raw("format(fechand,'dd'' de ''MMMM','es-es') as fd",
-            'sobrerecaudador','id_d'),])
-            ->where('r.id',$id)
+            ->select([
+                'r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM','es-es') as fechad"),
+                'cuenta', 'propietario', 'domicilio', 'clavec', 'r.tipo_s as tipo_s', 'seriem', 'razons', 'periodo', 'fechand',
+                DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
+                DB::raw(
+                    "format(fechand,'dd'' de ''MMMM','es-es') as fd",
+                    'sobrerecaudador',
+                    'id_d'
+                ),
+            ])
+            ->where('r.id', $id)
             ->get();
         //obtenemos los datos de la tabla adeudo
-        $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados',DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
-        ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->first();
+        $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
+            ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->first();
         //convertivos la fecha en año para convertirlo en texto y concatenarlo con la fecha fd
         $formato = new NumeroALetras();
         //Convirtiendo la fecha en fecha corta
@@ -204,7 +209,7 @@ class RequerimientoController extends Controller
         //concatenamos para obtener todo el texto
         $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
         //declaramos la variable pdf y mandamos los parametros
-        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter,'folio'=>$folio,'t_adeudo_t'=>$t_adeudo_t,'tar'=>$tar]);
+        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter, 'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar]);
         return $pdf->stream();
     }
 }
