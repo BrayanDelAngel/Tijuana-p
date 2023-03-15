@@ -3,6 +3,26 @@
     Tarifas
 @endsection
 @section('contenido')
+    @if (session('success_tarifa'))
+        {{-- Muestra de sweetalert en caso de error de petición --}}
+        <script src="{{ asset('js/sweetAlert/successRegistrerTarifa.js') }}"></script>
+    @endif
+    @if (session('success_Updatetarifa'))
+        {{-- Muestra de sweetalert en caso de error de petición --}}
+        <script src="{{ asset('js/sweetAlert/successUpdateTarifa.js') }}"></script>
+    @endif
+    @if (session('errorAgregar'))
+        {{-- Muestra de sweetalert en caso de error de petición --}}
+        <script src="{{ asset('js/sweetAlert/errorAddTarifa.js') }}"></script>
+    @endif
+    @if (session('errorActualizar'))
+        {{-- Muestra de sweetalert en caso de error de petición --}}
+        <script src="{{ asset('js/sweetAlert/errorUpdateTarifa.js') }}"></script>
+    @endif
+    @if (session('errorUniqueTarifa'))
+        {{-- Muestra de sweetalert en caso de error de petición --}}
+        <script src="{{ asset('js/sweetAlert/errorUniqueTarifa.js') }}"></script>
+    @endif
     <div class="container position-static">
         <div class="mt-4">
             <h2 style="text-shadow: 0px 0px 2px #717171;">
@@ -122,12 +142,27 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="anioA" class="form-label">Año</label>
-                            <input type="text" class="form-control" id="anioA" name="anioA">
+                            <input type="text"
+                                class="form-control 
+                            @error('anioA')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="anioA" name="anioA">
+                            @error('anioA')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="mesA" class="form-label">Mes</label>
-                            <select name="mesA" id="mesA" class="form-select" aria-label="Default select example">
-                                <option selected>Meses</option>
+                            <select name="mesA" id="mesA"
+                                class="form-select 
+                            @error('mesA')
+                            border border-danger rounded-2
+                            @enderror"
+                                aria-label="Default select example">
+                                <option selected value="">Meses</option>
                                 <option value="1">Enero</option>
                                 <option value="2">Febrero</option>
                                 <option value="3">Marzo</option>
@@ -141,22 +176,67 @@
                                 <option value="11">Noviembre</option>
                                 <option value="12">Diciembre</option>
                             </select>
+                            @error('mesA')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="tarifa1A" class="form-label">Tarifa Domestico</label>
-                            <input type="text" class="form-control" id="tarifa1A" name="tarifa1A">
+                            <input type="text"
+                                class="form-control 
+                            @error('tarifa1A')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="tarifa1A" name="tarifa1A">
+                            @error('tarifa1A')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="factor1A" class="form-label">Factor Domestico</label>
-                            <input type="text" class="form-control" id="factor1A" name="factor1A">
+                            <input type="text"
+                                class="form-control 
+                            @error('factor1A')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="factor1A" name="factor1A">
+                            @error('factor1A')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="tarifa2A" class="form-label">Tarifa No Domestico</label>
-                            <input type="text" class="form-control" id="tarifa2A" name="tarifa2A">
+                            <input type="text"
+                                class="form-control 
+                            @error('tarifa2A')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="tarifa2A" name="tarifa2A">
+                            @error('tarifa2A')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="factor2A" class="form-label">Factor No Domestico</label>
-                            <input type="text" class="form-control" id="factor2A" name="factor2A">
+                            <input type="text"
+                                class="form-control  
+                            @error('factor2A')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="factor2A" name="factor2A">
+                            @error('factor2A')
+                                <div class="text-danger text-center">
+                                     {{$message}}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -177,44 +257,105 @@
                     <h5 class="modal-title" id="exampleModalLabel">Tarifa</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" method="post" novalidate>
+                <form action="{{ route('editar-tarifas') }}" method="post" novalidate>
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="anio" class="form-label">Año</label>
-                            <input type="text" class="form-control" id="anio" name="anio" readonly>
+                            <input type="text"
+                                class="form-control 
+                            @error('anio')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="anio" name="anio" readonly>
+                            @error('anio')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="mes" class="form-label">Mes</label>
-                            <input type="text" class="form-control" id="mes" name="mes" readonly>
+                            <input type="text"
+                                class="form-control 
+                            @error('mes')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="mes" name="mes" readonly>
+                            @error('mes')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="tarifa1" class="form-label">Tarifa Domestico</label>
-                            <input type="text" class="form-control" id="tarifa1" name="tarifa1" readonly>
+                            <input type="text"
+                                class="form-control 
+                            @error('tarifa1')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="tarifa1" name="tarifa1">
+                            @error('tarifa1')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="factor1" class="form-label">Factor Domestico</label>
-                            <input type="text" class="form-control" id="factor1" name="factor1" readonly>
+                            <input type="text"
+                                class="form-control 
+                            @error('factor1')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="factor1" name="factor1">
+                            @error('factor1')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="tarifa2" class="form-label">Tarifa No Domestico</label>
-                            <input type="text" class="form-control" id="tarifa2" name="tarifa2" readonly>
+                            <input type="text"
+                                class="form-control 
+                            @error('tarifa2')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="tarifa2" name="tarifa2">
+                            @error('tarifa2')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="factor2" class="form-label">Factor No Domestico</label>
-                            <input type="text" class="form-control" id="factor2" name="factor2" readonly>
+                            <input type="text"
+                                class="form-control  
+                            @error('factor2')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="factor2" name="factor2">
+                            @error('factor2')
+                                <div class="text-danger text-center">
+                                     {{$message}}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><img
                                 src="https://img.icons8.com/fluency/24/null/cancel.png" />
                             Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <button type="submit" class="btn btn-primary">Editar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    
 @endsection
 @section('js')
     {{-- Carga del modal con datos --}}
