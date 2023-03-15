@@ -41,7 +41,7 @@ class MandamientoController extends Controller
             else {
                 //consultamos la tabla de adeudo
                 $t_adeudo = tabla_da::select(['anio', 'mes', 'totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
-                    ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->get();
+                    ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->paginate(20);
                 //consultamos los totales de la tabla de adeudo
                 $totales = DB::table('tabla_da')
                     ->select([DB::raw("sum(totalPeriodo) as TP"), DB::raw("sum(RecargosAcumulados) as RA"), DB::raw("sum(RecargosAcumulados+totalPeriodo) as total")])

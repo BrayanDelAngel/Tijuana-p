@@ -110,23 +110,23 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 ">
+                                    <label for="periodo" class="form-label mb-2">Periodo*</label>
                                     <div class="md-form form-group">
-                                        <label for="fecham" class="form-label mb-2">Fecha emisión de
-                                            mandamiento:*</label>
-                                        <input type="date"
-                                            class="form-control mb-2
-                                        @error('fecham')
-                                        border border-danger rounded-2
-                                        @enderror"
-                                            id="fecham" name="fecham" value="{{ old('fecham') }}">
-                                        @error('fecham')
+                                        <input type="text"
+                                            class="form-control mb-2 text-center
+                                                    @error('periodo')
+                                                    border border-danger rounded-2
+                                                    @enderror"
+                                            id="periodo" name="periodo" value="{{ $item->periodo}}" disabled>
+                                        @error('periodo')
                                             <div class="text-danger text-center">
-                                                El campo mandamiento es requerido
+                                                El campo periodo inicio es requerido
                                             </div>
                                         @enderror
                                     </div>
                                 </div>
+                                
                             </div>
                             <div class="row align-items-start form-row">
                                 <div class="col-md-6">
@@ -217,6 +217,27 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
+                                        <label for="fecham" class="form-label mb-2">Fecha emisión de
+                                            mandamiento:*</label>
+                                        <input type="date"
+                                            class="form-control mb-2
+                                        @error('fecham')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            id="fecham" name="fecham" value="{{ old('fecham') }}">
+                                        @error('fecham')
+                                            <div class="text-danger text-center">
+                                                El campo mandamiento es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
                                         <label for="notificacion" class="form-label mb-2">Fecha notificación de
                                             requerimiento:*</label>
                                         <input type="date"
@@ -231,9 +252,8 @@
                                             </div>
                                         @enderror
                                     </div>
+                                    
                                 </div>
-                            </div>
-                            <div class="row align-items-start form-row">
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
                                         <label for="sobrerecaudador" class="form-label mb-2">Sobrerecaudador:*</label>
@@ -250,22 +270,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6 ">
-                                    <label for="periodo" class="form-label mb-2">Periodo*</label>
-                                    <div class="md-form form-group">
-                                        <input type="text"
-                                            class="form-control mb-2 text-center
-                                                    @error('periodo')
-                                                    border border-danger rounded-2
-                                                    @enderror"
-                                            id="periodo" name="periodo" value="{{ $item->periodo}}" disabled>
-                                        @error('periodo')
-                                            <div class="text-danger text-center">
-                                                El campo periodo inicio es requerido
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     @endforeach

@@ -64,7 +64,6 @@ export class search {
             if (data.result != "") {
                 //Muestre en pantalla el resultado
                 let arrayc = data.result;
-               
                 this.ul_add_li.innerHTML = `
                 <table class="table table-hover table-sm table-dark my-2">
                 <thead class="table-dark">
@@ -95,12 +94,7 @@ export class search {
             n++;
             //Estraemos datos y hacemos comparacion de que no en nulos
             let cuenta = item.Clave;
-            
             let propietario = item.p.replace("¥", "Ñ");
-
-             
-                
-            
             //Enlistar los datos
             this.ul_add_li.innerHTML += `
             <table class="table table-hover table-sm">
