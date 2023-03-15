@@ -13,6 +13,7 @@ class TarifasRequest extends FormRequest
      */
     public function authorize()
     {
+        //Autorizacion del request
         return true;
     }
 
@@ -23,6 +24,7 @@ class TarifasRequest extends FormRequest
      */
     public function rules()
     {
+        //Reglas para la validacion de cada uno de los campos
         return [
             "anioA" => ['required'],
             "mesA" => ['required'],
@@ -34,6 +36,7 @@ class TarifasRequest extends FormRequest
     }
     public function messages()
     {
+        //Mensajes personalizados por cada validación
         return [
             'anioA.required' => 'El campo año es requerido',
             'mesA.required' => 'El campo mes es requerido',
@@ -45,6 +48,7 @@ class TarifasRequest extends FormRequest
     }
     public function withValidator($validator)
     {
+         //Ai hubo algun error retornamos el con siguiente mensaje y las validaciones que se hicieron
         if ($validator->fails()) {
             return back()->with('errorAgregar', 'Error al agregar la nueva tarifa')->withErrors($validator);;
         }

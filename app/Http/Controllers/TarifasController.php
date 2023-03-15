@@ -51,8 +51,9 @@ class TarifasController extends Controller
     }
     public function update(TarifasUpdateRequest $request)
     {
+        //Se valida el request en TarifaUpdateRequest
         $data = $request->validated();
-        // $update =DB::update('update users set votes = 100 where name = ?', ['John']);
+        // Se actualiza en base al año y al mes
         $update = DB::update('UPDATE porcentajes_ta
         SET anio = ?
            ,bim=?
@@ -70,7 +71,7 @@ class TarifasController extends Controller
             $data['anio'],
             $data['mes'],
         ]);
-        //Si se inserto se retorna a la vista con el siguiente mensage 
+        //Si se actualizo se retorna a la vista con el siguiente mensage 
         if ($update) {
             return back()->with('success_Updatetarifa', 'Se edito correctmente');
         }
