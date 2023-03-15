@@ -342,7 +342,8 @@
                                     <td>${{number_format($item->total,2)}}</td>
                                 </tr>
                             @endforeach
-                            
+                        </tbody>
+                        <tfoot>
                             <tr>
                                 <td colspan="2" class="text-center">Totales</td>
                                 <td class="text-center">${{number_format($totales[0]->TP,2)}}</td>
@@ -350,8 +351,11 @@
                                 <td class="text-center">$ &nbsp;&nbsp;</td>
                                 <td class="text-center">${{number_format($totales[0]->total,2)}}</td>
                             </tr>
-                        </tbody>
+                        </tfoot>
                     </table>
+                    <div class="d-flex" style="margin-left: 45%;margin-right: 45%">
+                        {{ $t_adeudo->links() }}
+                    </div>
                 </div>
                 <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
                     <div class="text-white m-2 align-items-end" style="text-align:right;">

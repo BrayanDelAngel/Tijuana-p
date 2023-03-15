@@ -38,7 +38,7 @@
                 <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
                     <div class="text-white m-2 align-items-end" style="text-align:right;">
                         <span class="bg-primary rounded-2 p-2"><img
-                                src="https://img.icons8.com/fluency/30/null/money.png" />Resumen</span>
+                                src="https://img.icons8.com/fluency/30/null/money.png" />Tarifas</span>
                     </div>
                     <div class="d-flex" style="margin-left: 85%">
                         <button type="button" id="btnmodal" class="btn btn-primary btn-sm" data-bs-toggle="modal"
@@ -74,13 +74,13 @@
                                     Factor
                                 </th>
                                 <th>
-                                    Mes
+                                    Tarifa
                                 </th>
                                 <th>
                                     Factor
                                 </th>
                                 <th>
-                                    Mes
+                                    Tarifa
                                 </th>
                             </tr>
                         </thead>
