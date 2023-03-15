@@ -18,27 +18,50 @@ class IndexController extends Controller
         ->select(['Cuenta as Clave','Propietario as p'])
         ->where('Cuenta','like',$data)->limit(5)
         ->get();
-        $Propietario=str_replace("¥", "Ñ",$result[0]->p);
+       
+       
         return response()->json([
             "estado"=>1,
             "result"=>$result,
-            "p"=>$Propietario
+            
         ]);
     }
     public function pdf($cuenta){
-        $determinacion=determinacionesA::select('id')->where('cuenta',$cuenta)->first();
-        if($determinacion->id==''){
+        //consultamos si ya tiene una determinacion
+        $determinacion=determinacionesA::select('id')->where('cuenta',$cuenta)->count();
+    //    dd($determinacion);
+        if($determinacion==0){
             return back()->with('error_empty','No hay pdfs generados');
         }
-        $requerimiento=requerimientosA::join('determinacionesA as d', 'd.id', '=', 'requerimientosA.id_d')
-        ->select('requerimientosA.id as id')->where('cuenta',$cuenta)->first();
-        $mandamiento=determinacionesA::join('requerimientosA as r','determinacionesA.id','=','r.id_d')
-        ->join('mandamientosA as m','r.id','=','m.id_r')
-        ->select('m.id as id')->where('cuenta',$cuenta)->first();
-        return back()->with('pdf','Accesos directos de pdf creados')
-        ->with('cuenta', $cuenta)
-        ->with('determinacion', $determinacion->id)
-        ->with('requerimiento', $requerimiento->id)
-        ->with('mandamiento', $mandamiento->id);
+        else{
+            //consultamos el id de la determinacion
+            $determinacion=determinacionesA::select('id')->where('cuenta',$cuenta)->first();
+
+            $requerimiento=requerimientosA::join('determinacionesA as d', 'd.id', '=', 'requerimientosA.id_d')
+            ->select('requerimientosA.id as id')->where('cuenta',$cuenta)->first();
+            if(!$requerimiento){
+                $r=0;
+            }
+            else{
+                $r=$requerimiento->id;
+            }
+            $mandamiento=determinacionesA::join('requerimientosA as r','determinacionesA.id','=','r.id_d')
+            ->join('mandamientosA as m','r.id','=','m.id_r')
+            ->select('m.id as id')->where('cuenta',$cuenta)->first();
+            if(!$mandamiento){
+                $m=0;
+            }
+            else{
+                $m=$mandamiento->id;
+            }
+            $x=DB::select('select * from determinacionesA where cuenta = ?', [$cuenta]);
+        //    dd($x);
+            return back()->with('pdf','Accesos directos de pdf creados')
+            ->with('cuenta', $cuenta)
+            ->with('determinacion', $determinacion->id)
+            ->with('requerimiento', $r)
+            ->with('mandamiento', $m)
+            ->with('xe', $x);
+        }
     }
 }

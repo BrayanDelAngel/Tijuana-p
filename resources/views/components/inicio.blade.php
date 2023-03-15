@@ -10,7 +10,7 @@
     @if (session('pdf'))
         <script>
             (async () => {
-                await Swal.fire({
+                const { value: determinacion,requerimiento,mandamiento,pdf } = await Swal.fire({ 
                     title: '{{ session('pdf') }}',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -20,18 +20,19 @@
                     '<input type="hidden" value="{{ Session::get('determinacion') }}" id="determinacion" name="determinacion" class="swal2-input">' +
                     '<input type="hidden" value="{{ Session::get('requerimiento') }}" id="requerimiento" name="requerimiento" class="swal2-input">' +
                     '<input type="hidden" value="{{ Session::get('mandamiento') }}" id="mandamiento" name="mandamiento" class="swal2-input">' +
-                        `<select class="form-select form-select-lg mb-3" id="pdf" data-style="btn-warning" data-live-search="true" >
+                        `
+                        <select class="form-select form-select-lg mb-3" id="pdf" data-style="btn-warning" data-live-search="true" >
                         <option value="0"  selected>Seleccione un pdf</option>
-                        @if ("{{ Session::get('determinacion') != '' }}")
-                            <option value="1">Determinación</option>
-                        @endif
-                        @if ("{{ Session::get('requerimiento') != '' }}")
+                        <option value="1">Determinación</option>
+                            
+                        @if (Session::get('requerimiento') !=0)
                             <option value="2">Requerimiento</option>
                         @endif
-                        @if ("{{ Session::get('mandamiento') != '' }}")
+                        @if (Session::get('mandamiento')!=0)
                             <option value="3">Mandamiento</option>
                         @endif
-                        </select>`,
+                        </select>
+                        `,
                     preConfirm: () => {
                         return [
                             document.getElementById('determinacion').value,

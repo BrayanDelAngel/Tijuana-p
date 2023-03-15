@@ -64,7 +64,7 @@ export class search {
             if (data.result != "") {
                 //Muestre en pantalla el resultado
                 let arrayc = data.result;
-                let p = data.p;
+               
                 this.ul_add_li.innerHTML = `
                 <table class="table table-hover table-sm table-dark my-2">
                 <thead class="table-dark">
@@ -77,7 +77,7 @@ export class search {
                 </table>`;
                 let n = 0;
                 //Llamamos la funcion show_list_each_data para listar los datos
-                this.Show_list_each_data(arrayc,p, valor, n);
+                this.Show_list_each_data(arrayc, valor, n);
             }
             //Si no que mande mensaje que no se encontro la cuenta
             else {
@@ -90,13 +90,14 @@ export class search {
         }
     }
     //Funcion de enlistar
-    Show_list_each_data(arrayc,p, valor, n) {
+    Show_list_each_data(arrayc, valor, n) {
         for (let item of arrayc) {
             n++;
             //Estraemos datos y hacemos comparacion de que no en nulos
             let cuenta = item.Clave;
             
-            let propietario = p;
+            let propietario = item.p.replace("¥", "Ñ");
+
              
                 
             
@@ -105,8 +106,8 @@ export class search {
             <table class="table table-hover table-sm">
                 <tbody>
                     <tr>
-                        <td scope="col" class="table-light" style="text-align:center;">${cuenta}</td>
-                        <td scope="col" class="table-light" style="text-align:center;">
+                        <td scope="col" class="table-light" style="text-align:center;width:12%;">${cuenta}</td>
+                        <td scope="col" class="table-light" style="text-align:center;width:35%;">
                             ${propietario}
                         </td>
                         <td class="table-light" style="text-align:center;">
@@ -128,7 +129,7 @@ export class search {
                         style="padding:0%;border:0px;" data-toggle="tooltip"
                         data-placement="right" title="Pdf generados" name="pdf">
                         <img src="https://img.icons8.com/fluency/30/null/pdf.png"/>
-                        PDF</a>
+                        PDF Generados</a>
                         </td> 
                     </tr>
                 </tbody>
