@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\determinacionesA;
-use App\Models\ejecutores_ra;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Svg\Tag\Rect;
 use Illuminate\Support\Facades\DB;
 use App\Models\implementta;
-use App\Models\requerimientosA;
 use App\Models\tabla_da;
 use Luecano\NumeroALetras\NumeroALetras;
+use Illuminate\Support\Str;
 
 class DeterminacionController extends Controller
 {
@@ -53,10 +51,14 @@ class DeterminacionController extends Controller
     public function index($cuenta)
     {
         //consultamos los datos ya tenidos del propietario
-        $date = implementta::select('Cuenta', 'Clave', 'Propietario', 'TipoServicio', 'SerieMedidor', DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
+        $date = implementta::select('Cuenta', 'Clave', 'Propietario', 'TipoServicio', 'SerieMedidor', 'Giro', DB::raw("Concat(Calle,' ',NumExt,' ',NumInt,' ',Colonia) as Domicilio"))
             ->where('implementta.Cuenta', $cuenta)
             ->get();
-
+        $giro = '';
+        if ($date[0]->Giro != 'NULL' || $date[0]->Giro != '' || $date[0]->Giro != null) {
+            $giro = $date[0]->Giro;
+        }
+        $folios = determinacionesA::select(['folio', 'cuenta'])->orderBy('folio', 'DESC')->paginate();
         //validamos el tipo de servicio
         if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL") {
             $ts = 'DOMESTICO';
@@ -80,18 +82,29 @@ class DeterminacionController extends Controller
         //obtenemos el periodo en el    ue se esta evaluando
         //se cincatena la fecha maxima y minima 
         $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
-        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo]);
+        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro]);
     }
     public function store(Request $request)
     {
-        //validamos los campos
+
         $request->validate([
             'folio' => ['required'],
             'propietario' =>  ['required'],
             'seriem' => ['required'],
             'fechad' => ['required'],
             'domicilio' =>  ['required'],
-            'razons' =>  ['required'],
+            'corriente' =>  ['required'],
+            'icorriente' =>  ['required'],
+            'atraso' =>  ['required'],
+            'rezago' =>  ['required'],
+            'r_consumo' =>  ['required'],
+            'c_agua' =>  ['required'],
+            'r_agua' =>  ['required'],
+            'c_obra' =>  ['required'],
+            'r_obra' =>  ['required'],
+            'g_ejecucion' =>  ['required'],
+            'o_servicios' =>  ['required'],
+            'total' =>  ['required'],
         ]);
         //validar si esta cuenta ya tiene una determinacion
         $count_d = DB::select('select count(id) as c from determinacionesA where cuenta = ?', [$request->cuenta]);
@@ -118,6 +131,19 @@ class DeterminacionController extends Controller
             //declaramos que se creara un nuevo registro en requerimientosA
             $r = new determinacionesA();
         }
+        //Remplazar $ por ''
+        $corriente = Str::replace('$', '', $request->corriente);
+        $icorriente = Str::replace('$', '', $request->icorriente);
+        $atraso = Str::replace('$', '', $request->atraso);
+        $rezago = Str::replace('$', '', $request->rezago);
+        $r_consumo = Str::replace('$', '', $request->r_consumo);
+        $c_agua = Str::replace('$', '', $request->c_agua);
+        $r_agua = Str::replace('$', '', $request->r_agua);
+        $c_obra = Str::replace('$', '', $request->c_obra);
+        $r_obra = Str::replace('$', '', $request->r_obra);
+        $g_ejecucion = Str::replace('$', '', $request->g_ejecucion);
+        $o_servicios = Str::replace('$', '', $request->o_servicios);
+        $total = Str::replace('$', '', $request->total);
         //guardamos los datos en requerimientosA
         $r->folio = $request->folio;
         $r->fechad = $request->fechad;
@@ -129,6 +155,18 @@ class DeterminacionController extends Controller
         $r->seriem = $request->seriem;
         $r->razons = $request->razons;
         $r->periodo = $request->periodo;
+        $r->corriente = $corriente;
+        $r->iva_corriente = $icorriente;
+        $r->atraso = $atraso;
+        $r->rezago = $rezago;
+        $r->recargos_consumo = $r_consumo;
+        $r->convenio_agua = $c_agua;
+        $r->recargos_convenio_agua = $r_agua;
+        $r->convenio_obra = $c_obra;
+        $r->recargos_convenio_obra = $r_obra;
+        $r->gastos_ejecución = $g_ejecucion;
+        $r->otros_servicios = $o_servicios;
+        $r->saldo_total = $total;
         $r->save();
         //validamos si se guardaron los datos
         if ($r->save()) {
@@ -157,7 +195,19 @@ class DeterminacionController extends Controller
             'seriem',
             'razons',
             'periodo',
-            'propietario'
+            'propietario',
+            'corriente',
+            'iva_corriente',
+            'atraso',
+            'rezago',
+            'recargos_consumo',
+            'convenio_agua',
+            'recargos_convenio_agua',
+            'convenio_obra',
+            'recargos_convenio_obra',
+            'gastos_ejecución',
+            'otros_servicios',
+            'saldo_total'
         )->where('id', $id)->first();
         $folio = $data->folio;
         $longitud = strlen($folio);
@@ -176,7 +226,7 @@ class DeterminacionController extends Controller
         //Se hace el conteo de los años totales
         $countAños = tabla_da::select('anio')->distinct('anio')->where('cuenta', $data->cuenta)->count();
         //Variable acomuladora
-        $anioformat = '';
+        $anioformat = ''; //Esperar a que si los anos se quedan en estaticos o seran dinamicos NO ELIMINAR AUN
         //Se he un recorrido
         for ($i = 0; $i < $countAños; $i++) {
             //si el ultimo dato 
@@ -206,7 +256,6 @@ class DeterminacionController extends Controller
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $ra = '$' . number_format($t_adeudo->RecargosAcumulados, 2) . '**(' . $texto_entero . ' ' . $decimal . '/100 M.N.)**';
-
         //convertiremos el totalPeriodo a texto
         //extraemos el entero de los recargos
         $entero2 = floor($t_adeudo->totalPeriodo);
@@ -217,7 +266,7 @@ class DeterminacionController extends Controller
         //concatenamos para obtener todo el texto
         //concatenamos para obtener todo el texto
         $tp = '$' . number_format($t_adeudo->totalPeriodo, 2) . '**(' . $texto_entero2 . ' ' . $decimal2 . '/100 M.N.)**';
-        $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 't_adeudo' => $t_adeudo, 'ra' => $ra, 'data' => $data, 'anioformat' => $anioformat, 'tp' => $tp, 'folio' => $folio]);
+        $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 't_adeudo' => $t_adeudo, 'ra' => $ra, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();
