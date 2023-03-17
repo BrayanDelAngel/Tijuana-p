@@ -630,31 +630,31 @@
                 </tr>
                 <tr>
                     <td>Convenio De Agua</td>
-                    <td>$</td>
+                    <td>${{$data->convenio_agua}}</td>
                 </tr>
                 <tr>
                     <td>Recargos Convenio De Agua</td>
-                    <td>$</td>
+                    <td>${{$data->recargos_convenio_agua}}</td>
                 </tr>
                 <tr>
                     <td>Convenio De Obra</td>
-                    <td>$</td>
+                    <td>${{$data->convenio_obra}}</td>
                 </tr>
                 <tr>
                     <td>Recargos Convenio De Obra</td>
-                    <td>$</td>
+                    <td>${{$data->recargos_convenio_obra}}</td>
                 </tr>
                 <tr>
                     <td>Gastos De Ejecución</td>
-                    <td>$</td>
+                    <td>${{$data->gastos_ejecución}}</td>
                 </tr>
                 <tr>
                     <td>Otros Servicios</td>
-                    <td>$</td>
+                    <td>${{$data->otros_servicios}}</td>
                 </tr>
                 <tr>
                     <td>Saldo Total</td>
-                    <td>$</td>
+                    <td>${{$data->saldo_total}}</td>
                 </tr>
             </tbody>
         </table>
