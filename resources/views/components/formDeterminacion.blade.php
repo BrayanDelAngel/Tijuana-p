@@ -384,6 +384,74 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Multas</td>
+                                        <td>
+                                            <input type="text" name="multas" id="multas"
+                                                value="{{ old('multas') }}"
+                                                class="form-control mb-2 
+                                                @error('multas')
+                                                border border-danger rounded-2
+                                                @enderror"
+                                                onchange="Suma()" />
+                                            @error('multas')
+                                                <div class="text-danger text-center">
+                                                    El campo multas  es requerido
+                                                </div>
+                                            @enderror
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gastos de Ejecucion</td>
+                                        <td>
+                                            <input type="text" name="gastos_ejecucion" id="gastos_ejecucion"
+                                                value="{{ old('gastos_ejecucion') }}"
+                                                class="form-control mb-2 
+                                                @error('gastos_ejecucion')
+                                                border border-danger rounded-2
+                                                @enderror"
+                                                onchange="Suma()" />
+                                            @error('gastos_ejecucion')
+                                                <div class="text-danger text-center">
+                                                    El campo gastos ejecucion  es requerido
+                                                </div>
+                                            @enderror
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Convenios Vencidos</td>
+                                        <td>
+                                            <input type="text" name="conv_vencido" id="conv_vencido"
+                                                value="{{ old('conv_vencido') }}"
+                                                class="form-control mb-2 
+                                                @error('conv_vencido')
+                                                border border-danger rounded-2
+                                                @enderror"
+                                                onchange="Suma()" />
+                                            @error('conv_vencido')
+                                                <div class="text-danger text-center">
+                                                    El campo convenios vencidos es requerido
+                                                </div>
+                                            @enderror
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Otros Gastos</td>
+                                        <td>
+                                            <input type="text" name="otros_gastos" id="otros_gastos"
+                                                value="{{ old('otros_gastos') }}"
+                                                class="form-control mb-2 
+                                                @error('otros_gastos')
+                                                border border-danger rounded-2
+                                                @enderror"
+                                                onchange="Suma()" />
+                                            @error('otros_gastos')
+                                                <div class="text-danger text-center">
+                                                    El campo otros gastos es requerido
+                                                </div>
+                                            @enderror
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Saldo Total</td>
                                         <td><input type="text" name="total" id="total" value="{{ old('total') }}"
                                                 class="form-control mb-2  

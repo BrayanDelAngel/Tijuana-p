@@ -12,6 +12,10 @@ function Suma() {
     let ingreso9 = document.getElementById("r_obra").value;
     let ingreso10 = document.getElementById("g_ejecucion").value;
     let ingreso11 = document.getElementById("o_servicios").value;
+    let ingreso12 = document.getElementById("multas").value;
+    let ingreso13 = document.getElementById("gastos_ejecucion").value;
+    let ingreso14 = document.getElementById("conv_vencido").value;
+    let ingreso15 = document.getElementById("otros_gastos").value;
     let total;
     /*Desformateamos los datos ingresados en este caso se les quita el $ */
     ingreso1 = desformatear(ingreso1);
@@ -25,6 +29,10 @@ function Suma() {
     ingreso9 = desformatear(ingreso9);
     ingreso10 = desformatear(ingreso10);
     ingreso11 = desformatear(ingreso11);
+    ingreso12 = desformatear(ingreso12);
+    ingreso13 = desformatear(ingreso13);
+    ingreso14 = desformatear(ingreso14);
+    ingreso15 = desformatear(ingreso15);
     try {
         //Calculamos el número escrito:
         /* En donde se valida en cuestion de las consultas quitarle caracteres especiales
@@ -42,8 +50,12 @@ function Suma() {
         let valor9 = (isNaN(parseFloat(ingreso9))) ? 0 : parseFloat(ingreso9);
         let valor10 = (isNaN(parseFloat(ingreso10))) ? 0 : parseFloat(ingreso10);
         let valor11 = (isNaN(parseFloat(ingreso11))) ? 0 : parseFloat(ingreso11);
+        let valor12 = (isNaN(parseFloat(ingreso12))) ? 0 : parseFloat(ingreso12);
+        let valor13 = (isNaN(parseFloat(ingreso13))) ? 0 : parseFloat(ingreso13);
+        let valor14 = (isNaN(parseFloat(ingreso14))) ? 0 : parseFloat(ingreso14);
+        let valor15 = (isNaN(parseFloat(ingreso15))) ? 0 : parseFloat(ingreso15);
         /*Se suman los datos */
-        total = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11;
+        total = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + valor12 + valor13 + valor14 + valor15;
         //Se retorna el valor que ingreso el usuario haciendo un format al dato de moneda
         $('#corriente').val('$' + valor1)
         $('#icorriente').val('$' + valor2)
@@ -56,6 +68,10 @@ function Suma() {
         $('#r_obra').val(formatear(valor9))
         $('#g_ejecucion').val(formatear(valor10))
         $('#o_servicios').val(formatear(valor11))
+        $('#multas').val(formatear(valor12))
+        $('#gastos_ejecucion').val(formatear(valor13))
+        $('#conv_vencido').val(formatear(valor14))
+        $('#otros_gastos').val(formatear(valor15))
         $("#total").val(formatear(total));
     }
     //Si se produce un error lo mandamos en consola
@@ -79,7 +95,7 @@ function desformatear(valor) {
 }
 /*Para el rempazo de caracteres es para los datos que vienen consultados en la base de datos
 se les hace un remplace al , ya que la funcion float no lo formatea correctamente con los decimales */
-function remplazo(valor){
+function remplazo(valor) {
     let remplazo = valor.replace(',', '');
     return remplazo;
 }

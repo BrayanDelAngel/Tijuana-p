@@ -16,10 +16,10 @@
         <div class="p-3 mx-auto">
             <form action="{{ route('guardar-requerimiento') }}" method="post" novalidate>
                 @csrf
-                
-                <div class="row">
-                    @foreach ($date as $item)
-                    <input type="hidden" name="id_d" value="{{$item->id}}">
+
+                @foreach ($date as $item)
+                    <div class="row">
+                        <input type="hidden" name="id_d" value="{{ $item->id }}">
                         <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
@@ -35,7 +35,8 @@
                                             @error('ncredito')
                                             border border-danger rounded-2
                                             @enderror"
-                                            name="ncredito" value="{{$item->folio }}" placeholder="Número de Credito" disabled>
+                                            name="ncredito" value="{{ $item->folio }}" placeholder="Número de Credito"
+                                            disabled>
                                         @error('ncredito')
                                             <div class="text-danger text-center">
                                                 El campo número crédito es requerido.
@@ -48,8 +49,8 @@
                                         <label for="oficio" class="form-label">Oficio:*</label>
                                         <div class="input-group mb-6">
                                             <input type="text" class="form-control mb-2" value="CESPT/EDM/" disabled>
-                                          
-                                            <input type="text" value="{{ $folio }}" id="oficio" 
+
+                                            <input type="text" value="{{ $folio }}" id="oficio"
                                                 class="form-control mb-2
                                                 @error('oficio')
                                                 border border-danger rounded-2
@@ -60,7 +61,7 @@
                                         </div>
                                         @error('oficio')
                                             <div class="text-danger text-center">
-                                                @if ($message == "The oficio has already been taken.")
+                                                @if ($message == 'The oficio has already been taken.')
                                                     El campo oficio ya ha sido tomado.
                                                 @else
                                                     El campo oficio es requerido
@@ -112,7 +113,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-3">
                                     <div class="md-form form-group">
                                         <label for="serie" class="form-label mb-2">Serie medidor:*</label>
@@ -147,8 +148,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                               
-                                
+
+
                             </div>
                             <div class="row align-items-start form-row">
                                 <div class="col-md-6 ">
@@ -159,7 +160,7 @@
                                                     @error('periodo')
                                                     border border-danger rounded-2
                                                     @enderror"
-                                            id="periodo" name="periodo" value="{{$item->periodo }}" disabled>
+                                            id="periodo" name="periodo" value="{{ $item->periodo }}" disabled>
                                         @error('periodo')
                                             <div class="text-danger text-center">
                                                 El campo periodo es requerido
@@ -175,7 +176,7 @@
                                             @error('tservicio')
                                             border border-danger rounded-2
                                             @enderror"
-                                            id="tservicio" name="tservicio" value="{{ $ts }}" >
+                                            id="tservicio" name="tservicio" value="{{ $ts }}">
                                         @error('tservicio')
                                             <div class="text-danger text-center">
                                                 El campo servicio es requerido
@@ -183,8 +184,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
-                                
+
+
                             </div>
                             <div class="row align-items-start form-row">
                                 <div class="col-md-6">
@@ -196,7 +197,7 @@
                                             @error('remision')
                                             border border-danger rounded-2
                                             @enderror"
-                                            id="remision" name="remision" value="{{$item->fechad }}" disabled>
+                                            id="remision" name="remision" value="{{ $item->fechad }}" disabled>
                                         @error('remision')
                                             <div class="text-danger text-center">
                                                 El campo remisión es requerido
@@ -221,7 +222,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                               
+
                             </div>
                             <div class="row align-items-start form-row">
                                 <div class="col-md-6">
@@ -249,8 +250,7 @@
                                             @error('sobrerecaudador')
                                             border border-danger rounded-2
                                             @enderror"
-                                            id="sobrerecaudador" name="sobrerecaudador"
-                                            value="ELVIA ROSARIO LUQUE BAEZ">
+                                            id="sobrerecaudador" name="sobrerecaudador" value="ELVIA ROSARIO LUQUE BAEZ">
                                         @error('sobrerecaudador')
                                             <div class="text-danger text-center">
                                                 El campo sobrerecaudador es requerido
@@ -258,91 +258,91 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
-                    @endforeach
-                    <div class="p-2 rounded-4 col-md-4"
-                        style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
-                        <div class="text-white m-2 align-items-end" style="text-align:right;">
-                            <span class="bg-success rounded-2 p-2"><img
-                                    src="https://img.icons8.com/fluency/30/null/group.png" />Ejecutores</span>
-                        </div>
-                        <div class="col-md-4 my-auto" style="margin-left: 80%">
-                            <button class="btn btn-primary" type="button" id="agregar">
-                                <img src="https://img.icons8.com/fluency/24/null/add.png" />
-                            </button>
-                        </div>
-                        <div class="clonar col-md-8 text-center ">
-                            <div class="row align-items-start" style="margin-left: 10%">
-                                <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
-                                <input type="text" value="{{ old('ejecutor.0') }}" id="ejecutor.0"
-                                    class="form-control mb-2
+
+                        <div class="p-2 rounded-4 col-md-4"
+                            style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
+                            <div class="text-white m-2 align-items-end" style="text-align:right;">
+                                <span class="bg-success rounded-2 p-2"><img
+                                        src="https://img.icons8.com/fluency/30/null/group.png" />Ejecutores</span>
+                            </div>
+                            <div class="col-md-4 my-auto" style="margin-left: 80%">
+                                <button class="btn btn-primary" type="button" id="agregar">
+                                    <img src="https://img.icons8.com/fluency/24/null/add.png" />
+                                </button>
+                            </div>
+                            <div class="clonar col-md-8 text-center ">
+                                <div class="row align-items-start" style="margin-left: 10%">
+                                    <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
+                                    <input type="text" value="{{ old('ejecutor.0') }}" id="ejecutor.0"
+                                        class="form-control mb-2
                                                     @error('ejecutor.0')
                                                     border border-danger rounded-2
                                                     @enderror"
-                                    name="ejecutor[]">
-                                @error('ejecutor.0')
-                                    <div class="text-danger text-center">
-                                        El campo es requerido
-                                    </div>
-                                @enderror
-                                <button class="btn btn-warning puntero ocultar mt-4"
-                                    style="width: 5%; position: absolute; left: 78%;" type="button">
-                                    <img src="https://img.icons8.com/fluency/24/null/minus.png" />
-                                </button>
-                            </div>
-                            
-                        </div>
-                        <div id="contenedor"></div>
-                    </div>
-                </div>
-                <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
-                    <div class="text-white m-2 align-items-end" style="text-align:right;">
-                        <span class="bg-success rounded-2 p-2"><img
-                                src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Adeudo</span>
-                    </div>
-                    <table class="table table-hover table-sm table-dark my-2">
-                        <thead class="table-dark text-center">
-                            <tr>
-                                <th>DESCRIPCIÓN DE
-                                    CONCEPTO
-                                </th>
-                                <th>ADEUDO CONSUMO
-                                    DE AGUA Y ALCANTARILLADO
-                                </th>
-                                <th>RECARGOS
-                                </th>
-                                <th>MULTAS</th>
-                                <th>GASTOS
-                                    DE EJECUCIÓN
-                                </th>
-                                <th>SUSP. DEL SERVICIO
-                                    OTROS GASTOS
-                                </th>
-                                <th>CONV.
-                                    VENCIDOS
-                                </th>
-                                <th>IMPORTE TOTAL DEL ADEUDO</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-light text-center">
-                        
-                            <tr>
-                                <td>Totales</td>
-                                <td>${{number_format($t_adeudo_t->totalPeriodo,2)}}</td>
-                                <td>${{number_format($t_adeudo_t->RecargosAcumulados,2)}}</td>
-                                <td>$</td>
-                                <td>$</td>
-                                <td>$</td>
-                                <td>$</td>
-                                <td>${{number_format($t_adeudo_t->total,2)}}</td>
-                            </tr>
-                        
-                        </tbody>
-                    </table>
-                </div>
+                                        name="ejecutor[]">
+                                    @error('ejecutor.0')
+                                        <div class="text-danger text-center">
+                                            El campo es requerido
+                                        </div>
+                                    @enderror
+                                    <button class="btn btn-warning puntero ocultar mt-4"
+                                        style="width: 5%; position: absolute; left: 78%;" type="button">
+                                        <img src="https://img.icons8.com/fluency/24/null/minus.png" />
+                                    </button>
+                                </div>
 
+                            </div>
+                            <div id="contenedor"></div>
+                        </div>
+                    </div>
+                    <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
+                        <div class="text-white m-2 align-items-end" style="text-align:right;">
+                            <span class="bg-success rounded-2 p-2"><img
+                                    src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Adeudo</span>
+                        </div>
+                        <table class="table table-hover table-sm table-dark my-2">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <th>DESCRIPCIÓN DE
+                                        CONCEPTO
+                                    </th>
+                                    <th>ADEUDO CONSUMO
+                                        DE AGUA Y ALCANTARILLADO
+                                    </th>
+                                    <th>RECARGOS
+                                    </th>
+                                    <th>MULTAS</th>
+                                    <th>GASTOS
+                                        DE EJECUCIÓN
+                                    </th>
+                                    <th>SUSP. DEL SERVICIO
+                                        OTROS GASTOS
+                                    </th>
+                                    <th>CONV.
+                                        VENCIDOS
+                                    </th>
+                                    <th>IMPORTE TOTAL DEL ADEUDO</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-light text-center">
+
+                                <tr>
+                                    <td>Totales</td>
+                                    <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
+                                    <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
+                                    <td>${{ number_format($item->multas, 2) }}</td>
+                                    <td>${{ number_format($item->gastos_ejecucion, 2) }}</td>
+                                    <td>${{ number_format($item->otros_gastos, 2) }}</td>
+                                    <td>${{ number_format($item->conv_vencido, 2) }}</td>
+                                    <td>${{ $item->total }}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                @endforeach
                 <div class="form-row p-4">
                     <div class="col">
                         <div style="text-align:right;">

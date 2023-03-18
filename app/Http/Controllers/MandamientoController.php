@@ -8,6 +8,7 @@ use App\Models\ejecutores_ma;
 use App\Models\mandamientosA;
 use App\Models\requerimientosA;
 use App\Models\tabla_da;
+use App\Models\tabla_ma;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\DB;
@@ -40,16 +41,17 @@ class MandamientoController extends Controller
             //en caso que ya tiene un requerimiento puede pasar a las operaciones previas
             else {
                 //consultamos la tabla de adeudo
-                $t_adeudo = tabla_da::select(['anio', 'mes', 'totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
+                $t_adeudo = tabla_ma::select(['anio', 'mes', 'totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
                     ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->paginate(20);
                 //consultamos los totales de la tabla de adeudo
-                $totales = DB::table('tabla_da')
+                $totales = DB::table('tabla_ma')
                     ->select([DB::raw("sum(totalPeriodo) as TP"), DB::raw("sum(RecargosAcumulados) as RA"), DB::raw("sum(RecargosAcumulados+totalPeriodo) as total")])
                     ->where('cuenta', $cuenta)
                     ->get();
                 //consultamos los datos para la tbla del total del adeudo requerido
-                $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados'])
+                $t_adeudo_t = tabla_ma::select(['totalPeriodo', 'RecargosAcumulados'])
                     ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
+                
                 //consultamos los datos del form
                 $date = determinacionesA::join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
                     ->select(
@@ -78,6 +80,14 @@ class MandamientoController extends Controller
                         $longitud = strlen($folio);
                     }
                 }
+                 //validamos el tipo de servicio
+                 if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL") {
+                    $ts = 'DOMESTICO';
+                } else {
+                    $ts = 'NO DOMESTICO';
+                }
+                //mandamos a llamar al stored procedure
+                $exec = DB::select("exec calcula_tijuana_A ?,?,?", array($cuenta, $ts, 'mandamiento'));
                 //convertiremos el total del adeudo requerido en letras
                 $formatter = new NumeroALetras();
                 //obtenemos el total del adeuto requerido
@@ -106,11 +116,6 @@ class MandamientoController extends Controller
             'notificacion' =>  ['required'],
             'sobrerecaudador' =>  ['required'],
         ]);
-        if (($request->ejecutor[0]) == null) {
-            $request->validate([
-                'ejecutor.0' => 'required|array',
-            ]);
-        }
 
         //validar si esta cuenta ya tiene un mandamiento
         $count_r = DB::select('select count(id) as c from mandamientosA where id_r = ?', [$request->id]);
@@ -140,11 +145,18 @@ class MandamientoController extends Controller
         if ($r->save()) {
             //consultamos su id
             $id = DB::select('select id from mandamientosA where id_r = ?', [$request->id]);
-            //recorremos el array de los ejecutores
-            for ($i = 0; $i < count($request->ejecutor); $i++) {
+             //recorremos el array de los ejecutores
+             for ($i = 0; $i < count($request->ejecutor); $i++) {
                 //declaramos que se hara un nuevo registro en ejecutores_ra
                 $e = new ejecutores_ma();
-                $e->ejecutor = $request->ejecutor[$i];
+                //Si el ejecutor es nulo se le agrega a la tabla none 
+                if ($request->ejecutor[$i] == null) {
+                    $e->ejecutor = 'none';
+                }
+                //Si no se agrega el ejecutor recibido 
+                else {
+                    $e->ejecutor = $request->ejecutor[$i];
+                }
                 $e->id_m = $id[0]->id;
                 $e->save();
             }
@@ -164,23 +176,34 @@ class MandamientoController extends Controller
     }
     public function pdf($id)
     {
+         
         //mando a llamar los datos para el pdf
         $datos = determinacionesA::join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
             ->join('mandamientosA as m', 'r.id', '=', 'm.id_r')
-            ->select(['propietario', 'domicilio', 'folio', 'cuenta', 'clavec', 'seriem'])
+            ->select('propietario', 'domicilio', 'folio', 'cuenta', 'clavec', 'seriem',
+            'multas as multas',
+            'gastos_ejecucion as gastos_ejecucion',
+            'conv_vencido as conv_vencido',
+            'otros_gastos as otros_gastos',
+            'saldo_total as total',
+            'm.sobrerecaudador as sobrerecaudador')
             ->where('m.id', $id)
             ->get();
-
+            // dd($datos->sobrerecaudador);
+        //Informacion de la tabla generada del propietario
+        $tabla = tabla_ma::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados'])
+        ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->get();
+        // dd($tabla);
         //consultamos la tabla de adeudo
-        $t_adeudo = tabla_da::select(['anio', 'mes', 'totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
+        $t_adeudo = tabla_ma::select(['anio', 'mes', 'totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
             ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->get();
         //consultamos los totales de la tabla de adeudo
-        $totales = DB::table('tabla_da')
+        $totales = DB::table('tabla_ma')
             ->select([DB::raw("sum(totalPeriodo) as TP"), DB::raw("sum(RecargosAcumulados) as RA"), DB::raw("sum(RecargosAcumulados+totalPeriodo) as total")])
             ->where('cuenta', $datos[0]->cuenta)
             ->get();
         //consultamos los datos para la tbla del total del adeudo requerido
-        $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados'])
+        $t_adeudo_t = tabla_ma::select(['totalPeriodo', 'RecargosAcumulados'])
             ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->first();
         //agregamos los ceros correspondientes al oficio
         $folio = $datos[0]->folio;
@@ -204,8 +227,34 @@ class MandamientoController extends Controller
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
-
-        $pdf = Pdf::loadView('pdf.mandamiento', ['items' => $datos, 'folio' => $folio, 't_adeudo' => $t_adeudo, 'totales' => $totales, 't_adeudor' => $t_adeudo_t, 'tar' => $tar, 'total_ar' => number_format($total_ar, 2)]);
+        //Obtenemos los ejecutores
+        $ejecutores=mandamientosA::join('ejecutores_ma as e', 'e.id_m', '=', 'mandamientosA.id')->
+        select('ejecutor')->where('id',$id)->get();
+        //Conteo del total de ejecutores
+        $count_ejecutor=mandamientosA::join('ejecutores_ma as e', 'e.id_m', '=', 'mandamientosA.id')->
+        select('ejecutor')->where('id',$id)->count();
+        //Formateando ejecutores
+        $ejecutoresformat = '';
+        //Se he un recorrido
+        for ($i = 0; $i < $count_ejecutor; $i++) {
+            if($ejecutores[$i]->ejecutor!='none'){
+                //si el ultimo dato 
+                if ($i == ($count_ejecutor - 1)) {
+                    // en el amcomulador se le agrega un Y
+                    $ejecutoresformat = $ejecutoresformat . ' y ' . $ejecutores[$i]->ejecutor;
+                } else if ($i == ($count_ejecutor - 2)) {
+                    // si es el penultimo no se le agrega el ','
+                    $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . '';
+                } else {
+                    // si no re acomulan los años y se les agrega las ','
+                    $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . ',';
+                }
+            }
+            else{
+                $ejecutoresformat='none';
+            }
+        }
+        $pdf = Pdf::loadView('pdf.mandamiento', ['tabla'=>$tabla,'items' => $datos, 'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'totales' => $totales, 't_adeudor' => $t_adeudo_t, 'tar' => $tar,'ejecutores'=>$ejecutoresformat, 'total_ar' => number_format($total_ar, 2)]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();

@@ -179,9 +179,7 @@
             </p>
         </div>
         <p class="justify-center">
-            Las tasas de recargos mensuales vigentes en los ejercicios <span class="bold"> 2004, 2005, 2006, 2007,
-                2008, 2009, 2010, 2011,
-                2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021 y 2022;</span> aplicables en la presente
+            Las tasas de recargos mensuales vigentes en los ejercicios <span class="bold">{{$anioformat}}</span>; aplicables en la presente
             resolución
             liquidatoria, fueron publicadas en el Periódico Oficial del Estado, según el análisis que a continuación se
             detalla:

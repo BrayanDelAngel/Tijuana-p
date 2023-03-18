@@ -37,7 +37,7 @@ class DeterminacionController extends Controller
                 $ts = 'NO DOMESTICO';
             }
             //mandamos a llamar al stored procedure
-            $exec = DB::select("exec calcula_tijuana_A ?,?", array($cuenta, $ts));
+            $exec = DB::select("exec calcula_tijuana_A ?,?,?", array($cuenta, $ts,'determinacion'));
             //si se ejecuta el procedimiento mandamos a llamar a la funcion index
             if ($exec) {
                 return redirect()->action(
@@ -104,6 +104,10 @@ class DeterminacionController extends Controller
             'r_obra' =>  ['required'],
             'g_ejecucion' =>  ['required'],
             'o_servicios' =>  ['required'],
+            'multas' =>  ['required'],
+            'gastos_ejecucion' =>  ['required'],
+            'conv_vencido' =>  ['required'],
+            'otros_gastos' =>  ['required'],
             'total' =>  ['required'],
         ]);
         //validar si esta cuenta ya tiene una determinacion
@@ -143,6 +147,10 @@ class DeterminacionController extends Controller
         $r_obra = Str::replace('$', '', $request->r_obra);
         $g_ejecucion = Str::replace('$', '', $request->g_ejecucion);
         $o_servicios = Str::replace('$', '', $request->o_servicios);
+        $multas = Str::replace('$', '', $request->multas);
+        $gastos_ejecucion = Str::replace('$', '', $request->gastos_ejecucion);
+        $conv_vencido = Str::replace('$', '', $request->conv_vencido);
+        $otros_gastos = Str::replace('$', '', $request->otros_gastos);
         $total = Str::replace('$', '', $request->total);
         //guardamos los datos en requerimientosA
         $r->folio = $request->folio;
@@ -166,6 +174,10 @@ class DeterminacionController extends Controller
         $r->recargos_convenio_obra = $r_obra;
         $r->gastos_ejecución = $g_ejecucion;
         $r->otros_servicios = $o_servicios;
+        $r->multas = $multas;
+        $r->gastos_ejecucion = $gastos_ejecucion;
+        $r->conv_vencido = $conv_vencido;
+        $r->otros_gastos = $otros_gastos;
         $r->saldo_total = $total;
         $r->save();
         //validamos si se guardaron los datos
@@ -220,6 +232,7 @@ class DeterminacionController extends Controller
         //Informacion de la tabla generada del propietario
         $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados'])
             ->where('cuenta', $data->cuenta)->orderBy('meses', 'ASC')->get();
+            // dd($tabla);
         //Se extrae los años que debe el propietario
         $años = tabla_da::select('anio')
             ->where('cuenta', $data->cuenta)->orderBy('anio', 'ASC')->groupBy('anio')->get();
@@ -266,7 +279,7 @@ class DeterminacionController extends Controller
         //concatenamos para obtener todo el texto
         //concatenamos para obtener todo el texto
         $tp = '$' . number_format($t_adeudo->totalPeriodo, 2) . '**(' . $texto_entero2 . ' ' . $decimal2 . '/100 M.N.)**';
-        $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 't_adeudo' => $t_adeudo, 'ra' => $ra, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años]);
+        $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 't_adeudo' => $t_adeudo, 'ra' => $ra, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años,'anioformat'=>$anioformat]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();

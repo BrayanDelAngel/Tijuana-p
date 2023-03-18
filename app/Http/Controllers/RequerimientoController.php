@@ -50,7 +50,11 @@ class RequerimientoController extends Controller
                     'seriem as SerieMedidor',
                     'domicilio as Domicilio',
                     'cuenta as Cuenta',
-
+                    'multas',
+                    'gastos_ejecucion',
+                    'conv_vencido',
+                    'otros_gastos',
+                    'saldo_total as total',
                     'fechad',
                     'id',
                     'periodo'
@@ -64,18 +68,10 @@ class RequerimientoController extends Controller
                     ->where('implementta.Cuenta', $cuenta)
                     ->get();
                 //validamos el tipo de servicio
-                if ($tipos[0]->TipoServicio == "C") {
-                    $ts = "COMERCIAL";
-                } else if ($tipos[0]->TipoServicio == "R") {
-                    $ts = 'RESIDENCIAL';
-                } else if ($tipos[0]->TipoServicio == "I") {
-                    $ts = "INDUSTRIAL";
-                } else if ($tipos[0]->TipoServicio == "G") {
-                    $ts = "GOBIERNO";
-                } else if ($tipos[0]->TipoServicio == "") {
-                    $ts = "NO APLICA";
+                if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL") {
+                    $ts = 'DOMESTICO';
                 } else {
-                    $ts = $tipos[0]->TipoServicio;
+                    $ts = 'NO DOMESTICO';
                 }
                 //establecemos los ceros en los folios
                 $folio = $date[0]->folio;
@@ -99,11 +95,11 @@ class RequerimientoController extends Controller
             'notificacion' =>  ['required'],
             'sobrerecaudador' =>  ['required'],
         ]);
-        if (($request->ejecutor[0]) == null) {
-            $request->validate([
-                'ejecutor.0' => 'required|array',
-            ]);
-        }
+        // if (($request->ejecutor[0]) == null) {
+        //     $request->validate([
+        //         'ejecutor.0' => 'required|array',
+        //     ]);
+        // }
         //validar si esta cuenta ya tiene un requerimiento
         $validar = requerimientosA::join('determinacionesA as d', 'requerimientosA.id_d', '=', 'd.id')
             ->where('d.id', $request->id_d)
@@ -136,11 +132,19 @@ class RequerimientoController extends Controller
             //consultamos su id
             $requirimiento = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
             $id = $requirimiento->id;
+
             //recorremos el array de los ejecutores
             for ($i = 0; $i < count($request->ejecutor); $i++) {
                 //declaramos que se hara un nuevo registro en ejecutores_ra
                 $e = new ejecutores_ra();
-                $e->ejecutor = $request->ejecutor[$i];
+                //Si el ejecutor es nulo se le agrega a la tabla none 
+                if ($request->ejecutor[$i] == null) {
+                    $e->ejecutor = 'none';
+                }
+                //Si no se agrega el ejecutor recibido 
+                else {
+                    $e->ejecutor = $request->ejecutor[$i];
+                }
                 $e->id_r = $id;
                 $e->save();
             }
@@ -167,9 +171,14 @@ class RequerimientoController extends Controller
                 DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
                 DB::raw(
                     "format(fechand,'dd'' de ''MMMM','es-es') as fd",
-                    'sobrerecaudador',
                     'id_d'
                 ),
+                'multas',
+                'gastos_ejecucion',
+                'conv_vencido',
+                'otros_gastos',
+                'saldo_total as total',
+                'sobrerecaudador'
             ])
             ->where('r.id', $id)
             ->get();
@@ -203,13 +212,39 @@ class RequerimientoController extends Controller
         $entero = floor($total_ar);
         //extraemos el decimal
         $decimal = round($total_ar - $entero, 2) * 100;
-
         //convertimos en texto el entero
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
+        //Obtenemos los ejecutores
+        $ejecutores=requerimientosA::join('ejecutores_ra as e', 'e.id_r', '=', 'requerimientosA.id')->
+        select('ejecutor')->where('id',$id)->get();
+        //Conteo del total de ejecutores
+        $count_ejecutor=requerimientosA::join('ejecutores_ra as e', 'e.id_r', '=', 'requerimientosA.id')->
+        select('ejecutor')->where('id',$id)->count();
+        //Formateando ejecutores
+        $ejecutoresformat = '';
+        //Se he un recorrido
+        for ($i = 0; $i < $count_ejecutor; $i++) {
+            if($ejecutores[$i]->ejecutor!='none'){
+                //si el ultimo dato 
+                if ($i == ($count_ejecutor - 1)) {
+                    // en el amcomulador se le agrega un Y
+                    $ejecutoresformat = $ejecutoresformat . ' y ' . $ejecutores[$i]->ejecutor;
+                } else if ($i == ($count_ejecutor - 2)) {
+                    // si es el penultimo no se le agrega el ','
+                    $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . '';
+                } else {
+                    // si no re acomulan los años y se les agrega las ','
+                    $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . ',';
+                }
+            }
+            else{
+                $ejecutoresformat='none';
+            }
+        }
         //declaramos la variable pdf y mandamos los parametros
-        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter, 'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar]);
+        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter, 'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar,'ejecutores'=>$ejecutoresformat]);
         return $pdf->stream();
     }
 }

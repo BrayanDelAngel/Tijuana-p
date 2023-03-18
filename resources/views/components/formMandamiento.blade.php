@@ -316,55 +316,6 @@
                     <table class="table table-hover table-sm table-dark my-2">
                         <thead class="table-dark text-center">
                             <tr>
-                                <th colspan="2">PERIODO</th>
-                                <th rowspan="2">ADEUDO POR CONSUMO DE AGUA Y ALCANTARILLADO</th>
-                                <th rowspan="2">IMPORTE DE RECARGOS</th>
-                                <th rowspan="2">IMPORTE DE LA MULTA</th>
-                                <th rowspan="2">TOTAL</th>
-                            </tr>
-                            <tr>
-                                <th>
-                                    MES
-                                </th>
-                                <th>
-                                    AÑO
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-light text-center">
-                            @foreach ($t_adeudo as $item)
-                                <tr>
-                                    <td>{{ $mes[$item->mes - 1] }}</td>
-                                    <td>{{ $item->anio }}</td>
-                                    <td>${{number_format($item->totalPeriodo,2)}}</td>
-                                    <td>${{number_format($item->RecargosAcumulados,2)}}</td>
-                                    <td></td>
-                                    <td>${{number_format($item->total,2)}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2" class="text-center">Totales</td>
-                                <td class="text-center">${{number_format($totales[0]->TP,2)}}</td>
-                                <td class="text-center">${{number_format($totales[0]->RA,2)}}</td>
-                                <td class="text-center">$ &nbsp;&nbsp;</td>
-                                <td class="text-center">${{number_format($totales[0]->total,2)}}</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <div class="d-flex" style="margin-left: 45%;margin-right: 45%">
-                        {{ $t_adeudo->links() }}
-                    </div>
-                </div>
-                <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
-                    <div class="text-white m-2 align-items-end" style="text-align:right;">
-                        <span class="bg-success rounded-2 p-2"><img
-                                src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Adeudo</span>
-                    </div>
-                    <table class="table table-hover table-sm table-dark my-2">
-                        <thead class="table-dark text-center">
-                            <tr>
                                 <th>TIPO DE DILIGENCIA</th>
                                 <th>IMPORTE DEL CREDITO Fiscal</th>
                                 <th>PORCENTAJE POR GASTOS DE EJECUCIÓN</th>
