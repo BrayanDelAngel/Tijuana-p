@@ -37,7 +37,7 @@ class DeterminacionController extends Controller
                 $ts = 'NO DOMESTICO';
             }
             //mandamos a llamar al stored procedure
-            $exec = DB::select("exec calcula_tijuana_A ?,?,?", array($cuenta, $ts,'determinacion'));
+            $exec = DB::select("exec calcula_tijuana_A ?,?,?", array($cuenta, $ts, 'determinacion'));
             //si se ejecuta el procedimiento mandamos a llamar a la funcion index
             if ($exec) {
                 return redirect()->action(
@@ -136,22 +136,25 @@ class DeterminacionController extends Controller
             $r = new determinacionesA();
         }
         //Remplazar $ por ''
-        $corriente = Str::replace('$', '', $request->corriente);
-        $icorriente = Str::replace('$', '', $request->icorriente);
-        $atraso = Str::replace('$', '', $request->atraso);
-        $rezago = Str::replace('$', '', $request->rezago);
-        $r_consumo = Str::replace('$', '', $request->r_consumo);
-        $c_agua = Str::replace('$', '', $request->c_agua);
-        $r_agua = Str::replace('$', '', $request->r_agua);
-        $c_obra = Str::replace('$', '', $request->c_obra);
-        $r_obra = Str::replace('$', '', $request->r_obra);
-        $g_ejecucion = Str::replace('$', '', $request->g_ejecucion);
-        $o_servicios = Str::replace('$', '', $request->o_servicios);
-        $multas = Str::replace('$', '', $request->multas);
-        $gastos_ejecucion = Str::replace('$', '', $request->gastos_ejecucion);
-        $conv_vencido = Str::replace('$', '', $request->conv_vencido);
-        $otros_gastos = Str::replace('$', '', $request->otros_gastos);
-        $total = Str::replace('$', '', $request->total);
+        $corriente = (float) str_replace(array('$', ','), '', $request->corriente);
+        $icorriente = (float) str_replace(array('$', ','), '', $request->icorriente);
+        $atraso = (float) str_replace(array('$', ','), '', $request->atraso);
+        $rezago = (float) str_replace(array('$', ','), '', $request->rezago);
+        $r_consumo = (float) str_replace(array('$', ','), '', $request->r_consumo);
+        $c_agua = (float) str_replace(array('$', ','), '', $request->c_agua);
+        $r_agua = (float) str_replace(array('$', ','), '', $request->r_agua);
+        $c_obra = (float) str_replace(array('$', ','), '', $request->c_obra);
+        $r_obra = (float) str_replace(array('$', ','), '', $request->r_obra);
+        $g_ejecucion = (float) str_replace(array('$', ','), '', $request->g_ejecucion);
+        $o_servicios = (float) str_replace(array('$', ','), '', $request->o_servicios);
+        $multas = (float) str_replace(array('$', ','), '', $request->multas);
+        $gastos_ejecucion = (float) str_replace(array('$', ','), '', $request->gastos_ejecucion);
+        $conv_vencido = (float) str_replace(array('$', ','), '', $request->conv_vencido);
+        $otros_gastos = (float) str_replace(array('$', ','), '', $request->otros_gastos);
+        $total = (float) str_replace(array('$', ','), '', $request->total);
+        //Remplazar , por .
+
+        
         //guardamos los datos en requerimientosA
         $r->folio = $request->folio;
         $r->fechad = $request->fechad;
@@ -232,7 +235,7 @@ class DeterminacionController extends Controller
         //Informacion de la tabla generada del propietario
         $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados'])
             ->where('cuenta', $data->cuenta)->orderBy('meses', 'ASC')->get();
-            // dd($tabla);
+        // dd($tabla);
         //Se extrae los años que debe el propietario
         $años = tabla_da::select('anio')
             ->where('cuenta', $data->cuenta)->orderBy('anio', 'ASC')->groupBy('anio')->get();
@@ -259,16 +262,25 @@ class DeterminacionController extends Controller
         //obtenemos los datos de la tabla de resumen
         $t_adeudo = tabla_da::select(['sumaTarifas', 'saldoIvaCor', 'saldoAtraso', 'saldoRezago', 'RecargosAcumulados', 'totalPeriodo'])
             ->where('cuenta', $cuenta->cuenta)->orderBy('meses', 'ASC')->first();
+        $total_ar = $t_adeudo->totalPeriodo +
+            $t_adeudo->RecargosAcumulados +
+            $data->convenio_agua +
+            $data->recargos_convenio_agua +
+            $data->convenio_obra +
+            $data->recargos_convenio_obra +
+            $data->gastos_ejecución +
+            $data->otros_gastos;
+        // dd($total_ar);
         //convertiremos los recargos acumulados a texto
         $formatter = new NumeroALetras();
-        //extraemos el entero de los recargos
-        $entero = floor($t_adeudo->RecargosAcumulados);
+        //extraemos el entero
+        $entero = floor($total_ar);
         //extraemos el decimal
-        $decimal = round($t_adeudo->RecargosAcumulados - $entero, 2) * 100;
+        $decimal = round($total_ar - $entero, 2) * 100;
         //convertimos en texto el entero
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
-        $ra = '$' . number_format($t_adeudo->RecargosAcumulados, 2) . '**(' . $texto_entero . ' ' . $decimal . '/100 M.N.)**';
+        $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
         //convertiremos el totalPeriodo a texto
         //extraemos el entero de los recargos
         $entero2 = floor($t_adeudo->totalPeriodo);
@@ -277,9 +289,15 @@ class DeterminacionController extends Controller
         //convertimos en texto el entero
         $texto_entero2 = $formatter->toMoney($entero2);
         //concatenamos para obtener todo el texto
+        $entero3 = floor($t_adeudo->RecargosAcumulados);
+        //extraemos el decimal
+        $decimal3 = round($t_adeudo->RecargosAcumulados - $entero3, 2) * 100;
+        //convertimos en texto el entero
+        $texto_entero3 = $formatter->toMoney($entero3);
         //concatenamos para obtener todo el texto
+        $ra = '$' . number_format($t_adeudo->RecargosAcumulados, 2) . '**(' . $texto_entero3 . ' ' . $decimal3 . '/100 M.N.)**';
         $tp = '$' . number_format($t_adeudo->totalPeriodo, 2) . '**(' . $texto_entero2 . ' ' . $decimal2 . '/100 M.N.)**';
-        $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 't_adeudo' => $t_adeudo, 'ra' => $ra, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años,'anioformat'=>$anioformat]);
+        $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat]);
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();

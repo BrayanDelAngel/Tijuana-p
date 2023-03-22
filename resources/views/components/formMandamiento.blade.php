@@ -16,9 +16,9 @@
         <div class="p-3 mx-auto">
             <form action="{{ route('guardar-mandamiento') }}" method="post" novalidate>
                 @csrf
-                <div class="row">
-                    @foreach ($date as $item)
-                    <input type="hidden" name="id" value="{{$item->id}}">
+                @foreach ($date as $item)
+                    <div class="row">
+                        <input type="hidden" name="id" value="{{ $item->id }}">
                         <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
@@ -118,7 +118,7 @@
                                                     @error('periodo')
                                                     border border-danger rounded-2
                                                     @enderror"
-                                            id="periodo" name="periodo" value="{{ $item->periodo}}" disabled>
+                                            id="periodo" name="periodo" value="{{ $item->periodo }}" disabled>
                                         @error('periodo')
                                             <div class="text-danger text-center">
                                                 El campo periodo inicio es requerido
@@ -126,7 +126,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div class="row align-items-start form-row">
                                 <div class="col-md-6">
@@ -188,7 +188,8 @@
                                         @error('determinacion')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="determinacion" name="determinacion" value="{{$item->fechand }}" disabled>
+                                            id="determinacion" name="determinacion" value="{{ $item->fechand }}"
+                                            disabled>
                                         @error('determinacion')
                                             <div class="text-danger text-center">
                                                 El campo determinación es requerido
@@ -207,7 +208,8 @@
                                         @error('ndeterminacion')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="ndeterminacion" name="ndeterminacion" value="{{ $item->Fecha_noti_d }}" disabled>
+                                            id="ndeterminacion" name="ndeterminacion" value="{{ $item->Fecha_noti_d }}"
+                                            disabled>
                                         @error('ndeterminacion')
                                             <div class="text-danger text-center">
                                                 El campo notificación determinación es requerido
@@ -232,9 +234,9 @@
                                         @enderror
                                     </div>
                                 </div>
-                               
+
                             </div>
-                            
+
                             <div class="row align-items-start form-row">
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
@@ -252,7 +254,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="md-form form-group">
@@ -270,112 +272,118 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
-                    @endforeach
-                    <div class="p-2 rounded-4 col-md-4"
-                        style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
-                        <div class="text-white m-2 align-items-end" style="text-align:right;">
-                            <span class="bg-success rounded-2 p-2"><img
-                                    src="https://img.icons8.com/fluency/30/null/group.png" />Ejecutores</span>
-                        </div>
-                        <div class="col-md-4 my-auto" style="margin-left: 80%">
-                            <button class="btn btn-primary" type="button" id="agregar">
-                                <img src="https://img.icons8.com/fluency/24/null/add.png" />
-                            </button>
-                        </div>
-                        <div class="clonar col-md-8 text-center ">
-                            <div class="row align-items-start" style="margin-left: 10%">
-                                <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
-                                <input type="text" value="{{ old('ejecutor.0') }}" id="ejecutor.0"
-                                    class="form-control mb-2
+                        <div class="p-2 rounded-4 col-md-4"
+                            style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
+                            <div class="text-white m-2 align-items-end" style="text-align:right;">
+                                <span class="bg-success rounded-2 p-2"><img
+                                        src="https://img.icons8.com/fluency/30/null/group.png" />Ejecutores</span>
+                            </div>
+                            <div class="col-md-4 my-auto" style="margin-left: 80%">
+                                <button class="btn btn-primary" type="button" id="agregar">
+                                    <img src="https://img.icons8.com/fluency/24/null/add.png" />
+                                </button>
+                            </div>
+                            <div class="clonar col-md-8 text-center ">
+                                <div class="row align-items-start" style="margin-left: 10%">
+                                    <label for="ejecutor.0" class="form-label">Notificador y/o Ejecutor:*</label>
+                                    <input type="text" value="{{ old('ejecutor.0') }}" id="ejecutor.0"
+                                        class="form-control mb-2
                                                     @error('ejecutor.0')
                                                     border border-danger rounded-2
                                                     @enderror"
-                                    name="ejecutor[]">
-                                @error('ejecutor.0')
-                                    <div class="text-danger text-center">
-                                        El campo Notificador y/o Ejecutor es requerido
-                                    </div>
-                                @enderror
-                                <button class="btn btn-warning puntero ocultar mt-4"
-                                    style="width: 5%; position: absolute; left: 78%;" type="button">
-                                    <img src="https://img.icons8.com/fluency/24/null/minus.png" />
-                                </button>
+                                        name="ejecutor[]">
+                                    @error('ejecutor.0')
+                                        <div class="text-danger text-center">
+                                            El campo Notificador y/o Ejecutor es requerido
+                                        </div>
+                                    @enderror
+                                    <button class="btn btn-warning puntero ocultar mt-4"
+                                        style="width: 5%; position: absolute; left: 78%;" type="button">
+                                        <img src="https://img.icons8.com/fluency/24/null/minus.png" />
+                                    </button>
+                                </div>
                             </div>
+                            <div id="contenedor"></div>
                         </div>
-                        <div id="contenedor"></div>
                     </div>
-                </div>
-                <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
-                    <div class="text-white m-2 align-items-end" style="text-align:right;">
-                        <span class="bg-success rounded-2 p-2"><img
-                                src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Adeudo</span>
+                    <div class="p-2 rounded-4" style=" background-color: #E8ECEF; border: inherit;">
+                        <div class="text-white m-2 align-items-end" style="text-align:right;">
+                            <span class="bg-success rounded-2 p-2"><img
+                                    src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Adeudo</span>
+                        </div>
+                        <table class="table table-hover table-sm table-dark my-4">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <th>DESCRIPCIÓN DE
+                                        CONCEPTO
+                                    </th>
+                                    <th>ADEUDO CONSUMO
+                                        DE AGUA Y ALCANTARILLADO
+                                    </th>
+                                    <th>RECARGOS
+                                    </th>
+                                    <th>MULTAS</th>
+                                    <th>GASTOS
+                                        DE EJECUCIÓN
+                                    </th>
+                                    <th>SUSP. DEL SERVICIO
+                                        OTROS GASTOS
+                                    </th>
+                                    <th>CONV.
+                                        VENCIDOS
+                                    </th>
+                                    <th>IMPORTE TOTAL DEL ADEUDO</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-light text-center">
+                                <tr>
+                                    <td>Totales</td>
+                                    <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
+                                    <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
+                                    <td>${{ number_format($item->multas, 2) }}</td>
+                                    <td>${{ number_format($item->gastos_ejecucion, 2) }}</td>
+                                    <td>${{ number_format($item->otros_gastos, 2) }}</td>
+                                    <td>${{ number_format($item->conv_vencido, 2) }}</td>
+                                    <td>${{ $total_ar }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"> Total del adeudo requerido</td>
+                                    <td class="text-center font-weight-bold" colspan="7" style="font-weight: bold">
+                                        ${{ $total_ar }} {{ $tar }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-hover table-sm table-dark my-4">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <th>TIPO DE DILIGENCIA</th>
+                                    <th>IMPORTE DEL CREDITO Fiscal</th>
+                                    <th>PORCENTAJE POR GASTOS DE EJECUCIÓN</th>
+                                    <th>IMPORTE DE LOS GASTOS DE EJECUCIÓN CONSIDERANDO EL IMPORTE MÍNIMO.</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-light text-center">
+                                <tr>
+                                    <td class="text-center">Requerimiento de pago</td>
+                                    <td class="text-center">&nbsp;&nbsp;</td>
+                                    <td class="text-center">2%</td>
+                                    <td class="text-center">&nbsp;&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">Embargo</td>
+                                    <td class="text-center">&nbsp;&nbsp;</td>
+                                    <td class="text-center">2%</td>
+                                    <td class="text-center">&nbsp;&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </div>
-                    <table class="table table-hover table-sm table-dark my-2">
-                        <thead class="table-dark text-center">
-                            <tr>
-                                <th>TIPO DE DILIGENCIA</th>
-                                <th>IMPORTE DEL CREDITO Fiscal</th>
-                                <th>PORCENTAJE POR GASTOS DE EJECUCIÓN</th>
-                                <th>IMPORTE DE LOS GASTOS DE EJECUCIÓN CONSIDERANDO EL IMPORTE MÍNIMO.</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-light text-center">
-                            <tr>
-                                <td class="text-center">Requerimiento de pago</td>
-                                <td class="text-center">&nbsp;&nbsp;</td>
-                                <td class="text-center">2%</td>
-                                <td class="text-center">&nbsp;&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">Embargo</td>
-                                <td class="text-center">&nbsp;&nbsp;</td>
-                                <td class="text-center">2%</td>
-                                <td class="text-center">&nbsp;&nbsp;</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
-                    <div class="text-white m-2 align-items-end" style="text-align:right;">
-                        <span class="bg-success rounded-2 p-2"><img
-                                src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Adeudo</span>
-                    </div>
-                    <table class="table table-hover table-sm table-dark my-2">
-                        <thead class="table-dark text-center">
-                            <tr>
-                                <th>DESCRIPCIÓN DE
-                                    CONCEPTO
-                                </th>
-                                <th>ADEUDO CONSUMO
-                                    DE AGUA Y ALCANTARILLADO
-                                </th>
-                                <th>RECARGOS
-                                </th>
-                                <th>MULTAS</th>
-                                <th>GASTOS DE EJECUCIÓN</th>
-                                <th>IMPORTE TOTAL DEL ADEUDO</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-light text-center">
-                            <tr>
-                                <td class="text-center">Totales</td>
-                                <td class="text-center">${{number_format($t_adeudor->totalPeriodo,2)}}</td>
-                                <td class="text-center">${{number_format($t_adeudor->RecargosAcumulados,2)}}</td>
-                                <td class="text-center">$0.00</td>
-                                <td class="text-center">$0.00</td>
-                                <td class="text-center">${{$total_ar}}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">Total del adeudo requerido</td>
-                                <td class="text-center bold" colspan="5">${{$total_ar}}{{$tar}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                @endforeach
                 <div class="form-row p-4">
                     <div class="col">
                         <div style="text-align:right;">

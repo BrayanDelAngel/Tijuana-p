@@ -35,7 +35,7 @@
                     </p>
                 </div>
                 <p>
-                    Tijuana, Baja California a __________ de________ de 20___
+                    Tijuana, Baja California a <span class="underline">{{$item->fecham}}</span>
                 </p>
             </div>
             <p class="text-justify">
@@ -49,7 +49,7 @@
                 <span class="bold"> Cuenta:</span> {{ $item->cuenta }}
             </p>
             <p id="right">
-                <span class="bold"> Tipo de servicio:</span> ________________
+                <span class="bold"> Tipo de servicio:</span> <span class="underline">{{$item->tipo_s}}</span>
             </p>
             <p>
                 <span class="bold"> Clave catastral:</span> {{ $item->clavec }}
@@ -64,7 +64,7 @@
                 <span>Subrecaudación de Rentas adscrita a la Comisión Estatal
                     de Servicios Públicos de Tijuana.</span>
             </p>
-            <p class="text-justify">Tijuana, Baja California a _________ del mes de _________ del dos mil __________
+            <p class="text-justify">Tijuana, Baja California a <span class="bold">{{$fechamanda}}</span>
                 esta
                 Subrecaudacion de
                 Rentas adscrita a la Comisión Estatal de Servicios Públicos de Tijuana, da cuenta de la remisión del
@@ -72,7 +72,7 @@
                 fiscal determinado por la citada Comisión Estatal, de la que se desprende que la cuenta
                 {{ $item->cuenta }}
                 a nombre de {{ $item->propietario }} a la fecha no se ha cubierto el pago de la liquidación número
-                __________________ de fecha ________ del mes de _____________ de 20___; esta autoridad en ejercicio de
+                {{ $item->folio }} de fecha {{$item->fecham}}; esta autoridad en ejercicio de
                 los
                 artículos 6, 59 primer párrafo, fracción III, segundo párrafo del Reglamento Interno de la Secretaría de
                 Hacienda del Estado de Baja California, así como con fundamento en los artículos 1,2 fracciones I, II,
@@ -179,17 +179,16 @@
                     </li>
                     <li>
                         <p class="text-justify">
-                            Que el día _____ del mes de______ del año dos mil_________, fue
+                            Que el día {{$fechadeterminacion}}, fue
                             debidamente notificada,
                             determinación y liquidación de crédito de los servicios de agua potable, con número de
-                            crédito
-                            _______, de fecha ______ emitido por __________, otorgándole un plazo de 6 días hábiles
+                            crédito {{ $item->folio }}, de fecha {{$item->fechad}} emitido por _______________________, otorgándole un plazo de 6 días hábiles
                             siguientes para realizar el pago.
                         </p>
                     </li>
                     <li>
                         <p class="text-justify">
-                            Que el día ________del mes de______ del año dos mil______ le fue debidamente notificado
+                            Que el día {{$item->fechanr}} le fue debidamente notificado
                             Requerimiento de Pago y toda vez que vencido el plazo que le fue conferido por ley, sin que
                             hasta la presente fecha se haya registrado pago alguno a su favor y no obra en nuestros
                             registros recurso administrativo de inconformidad ni escrito que para sí convenga de acuerdo
@@ -214,7 +213,7 @@
                 <p class="text-justify">
                     <span class="bold">SEGUNDO.</span>
                     Que el objeto del presente mandamiento de ejecución es exigir el pago del crédito fiscal
-                    número______________ no satisfecho dentro del plazo que fue otorgado, a través Procedimiento
+                    número {{ $item->folio }} no satisfecho dentro del plazo que fue otorgado, a través Procedimiento
                     Administrativo de Ejecución, requiriendo al deudor el pago total de su adeudo con los accesorios
                     legales, apercibiéndole que en el caso de no hacerlo en el acto se le embargarán bienes suficientes
                     de
@@ -240,15 +239,15 @@
                     copia a la persona con quien se entienda la misma.
                 </p>
                 <p class="text-justify">
-                    Por lo reseñado, el C. ______________________________________ Subrecaudador de Rentas adscrito a la
+                    Por lo reseñado, el C. {{$item->sobrerecaudador}} Subrecaudador de Rentas adscrito a la
                     Comisión Estatal de Servicios Públicos de Tijuana, autoridad que:
                 </p>
                 <div class="ordena">
                     <p class="text-center"><span class="bold">O R D E N A</span></p>
                     <p class="text-justify">
                         <span class="bold">PRIMERO.</span>
-                        Requiérase a ________________________________, titular el contrato número _____________,
-                        ubicado en: __________________________________________________, el pago del crédito fiscal a su
+                        Requiérase a {{ $item->propietario }}, titular el contrato número _____________,
+                        ubicado en: {{ $item->domicilio }}, el pago del crédito fiscal a su
                         cargo,
                         que ya ha quedado precisado, actualizado junto con los gastos accesorios causados a la fecha de
                         emisión
@@ -470,16 +469,17 @@
                                 <td>Totales</td>
                                 <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
                                 <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
-                                <td>${{ number_format($item->multas, 2) }}</td>
-                                <td>${{ number_format($item->gastos_ejecucion, 2) }}</td>
+                                <td>${{ number_format($multas, 2) }}</td>
+                                <td>${{ number_format($gastos_ejecucion, 2) }}</td>
                                 <td>${{ number_format($item->otros_gastos, 2) }}</td>
                                 <td>${{ number_format($item->conv_vencido, 2) }}</td>
-                                <td>${{ $item->total }}</td>
+                                <td>${{ $total_ar }}</td>
                             </tr>
                             <tr>
-                                <td>Total, del adeudo requerido</td>
-    
-                                <td class="text-center bold" colspan="7">{{ $tar }}</td>
+                                <td class="text-center"> Total del adeudo requerido</td>
+                                <td class="text-center font-weight-bold" colspan="7" style="font-weight: bold">
+                                    ${{ $total_ar }} {{ $tar }}
+                                </td>
                             </tr>
                         </tbody>
                     </table>

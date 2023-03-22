@@ -188,7 +188,7 @@
                             <td>${{ number_format($item->gastos_ejecucion, 2) }}</td>
                             <td>${{ number_format($item->otros_gastos, 2) }}</td>
                             <td>${{ number_format($item->conv_vencido, 2) }}</td>
-                            <td>${{ $item->total }}</td>
+                            <td>${{ $total }}</td>
                         </tr>
                         <tr>
                             <td>Total, del adeudo requerido</td>

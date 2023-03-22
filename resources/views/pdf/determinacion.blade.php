@@ -41,29 +41,59 @@
             <br />
             <span class="bold">PRESENTE. -</span>
         </p>
-        <p class="text-justify">
-            El suscrito Dr.<span class="bold"> Víctor Daniel Amador Barragán</span> Director General de la Comisión
-            Estatal de Servicios Públicos
-            de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política de los Estado
-            Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales del Estado de Baja
-            California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de las Comisiones
-            Estatales de Servicios Públicos del Estado de Baja California, en relación con lo dispuesto por el primer
-            párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
-            California, y el acuerdo número SE/004/14-07-22 de la séptima sesión ordinaria del consejo de administración
-            de fecha 14 de julio de 2022, donde se otorga el nombramiento de Director General y de representación a la
-            Comisión Estatal Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley de Hacienda del Estado
-            de Baja California; artículo 14 BIS del Código Fiscal para el estado de baja california para el ejercicio
-            fiscal 2023; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta el Servicio de Agua Potable en el
-            Estado de Baja California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f),
-            g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años
-            <span class="bold">2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018 y 2019</span>; artículo 10,
-            sección lll y IV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley
-            de Ingresos para el ejercicio fiscal 2020; artículo 9, sección V y Vl, inciso A), numeral 1, subinciso a),
-            b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal 2021 y 2022,
-            artículo 9, sección V y Vl, inciso A), numeral 1, subincisos a), b), c), d), e), f), g), h), i), j), k) y l)
-            de la Ley de Ingresos para el ejercicio fiscal 2023; se procede a determinar el crédito fiscal en materia de
-            derechos por consumo de agua; lo cual queda contenido en la presente resolución, se concluye lo siguiente:
-        </p>
+        @if ($data->tipo_s == 'DOMESTICO')
+            <p class="text-justify">
+                El suscrito Dr.<span class="bold"> Víctor Daniel Amador Barragán</span>
+                Director General de la Comisión Estatal de Servicios
+                Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política de
+                los Estado Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales del
+                Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de las
+                Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo dispuesto
+                por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado
+                de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión ordinaria del consejo de
+                administración de fecha 14 de julio de 2022, donde se otorga el nombramiento de Director General y de
+                representación a la Comisión Estatal Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley
+                de Hacienda del Estado de Baja California; articulo 14 BIS del Codigo Fiscal para el estado de baja
+                california para el ejercicio fiscal 2023; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta
+                el Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll y lV, inciso A),
+                numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los
+                ejercicios fiscales de los años <span class="bold">2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011,
+                    2012, 2013, 2014, 2015,
+                    2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll y IV, inciso A), numeral 1, subinciso a),
+                b), c), d),
+                e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal 2020; artículo 9, sección
+                V Y Vl, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de
+                Ingresos para el ejercicio fiscal 2021,2022,2023; se procede a determinar el crédito fiscal en materia
+                de derechos por consumo de agua; lo cual queda contenido en la presente resolución, se concluye lo
+                siguiente:
+            </p>
+        @endif
+        @if ($data->tipo_s == 'NO DOMESTICO')
+            <p class="text-justify">
+                El suscrito Dr.<span class="bold"> Víctor Daniel Amador Barragán</span> Director General de la
+                Comisión
+                Estatal de Servicios
+                Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política de
+                los Estado Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales del
+                Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de las
+                Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo dispuesto
+                por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado
+                de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión ordinaria del consejo de
+                administración de fecha 14 de julio de 2022, donde se otorga el nombramiento de Director General y de
+                representación a la Comisión Estatal Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley
+                de Hacienda del Estado de Baja California; articulo 14 BIS del Codigo Fiscal para el estado de baja
+                california para el ejercicio fiscal 2022; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta
+                el Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll y lV, inciso A),
+                numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años
+                <span class="bold">2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
+                    2018 Y 2019</span>;
+                artículo 10, sección lll y IV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos
+                para el ejercicio fiscal 2020; artículo 9, sección Vl Y V, inciso A), numeral 2, subinciso a), b), c) y
+                d) de la Ley de Ingresos para el ejercicio fiscal 2021,2022,2023; se procede a determinar el crédito
+                fiscal en materia de derechos por consumo de agua; lo cual queda contenido en la presente resolución, se
+                concluye lo siguiente:
+            </p>
+        @endif
         <p class="text-center bold">CONSIDERANDO ÚNICO:</p>
         <p class="text-justify">
             En virtud que de acuerdo a la información registrada en los archivos digitales del sistema electrónico de la
@@ -179,259 +209,338 @@
             </p>
         </div>
         <p class="justify-center">
-            Las tasas de recargos mensuales vigentes en los ejercicios <span class="bold">{{$anioformat}}</span>; aplicables en la presente
+            Las tasas de recargos mensuales vigentes en los ejercicios <span class="bold">{{ $anioformat }}</span>;
+            aplicables en la presente
             resolución
             liquidatoria, fueron publicadas en el Periódico Oficial del Estado, según el análisis que a continuación se
             detalla:
         </p>
-        @foreach ($años as $item )
-            @if ($item->anio==2004)
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2004.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 34 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2004,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2003, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
-            @endif
-            @if ($item->anio==2005)  
+        @foreach ($años as $item)
+            @if ($item->anio == 2004)
                 <p class="text-justify">
-                    <span class="bold">Recargos para el año 2005.</span>
+                    <span class="bold">Recargos para el año 2004.</span>
                     <br />
-                    De conformidad con lo dispuesto por el artículo 35 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2005,</span> fue publicada en el Periódico
+                    De conformidad con lo dispuesto por el artículo 34 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2004,</span> fue publicada en el
+                    Periódico
                     Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2004, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
+                    California de fecha 31 de diciembre de 2003, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
                     septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
                 </p>
             @endif
-            @if ($item->anio==2006)
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2006.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2006,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2005, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2005)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2005.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 35 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2005,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2004, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2007)
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2007.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2006,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2005, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2006)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2006.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2006,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2005, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2008)
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2008.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2008,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2007, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>   
+            @if ($item->anio == 2007)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2007.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2006,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2005, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2009)
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2009.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2009,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2008, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2008)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2008.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2008,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2007, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2010)   
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2010.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2010,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2009, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2009)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2009.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2009,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2008, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2011) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2011.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2011,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2010, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2010)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2010.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2010,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2009, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2012) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2012.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2012,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2011, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2011)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2011.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2011,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2010, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2013) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2013.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2013,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2012, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2012)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2012.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2012,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2011, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2014) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2014.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2014,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja California
-                de fecha 31 de diciembre de 2013, la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%,
-                marzo
-                de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de
-                2.25%,
-                octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2013)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2013.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2013,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2012, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2015) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2015.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2015,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2014, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2014)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2014.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2014,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja California
+                    de fecha 31 de diciembre de 2013, la tasa de recargos por el mes de enero fue de 2.25%, febrero del
+                    2.25%,
+                    marzo
+                    de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre
+                    de
+                    2.25%,
+                    octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2016) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2016.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2016,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2015, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2015)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2015.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2015,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2014, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2017) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2017.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 segundo párrafo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2017,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2016, la tasa de recargos por el mes de enero de 2.25%, febrero de
-                2.25%, marzo de 2.25% abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2016)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2016.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2016,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2015, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2018) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2018.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2018,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2017, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2017)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2017.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 segundo párrafo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2017,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2016, la tasa de recargos por el mes de enero de 2.25%,
+                    febrero de
+                    2.25%, marzo de 2.25% abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2019) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2019.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2019,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2018, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2018)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2018.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2018,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2017, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2020) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2020.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 35 párrafo segundo de la Ley de Ingresos del Estado de Baja
-                California <span class="bold">para el ejercicio fiscal de 2020,</span> fue publicada en el Periódico
-                Oficial del Estado de Baja
-                California de fecha 31 de diciembre de 2019, la tasa de recargos por el mes de enero fue de 2.25%, febrero
-                del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%,
-                septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2019)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2019.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2019,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2018, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2021) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2021.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 35 Ley de Ingresos del Estado de Baja California <span
-                    class="bold">para el
-                    ejercicio fiscal de 2021,</span> fue publicada en el Periódico Oficial del Estado de Baja California de
-                fecha 28 de
-                diciembre de 2020, la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%,
-                abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre
-                de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2020)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2020.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 35 párrafo segundo de la Ley de Ingresos del Estado
+                    de Baja
+                    California <span class="bold">para el ejercicio fiscal de 2020,</span> fue publicada en el
+                    Periódico
+                    Oficial del Estado de Baja
+                    California de fecha 31 de diciembre de 2019, la tasa de recargos por el mes de enero fue de 2.25%,
+                    febrero
+                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+                    2.25%,
+                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2022) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2022</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 37 Ley de Ingresos del Estado de Baja California <span
-                    class="bold">para el
-                    ejercicio fiscal de 2022,</span> fue publicada en el Periódico Oficial del Estado de Baja California de
-                fecha 31 de
-                diciembre de 2021,
-                la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de 2.25%,
-                mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de 2.25%,
-                noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2021)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2021.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 35 Ley de Ingresos del Estado de Baja California
+                    <span class="bold">para el
+                        ejercicio fiscal de 2021,</span> fue publicada en el Periódico Oficial del Estado de Baja
+                    California de
+                    fecha 28 de
+                    diciembre de 2020, la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de
+                    2.25%,
+                    abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%,
+                    octubre
+                    de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
-            @if ($item->anio==2023) 
-            <p class="text-justify">
-                <span class="bold">Recargos para el año 2023.</span>
-                <br />
-                De conformidad con lo dispuesto por el artículo 36 de la Ley de Ingresos del Estado de Baja California <span
-                    class="bold">para
-                    el ejercicio fiscal de 2023,</span> publicada en el Periódico Oficial del Estado de Baja California de
-                fecha 21 de
-                diciembre de 2022, cuando no se cubran las contribuciones dentro de los plazos señalados en las
-                disposiciones fiscales, se pagarán recargos por concepto de indemnización al fisco la tasa de 2.25% mensual,
-                la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de 2.25%,
-                mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de 2.25%,
-                noviembre de 2.25% y diciembre de 2.25%.
-            </p>
+            @if ($item->anio == 2022)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2022</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 37 Ley de Ingresos del Estado de Baja California
+                    <span class="bold">para el
+                        ejercicio fiscal de 2022,</span> fue publicada en el Periódico Oficial del Estado de Baja
+                    California de
+                    fecha 31 de
+                    diciembre de 2021,
+                    la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de
+                    2.25%,
+                    mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de
+                    2.25%,
+                    noviembre de 2.25% y diciembre de 2.25%.
+                </p>
+            @endif
+            @if ($item->anio == 2023)
+                <p class="text-justify">
+                    <span class="bold">Recargos para el año 2023.</span>
+                    <br />
+                    De conformidad con lo dispuesto por el artículo 36 de la Ley de Ingresos del Estado de Baja
+                    California <span class="bold">para
+                        el ejercicio fiscal de 2023,</span> publicada en el Periódico Oficial del Estado de Baja
+                    California de
+                    fecha 21 de
+                    diciembre de 2022, cuando no se cubran las contribuciones dentro de los plazos señalados en las
+                    disposiciones fiscales, se pagarán recargos por concepto de indemnización al fisco la tasa de 2.25%
+                    mensual,
+                    la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de
+                    2.25%,
+                    mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de
+                    2.25%,
+                    noviembre de 2.25% y diciembre de 2.25%.
+                </p>
             @endif
         @endforeach
         <p class="bold text-justify">Suma de las tasas de recargos calculados en forma mensual para los derechos por
@@ -589,11 +698,11 @@
             refiere el primer dispositivo legal aludido en este párrafo, generando en suma por concepto de
             recargos
             acumulados la cantidad de
-            <span class="bold">{{ $ra }}</span>
+            <span class="bold">{{ $ra}}</span>
         </p>
         <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número
-            <span class="bold">_________</span>, por la suma de
-            <span class="bold">$_________ _________ </span>, integrado de la siguiente forma:
+            <span class="bold">{{ $data->cuenta }}</span>, por la suma de
+            <span class="bold">${{ $total_ar}} {{$tar}} </span>, integrado de la siguiente forma:
         </p>
         <br />
         <table class="table2">
@@ -628,31 +737,31 @@
                 </tr>
                 <tr>
                     <td>Convenio De Agua</td>
-                    <td>${{$data->convenio_agua}}</td>
+                    <td>${{ number_format($data->convenio_agua,2 )}}</td>
                 </tr>
                 <tr>
                     <td>Recargos Convenio De Agua</td>
-                    <td>${{$data->recargos_convenio_agua}}</td>
+                    <td>${{ number_format($data->recargos_convenio_agua ,2)}}</td>
                 </tr>
                 <tr>
                     <td>Convenio De Obra</td>
-                    <td>${{$data->convenio_obra}}</td>
+                    <td>${{ number_format($data->convenio_obra,2 )}}</td>
                 </tr>
                 <tr>
                     <td>Recargos Convenio De Obra</td>
-                    <td>${{$data->recargos_convenio_obra}}</td>
+                    <td>${{ number_format($data->recargos_convenio_obra,2 )}}</td>
                 </tr>
                 <tr>
                     <td>Gastos De Ejecución</td>
-                    <td>${{$data->gastos_ejecución}}</td>
+                    <td>${{ number_format($data->gastos_ejecución,2 )}}</td>
                 </tr>
                 <tr>
                     <td>Otros Servicios</td>
-                    <td>${{$data->otros_servicios}}</td>
+                    <td>${{ number_format($data->otros_servicios,2 )}}</td>
                 </tr>
                 <tr>
                     <td>Saldo Total</td>
-                    <td>${{$data->saldo_total}}</td>
+                    <td>${{ number_format($total_ar,2)}}</td>
                 </tr>
             </tbody>
         </table>
@@ -676,7 +785,7 @@
             Administrativa de Baja California, en tratándose de algunas de las materias a que se refiere el artículo 2º
             del citado ordenamiento legal.
         </p>
-        <p>Notifíquese personalmente.</p>
+        <p class="bold">Notifíquese personalmente.</p>
         <p class="text-center bold">
             A T E N T A M E N T E
         </p>

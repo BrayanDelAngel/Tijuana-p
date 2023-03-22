@@ -176,7 +176,7 @@
                                             @error('tservicio')
                                             border border-danger rounded-2
                                             @enderror"
-                                            id="tservicio" name="tservicio" value="{{ $ts }}">
+                                            id="tservicio" name="tservicio" value="{{ $ts }}" readonly>
                                         @error('tservicio')
                                             <div class="text-danger text-center">
                                                 El campo servicio es requerido
@@ -332,13 +332,18 @@
                                     <td>Totales</td>
                                     <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
                                     <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
-                                    <td>${{ number_format($item->multas, 2) }}</td>
-                                    <td>${{ number_format($item->gastos_ejecucion, 2) }}</td>
+                                    <td>${{ number_format($multas, 2) }}</td>
+                                    <td>${{ number_format($gastos_ejecucion, 2) }}</td>
                                     <td>${{ number_format($item->otros_gastos, 2) }}</td>
                                     <td>${{ number_format($item->conv_vencido, 2) }}</td>
-                                    <td>${{ $item->total }}</td>
+                                    <td>${{ $total_ar }}</td>
                                 </tr>
-
+                                <tr>
+                                    <td class="text-center"> Total del adeudo requerido</td>
+                                    <td class="text-center font-weight-bold" colspan="7" style="font-weight: bold">
+                                        ${{ $total_ar }} {{ $tar }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
