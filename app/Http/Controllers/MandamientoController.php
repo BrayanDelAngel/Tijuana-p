@@ -183,6 +183,7 @@ class MandamientoController extends Controller
                 'gastos_ejecucion',
                 'conv_vencido',
                 'otros_gastos',
+                'periodo',
                 'saldo_total as total',
                 'm.sobrerecaudador as sobrerecaudador',
                 'r.tipo_s',
@@ -196,6 +197,8 @@ class MandamientoController extends Controller
             )
             ->where('m.id', $id)
             ->get();
+            //Obteniendo el sobrerecaudador
+            $sobrerecaudador=$datos[0]->sobrerecaudador;
         $formato = new NumeroALetras();
         //Convirtiendo la fecha en fecha corta para mandamiento
         $f = strtotime($datos[0]->fecha_converter);
@@ -242,7 +245,6 @@ class MandamientoController extends Controller
         $entero = floor($total_ar);
         //extraemos el decimal
         $decimal = round($total_ar - $entero, 2) * 100;
-
         //convertimos en texto el entero
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
@@ -287,6 +289,7 @@ class MandamientoController extends Controller
             'total_ar' => number_format($total_ar, 2),
             'fechamanda'=>$fechamanda,
             'fechadeterminacion'=>$fechadeterminacion,
+            'sobrerecaudador'=>$sobrerecaudador,
         ]);
         // setPaper('')->
         //A4 -> carta

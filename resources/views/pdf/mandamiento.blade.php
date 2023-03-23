@@ -35,7 +35,7 @@
                     </p>
                 </div>
                 <p>
-                    Tijuana, Baja California a <span class="underline">{{$item->fecham}}</span>
+                    Tijuana, Baja California a <span class="underline">{{ $item->fecham }}</span>
                 </p>
             </div>
             <p class="text-justify">
@@ -49,7 +49,7 @@
                 <span class="bold"> Cuenta:</span> {{ $item->cuenta }}
             </p>
             <p id="right">
-                <span class="bold"> Tipo de servicio:</span> <span class="underline">{{$item->tipo_s}}</span>
+                <span class="bold"> Tipo de servicio:</span> <span>{{ $item->tipo_s }}</span>
             </p>
             <p>
                 <span class="bold"> Clave catastral:</span> {{ $item->clavec }}
@@ -64,7 +64,7 @@
                 <span>Subrecaudación de Rentas adscrita a la Comisión Estatal
                     de Servicios Públicos de Tijuana.</span>
             </p>
-            <p class="text-justify">Tijuana, Baja California a <span class="bold">{{$fechamanda}}</span>
+            <p class="text-justify">Tijuana, Baja California a <span class="bold">{{ $fechamanda }}</span>
                 esta
                 Subrecaudacion de
                 Rentas adscrita a la Comisión Estatal de Servicios Públicos de Tijuana, da cuenta de la remisión del
@@ -72,7 +72,7 @@
                 fiscal determinado por la citada Comisión Estatal, de la que se desprende que la cuenta
                 {{ $item->cuenta }}
                 a nombre de {{ $item->propietario }} a la fecha no se ha cubierto el pago de la liquidación número
-                {{ $item->folio }} de fecha {{$item->fecham}}; esta autoridad en ejercicio de
+                {{ $item->folio }} de fecha {{ $item->fecham }}; esta autoridad en ejercicio de
                 los
                 artículos 6, 59 primer párrafo, fracción III, segundo párrafo del Reglamento Interno de la Secretaría de
                 Hacienda del Estado de Baja California, así como con fundamento en los artículos 1,2 fracciones I, II,
@@ -179,16 +179,17 @@
                     </li>
                     <li>
                         <p class="text-justify">
-                            Que el día {{$fechadeterminacion}}, fue
+                            Que el día {{ $fechadeterminacion }}, fue
                             debidamente notificada,
                             determinación y liquidación de crédito de los servicios de agua potable, con número de
-                            crédito {{ $item->folio }}, de fecha {{$item->fechad}} emitido por _______________________, otorgándole un plazo de 6 días hábiles
+                            crédito {{ $item->folio }}, de fecha {{ $item->fechad }} emitido por
+                            la Comisión Estatal de Servicios Públicos de Tijuana, otorgándole un plazo de 6 días hábiles
                             siguientes para realizar el pago.
                         </p>
                     </li>
                     <li>
                         <p class="text-justify">
-                            Que el día {{$item->fechanr}} le fue debidamente notificado
+                            Que el día {{ $item->fechanr }} le fue debidamente notificado
                             Requerimiento de Pago y toda vez que vencido el plazo que le fue conferido por ley, sin que
                             hasta la presente fecha se haya registrado pago alguno a su favor y no obra en nuestros
                             registros recurso administrativo de inconformidad ni escrito que para sí convenga de acuerdo
@@ -224,29 +225,53 @@
                     177,
                     178, 179 y 180 del Código Fiscal del Estado de Baja California.
                 </p>
+                @if ($ejecutores == 'none')
+                    <p class="text-justify">
+                        <span class="bold">TERCERO.</span>
+                        Para dar cumplimiento del presente mandamiento en términos del artículo 50 fracción X del
+                        Reglamento
+                        Interno de la Comisión Estatal de Servicios Públicos de Tijuana se designan con el cargo de
+                        verificador,
+                        notificador y ejecutor por esta Subrecaudacion de Rentas Adscrita a la Comisión Estatal de
+                        Servicios
+                        Públicos de Tijuana, a los CC.
+                        __________________________________________________________________________________________________________
+                        para que de manera conjunta o separada den cumplimiento al presente mandamiento de ejecución,
+                        quienes al inicio de la diligencia deberán identificarse al momento de la diligencia con la
+                        constancia de identificación vigente
+                        en la que aparece su fotografía y su firma y deberán levantar acta pormenorizada de la que se
+                        entregará
+                        copia a la persona con quien se entienda la misma.
+                    </p>
+                @endif
+                @if ($ejecutores != 'none')
+                    <p class="text-justify">
+                        <span class="bold">TERCERO.</span>
+                        Para dar cumplimiento del presente mandamiento en términos del artículo 50 fracción X del
+                        Reglamento
+                        Interno de la Comisión Estatal de Servicios Públicos de Tijuana se designan con el cargo de
+                        verificador,
+                        notificador y ejecutor por esta Subrecaudacion de Rentas Adscrita a la Comisión Estatal de
+                        Servicios
+                        Públicos de Tijuana, a los CC.
+                        {{$ejecutores}}
+                        para que de manera conjunta o separada den cumplimiento al presente mandamiento de ejecución,
+                        quienes al inicio de la diligencia deberán identificarse al momento de la diligencia con la
+                        constancia de identificación vigente
+                        en la que aparece su fotografía y su firma y deberán levantar acta pormenorizada de la que se
+                        entregará
+                        copia a la persona con quien se entienda la misma.
+                    </p>
+                @endif
                 <p class="text-justify">
-                    <span class="bold">TERCERO.</span>
-                    Para dar cumplimiento del presente mandamiento en términos del artículo 50 fracción X del Reglamento
-                    Interno de la Comisión Estatal de Servicios Públicos de Tijuana se designan con el cargo de
-                    verificador,
-                    notificador y ejecutor por esta Subrecaudacion de Rentas Adscrita a la Comisión Estatal de Servicios
-                    Públicos de Tijuana, a los CC. _________________________________________________ para que de manera
-                    conjunta o separada den cumplimiento al presente mandamiento de ejecución, quienes al inicio de la
-                    diligencia deberán identificarse al momento de la diligencia con la constancia de identificación
-                    vigente
-                    en la que aparece su fotografía y su firma y deberán levantar acta pormenorizada de la que se
-                    entregará
-                    copia a la persona con quien se entienda la misma.
-                </p>
-                <p class="text-justify">
-                    Por lo reseñado, el C. {{$item->sobrerecaudador}} Subrecaudador de Rentas adscrito a la
+                    Por lo reseñado, el C. {{ $item->sobrerecaudador }} Subrecaudador de Rentas adscrito a la
                     Comisión Estatal de Servicios Públicos de Tijuana, autoridad que:
                 </p>
                 <div class="ordena">
                     <p class="text-center"><span class="bold">O R D E N A</span></p>
                     <p class="text-justify">
                         <span class="bold">PRIMERO.</span>
-                        Requiérase a {{ $item->propietario }}, titular el contrato número _____________,
+                        Requiérase a {{ $item->propietario }}, titular el contrato número {{ $item->folio }},
                         ubicado en: {{ $item->domicilio }}, el pago del crédito fiscal a su
                         cargo,
                         que ya ha quedado precisado, actualizado junto con los gastos accesorios causados a la fecha de
@@ -271,7 +296,7 @@
                         Considerando que el contribuyente no realizo el pago de los derechos de consumo de agua potable,
                         por
                         los
-                        períodos del _______________ al _______________, la cantidad que deberá cubrir por periodo será
+                        períodos del {{ $item->periodo }}, la cantidad que deberá cubrir por periodo será
                         de
                         acuerdo al tipo de servicio contratado y a las tarifas que le correspondan, según las leyes de
                         ingresos
@@ -562,7 +587,7 @@
                         ______________________________________________
                         <br />
                         <span class="bold">
-                            EL C. {{ $item->sobrerecaudador }} SUBRECAUDADOR DE RENTAS ADSCRITA A LA COMISIÓN
+                            EL C. {{ $sobrerecaudador }} SUBRECAUDADOR DE RENTAS ADSCRITA A LA COMISIÓN
                             ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA
                         </span>
                     </p>

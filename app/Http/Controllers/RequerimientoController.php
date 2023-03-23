@@ -58,7 +58,8 @@ class RequerimientoController extends Controller
                     'saldo_total as total',
                     'fechad',
                     'id',
-                    'periodo'
+                    'periodo',
+                    'tipo_s as TipoServicio'
                 )
                     ->where('id', $id[0]->id)
                     ->get();
@@ -73,7 +74,7 @@ class RequerimientoController extends Controller
                     ->where('implementta.Cuenta', $cuenta)
                     ->get();
                 //validamos el tipo de servicio
-                if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL") {
+                if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL"|| $date[0]->TipoServicio == "DOMESTICO") {
                     $ts = 'DOMESTICO';
                 } else {
                     $ts = 'NO DOMESTICO';
