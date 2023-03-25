@@ -28,10 +28,7 @@ class TarifasRequest extends FormRequest
         return [
             "anioA" => ['required'],
             "mesA" => ['required'],
-            "tarifa1A" => ['required'],
-            "factor1A" => ['required'],
-            "tarifa2A" => ['required'],
-            "factor2A" => ['required'],
+            "incp" => ['required'],
         ];
     }
     public function messages()
@@ -40,10 +37,7 @@ class TarifasRequest extends FormRequest
         return [
             'anioA.required' => 'El campo año es requerido',
             'mesA.required' => 'El campo mes es requerido',
-            'tarifa1A.required' => 'El campo tarifa no domestico es requerido',
-            'factor1A.required' => 'El campo factor no domestico es requerido',
-            'tarifa2A.required' => 'El campo tarifa domestico es requerido',
-            'factor2A.required' => 'El campo factor domestico es requerido',
+            'incp.required' => 'El campo inpc es requerido',
         ];
     }
     public function withValidator($validator)

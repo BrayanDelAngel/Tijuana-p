@@ -369,15 +369,62 @@
                             <tbody class="table-light text-center">
                                 <tr>
                                     <td class="text-center">Requerimiento de pago</td>
-                                    <td class="text-center">&nbsp;&nbsp;</td>
+                                    <td class="text-center">
+                                        <input type="text" name="pagor" id="pagor" value="{{ old('pagor') }}"
+                                            class="form-control mb-2  
+                                                @error('pagor')
+                                                border border-danger rounded-2
+                                                @enderror" />
+                                        @error('pagor')
+                                            <div class="text-danger text-center">
+                                                El campo pago requerimiento es requerido
+                                            </div>
+                                        @enderror
+                                    </td>
                                     <td class="text-center">2%</td>
-                                    <td class="text-center">&nbsp;&nbsp;</td>
+                                    <td class="text-center">
+                                        <input type="text" name="totalr" id="totalr" value="{{ old('totalr') }}"
+                                            class="form-control mb-2  
+                                        @error('totalr')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            readonly />
+                                        @error('totalr')
+                                            <div class="text-danger text-center">
+                                                El campo total es requerido
+                                            </div>
+                                        @enderror
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">Embargo</td>
-                                    <td class="text-center">&nbsp;&nbsp;</td>
+                                    <td class="text-center">
+                                        <input type="text" name="pagoe" id="pagoe" value="{{ old('pagoe') }}"
+                                        class="form-control mb-2  
+                                    @error('pagoe')
+                                    border border-danger rounded-2
+                                    @enderror"
+                                        readonly />
+                                    @error('pagoe')
+                                        <div class="text-danger text-center">
+                                            El campo pago embargo es requerido
+                                        </div>
+                                    @enderror
+                                    </td>
                                     <td class="text-center">2%</td>
-                                    <td class="text-center">&nbsp;&nbsp;</td>
+                                    <td class="text-center">
+                                        <input type="text" name="totale" id="totale" value="{{ old('totale') }}"
+                                            class="form-control mb-2  
+                                        @error('totale')
+                                        border border-danger rounded-2
+                                        @enderror"
+                                            readonly />
+                                        @error('totale')
+                                            <div class="text-danger text-center">
+                                                El campo total es requerido
+                                            </div>
+                                        @enderror
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
