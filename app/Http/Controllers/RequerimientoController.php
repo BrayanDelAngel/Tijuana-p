@@ -132,7 +132,6 @@ class RequerimientoController extends Controller
             //consultar el id del requerimiento
             $id = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
             //eliminamos los ejecutores existentes
-
             $ejecutores_ra = ejecutores_ra::where('id_r', $id->id)->delete();
             //declaramos que se va a modificar el registro de requerimiento
             $r = requerimientosA::findOrFail($id->id);
@@ -177,10 +176,10 @@ class RequerimientoController extends Controller
                         [IndexController::class, 'index']
                     );
             } else {
-                dd("error");
+                return back()->with('errorPeticion', 'Error al generar');
             }
         } else {
-            dd("error");
+            return back()->with('errorPeticion', 'Error al generar');
         }
     }
     public function pdf($id)

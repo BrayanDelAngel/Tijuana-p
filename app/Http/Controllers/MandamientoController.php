@@ -173,10 +173,10 @@ class MandamientoController extends Controller
                         [IndexController::class, 'index']
                     );
             } else {
-                dd("error");
+                return back()->with('errorPeticion', 'Error al generar');
             }
         } else {
-            dd("error");
+            return back()->with('errorPeticion', 'Error al generar');
         }
     }
     public function pdf($id)

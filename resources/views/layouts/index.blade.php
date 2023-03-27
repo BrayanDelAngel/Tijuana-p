@@ -25,6 +25,10 @@
 {{-- <body onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload=""> --}}
 
 <body>
+    @if (session('errorPeticion'))
+    {{-- Muestra de sweetalert en caso de error de petición --}}
+        <script src="{{ asset('js/sweetAlert/errorPeticion.js') }}"></script>
+    @endif
     @if (session('error'))
     {{-- Muestra de sweetalert en caso de error de petición --}}
         <script src="{{ asset('js/sweetAlert/accessDenied.js') }}"></script>

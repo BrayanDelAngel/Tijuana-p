@@ -79,9 +79,6 @@
                             <a href="{{ route('index') }}" class="btn btn-dark btn-sm"><img
                                     src="https://img.icons8.com/fluency/30/null/cancel.png" />
                                 Cancelar</a>
-                            <button type="submit" class="btn btn-primary btn-sm" target="_blank"><img
-                                    src="https://img.icons8.com/fluency/30/null/pdf.png" />
-                                Generar Determinación</button>
                         </div>
                     </div>
                 </div>

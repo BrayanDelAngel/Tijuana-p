@@ -152,9 +152,6 @@ class DeterminacionController extends Controller
         $conv_vencido = (float) str_replace(array('$', ','), '', $request->conv_vencido);
         $otros_gastos = (float) str_replace(array('$', ','), '', $request->otros_gastos);
         $total = (float) str_replace(array('$', ','), '', $request->total);
-        //Remplazar , por .
-
-        
         //guardamos los datos en requerimientosA
         $r->folio = $request->folio;
         $r->fechad = $request->fechad;
@@ -194,7 +191,7 @@ class DeterminacionController extends Controller
                     [IndexController::class, 'index']
                 );
         } else {
-            dd("error");
+            return back()->with('errorPeticion', 'Error al generar');
         }
     }
     public function pdf($id)
