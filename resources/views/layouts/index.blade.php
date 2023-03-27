@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    if(isset($_SESSION['user'])){
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -112,3 +116,6 @@
 </body>
 
 </html>
+<?php } else{
+    echo '<meta http-equiv="refresh" content="1,url=https://gallant-driscoll.198-71-62-113.plesk.page/implementta/modulos/Administrador/logout.php">';} 
+?>
