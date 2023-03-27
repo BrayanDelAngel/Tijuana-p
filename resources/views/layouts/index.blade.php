@@ -34,10 +34,10 @@
         <script src="{{ asset('js/sweetAlert/accessDeniedRequerimiento.js') }}"></script>
     @endif
     {{-- Spinner de caraga --}}
-    <div id="contenedor_carga">
+    {{-- <div id="contenedor_carga">
         <div id="carga">
         </div>
-    </div>
+    </div> --}}
     {{-- Navegador --}}
     <nav class="navbar navbar-expand-lg navbar-light">
         <a href="{{ asset('../../../../Administrador/selectSistem.php') }}"><img
@@ -67,11 +67,9 @@
             <ul class="dropdown-menu bg-white">
                 <h6 class="dropdown-header">Utilidades de la plaza</h6>
                 <a class="dropdown-item" href="{{ route('index') }}">
-                    <i class="fas fa-balance-scale"></i>
-                    Determinaciones Fiscales</a>
+                    Inicio</a>
                 <a class="dropdown-item" href="{{ route('tarifas') }}">
-                    <img src="https://img.icons8.com/fluency/24/null/cash-register.png"/>
-                    Tarifas</a>
+                    INCP</a>
             </ul>
         </div>
     </div>
@@ -102,7 +100,7 @@
         </form>
     </footer>
 
-    <script src="{{ asset('js/offLoaderSpinner.js') }}"></script>
+    {{-- <script src="{{ asset('js/offLoaderSpinner.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/bloqueos.js') }}"></script> --}}
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
