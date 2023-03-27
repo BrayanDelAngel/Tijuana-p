@@ -53,10 +53,11 @@
                 de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión ordinaria del consejo de
                 administración de fecha 14 de julio de 2022, donde se otorga el nombramiento de Director General y de
                 representación a la Comisión Estatal Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley
-                de Hacienda del Estado de Baja California; articulo 14 BIS del Codigo Fiscal para el estado de baja
-                california para el ejercicio fiscal 2023; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta
+                de Hacienda del Estado de Baja California; articulo 14 BIS del Codigo Fiscal para el Estado de Baja
+                California para el ejercicio fiscal 2023; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta
                 el Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll y lV, inciso A),
-                numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los
+                numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos del Estado de Baja
+                California para los
                 ejercicios fiscales de los años <span class="bold">2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011,
                     2012, 2013, 2014, 2015,
                     2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll y IV, inciso A), numeral 1, subinciso a),
@@ -81,15 +82,16 @@
                 de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión ordinaria del consejo de
                 administración de fecha 14 de julio de 2022, donde se otorga el nombramiento de Director General y de
                 representación a la Comisión Estatal Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley
-                de Hacienda del Estado de Baja California; articulo 14 BIS del Codigo Fiscal para el estado de baja
-                california para el ejercicio fiscal 2022; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta
+                de Hacienda del Estado de Baja California; articulo 14 BIS  del Codigo Fiscal para el Estado de Baja
+                California para el ejercicio fiscal 2023; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta
                 el Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll y lV, inciso A),
                 numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años
                 <span class="bold">2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
                     2018 Y 2019</span>;
                 artículo 10, sección lll y IV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos
                 para el ejercicio fiscal 2020; artículo 9, sección Vl Y V, inciso A), numeral 2, subinciso a), b), c) y
-                d) de la Ley de Ingresos para el ejercicio fiscal 2021,2022,2023; se procede a determinar el crédito
+                d) de la Ley de Ingresos del Estado de Baja California para los
+                ejercicios fiscales de los años 2021,2022,2023; se procede a determinar el crédito
                 fiscal en materia de derechos por consumo de agua; lo cual queda contenido en la presente resolución, se
                 concluye lo siguiente:
             </p>
@@ -103,7 +105,7 @@
             registrada como Titular de la cuenta número <span class="bold">{{ $data->cuenta }}</span>, con número de
             medidor
             <span class="bold">{{ $data->seriem }}</span>, de uso <span class="bold">{{ $data->tipo_s }}</span>,
-            del domicilio ubicado en «domicilio»de esta ciudad de Tijuana, Baja California, con clave catastral número
+            del domicilio ubicado en {{ $data->domicilio }} de esta ciudad de Tijuana, Baja California, con clave catastral número
             <span class="bold">{{ $data->clavec }}</span> se desprende que ha omitido cubrir las contribuciones
             generadas por
             los derechos
@@ -654,11 +656,11 @@
         <br />
         <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">{{ $tp }}</span>
         </p>
-        <p class="text-justify">De acuerdo al artículo 11 de la Ley de Ingresos para los ejercicios fiscales de los
-            años <span class="bold"> 2008, 2009, 2010,
-                2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 y 2019; </span>ículo 10, de la Ley de Ingresos para el
-            ejercicio
-            fiscal 2020 , 2021; artículo 9, de la Ley de Ingresos para el ejercicio fiscal 2022,2023 vigente en cada año
+        <p class="text-justify">De acuerdo al artículo 11 de la Ley de Ingresos del Estado de Baja
+            California para los ejercicios fiscales de los años <span class="bold"> 2008, 2009, 2010,
+                2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 y 2019; </span>artículo 10, de la Ley de Ingresos para el
+            ejercicio fiscal 2020 , 2021; artículo 9, de la Ley de Ingresos del Estado de Baja
+            California para el ejercicio fiscal 2022,2023 vigente en cada año
             las Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de Agua”, se
             actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir el Índice
             Nacional de Precios al Consumidor, que se publique en el Diario Oficial de la Federación por el Instituto
@@ -685,8 +687,8 @@
                 class="bold"> 2003, 2004,
                 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 y 2019;</span>
             ;artículo 10,
-            sección lll y IV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley
-            de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9, sección V y Vl, inciso
+            sección lll y IV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos del Estado de Baja
+            California para el ejercicio fiscal  <span class="bold">2020;</span> artículo 9, sección V y Vl, inciso
             A), numeral 1, subinciso a),
             b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
                 class="bold">2021, 2022;</span>
