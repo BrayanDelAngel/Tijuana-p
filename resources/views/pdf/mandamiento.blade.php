@@ -445,15 +445,15 @@
                         <tbody>
                             <tr>
                                 <td class="text-center">Requerimiento de pago</td>
-                                <td class="text-center">&nbsp;&nbsp;</td>
+                                <td class="text-center">${{ number_format($pagor, 2) }}</td>
                                 <td class="text-center">2%</td>
-                                <td class="text-center">&nbsp;&nbsp;</td>
+                                <td class="text-center">${{ number_format($totalr, 2) }}</td>
                             </tr>
                             <tr>
                                 <td class="text-center">Embargo</td>
-                                <td class="text-center">&nbsp;&nbsp;</td>
+                                <td class="text-center">${{ number_format($pagoe, 2) }}</td>
                                 <td class="text-center">2%</td>
-                                <td class="text-center">&nbsp;&nbsp;</td>
+                                <td class="text-center">${{ number_format($totale, 2) }}</td>
                             </tr>
                         </tbody>
                     </table>

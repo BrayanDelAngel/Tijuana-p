@@ -108,6 +108,10 @@ class MandamientoController extends Controller
             'fecham' =>  ['required'],
             'notificacion' =>  ['required'],
             'sobrerecaudador' =>  ['required'],
+            'pagor' =>  ['required'],
+            'totalr' =>  ['required'],
+            'pagoe' =>  ['required'],
+            'totale' =>  ['required'],
         ]);
 
         //validar si esta cuenta ya tiene un mandamiento
@@ -127,11 +131,19 @@ class MandamientoController extends Controller
             //declaramos que se creara un nuevo registro en mandamientosA
             $r = new mandamientosA();
         }
+        $pagor = (float) str_replace(array('$', ','), '', $request->pagor);
+        $totalr = (float) str_replace(array('$', ','), '', $request->totalr);
+        $pagoe = (float) str_replace(array('$', ','), '', $request->pagoe);
+        $totale = (float) str_replace(array('$', ','), '', $request->totale);
         //guardamos los datos en requerimientosA
         $r->fecham = $request->fecham;
         $r->fechanr = $request->notificacion;
         $r->sobrerecaudador = $request->sobrerecaudador;
         $r->id_r = $request->id;
+        $r->pago_requerimiento = $pagor;
+        $r->total_requerimiento = $totalr;
+        $r->pago_embargo = $pagoe;
+        $r->total_embargo = $totale;
         $r->save();
 
         //validamos si se guardaron los datos
@@ -184,6 +196,10 @@ class MandamientoController extends Controller
                 'conv_vencido',
                 'otros_gastos',
                 'periodo',
+                'm.pago_requerimiento as pagor',
+                'm.total_requerimiento as totalr',
+                'm.pago_embargo as pagoe',
+                'm.total_embargo as totale',
                 'saldo_total as total',
                 'm.sobrerecaudador as sobrerecaudador',
                 'r.tipo_s',
@@ -197,8 +213,12 @@ class MandamientoController extends Controller
             )
             ->where('m.id', $id)
             ->get();
-            //Obteniendo el sobrerecaudador
+            //Obteniendo datos que no se pueden visualizar en el pdf por medio del foreach
             $sobrerecaudador=$datos[0]->sobrerecaudador;
+            $pagor=$datos[0]->pagor;
+            $totalr=$datos[0]->totalr;
+            $pagoe=$datos[0]->pagoe;
+            $totale=$datos[0]->totale;
         $formato = new NumeroALetras();
         //Convirtiendo la fecha en fecha corta para mandamiento
         $f = strtotime($datos[0]->fecha_converter);
@@ -290,6 +310,10 @@ class MandamientoController extends Controller
             'fechamanda'=>$fechamanda,
             'fechadeterminacion'=>$fechadeterminacion,
             'sobrerecaudador'=>$sobrerecaudador,
+            'pagor'=>$pagor,
+            'totalr'=>$totalr,
+            'pagoe'=>$pagoe,
+            'totale'=>$totale,
         ]);
         // setPaper('')->
         //A4 -> carta

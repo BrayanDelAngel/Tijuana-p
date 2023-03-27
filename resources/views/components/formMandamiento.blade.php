@@ -374,7 +374,7 @@
                                             class="form-control mb-2  
                                                 @error('pagor')
                                                 border border-danger rounded-2
-                                                @enderror" />
+                                                @enderror" onchange="Porcentaje()"/>
                                         @error('pagor')
                                             <div class="text-danger text-center">
                                                 El campo pago requerimiento es requerido
@@ -388,7 +388,7 @@
                                         @error('totalr')
                                         border border-danger rounded-2
                                         @enderror"
-                                            readonly />
+                                            readonly onchange="Porcentaje()"/>
                                         @error('totalr')
                                             <div class="text-danger text-center">
                                                 El campo total es requerido
@@ -404,7 +404,7 @@
                                     @error('pagoe')
                                     border border-danger rounded-2
                                     @enderror"
-                                        readonly />
+                                         onchange="Porcentaje()" />
                                     @error('pagoe')
                                         <div class="text-danger text-center">
                                             El campo pago embargo es requerido
@@ -418,7 +418,7 @@
                                         @error('totale')
                                         border border-danger rounded-2
                                         @enderror"
-                                            readonly />
+                                            readonly onchange="Porcentaje()"/>
                                         @error('totale')
                                             <div class="text-danger text-center">
                                                 El campo total es requerido
@@ -450,4 +450,5 @@
 @endsection
 @section('js')
     <script src="{{ asset('js/addInput.js') }}"></script>
+    <script src="{{ asset('js/porcentaje.js') }}"></script>
 @endsection
