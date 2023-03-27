@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,8 +51,7 @@ return [
     | your application so that it is used when running Artisan tasks.
     |
     */
-
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => 'https://gallant-driscoll.198-71-62-113.plesk.page/implementta/modulos/Tijuana-p/public/',
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -80,7 +79,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------

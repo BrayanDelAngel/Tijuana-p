@@ -19,7 +19,7 @@ use Svg\Tag\Rect;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/index', [IndexController::class, 'index'])->name('index');
 //Buscador
 Route::post('/search', [IndexController::class, 'show'])->name('search');
 //PDF existente
