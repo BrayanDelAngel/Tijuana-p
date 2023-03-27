@@ -57,11 +57,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto gap-2">
-                <a class="nav-item nav-link" href="{{ asset('../../../../Administrador/selectSistem.php') }}"> Inicio
+                <a class="nav-item nav-link" href="{{route('index')}}"> Inicio
                 </a>
-                <a class="nav-item nav-link" href="{{ asset('../../../../Administrador/config.php') }}"> <i
-                        class="fas fa-users-cog"></i> Administrador </a>
-                <a class="nav-item nav-link" href="{{ asset('../../../../Administrador/logout.php') }}"> Salir <i
+                <a class="nav-item nav-link" href="https://gallant-driscoll.198-71-62-113.plesk.page/implementta/modulos/Administrador/logout.php"> Salir <i
                         class="fas fa-sign-out-alt"></i></a>
             </ul>
         </div>
