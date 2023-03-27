@@ -439,7 +439,7 @@
                                 Cancelar</a>
                             <button type="submit" class="btn btn-primary btn-sm" target="_blank"><img
                                     src="https://img.icons8.com/fluency/30/null/pdf.png" />
-                                Generar Requerimiento</button>
+                                Generar Mandamiento</button>
                         </div>
                     </div>
                 </div>
