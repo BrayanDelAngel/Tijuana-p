@@ -1,8 +1,8 @@
 
 function determinacion(cuenta) {
-    var contenedor = document.getElementById('contenedor_carga');
-    contenedor.style.visibility = '';
-    contenedor.style.opacity = '0.9';
+    // var contenedor = document.getElementById('contenedor_carga');
+    // contenedor.style.visibility = '';
+    // contenedor.style.opacity = '0.9';
     window.location.href = "https://gallant-driscoll.198-71-62-113.plesk.page/implementta/modulos/Tijuana-p/public/calculo/" + cuenta;
 }
 function requerimiento(cuenta) {
