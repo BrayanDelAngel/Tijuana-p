@@ -50,7 +50,7 @@
                 Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de las
                 Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo dispuesto
                 por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado
-                de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión ordinaria del consejo de
+                de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión extraordinaria del consejo de
                 administración de fecha 14 de julio de 2022, donde se otorga el nombramiento de Director General y de
                 representación a la Comisión Estatal Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley
                 de Hacienda del Estado de Baja California; articulo 14 BIS del Codigo Fiscal para el Estado de Baja
@@ -79,7 +79,7 @@
                 Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de las
                 Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo dispuesto
                 por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado
-                de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión ordinaria del consejo de
+                de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión extraordinaria del consejo de
                 administración de fecha 14 de julio de 2022, donde se otorga el nombramiento de Director General y de
                 representación a la Comisión Estatal Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley
                 de Hacienda del Estado de Baja California; articulo 14 BIS  del Codigo Fiscal para el Estado de Baja
@@ -642,7 +642,7 @@
                         <td class="td">${{ number_format($item->tarifa1, 2) }}</td>
                         <td class="td">${{ number_format($item->tarifa2, 2) }}</td>
                         <td class="td">${{ number_format($item->sumaTarifas, 2) }}</td>
-                        <td class="td">{{ number_format($item->factor, 2) }}</td>
+                        <td class="td">{{ number_format($item->factor, 4) }}</td>
                         <td class="td">${{ number_format($item->saldoAtraso, 2) }}</td>
                         <td class="td">${{ number_format($item->saldoRezago, 2) }}</td>
                         <td class="td">${{ number_format($item->totalPeriodo, 2) }}</td>
@@ -676,7 +676,7 @@
             <br />
             INPC del penúltimo mes inmediato anterior al del mismo mes que se actualiza
         </p>
-        <p class="bold"> para el año 2023 se agregará al factor de actualización un 0.5% acumulable cada mes</p>
+        <p class="bold"> para el año 2023 se agregará al factor de actualización un 0.1% acumulable cada mes</p>
 
         <p class="text-justify">
             Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el
