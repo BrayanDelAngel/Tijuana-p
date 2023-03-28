@@ -386,7 +386,7 @@
                                     <td class="td">${{ number_format($item->tarifa1, 2) }}</td>
                                     <td class="td">${{ number_format($item->tarifa2, 2) }}</td>
                                     <td class="td">${{ number_format($item->sumaTarifas, 2) }}</td>
-                                    <td class="td">{{ number_format($item->factor, 2) }}</td>
+                                    <td class="td">{{ number_format($item->factor, 4) }}</td>
                                     <td class="td">${{ number_format($item->saldoAtraso, 2) }}</td>
                                     <td class="td">${{ number_format($item->saldoRezago, 2) }}</td>
                                     <td class="td">${{ number_format($item->totalPeriodo, 2) }}</td>
