@@ -9,12 +9,15 @@ use Illuminate\Support\Facades\DB;
 use App\Models\implementta;
 use App\Models\tabla_da;
 use Luecano\NumeroALetras\NumeroALetras;
-use Illuminate\Support\Str;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request as Psr7Request;
+use Illuminate\Support\Facades\Http;
 
 class DeterminacionController extends Controller
 {
     public function exec($cuenta)
     {
+        webService($cuenta);
         //validamos si la cuenta existe dentro de la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
         //si no existe mandamos un error
