@@ -659,6 +659,8 @@
             </tbody>
         </table>
         <br />
+        <br />
+        <br />
         <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">{{ $tp }}</span>
         </p>
         @if ($data->tipo_s == 'DOMESTICO')
