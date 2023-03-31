@@ -662,51 +662,76 @@
         <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">{{ $tp }}</span>
         </p>
         @if ($data->tipo_s == 'DOMESTICO')
-            De acuerdo al artículo artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g),
-            h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                class="bold">2004</span>; artículo 11,
-            sección lll y lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley
-            de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009,
-                2010, 2011, 2012, 2013,
-                2014, 2015, 2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll y IV, inciso A), numeral 1,
-            subinciso a), b),
-            c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
-                class="bold">2020</span>; artículo 9,
-            sección lV Y V, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de
-            Ingresos para el ejercicio fiscal 2021 artículo 9, sección V Y Vl, inciso A), numeral 1, subinciso a), b),
-            c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
-                class="bold">2022,2023</span> vigente en
-            cada año las Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de Agua”, se
-            actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir el Índice
-            Nacional de Precios al Consumidor, que se publique en el Diario Oficial de la Federación por el Instituto
-            Nacional de Estadística y Geografía, o por la dependencia federal que en sustitución de ésta lo publique,
-            del último mes inmediato anterior al mes por el cual se hace el ajuste, entre el citado índice del penúltimo
-            mes inmediato anterior al del mismo mes que se actualiza. Los Índices Nacionales de Precios al Consumidor se
-            publicarán los días 10 de cada mes en el Diario Oficial de la Federación o por la dependencia
-            correspondiente. En caso de que a la fecha de la actualización no se haya publicado el índice citado, se
-            tomarán los últimos publicados.
+            <p class="text-justify">
+                De acuerdo al artículo artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f),
+                g),
+                h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
+                    class="bold">2004</span>; artículo 11,
+                sección lll y lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la
+                Ley
+                de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009,
+                    2010, 2011, 2012, 2013,
+                    2014, 2015, 2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll y IV, inciso A), numeral 1,
+                subinciso a), b),
+                c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
+                    class="bold">2020</span>; artículo 9,
+                sección lV Y V, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la
+                Ley de
+                Ingresos para el ejercicio fiscal 2021 artículo 9, sección V Y Vl, inciso A), numeral 1, subinciso a),
+                b),
+                c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
+                    class="bold">2022,2023</span> vigente en
+                cada año las Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de
+                Agua”, se
+                actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir el
+                Índice
+                Nacional de Precios al Consumidor, que se publique en el Diario Oficial de la Federación por el
+                Instituto
+                Nacional de Estadística y Geografía, o por la dependencia federal que en sustitución de ésta lo
+                publique,
+                del último mes inmediato anterior al mes por el cual se hace el ajuste, entre el citado índice del
+                penúltimo
+                mes inmediato anterior al del mismo mes que se actualiza. Los Índices Nacionales de Precios al
+                Consumidor se
+                publicarán los días 10 de cada mes en el Diario Oficial de la Federación o por la dependencia
+                correspondiente. En caso de que a la fecha de la actualización no se haya publicado el índice citado, se
+                tomarán los últimos publicados.
+
+            </p>
         @endif
         @if ($data->tipo_s == 'NO DOMESTICO')
-            De acuerdo al artículo 11, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de
-            Ingresos para los ejercicios fiscales de los años 2004; artículo 11, sección lll y lV, inciso A), numeral 2,
-            subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                class="bold">2005, 2006, 2007,
-                2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll
-            y IV,
-            inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
-                class="bold">2020</span>;
-            artículo 9, sección lV Y V, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el
-            ejercicio fiscal 2021; artículo 9, sección Vl Y V, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley
-            de Ingresos para el ejercicio fiscal <span class="bold">2022,2023</span>; vigente en cada año las Tarifas
-            y Cuotas contenidas en cada
-            una de las secciones del Capítulo I “Servicios de Agua”, se actualizarán mensualmente, a partir del mes de
-            febrero, con el factor que se obtenga de dividir el Índice Nacional de Precios al Consumidor, que se
-            publique en el Diario Oficial de la Federación por el Instituto Nacional de Estadística y Geografía, o por
-            la dependencia federal que en sustitución de ésta lo publique, del último mes inmediato anterior al mes por
-            el cual se hace el ajuste, entre el citado índice del penúltimo mes inmediato anterior al del mismo mes que
-            se actualiza. Los Índices Nacionales de Precios al Consumidor se publicarán los días 10 de cada mes en el
-            Diario Oficial de la Federación o por la dependencia correspondiente. En caso de que a la fecha de la
-            actualización no se haya publicado el índice citado, se tomarán los últimos publicados
+            <p class="text-justify">
+                De acuerdo al artículo 11, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de
+                Ingresos para los ejercicios fiscales de los años 2004; artículo 11, sección lll y lV, inciso A),
+                numeral 2,
+                subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span
+                    class="bold">2005, 2006, 2007,
+                    2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>; artículo 10, sección
+                lll
+                y IV,
+                inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
+                    class="bold">2020</span>;
+                artículo 9, sección lV Y V, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para
+                el
+                ejercicio fiscal 2021; artículo 9, sección Vl Y V, inciso A), numeral 2, subinciso a), b), c) y d) de la
+                Ley
+                de Ingresos para el ejercicio fiscal <span class="bold">2022,2023</span>; vigente en cada año las
+                Tarifas
+                y Cuotas contenidas en cada
+                una de las secciones del Capítulo I “Servicios de Agua”, se actualizarán mensualmente, a partir del mes
+                de
+                febrero, con el factor que se obtenga de dividir el Índice Nacional de Precios al Consumidor, que se
+                publique en el Diario Oficial de la Federación por el Instituto Nacional de Estadística y Geografía, o
+                por
+                la dependencia federal que en sustitución de ésta lo publique, del último mes inmediato anterior al mes
+                por
+                el cual se hace el ajuste, entre el citado índice del penúltimo mes inmediato anterior al del mismo mes
+                que
+                se actualiza. Los Índices Nacionales de Precios al Consumidor se publicarán los días 10 de cada mes en
+                el
+                Diario Oficial de la Federación o por la dependencia correspondiente. En caso de que a la fecha de la
+                actualización no se haya publicado el índice citado, se tomarán los últimos publicados
+            </p>
         @endif
 
         <p class="text-justify bold">Fórmula para determinar factor de actualización mensual</p>
@@ -735,27 +760,38 @@
                 le fueron facturados por periodo mensual dentro del plazo a que se refiere el primer dispositivo legal
                 aludido en este párrafo, generando en suma por concepto de recargos acumulados la cantidad de
                 <span class="bold">{{ $ra }}</span>
+            </p>
         @endif
         @if ($data->tipo_s == 'DOMESTICO')
-            Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último párrafo del
-            artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja California, en
-            relación con lo previsto por artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e),
-            f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                class="bold">2004</span>; artículo
-            11, sección lll y lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la
-            Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009,
-                2010, 2011, 2012,
-                2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll y IV, inciso A), numeral 1,
-            subinciso
-            a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
-                class="bold">2020</span>;
-            artículo 9, sección lV Y V, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l)
-            de la Ley de Ingresos para el ejercicio fiscal 2021 artículo 9, sección V Y Vl, inciso A), numeral 1,
-            subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal
-            2022,2023; toda vez que omitió efectuar el pago de los derechos generados por consumo de agua potable que le
-            fueron facturados por periodo mensual dentro del plazo a que se refiere el primer dispositivo legal aludido
-            en este párrafo, generando en suma por concepto de recargos acumulados la cantidad de
-            <span class="bold">{{ $ra }}</span>
+            <p class="text-justify">
+                Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último párrafo
+                del
+                artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja California, en
+                relación con lo previsto por artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d),
+                e),
+                f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
+                    class="bold">2004</span>; artículo
+                11, sección lll y lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de
+                la
+                Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008,
+                    2009,
+                    2010, 2011, 2012,
+                    2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll y IV, inciso A), numeral
+                1,
+                subinciso
+                a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
+                    class="bold">2020</span>;
+                artículo 9, sección lV Y V, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y
+                l)
+                de la Ley de Ingresos para el ejercicio fiscal 2021 artículo 9, sección V Y Vl, inciso A), numeral 1,
+                subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal
+                2022,2023; toda vez que omitió efectuar el pago de los derechos generados por consumo de agua potable
+                que le
+                fueron facturados por periodo mensual dentro del plazo a que se refiere el primer dispositivo legal
+                aludido
+                en este párrafo, generando en suma por concepto de recargos acumulados la cantidad de
+                <span class="bold">{{ $ra }}</span>
+            </p>
         @endif
         </p>
         <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número
