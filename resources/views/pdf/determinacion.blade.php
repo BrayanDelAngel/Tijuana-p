@@ -660,7 +660,6 @@
         </table>
         <br />
         <br />
-        <br />
         <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">{{ $tp }}</span>
         </p>
         @if ($data->tipo_s == 'DOMESTICO')
@@ -871,24 +870,26 @@
             determinado en el presente documento, será turnado para su cobro a la Sub Recaudación de Rentas adscrita a
             la Comisión Estatal de Servicios Públicos de Tijuana.
         </p>
-        <p class="text-justify">
-            Queda enterado que podrá interponer de conformidad con el artículo 62 de la Ley del Tribunal Estatal de
-            Justicia Administrativa de Baja California, el juicio contencioso administrativo en contra de la presente
-            resolución, ante el Tribunal Estatal de Justicia Administrativa del Estado de Baja California, dentro del
-            plazo de <span class="bold">QUINCE DIAS</span> hábiles siguientes a la fecha en que surta efectos su
-            notificación.
-        </p>
-        <p class="bold">Notifíquese personalmente.</p>
-        <p class="text-center bold">
-            A T E N T A M E N T E
-        </p>
-        <p class="firm bold text-center">
-            _____________________________________________
-            <br />
-            Dr. Víctor Daniel Amador Barragán
-            Director General de la Comisión Estatal de Servicios Públicos de Tijuana.
-
-        </p>
+        <div style="min-height: 30px;">
+            <p class="text-justify">
+                Queda enterado que podrá interponer de conformidad con el artículo 62 de la Ley del Tribunal Estatal de
+                Justicia Administrativa de Baja California, el juicio contencioso administrativo en contra de la presente
+                resolución, ante el Tribunal Estatal de Justicia Administrativa del Estado de Baja California, dentro del
+                plazo de <span class="bold">QUINCE DIAS</span> hábiles siguientes a la fecha en que surta efectos su
+                notificación.
+            </p>
+            <p class="bold">Notifíquese personalmente.</p>
+            <p class="text-center bold">
+                A T E N T A M E N T E
+            </p>
+            <p class="firm bold text-center">
+                _____________________________________________
+                <br />
+                Dr. Víctor Daniel Amador Barragán
+                Director General de la Comisión Estatal de Servicios Públicos de Tijuana.
+    
+            </p>
+        </div>
     </main>
 </body>
 
