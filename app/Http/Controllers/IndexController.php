@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\determinacionesA;
+use App\Models\implementta;
 use App\Models\requerimientosA;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,18 +18,31 @@ class IndexController extends Controller
     public function show(Request $request)
     {
         //Se optiene el valor 
-        $data = trim($request->valor);
+        $data = $request->search;
         //Se busca la cuenta en base  la cuenta
-        $result = DB::table('dbo.implementta')
-            ->select(['Cuenta as Clave', 'Propietario as p'])
-            ->where('Cuenta', 'like', $data)->limit(5)
-            ->get();
-        //Retorna una respuesta de tipo json con un estado y el resultado de la consulta
-        return response()->json([
-            "estado" => 1,
-            "result" => $result,
-
-        ]);
+        $cuenta='';
+        $propietario='';
+        $count = implementta::
+            where('Cuenta', 'like', $data)
+            ->count();
+            if($count==0){
+                $cuenta='none';
+                $propietario='none';
+            }else{
+                $result = implementta::
+                    select('Cuenta as Clave', 'Propietario as p')
+                    ->where('Cuenta', 'like', $data)
+                    ->get();
+                 $cuenta=$result[0]->Clave;
+                 $propietario=$result[0]->p;
+                 $propietario=str_replace('¥','Ñ',$propietario);
+            }
+            
+        //Retorna los datos de la consulta
+        return back()
+        ->with('result','Resultado')
+        ->with('cuenta',$cuenta)
+        ->with('propietario',$propietario);
     }
     public function pdf($cuenta)
     {
