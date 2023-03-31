@@ -2,9 +2,8 @@
 
 use App\Models\cobranzaExternaHistoricos;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
-function webService($cuenta)
+function webServiceCobranzaExterna($cuenta)
 {
     //Ruta del API que se va a concectar esto esta en el archivo .env
     $baseUrl = env('API_ENDPOINT');
@@ -93,7 +92,7 @@ function webService($cuenta)
                     $insert->save();
                 } catch (Exception $e) {
                     return 'Error al insertar';
-                } 
+                }
             }
 
             return 'Registrado';
@@ -114,8 +113,8 @@ function deleteCuenta($cuenta)
 }
 function convertDate($fecha)
 {
-    $date= str_replace(' 12:00:00 a. m.','',$fecha);
-    $date= str_replace('/','-',$date);
+    $date = str_replace(' 12:00:00 a. m.', '', $fecha);
+    $date = str_replace('/', '-', $date);
     $date = date("Y-m-d H:i:s", strtotime($date));
     return $date;
 }
