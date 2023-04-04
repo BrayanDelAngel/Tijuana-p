@@ -89,12 +89,13 @@ function webServiceCobranzaExterna($cuenta)
                     $insert->recargosAcum = $RecargosAcum;
                     $insert->ivaReacum = $IvaReacum;
                     $insert->cuentaImplementta = $NoCta;
+                    $insert->fechavto = '';
                     $insert->save();
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
             }
-
+            
             return 'Registrado';
         }
     } else {
