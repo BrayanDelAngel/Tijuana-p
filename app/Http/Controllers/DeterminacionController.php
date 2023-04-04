@@ -17,7 +17,8 @@ class DeterminacionController extends Controller
 {
     public function exec($cuenta)
     {
-        dd(webServiceCobranzaExterna($cuenta));
+        webServiceCobranzaExterna($cuenta);
+        // dd(webServiceCobranzaExterna($cuenta));
         //validamos si la cuenta existe dentro de la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
         //si no existe mandamos un error
