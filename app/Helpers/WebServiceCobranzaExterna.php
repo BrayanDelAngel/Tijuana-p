@@ -74,35 +74,31 @@ function webServiceCobranzaExterna($cuenta)
                 $SaldoRezago = (is_array($historico['SaldoRezago'])) ? '' : $historico['SaldoRezago'];
                 $RecargosAcum = (is_array($historico['RecargosAcum'])) ? '' : $historico['RecargosAcum'];
                 $IvaReacum = (is_array($historico['IvaReacum'])) ? '' : $historico['IvaReacum'];
-
-                $strquery .= "(";
-                $strquery .= "'" . $NoCta . "',";
-                $strquery .= "'" . $NoFactura . "',";
-                $strquery .= "'" . $FechaFact . "',";
-                $strquery .= "'" . $Anio . "',";
-                $strquery .= "'" . $Mes . "',";
-                $strquery .= "'" . $FechaLecturaAnterior . "',";
-                $strquery .= "'" . $FechaLecturaActual . "',";
-                $strquery .= "'" . $Concal . "',";
-                $strquery .= "'" . $SaldoCorriente . "',";
-                $strquery .= "'" . $SaldoIvaCor . "',";
-                $strquery .= "'" . $SaldoAtraso . "',";
-                $strquery .= "'" . $SaldoRezago . "',";
-                $strquery .= "'" . $RecargosAcum . "',";
-                $strquery .= "'" . $IvaReacum . "',";
-                $strquery .= "'" . $NoCta . "',";
-                $strquery .= "'" . '' . "',";
-                $strquery .= "), ";
+                //Capturamos errores si hay en la insercion
+                try {
+                    $insert = new cobranzaExternaHistoricos();
+                    $insert->NoCta = $NoCta;
+                    $insert->noFact = $NoFactura;
+                    $insert->fechaFact = $FechaFact;
+                    $insert->anio = $Anio;
+                    $insert->mes = $Mes;
+                    $insert->fechaLecturaAnterior = $FechaLecturaAnterior;
+                    $insert->fechaLecturaActual = $FechaLecturaActual;
+                    $insert->conCal = $Concal;
+                    $insert->saldoCorriente = $SaldoCorriente;
+                    $insert->saldoIvaCor = $SaldoIvaCor;
+                    $insert->saldoAtraso = $SaldoAtraso;
+                    $insert->saldoRezago = $SaldoRezago;
+                    $insert->recargosAcum = $RecargosAcum;
+                    $insert->ivaReacum = $IvaReacum;
+                    $insert->cuentaImplementta = $NoCta;
+                    $insert->fechavto = '';
+                    $insert->save();
+                } catch (Exception $e) {
+                    return 'Error al insertar';
+                }
             }
-            $strquery = substr($strquery, 0, -2) . ';';
-            $serverName = "51.222.44.135";
-            $connectionInfo = array('Database' => 'implementtaTijuanaA', 'UID' => 'sa', 'PWD' => 'vrSxHH3TdC');
-            $cnx = sqlsrv_connect($serverName, $connectionInfo);
-            date_default_timezone_set('America/Mexico_City');
 
-            $query = "INSERT INTO cobranzaExternaHistoricosWS3 VALUES $strquery";
-            sqlsrv_query($cnx, $query);
-            $strquery = "";
             return 'Registrado';
         }
     } else {
