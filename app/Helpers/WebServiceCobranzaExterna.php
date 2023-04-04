@@ -3,6 +3,7 @@
 use App\Models\cobranzaExternaHistoricos;
 use Illuminate\Support\Facades\DB;
 use \Staudenmeir\EloquentParamLimitFix\ParamLimitFix;
+
 function webServiceCobranzaExterna($cuenta)
 {
     ini_set('max_execution_time', 0);
@@ -77,31 +78,31 @@ function webServiceCobranzaExterna($cuenta)
                 $IvaReacum = (is_array($historico['IvaReacum'])) ? '' : $historico['IvaReacum'];
                 //Capturamos errores si hay en la insercion
                 try {
-                $strquery =[
-                'NoCta'=> $NoCta ,
-                'noFact'=> $NoFactura ,
-                'fechaFact'=> $FechaFact ,
-                'anio'=> $Anio ,
-                'mes'=> $Mes ,
-                'fechaLecturaAnterior'=> $FechaLecturaAnterior ,
-                'fechaLecturaActual'=> $FechaLecturaActual ,
-                'conCal'=> $Concal ,
-                'saldoCorriente'=> $SaldoCorriente ,
-                'saldoIvaCor'=> $SaldoIvaCor ,
-                'saldoAtraso'=> $SaldoAtraso ,
-                'saldoRezago'=> $SaldoRezago ,
-                'recargosAcum'=> $RecargosAcum ,
-                'ivaReacum'=> $IvaReacum ,
-                'cuentaImplementta'=> $NoCta ,
-                'fechavto'=> '' ,
-                ];
-                $datos[]=$strquery;
+                    // $strquery += [
+                    //     'NoCta' => $NoCta,
+                    //     'noFact' => $NoFactura,
+                    //     'fechaFact' => $FechaFact,
+                    //     'anio' => $Anio,
+                    //     'mes' => $Mes,
+                    //     'fechaLecturaAnterior' => $FechaLecturaAnterior,
+                    //     'fechaLecturaActual' => $FechaLecturaActual,
+                    //     'conCal' => $Concal,
+                    //     'saldoCorriente' => $SaldoCorriente,
+                    //     'saldoIvaCor' => $SaldoIvaCor,
+                    //     'saldoAtraso' => $SaldoAtraso,
+                    //     'saldoRezago' => $SaldoRezago,
+                    //     'recargosAcum' => $RecargosAcum,
+                    //     'ivaReacum' => $IvaReacum,
+                    //     'cuentaImplementta' => $NoCta,
+                    //     'fechavto' => '',
+                    // ];
+                    // $datos[] = $strquery;
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
                 // DB::table('cobranzaExternaHistoricosWS3')->insert($strquery);
                 // $strquery=[];
-                $insertar=DB::insert('insert into [dbo].[cobranzaExternaHistoricosWS3]
+                $insertar = DB::insert('insert into [dbo].[cobranzaExternaHistoricosWS3]
                 (NoCta
                 ,noFact
                 ,fechaFact
@@ -119,7 +120,8 @@ function webServiceCobranzaExterna($cuenta)
                 ,cuentaImplementta
                 ,fechavto)
           VALUES
-                ( values (?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', $strquery);
+                ( values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [$NoCta,$NoFactura,$Anio,$Mes,$FechaLecturaAnterior,$FechaLecturaActual
+            ,$Concal,$SaldoCorriente,$SaldoIvaCor,$SaldoAtraso,$SaldoRezago,$RecargosAcum,$IvaReacum,$NoCta,'']);
             }
             // if($datos>80){
             //     return 'Es mayor a 80';
