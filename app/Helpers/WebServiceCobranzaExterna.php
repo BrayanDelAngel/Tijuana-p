@@ -96,7 +96,7 @@ function webServiceCobranzaExterna($cuenta)
                 'fechavto'=> '' ,
                 ];
                  $datos[]=$strquery;
-                cobranzaExternaHistoricos::create($strquery);
+                cobranzaExternaHistoricos::insert($strquery);
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
