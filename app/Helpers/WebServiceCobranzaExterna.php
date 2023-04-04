@@ -100,7 +100,7 @@ function webServiceCobranzaExterna($cuenta)
                     return 'Error al insertar';
                 }
             }
-            DB::table('cobranzaExternaHistoricosWS3')->insert($datos);
+            // DB::table('cobranzaExternaHistoricosWS3')->insert($datos);
             return $datos;
         }
     } else {
