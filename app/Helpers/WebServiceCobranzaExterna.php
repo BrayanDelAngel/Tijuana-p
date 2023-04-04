@@ -2,7 +2,7 @@
 
 use App\Models\cobranzaExternaHistoricos;
 use Illuminate\Support\Facades\DB;
-
+use \Staudenmeir\EloquentParamLimitFix\ParamLimitFix;
 function webServiceCobranzaExterna($cuenta)
 {
     ini_set('max_execution_time', 0);
@@ -95,7 +95,7 @@ function webServiceCobranzaExterna($cuenta)
                 'cuentaImplementta'=> $NoCta ,
                 'fechavto'=> '' ,
                 ];
-                $datos[]+=$strquery;
+                $datos[]=$strquery;
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
