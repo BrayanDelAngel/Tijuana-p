@@ -78,6 +78,24 @@ function webServiceCobranzaExterna($cuenta)
                 $IvaReacum = (is_array($historico['IvaReacum'])) ? '' : $historico['IvaReacum'];
                 //Capturamos errores si hay en la insercion
                 try {
+                    $insert = new cobranzaExternaHistoricos();
+                    $insert->NoCta = $NoCta;
+                    $insert->noFact = $NoFactura;
+                    $insert->fechaFact = $FechaFact;
+                    $insert->anio = $Anio;
+                    $insert->mes = $Mes;
+                    $insert->fechaLecturaAnterior = $FechaLecturaAnterior;
+                    $insert->fechaLecturaActual = $FechaLecturaActual;
+                    $insert->conCal = $Concal;
+                    $insert->saldoCorriente = $SaldoCorriente;
+                    $insert->saldoIvaCor = $SaldoIvaCor;
+                    $insert->saldoAtraso = $SaldoAtraso;
+                    $insert->saldoRezago = $SaldoRezago;
+                    $insert->recargosAcum = $RecargosAcum;
+                    $insert->ivaReacum = $IvaReacum;
+                    $insert->cuentaImplementta = $NoCta;
+                    $insert->fechavto = '';
+                    $insert->save();
                     // $strquery += [
                     //     'NoCta' => $NoCta,
                     //     'noFact' => $NoFactura,
@@ -102,47 +120,48 @@ function webServiceCobranzaExterna($cuenta)
                 }
                 // DB::table('cobranzaExternaHistoricosWS3')->insert($strquery);
                 // $strquery=[];
-                $insertar = DB::insert('insert into cobranzaExternaHistoricosWS3
-                (NoCta
-                ,noFact
-                ,fechaFact
-                ,anio
-                ,mes
-                ,fechaLecturaAnterior
-                ,fechaLecturaActual
-                ,conCal
-                ,saldoCorriente
-                ,saldoIvaCor
-                ,saldoAtraso
-                ,saldoRezago
-                ,recargosAcum
-                ,ivaReacum
-                ,cuentaImplementta
-                ,fechavto)
-             values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [
-                "'".$NoCta."'",
-                "'".$NoFactura."'",
-                $FechaFact,
-                $Anio,
-                $Mes,
-                $FechaLecturaAnterior,
-                $FechaLecturaActual,
-                "'".$Concal."'",
-                $SaldoCorriente,
-                $SaldoIvaCor,
-                $SaldoAtraso,
-                $SaldoRezago,
-                $RecargosAcum,
-                $IvaReacum,
-                "'".$NoCta."'",
-                "''"
-            ]);
+            //     $insertar = DB::insert('insert into cobranzaExternaHistoricosWS3
+            //     (NoCta
+            //     ,noFact
+            //     ,fechaFact
+            //     ,anio
+            //     ,mes
+            //     ,fechaLecturaAnterior
+            //     ,fechaLecturaActual
+            //     ,conCal
+            //     ,saldoCorriente
+            //     ,saldoIvaCor
+            //     ,saldoAtraso
+            //     ,saldoRezago
+            //     ,recargosAcum
+            //     ,ivaReacum
+            //     ,cuentaImplementta
+            //     ,fechavto)
+            //  values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [
+            //     "'".$NoCta."'",
+            //     "'".$NoFactura."'",
+            //     $FechaFact,
+            //     $Anio,
+            //     $Mes,
+            //     $FechaLecturaAnterior,
+            //     $FechaLecturaActual,
+            //     "'".$Concal."'",
+            //     $SaldoCorriente,
+            //     $SaldoIvaCor,
+            //     $SaldoAtraso,
+            //     $SaldoRezago,
+            //     $RecargosAcum,
+            //     $IvaReacum,
+            //     "'".$NoCta."'",
+            //     "''"
+            // ]);
              
             }
             // if($datos>80){
             //     return 'Es mayor a 80';
             // }
-            return $datos;
+            // return $datos;
+            return 'Registrdo';
         }
     } else {
         //Si manda un mensaje es por que la cuenta no esta registrada
