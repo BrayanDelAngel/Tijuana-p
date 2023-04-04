@@ -95,12 +95,12 @@ function webServiceCobranzaExterna($cuenta)
                 'cuentaImplementta'=> $NoCta ,
                 'fechavto'=> '' ,
                 ];
-                 $datos[]=$strquery;
-                cobranzaExternaHistoricos::insert($strquery);
+                $datos[]=$strquery;
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
             }
+            DB::table('cobranzaExternaHistoricosWS3')->insert($datos);
             return $datos;
         }
     } else {
