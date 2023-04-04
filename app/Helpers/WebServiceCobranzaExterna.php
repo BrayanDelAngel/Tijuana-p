@@ -55,7 +55,8 @@ function webServiceCobranzaExterna($cuenta)
             deleteCuenta($cuenta);
         }
         if (count($historicos) > 0) {
-            $strquery = "";
+            $strquery = [];
+            $datos = [];
             //Se genera el recorrido
             foreach ($historicos as $historico) {
                 //Se extrae el dato del arreglo y condiciona que si no hay un dato entonces sea null ''
@@ -76,30 +77,31 @@ function webServiceCobranzaExterna($cuenta)
                 $IvaReacum = (is_array($historico['IvaReacum'])) ? '' : $historico['IvaReacum'];
                 //Capturamos errores si hay en la insercion
                 try {
-                    $insert = new cobranzaExternaHistoricos();
-                    $insert->NoCta = $NoCta;
-                    $insert->noFact = $NoFactura;
-                    $insert->fechaFact = $FechaFact;
-                    $insert->anio = $Anio;
-                    $insert->mes = $Mes;
-                    $insert->fechaLecturaAnterior = $FechaLecturaAnterior;
-                    $insert->fechaLecturaActual = $FechaLecturaActual;
-                    $insert->conCal = $Concal;
-                    $insert->saldoCorriente = $SaldoCorriente;
-                    $insert->saldoIvaCor = $SaldoIvaCor;
-                    $insert->saldoAtraso = $SaldoAtraso;
-                    $insert->saldoRezago = $SaldoRezago;
-                    $insert->recargosAcum = $RecargosAcum;
-                    $insert->ivaReacum = $IvaReacum;
-                    $insert->cuentaImplementta = $NoCta;
-                    $insert->fechavto = '';
-                    $insert->save();
+                $strquery +=[
+                'NoCta'=> $NoCta ,
+                'noFact'=> $NoFactura ,
+                'fechaFact'=> $FechaFact ,
+                'anio'=> $Anio ,
+                'mes'=> $Mes ,
+                'fechaLecturaAnterior'=> $FechaLecturaAnterior ,
+                'fechaLecturaActual'=> $FechaLecturaActual ,
+                'conCal'=> $Concal ,
+                'saldoCorriente'=> $SaldoCorriente ,
+                'saldoIvaCor'=> $SaldoIvaCor ,
+                'saldoAtraso'=> $SaldoAtraso ,
+                'saldoRezago'=> $SaldoRezago ,
+                'recargosAcum'=> $RecargosAcum ,
+                'ivaReacum'=> $IvaReacum ,
+                'cuentaImplementta'=> $NoCta ,
+                'fechavto'=> '' ,
+                ];
+                $datos[]+=$strquery;
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
             }
-
-            return 'Registrado';
+            DB::table('cobranzaExternaHistoricosWS3')->insert($datos);
+            return $datos;
         }
     } else {
         //Si manda un mensaje es por que la cuenta no esta registrada
