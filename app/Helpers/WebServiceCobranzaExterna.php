@@ -77,7 +77,7 @@ function webServiceCobranzaExterna($cuenta)
                 $IvaReacum = (is_array($historico['IvaReacum'])) ? '' : $historico['IvaReacum'];
                 //Capturamos errores si hay en la insercion
                 try {
-                $strquery +=[
+                $strquery =[
                 'NoCta'=> $NoCta ,
                 'noFact'=> $NoFactura ,
                 'fechaFact'=> $FechaFact ,
@@ -99,11 +99,12 @@ function webServiceCobranzaExterna($cuenta)
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
+                DB::table('cobranzaExternaHistoricosWS3')->insert($strquery);
+                $strquery=[];
             }
-            if($datos>80){
-                return 'Es mayor a 80';
-            }
-            DB::table('cobranzaExternaHistoricosWS3')->insert($datos);
+            // if($datos>80){
+            //     return 'Es mayor a 80';
+            // }
             return $datos;
         }
     } else {
