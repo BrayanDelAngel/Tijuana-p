@@ -102,7 +102,7 @@ function webServiceCobranzaExterna($cuenta)
                 }
                 // DB::table('cobranzaExternaHistoricosWS3')->insert($strquery);
                 // $strquery=[];
-                $insertar = DB::insert('insert into [dbo].[cobranzaExternaHistoricosWS3]
+                $insertar = DB::insert('insert into cobranzaExternaHistoricosWS3
                 (NoCta
                 ,noFact
                 ,fechaFact
@@ -119,9 +119,24 @@ function webServiceCobranzaExterna($cuenta)
                 ,ivaReacum
                 ,cuentaImplementta
                 ,fechavto)
-          VALUES
-                ( values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [$NoCta,$NoFactura,$Anio,$Mes,$FechaLecturaAnterior,$FechaLecturaActual
-            ,$Concal,$SaldoCorriente,$SaldoIvaCor,$SaldoAtraso,$SaldoRezago,$RecargosAcum,$IvaReacum,$NoCta,'']);
+             values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [
+                "'".$NoCta."'",
+                "'".$NoFactura."'",
+                "'".$Anio."'",
+                "'".$Mes."'",
+                "'".$FechaLecturaAnterior."'",
+                "'".$FechaLecturaActual."'",
+                "'".$Concal."'",
+                "'".$SaldoCorriente."'",
+                "'".$SaldoIvaCor."'",
+                "'".$SaldoAtraso."'",
+                "'".$SaldoRezago."'",
+                "'".$RecargosAcum."'",
+                "'".$IvaReacum."'",
+                "'".$NoCta."'",
+                "''"
+            ]);
+             
             }
             // if($datos>80){
             //     return 'Es mayor a 80';
