@@ -122,6 +122,7 @@ function webServiceCobranzaExterna($cuenta)
              values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [
                 "'".$NoCta."'",
                 "'".$NoFactura."'",
+                "'".$FechaFact."'",
                 "'".$Anio."'",
                 "'".$Mes."'",
                 "'".$FechaLecturaAnterior."'",
