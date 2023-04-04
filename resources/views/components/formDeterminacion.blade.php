@@ -183,7 +183,7 @@
                                                         @error('periodo')
                                                         border border-danger rounded-2
                                                         @enderror"
-                                            id="periodo" name="periodo" value="{{ $periodo[0]->periodo }}" readonly>
+                                            id="periodo" name="periodo" value="{{ $periodo[0]->periodo }}">
                                         @error('periodo')
                                             <div class="text-danger text-center">
                                                 El campo periodo es requerido
