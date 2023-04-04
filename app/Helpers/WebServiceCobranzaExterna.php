@@ -101,6 +101,9 @@ function webServiceCobranzaExterna($cuenta)
                 }
             }
             // DB::table('cobranzaExternaHistoricosWS3')->insert($datos);
+            if($datos>50){
+                return 'Es mayor a 50';
+            }
             return $datos;
         }
     } else {
