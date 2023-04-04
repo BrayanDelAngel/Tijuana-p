@@ -95,12 +95,12 @@ function webServiceCobranzaExterna($cuenta)
                 'cuentaImplementta'=> $NoCta ,
                 'fechavto'=> '' ,
                 ];
-                $datos[]=$strquery;
+                 $datos[]=$strquery;
+                cobranzaExternaHistoricos::create($strquery);
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
             }
-            cobranzaExternaHistoricos::create($datos);
             return $datos;
         }
     } else {
