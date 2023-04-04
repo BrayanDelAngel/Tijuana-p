@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5add0889c323b88a58952cc77684918",
+    "content-hash": "4836432ee91c79e9b4d18902738f7309",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3340,6 +3340,47 @@
                 "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
             },
             "time": "2021-12-11T13:40:54+00:00"
+        },
+        {
+            "name": "staudenmeir/eloquent-param-limit-fix",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/staudenmeir/eloquent-param-limit-fix.git",
+                "reference": "f2cf8815716d65e38be360a13c57ef54b4c7da7c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/staudenmeir/eloquent-param-limit-fix/zipball/f2cf8815716d65e38be360a13c57ef54b4c7da7c",
+                "reference": "f2cf8815716d65e38be360a13c57ef54b4c7da7c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "illuminate/database": "^9.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\EloquentParamLimitFix\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Laravel Eloquent eager loading fix for parameter limits of SQLite and SQL Server",
+            "support": {
+                "issues": "https://github.com/staudenmeir/eloquent-param-limit-fix/issues",
+                "source": "https://github.com/staudenmeir/eloquent-param-limit-fix/tree/v1.1.1"
+            },
+            "time": "2022-03-25T21:26:38+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
