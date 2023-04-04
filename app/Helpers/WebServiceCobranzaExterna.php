@@ -99,8 +99,27 @@ function webServiceCobranzaExterna($cuenta)
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
-                DB::table('cobranzaExternaHistoricosWS3')->insert($strquery);
-                $strquery=[];
+                // DB::table('cobranzaExternaHistoricosWS3')->insert($strquery);
+                // $strquery=[];
+                $insertar=DB::insert('insert into [dbo].[cobranzaExternaHistoricosWS3]
+                (NoCta
+                ,noFact
+                ,fechaFact
+                ,anio
+                ,mes
+                ,fechaLecturaAnterior
+                ,fechaLecturaActual
+                ,conCal
+                ,saldoCorriente
+                ,saldoIvaCor
+                ,saldoAtraso
+                ,saldoRezago
+                ,recargosAcum
+                ,ivaReacum
+                ,cuentaImplementta
+                ,fechavto)
+          VALUES
+                ( values (?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', $strquery);
             }
             // if($datos>80){
             //     return 'Es mayor a 80';
