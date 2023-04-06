@@ -37,7 +37,6 @@ class IndexController extends Controller
                  $propietario=$result[0]->p;
                  $propietario=str_replace('¥','Ñ',$propietario);
             }
-            
         //Retorna los datos de la consulta
         return back()
         ->with('result','Resultado')

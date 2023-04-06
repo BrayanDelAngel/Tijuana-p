@@ -52,17 +52,15 @@ function webServiceCobranzaExterna($cuenta)
     //Si no recibe un mensaje de error por parte de la API (Por ejemplo cuenta no existe)
     if (!isset($historicos['Mensaje'])) {
         //Se condiciona que si Historicos es mayor a 0 se realice el recorrido 
+        
         if (consultCuenta($cuenta) != 0) {
             deleteCuenta($cuenta);
         }
         if (count($historicos) > 0) {
-            $strquery = [];
-            $datos = [];
-            //Se genera el recorrido
             foreach ($historicos as $historico) {
                 //Se extrae el dato del arreglo y condiciona que si no hay un dato entonces sea null ''
                 //En caso de las fechas se les convierte a na fecha aceptada a sql server ya que espera un dato de tipo Date Time
-                $NoCta = (is_array($historico['NoCta'])) ? '' : $historico['NoCta'];
+                $NoCta = (is_array($historico['NoCta'])) ? '' : remove($historico['NoCta']);
                 $NoFactura = (is_array($historico['NoFactura'])) ? '' : $historico['NoFactura'];
                 $FechaFact = (is_array($historico['FechaFact'])) ? '' : convertDate($historico['FechaFact']);
                 $Anio = (is_array($historico['Anio'])) ? '' : $historico['Anio'];
@@ -76,8 +74,11 @@ function webServiceCobranzaExterna($cuenta)
                 $SaldoRezago = (is_array($historico['SaldoRezago'])) ? '' : $historico['SaldoRezago'];
                 $RecargosAcum = (is_array($historico['RecargosAcum'])) ? '' : $historico['RecargosAcum'];
                 $IvaReacum = (is_array($historico['IvaReacum'])) ? '' : $historico['IvaReacum'];
+
+
                 //Capturamos errores si hay en la insercion
                 try {
+
                     $insert = new cobranzaExternaHistoricos();
                     $insert->NoCta = $NoCta;
                     $insert->noFact = $NoFactura;
@@ -96,72 +97,11 @@ function webServiceCobranzaExterna($cuenta)
                     $insert->cuentaImplementta = $NoCta;
                     $insert->fechavto = '';
                     $insert->save();
-                    // $strquery += [
-                    //     'NoCta' => $NoCta,
-                    //     'noFact' => $NoFactura,
-                    //     'fechaFact' => $FechaFact,
-                    //     'anio' => $Anio,
-                    //     'mes' => $Mes,
-                    //     'fechaLecturaAnterior' => $FechaLecturaAnterior,
-                    //     'fechaLecturaActual' => $FechaLecturaActual,
-                    //     'conCal' => $Concal,
-                    //     'saldoCorriente' => $SaldoCorriente,
-                    //     'saldoIvaCor' => $SaldoIvaCor,
-                    //     'saldoAtraso' => $SaldoAtraso,
-                    //     'saldoRezago' => $SaldoRezago,
-                    //     'recargosAcum' => $RecargosAcum,
-                    //     'ivaReacum' => $IvaReacum,
-                    //     'cuentaImplementta' => $NoCta,
-                    //     'fechavto' => '',
-                    // ];
-                    // $datos[] = $strquery;
                 } catch (Exception $e) {
                     return 'Error al insertar';
                 }
-                // DB::table('cobranzaExternaHistoricosWS3')->insert($strquery);
-                // $strquery=[];
-            //     $insertar = DB::insert('insert into cobranzaExternaHistoricosWS3
-            //     (NoCta
-            //     ,noFact
-            //     ,fechaFact
-            //     ,anio
-            //     ,mes
-            //     ,fechaLecturaAnterior
-            //     ,fechaLecturaActual
-            //     ,conCal
-            //     ,saldoCorriente
-            //     ,saldoIvaCor
-            //     ,saldoAtraso
-            //     ,saldoRezago
-            //     ,recargosAcum
-            //     ,ivaReacum
-            //     ,cuentaImplementta
-            //     ,fechavto)
-            //  values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [
-            //     "'".$NoCta."'",
-            //     "'".$NoFactura."'",
-            //     $FechaFact,
-            //     $Anio,
-            //     $Mes,
-            //     $FechaLecturaAnterior,
-            //     $FechaLecturaActual,
-            //     "'".$Concal."'",
-            //     $SaldoCorriente,
-            //     $SaldoIvaCor,
-            //     $SaldoAtraso,
-            //     $SaldoRezago,
-            //     $RecargosAcum,
-            //     $IvaReacum,
-            //     "'".$NoCta."'",
-            //     "''"
-            // ]);
-             
             }
-            // if($datos>80){
-            //     return 'Es mayor a 80';
-            // }
-            // return $datos;
-            return 'Registrdo';
+            return 'Registrado';
         }
     } else {
         //Si manda un mensaje es por que la cuenta no esta registrada
@@ -173,6 +113,9 @@ function consultCuenta($cuenta)
     $consult = DB::select('select count(NoCta) from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
     return $consult;
 }
+
+
+
 function deleteCuenta($cuenta)
 {
     $delete = DB::delete('delete from cobranzaExternaHistoricosWS3 WHERE NoCta=?', [$cuenta]);
@@ -183,4 +126,11 @@ function convertDate($fecha)
     $date = str_replace('/', '-', $date);
     $date = date("Y-m-d H:i:s", strtotime($date));
     return $date;
+}
+function remove($cuenta){
+    $char = substr($cuenta, 0, 1);
+    if ($char == '0') {
+        $cuenta = substr($cuenta, 1);
+    } 
+    return $cuenta;
 }
