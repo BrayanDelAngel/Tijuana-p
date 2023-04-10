@@ -642,7 +642,7 @@
                     <tr class="tr">
                         <td class="td">{{ $item->meses }}</td>
                         <td class="td">{{ $item->periodo }}</td>
-                        <td class="td">{{ $item->fechaVencimiento }}</td>
+                        <td class="td">{{ $item->fecha_vto }}</td>
                         <td class="td">{{ $item->lecturaFacturada }}</td>
                         <td class="td">${{ number_format($item->tarifa1, 2) }}</td>
                         <td class="td">${{ number_format($item->tarifa2, 2) }}</td>
