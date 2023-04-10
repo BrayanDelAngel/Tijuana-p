@@ -238,7 +238,7 @@ class MandamientoController extends Controller
         $conv_vencido = $datos[0]->conv_vencido;
         $otros_gastos = $datos[0]->otros_gastos;
         //Informacion de la tabla generada del propietario
-        $tabla = tabla_ma::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados'])
+        $tabla = tabla_ma::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados','fecha_vto'])
             ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->get();
         //consultamos los totales de la tabla de adeudo
         $totales = DB::table('tabla_ma')

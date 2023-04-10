@@ -234,7 +234,7 @@ class DeterminacionController extends Controller
             }
         }
         //Informacion de la tabla generada del propietario
-        $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados'])
+        $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados','fecha_vto'])
             ->where('cuenta', $data->cuenta)->orderBy('meses', 'ASC')->get();
         // dd($tabla);
         //Se extrae los años que debe el propietario
