@@ -44,16 +44,16 @@ function Suma() {
         let valor4 = (isNaN(parseFloat(remplazo(ingreso4)))) ? 0 : parseFloat(remplazo(ingreso4));
         let valor5 = (isNaN(parseFloat(remplazo(ingreso5)))) ? 0 : parseFloat(remplazo(ingreso5));
         /*Para los datos ingresados por el usuario se le hace un parseo y se valida si es vacio o no */
-        let valor6 = (isNaN(parseFloat(ingreso6))) ? 0 : parseFloat(ingreso6);
-        let valor7 = (isNaN(parseFloat(ingreso7))) ? 0 : parseFloat(ingreso7);
-        let valor8 = (isNaN(parseFloat(ingreso8))) ? 0 : parseFloat(ingreso8);
-        let valor9 = (isNaN(parseFloat(ingreso9))) ? 0 : parseFloat(ingreso9);
-        let valor10 = (isNaN(parseFloat(ingreso10))) ? 0 : parseFloat(ingreso10);
-        let valor11 = (isNaN(parseFloat(ingreso11))) ? 0 : parseFloat(ingreso11);
-        let valor12 = (isNaN(parseFloat(ingreso12))) ? 0 : parseFloat(ingreso12);
-        let valor13 = (isNaN(parseFloat(ingreso13))) ? 0 : parseFloat(ingreso13);
-        let valor14 = (isNaN(parseFloat(ingreso14))) ? 0 : parseFloat(ingreso14);
-        let valor15 = (isNaN(parseFloat(ingreso15))) ? 0 : parseFloat(ingreso15);
+        let valor6 = (isNaN(parseFloat(remplazo(ingreso6)))) ? 0 : parseFloat(remplazo(ingreso6));
+        let valor7 = (isNaN(parseFloat(remplazo(ingreso7)))) ? 0 : parseFloat(remplazo(ingreso7));
+        let valor8 = (isNaN(parseFloat(remplazo(ingreso8)))) ? 0 : parseFloat(remplazo(ingreso8));
+        let valor9 = (isNaN(parseFloat(remplazo(ingreso9)))) ? 0 : parseFloat(remplazo(ingreso9));
+        let valor10 = (isNaN(parseFloat(remplazo(ingreso10)))) ? 0 : parseFloat(remplazo(ingreso10));
+        let valor11 = (isNaN(parseFloat(remplazo(ingreso11)))) ? 0 : parseFloat(remplazo(ingreso11));
+        let valor12 = (isNaN(parseFloat(remplazo(ingreso12)))) ? 0 : parseFloat(remplazo(ingreso12));
+        let valor13 = (isNaN(parseFloat(remplazo(ingreso13)))) ? 0 : parseFloat(remplazo(ingreso13));
+        let valor14 = (isNaN(parseFloat(remplazo(ingreso14)))) ? 0 : parseFloat(remplazo(ingreso14));
+        let valor15 = (isNaN(parseFloat(remplazo(ingreso15)))) ? 0 : parseFloat(remplazo(ingreso15));
         /*Se suman los datos */
         total = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + valor12 + valor13 + valor14 + valor15;
         //Se retorna el valor que ingreso el usuario haciendo un format al dato de moneda
