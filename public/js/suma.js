@@ -73,6 +73,7 @@ function Suma() {
         $('#conv_vencido').val(formatear(valor14))
         $('#otros_gastos').val(formatear(valor15))
         $("#total").val(formatear(total));
+        //comentario
     }
     //Si se produce un error lo mandamos en consola
     catch (e) {
