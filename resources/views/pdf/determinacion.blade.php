@@ -870,7 +870,7 @@
             determinado en el presente documento, será turnado para su cobro a la Sub Recaudación de Rentas adscrita a
             la Comisión Estatal de Servicios Públicos de Tijuana.
         </p>
-        <div style="max-height: 30px;">
+        <div style="max-height: 30px; margin-top:-2%">
             <p class="text-justify">
                 Queda enterado que podrá interponer de conformidad con el artículo 62 de la Ley del Tribunal Estatal de
                 Justicia Administrativa de Baja California, el juicio contencioso administrativo en contra de la presente
