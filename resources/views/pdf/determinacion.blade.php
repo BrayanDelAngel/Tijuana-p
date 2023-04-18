@@ -741,7 +741,7 @@
             <br />
             INPC del penúltimo mes inmediato anterior al del mismo mes que se actualiza
         </p>
-        <p class="bold"> para el año 2023 se agregará al factor de actualización un 0.1% acumulable cada mes</p>
+        <p class="bold"> para el año 2023 se agregará al factor de actualización un 1% acumulable cada mes</p>
         @if ($data->tipo_s == 'NO DOMESTICO')
             <p class="text-justify">
                 Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último párrafo
