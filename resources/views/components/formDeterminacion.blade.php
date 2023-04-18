@@ -2,6 +2,21 @@
 @section('titulo')
     Determinación
 @endsection
+@section('css')
+<style>
+    table {
+      border-collapse: collapse;
+    }
+    .vrt-header th {
+      min-width: 50px; /* for firefox */
+      white-space: nowrap;
+      writing-mode: vertical-rl;
+      transform: scale(-1);
+      padding: 10px 5px 0;
+      vertical-align: top;
+    }
+  </style>
+@endsection
 @section('contenido')
     <div class=" row">
         <div class="col-2 m-2">
@@ -465,6 +480,105 @@
                                             @enderror
                                         </td>
                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
+                            <div class="text-white m-2 align-items-end" style="text-align:right;">
+                                <span class="bg-success rounded-2 p-2"><img
+                                        src="https://img.icons8.com/fluency/30/null/resume.png" />Resumen</span>
+                            </div>
+                            <table>
+                                <thead class="vrt-header">
+                                    <tr class="tr">
+                                        <th class="th">
+                                            <h6>Meses de adeudo</h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>Periodo de consumo facturado</h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>Fecha de vencimiento</h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>Lectura facturada en m3</h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>Tarifa art. 11 enciso a)</h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>
+                                                Tarifa art. 11 excedente del básico en m3 de la Ley de Ingresos del
+                                                Estado de Baja
+                                                <br />
+                                                California ejercicios fiscales anteriores al 2020;
+                                                actualmente art 10.
+                                            </h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>Suma de tarifas</h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>
+                                                Factor de actualización (capítulo I Ley de Ingresos vigente a la
+                                                fecha de facturación)
+                                            </h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>Saldo Atraso</h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>Saldo Rezago</h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>
+                                                Total del periodo facturado (ley de ingresos vigente a la
+                                                <br />
+                                                fecha de la facturación)
+                                            </h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>
+                                                Tasa de interés por adeudo mensual vencido
+                                                (artículo 37 ley de ingresos del estado)
+                                            </h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>
+                                                Importe mensual por concepto de recargos (adeudo del periodo
+                                                <br />
+                                                facturado x tasa de interés por adeudo mensual vencido)
+                                            </h6>
+                                        </th>
+                                        <th class="th">
+                                            <h6>
+                                                Recargos acumulados por mensualidades vencidas
+                                                <br />
+                                                (meses de adeudo x importe mensual por concepto de recargos )
+                                                <br />este importe no puede ser mayor al adeudo del periodo facturado
+                                            </h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbody">
+                                    {{-- @foreach ($items as $item)
+                                        <tr class="tr">
+                                            <td class="td">{{ $item->meses }}</td>
+                                            <td class="td">{{ $item->periodo }}</td>
+                                            <td class="td">{{ $item->fecha_vto }}</td>
+                                            <td class="td">{{ $item->lecturaFacturada }}</td>
+                                            <td class="td">${{ number_format($item->tarifa1, 2) }}</td>
+                                            <td class="td">${{ number_format($item->tarifa2, 2) }}</td>
+                                            <td class="td">${{ number_format($item->sumaTarifas, 2) }}</td>
+                                            <td class="td">{{ number_format($item->factor, 4) }}</td>
+                                            <td class="td">${{ number_format($item->saldoAtraso, 2) }}</td>
+                                            <td class="td">${{ number_format($item->saldoRezago, 2) }}</td>
+                                            <td class="td">${{ number_format($item->totalPeriodo, 2) }}</td>
+                                            <td class="td">2.25</td>
+                                            <td class="td">${{ number_format($item->importeMensual, 2) }}</td>
+                                            <td class="td">${{ number_format($item->RecargosAcumulados, 2) }}</td>
+                                        </tr>
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>
