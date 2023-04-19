@@ -118,7 +118,7 @@ function consultCuenta($cuenta)
 
 function deleteCuenta($cuenta)
 {
-    $delete = DB::delete('delete from cobranzaExternaHistoricosWS3 WHERE NoCta=?', [$cuenta]);
+    $delete = cobranzaExternaHistoricos::where('NoCta',$cuenta)->delete();
 }
 function convertDate($fecha)
 {
