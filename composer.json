@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "ext-simplexml": "*",
         "barryvdh/laravel-dompdf": "^2.0",
         "dompdf/dompdf": "^2.0",
         "fideloper/proxy": "^4.2",
@@ -46,6 +47,7 @@
         },
         "files":[
             "app/Helpers/WebServiceCobranzaExterna.php",
+            "app/Helpers/firma.php",
             "app/Helpers/WebServiceImplementa.php"
         ]
     },

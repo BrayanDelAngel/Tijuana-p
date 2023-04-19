@@ -379,7 +379,7 @@
                         <tbody class="tbody">
                             @foreach ($tabla as $item)
                                 <tr class="tr">
-                                    <td class="td">{{ $item->meses }}</td>
+                                    <td class="td">{{ $i+=1 }}</td>
                                     <td class="td">{{ $item->periodo }}</td>
                                     <td class="td">{{ $item->fecha_vto }}</td>
                                     <td class="td">{{ $item->lecturaFacturada }}</td>

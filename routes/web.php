@@ -28,9 +28,12 @@ Route::get('/pdf/{cuenta}', [IndexController::class, 'pdf'])->name('pdf');
 Route::get('/tarifas', [TarifasController::class, 'index'])->name('tarifas');
 Route::post('/tarifas', [TarifasController::class, 'store'])->name('guardar-tarifas');
 /*Rutas de Mandamiento */
+Route::get('/calculoM/{cuenta}', [MandamientoController::class, 'exec'])->name('calculo');
 Route::get('/PDFMandamiento/{id}', [MandamientoController::class, 'pdf'])->name('pdf-mandamiento');
 Route::get('/formM/{cuenta}', [MandamientoController::class, 'index'])->name('formulario-mandamiento');
 Route::post('/guardarM', [MandamientoController::class, 'store'])->name('guardar-mandamiento');
+Route::post('/modalTablaM', [MandamientoController::class, 'update'])->name('modificar_tablaM');
+Route::get('/eliminarTablaM/{cuenta}/{meses}', [MandamientoController::class, 'delete'])->name('eliminar_filaM');
 /*Rutas de Requerimiento*/
 Route::get('/formR/{cuenta}', [RequerimientoController::class, 'index'])->name('formulario-requerimiento');
 Route::post('/guardarR', [RequerimientoController::class, 'store'])->name('guardar-requerimiento');
@@ -39,4 +42,6 @@ Route::get('/PDFRequerimiento/{id}', [RequerimientoController::class, 'pdf'])->n
 Route::get('/calculo/{cuenta}', [DeterminacionController::class, 'exec'])->name('calculo');
 Route::get('/formD/{cuenta}', [DeterminacionController::class, 'index'])->name('formulario-determinacion');
 Route::post('/guardarD', [DeterminacionController::class, 'store'])->name('guardar-determinacion');
+Route::post('/modalTablaD', [DeterminacionController::class, 'update'])->name('modificar_tabla');
+Route::get('/eliminarTablaD/{cuenta}/{meses}', [DeterminacionController::class, 'delete'])->name('eliminar_fila');
 Route::get('/PDFDeterminacion/{id}', [DeterminacionController::class, 'pdf'])->name('pdf-determinacion');

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Determinación</title>
-    <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/pdf.css" rel="stylesheet">
-    <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
+    <link href="C:/wamp64/www/Tijuana-p/public/css/pdf.css" rel="stylesheet">
+    <link href="C:/wamp64/www/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
 </head>
 
 <body>
@@ -640,7 +640,7 @@
             <tbody class="tbody">
                 @foreach ($items as $item)
                     <tr class="tr">
-                        <td class="td">{{ $i+=1 }}</td>
+                        <td class="td">{{ $item->meses }}</td>
                         <td class="td">{{ $item->periodo }}</td>
                         <td class="td">{{ $item->fecha_vto }}</td>
                         <td class="td">{{ $item->lecturaFacturada }}</td>
@@ -656,6 +656,10 @@
                         <td class="td">${{ number_format($item->RecargosAcumulados, 2) }}</td>
                     </tr>
                 @endforeach
+               
+                    
+               
+                
             </tbody>
         </table>
         <br />
@@ -795,10 +799,12 @@
             </p>
         @endif
         </p>
+        <br />
         <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número
             <span class="bold">{{ $data->cuenta }}</span>, por la suma de
             <span class="bold">${{ $total_ar }} {{ $tar }} </span>, integrado de la siguiente forma:
         </p>
+        <br />
         <br />
         <table class="table2">
             <thead>
@@ -860,6 +866,7 @@
                 </tr>
             </tbody>
         </table>
+        <div class="saltopagina"></div>
         <p class="text-justify">
             La cantidad anterior y los recargos causados sobre las contribuciones omitidas, deberán ser enteradas en las
             oficinas de Recaudación de la Comisión Estatal de Servicios Públicos de Tijuana, dentro de los quince días
@@ -879,6 +886,7 @@
                 notificación.
             </p>
             <p class="bold">Notifíquese personalmente.</p>
+            <br />
             <p class="text-center bold">
                 A T E N T A M E N T E
             </p>

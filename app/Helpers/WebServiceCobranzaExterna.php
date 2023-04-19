@@ -122,9 +122,10 @@ function deleteCuenta($cuenta)
 }
 function convertDate($fecha)
 {
-    $date = str_replace(' 12:00:00 a. m.', '', $fecha);
-    $date = str_replace('/', '-', $date);
-    $date = date("Y-m-d H:i:s", strtotime($date));
+        $date = str_replace(' 12:00:00 a. m.', '', $fecha);
+        $date = str_replace('/', '-', $date);
+        $date = date("Y-m-d H:i:s", strtotime($date));
+   
     return $date;
 }
 function remove($cuenta){
