@@ -6,6 +6,12 @@ use \Staudenmeir\EloquentParamLimitFix\ParamLimitFix;
 
 function webServiceCobranzaExterna($cuenta)
 {
+    
+$serverName = "51.222.44.135";
+    $connectionInfo = array( 'Database'=>'implementtaTijuanaA', 'UID'=>'sa', 'PWD'=>'vrSxHH3TdC');
+    $cnx = sqlsrv_connect($serverName, $connectionInfo);
+    date_default_timezone_set('America/Mexico_City');
+
     ini_set('max_execution_time', 0);
     ini_set('memory_limit', '-1');
     //Ruta del API que se va a concectar esto esta en el archivo .env
@@ -52,10 +58,12 @@ function webServiceCobranzaExterna($cuenta)
     //Si no recibe un mensaje de error por parte de la API (Por ejemplo cuenta no existe)
     if (!isset($historicos['Mensaje'])) {
         //Se condiciona que si Historicos es mayor a 0 se realice el recorrido 
-        
-        if (consultCuenta($cuenta) != 0) {
+        $consult = DB::select('select count(NoCta) as total from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
+        if ($consult['total'] != 0) {
+            $del="DELETE FROM cobranzaExternaHistoricos WHERE NoCta='$cuenta'";
+    sqlsrv_query($cnx,$del);
             // deleteCuenta($cuenta);
-            $delete = cobranzaExternaHistoricos::where('NoCta',$cuenta)->delete();
+            // $delete = cobranzaExternaHistoricos::where('NoCta',$cuenta)->delete();
         }
         if (count($historicos) > 0) {
             foreach ($historicos as $historico) {
