@@ -488,99 +488,136 @@
                                 <span class="bg-success rounded-2 p-2"><img
                                         src="https://img.icons8.com/fluency/30/null/resume.png" />Resumen</span>
                             </div>
-                            <table>
-                                <thead class="vrt-header">
-                                    <tr class="tr">
-                                        <th class="th">
-                                            <h6>Meses de adeudo</h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>Periodo de consumo facturado</h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>Fecha de vencimiento</h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>Lectura facturada en m3</h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>Tarifa art. 11 enciso a)</h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>
-                                                Tarifa art. 11 excedente del básico en m3 de la Ley de Ingresos del
-                                                Estado de Baja
-                                                <br />
-                                                California ejercicios fiscales anteriores al 2020;
-                                                actualmente art 10.
-                                            </h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>Suma de tarifas</h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>
-                                                Factor de actualización (capítulo I Ley de Ingresos vigente a la
-                                                fecha de facturación)
-                                            </h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>Saldo Atraso</h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>Saldo Rezago</h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>
-                                                Total del periodo facturado (ley de ingresos vigente a la
-                                                <br />
-                                                fecha de la facturación)
-                                            </h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>
-                                                Tasa de interés por adeudo mensual vencido
-                                                (artículo 37 ley de ingresos del estado)
-                                            </h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>
-                                                Importe mensual por concepto de recargos (adeudo del periodo
-                                                <br />
-                                                facturado x tasa de interés por adeudo mensual vencido)
-                                            </h6>
-                                        </th>
-                                        <th class="th">
-                                            <h6>
-                                                Recargos acumulados por mensualidades vencidas
-                                                <br />
-                                                (meses de adeudo x importe mensual por concepto de recargos )
-                                                <br />este importe no puede ser mayor al adeudo del periodo facturado
-                                            </h6>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="tbody">
-                                    {{-- @foreach ($items as $item)
+                            <div class="" style="overflow-x: auto;overflow-y: scroll;">
+                                <table  class="table table-hover table-sm table-dark my-2 mx-auto" >
+                                    <thead class="vrt-header">
                                         <tr class="tr">
-                                            <td class="td">{{ $item->meses }}</td>
-                                            <td class="td">{{ $item->periodo }}</td>
-                                            <td class="td">{{ $item->fecha_vto }}</td>
-                                            <td class="td">{{ $item->lecturaFacturada }}</td>
-                                            <td class="td">${{ number_format($item->tarifa1, 2) }}</td>
-                                            <td class="td">${{ number_format($item->tarifa2, 2) }}</td>
-                                            <td class="td">${{ number_format($item->sumaTarifas, 2) }}</td>
-                                            <td class="td">{{ number_format($item->factor, 4) }}</td>
-                                            <td class="td">${{ number_format($item->saldoAtraso, 2) }}</td>
-                                            <td class="td">${{ number_format($item->saldoRezago, 2) }}</td>
-                                            <td class="td">${{ number_format($item->totalPeriodo, 2) }}</td>
-                                            <td class="td">2.25</td>
-                                            <td class="td">${{ number_format($item->importeMensual, 2) }}</td>
-                                            <td class="td">${{ number_format($item->RecargosAcumulados, 2) }}</td>
+                                            <th class="th">
+                                                <h6>Meses de adeudo</h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>Periodo de consumo facturado</h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>Fecha de vencimiento</h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>Lectura facturada en m3</h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>Tarifa art. 11 enciso a)</h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>
+                                                    Tarifa art. 11 excedente del básico en m3 de la Ley de Ingresos del
+                                                    Estado de Baja
+                                                    <br />
+                                                    California ejercicios fiscales anteriores al 2020;
+                                                    actualmente art 10.
+                                                </h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>Suma de tarifas</h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>
+                                                    Factor de actualización (capítulo I Ley de Ingresos vigente a la
+                                                    fecha de facturación)
+                                                </h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>Saldo Atraso</h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>Saldo Rezago</h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>
+                                                    Total del periodo facturado (ley de ingresos vigente a la
+                                                    <br />
+                                                    fecha de la facturación)
+                                                </h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>
+                                                    Tasa de interés por adeudo mensual vencido
+                                                    (artículo 37 ley de ingresos del estado)
+                                                </h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>
+                                                    Importe mensual por concepto de recargos (adeudo del periodo
+                                                    <br />
+                                                    facturado x tasa de interés por adeudo mensual vencido)
+                                                </h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>
+                                                    Recargos acumulados por mensualidades vencidas
+                                                    <br />
+                                                    (meses de adeudo x importe mensual por concepto de recargos )
+                                                    <br />este importe no puede ser mayor al adeudo del periodo facturado
+                                                </h6>
+                                            </th>
+                                            <th class="th">
+                                                <h6>
+                                                    Acción
+                                                </h6>
+                                            </th>
                                         </tr>
-                                    @endforeach --}}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody class="table-light">
+                                        @foreach ($items as $item)
+                                            <tr class="tr">
+                                                <td class="td">{{ $item->meses }}</td>
+                                                <td class="td">{{ $item->periodo }}</td>
+                                                <td class="td">{{ $item->fecha_vto }}</td>
+                                                <td class="td">{{ $item->lecturaFacturada }}</td>
+                                                <td class="td">${{ number_format($item->tarifa1, 2) }}</td>
+                                                <td class="td">${{ number_format($item->tarifa2, 2) }}</td>
+                                                <td class="td">${{ number_format($item->sumaTarifas, 2) }}</td>
+                                                <td class="td">{{ number_format($item->factor, 4) }}</td>
+                                                <td class="td">${{ number_format($item->saldoAtraso, 2) }}</td>
+                                                <td class="td">${{ number_format($item->saldoRezago, 2) }}</td>
+                                                <td class="td">${{ number_format($item->totalPeriodo, 2) }}</td>
+                                                <td class="td">2.25</td>
+                                                <td class="td">${{ number_format($item->importeMensual, 2) }}</td>
+                                                <td class="td">${{ number_format($item->RecargosAcumulados, 2) }}</td>
+                                                <td class="td">
+                                                    <div class="row">
+                                                        
+                                                        <button type="button" class="btn btn-secondary btn-sm" id="btnmodal"
+                                                        data-bs-toggle="modal" 
+                                                        data-cuenta="{{ $item->cuenta }}"
+                                                        data-meses="{{$item->meses}}"
+                                                        data-periodo="{{$item->periodo}}"
+                                                        data-fecha_vto="{{ $item->fecha_vto }}"
+                                                        data-lecturaFacturada="2"
+                                                        data-tarifa1="{{ number_format($item->tarifa1, 2) }}"
+                                                        data-tarifa2="{{ number_format($item->tarifa2, 2) }}"
+                                                        data-sumaTarifas="{{ number_format($item->sumaTarifas, 2) }}"
+                                                        data-factor="{{ number_format($item->factor, 4) }}"
+                                                        data-saldoAtraso="{{ number_format($item->saldoAtraso, 2) }}"
+                                                        data-saldoRezago="{{ number_format($item->saldoRezago, 2) }}"
+                                                        data-totalPeriodo="{{ number_format($item->totalPeriodo, 2) }}"
+                                                        data-importeMensual="{{ number_format($item->importeMensual, 2) }}"
+                                                        data-RecargosAcumulados="{{ number_format($item->RecargosAcumulados, 2) }}"
+                                                        data-bs-target="#exampleModal">
+                                                            <img src="https://img.icons8.com/fluency/18/null/edit.png"/>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm">
+                                                            <img src="https://img.icons8.com/fluency/18/null/cancel.png"/>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                {{$items->links()}}
+                            </div>
                         </div>
 
                         <div class="form-row p-4">
@@ -601,7 +638,181 @@
             <hr>
         </div>
     </div>
+
+
+
+     {{-- Modal de  Impuesto Predial --}}
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Impuesto Predial</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="post" novalidate>
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="cuentaT" name="cuentaT">
+                            <label for="lecturaFacturadaT" class="form-label">Lectura Facturada</label>
+                            <input type="text" class="form-control" id="lecturaFacturadaT" name="lecturaFacturadaT" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mesesT" class="form-label">Meses
+                            </label>
+                            <input type="text"
+                                class="form-control 
+                            @error('mesesT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="mesesT" name="mesesT">
+                            @error('mesesT')
+                                <div class="text-danger text-center">
+                                    El campo meses es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="periodoT" class="form-label">Periodo
+                            </label>
+                            <input type="text"
+                                class="form-control 
+                            @error('periodoT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="periodoT" name="periodoT">
+                            @error('periodoT')
+                                <div class="text-danger text-center">
+                                    El campo periodo es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="fecha_vtoT" class="form-label">Fecha Vencimiento</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('fecha_vtoT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="fecha_vtoT" name="fecha_vtoT">
+                            @error('fecha_vtoT')
+                                <div class="text-danger text-center">
+                                    El campo fecha vencimiento es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="sumaTarifasT" class="form-label">Suma Tarifas</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('sumaTarifasT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="sumaTarifasT" name="sumaTarifasT">
+                            @error('sumaTarifasT')
+                                <div class="text-danger text-center">
+                                    El campo Suma Tarifas es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="factorT" class="form-label">Factor</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('factorT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="factorT" name="factorT">
+                            @error('factorT')
+                                <div class="text-danger text-center">
+                                    El campo factor es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="saldoAtrasoT" class="form-label">Saldo Atraso</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('saldoAtrasoT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="saldoAtrasoT" name="saldoAtrasoT">
+                            @error('saldoAtrasoT')
+                                <div class="text-danger text-center">
+                                    El campo saldo atraso es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="saldoRezagoT" class="form-label">Saldo Rezago</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('saldoRezagoT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="saldoRezagoT" name="saldoRezagoT">
+                            @error('saldoRezagoT')
+                                <div class="text-danger text-center">
+                                    El campo saldo rezago es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="totalPeriodoT" class="form-label">Saldo Rezago</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('totalPeriodoT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="totalPeriodoT" name="totalPeriodoT">
+                            @error('totalPeriodoT')
+                                <div class="text-danger text-center">
+                                    El campo total periodo es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="importeMensualT" class="form-label">Importe mensual</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('importeMensualT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="importeMensualT" name="importeMensualT">
+                            @error('importeMensualT')
+                                <div class="text-danger text-center">
+                                    El campo importe mensual es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="RecargosAcumuladosT" class="form-label">Recargos Acumulados</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('RecargosAcumuladosT')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="RecargosAcumuladosT" name="RecargosAcumuladosT">
+                            @error('RecargosAcumuladosT')
+                                <div class="text-danger text-center">
+                                    El campo recargos acumulados es requerido
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><img
+                                src="https://img.icons8.com/fluency/30/null/cancel.png" />
+                            Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('js')
+ {{-- Carga del modal con datos --}}
+ <script src="{{ asset('js/modalTabla.js') }}"></script>
     <script src="{{ asset('js/suma.js') }}"></script>
 @endsection

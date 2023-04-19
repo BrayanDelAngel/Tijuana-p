@@ -17,7 +17,7 @@ class DeterminacionController extends Controller
 {
     public function exec($cuenta)
     {
-        webServiceCobranzaExterna($cuenta);
+        // webServiceCobranzaExterna($cuenta);
         //  dd(webServiceCobranzaExterna($cuenta));
         //validamos si la cuenta existe dentro de la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
@@ -83,10 +83,14 @@ class DeterminacionController extends Controller
         //obtenemos los datos de la tabla de resumen
         $t_adeudo = tabla_da::select(['sumaTarifas', 'saldoIvaCor', 'saldoAtraso', 'saldoRezago', 'RecargosAcumulados'])
             ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
-        //obtenemos el periodo en el    ue se esta evaluando
-        //se cincatena la fecha maxima y minima 
-        $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
-        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro]);
+            //obtenemos el periodo en el    ue se esta evaluando
+            //se cincatena la fecha maxima y minima 
+            $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
+            
+            //Informacion de la tabla generada del propietario
+            $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados','fecha_vto','cuenta'])
+            ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->paginate(20);
+        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro,'items'=>$tabla]);
     }
     public function store(Request $request)
     {
