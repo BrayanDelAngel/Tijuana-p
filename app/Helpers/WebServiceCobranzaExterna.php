@@ -54,7 +54,8 @@ function webServiceCobranzaExterna($cuenta)
         //Se condiciona que si Historicos es mayor a 0 se realice el recorrido 
         
         if (consultCuenta($cuenta) != 0) {
-            deleteCuenta($cuenta);
+            // deleteCuenta($cuenta);
+            $delete = cobranzaExternaHistoricos::where('NoCta',$cuenta)->delete();
         }
         if (count($historicos) > 0) {
             foreach ($historicos as $historico) {
