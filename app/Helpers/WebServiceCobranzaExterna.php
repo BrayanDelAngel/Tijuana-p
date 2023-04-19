@@ -58,8 +58,8 @@ $serverName = "51.222.44.135";
     //Si no recibe un mensaje de error por parte de la API (Por ejemplo cuenta no existe)
     if (!isset($historicos['Mensaje'])) {
         //Se condiciona que si Historicos es mayor a 0 se realice el recorrido 
-        $consult = DB::select('select count(NoCta) as total from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
-        if ($consult['total'] != 0) {
+        $consult = cobranzaExternaHistoricos::where('NoCta',$cuenta)->count();
+        if ($consult != 0) {
             $del="DELETE FROM cobranzaExternaHistoricos WHERE NoCta='$cuenta'";
     sqlsrv_query($cnx,$del);
             // deleteCuenta($cuenta);
