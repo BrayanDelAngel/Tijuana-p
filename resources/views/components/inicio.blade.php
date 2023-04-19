@@ -131,7 +131,7 @@
                                             title="Requerimiento" name="requerimiento"><img
                                                 src="https://img.icons8.com/color/30/000000/scale-tool.png" />
                                             Requerimiento</a>
-                                        <a class="btn btn-outline-dark btn-sm" href="{{url('formM',Session::get('cuenta'))}}"
+                                        <a class="btn btn-outline-dark btn-sm" href="{{url('calculoM',Session::get('cuenta'))}}"
                                             style="padding:0%;border:0px;" data-toggle="tooltip" data-placement="right"
                                             title="Madamiento" name="mandamiento"><img
                                                 src="https://img.icons8.com/fluency/30/000000/general-ledger.png" />

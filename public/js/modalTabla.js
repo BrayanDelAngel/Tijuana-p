@@ -4,34 +4,23 @@ $(document).on("click", "#btnmodal", function () {
     let meses = $(this).data("meses");
     let periodo = $(this).data("periodo");
     let fecha_vto = $(this).data("fecha_vto");
-    let lecturaFacturada = $(this).data("lecturaFacturada");
-    let sumaTarifas = $(this).data("tarifa1");
-    let factor = $(this).data("factor");
-    let saldoAtraso = $(this).data("saldoAtraso");
-    let saldoRezago = $(this).data("saldoRezago");
-    let totalPeriodo = $(this).data("totalPeriodo");
-    let importeMensual = $(this).data("importeMensual");
-    let RecargosAcumulados = $(this).data("RecargosAcumulados");
-    console.log($(this).data("lecturaFacturada"));
-    console.log(
-         cuenta ,
-         periodo,
-     meses ,
-     fecha_vto ,
-     lecturaFacturada ,
-     sumaTarifas ,
-     factor ,
-     saldoAtraso ,
-     saldoRezago ,
-     totalPeriodo ,
-     importeMensual ,
-     RecargosAcumulados,
-    );
+    let lecturaFacturada = $(this).data("lf");
+    let tarifa1 = $(this).data("t1");
+    // let tarifa2 = $(this).data("t2");
+    let sumaTarifas = $(this).data("st");
+    let factor = $(this).data("f");
+    let saldoAtraso = $(this).data("sa");
+    let saldoRezago = $(this).data("sr");
+    let totalPeriodo = $(this).data("tp");
+    let importeMensual = $(this).data("im");
+    let RecargosAcumulados = $(this).data("ra");
     $("#cuentaT").val(cuenta);
     $("#mesesT").val(meses);
     $("#periodoT").val(periodo);
     $("#lecturaFacturadaT").val(lecturaFacturada);
     $("#fecha_vtoT").val(fecha_vto);
+    $("#tarifa1T").val(tarifa1);
+    // $("#tarifa2T").val(tarifa2);
     $("#sumaTarifasT").val(sumaTarifas);
     $("#factorT").val(factor);
     $("#saldoAtrasoT").val(saldoAtraso);

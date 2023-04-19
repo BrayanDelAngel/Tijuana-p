@@ -19,7 +19,7 @@
 @endsection
 @section('contenido')
     <div class=" row">
-        <div class="col-2 m-2">
+        <div class="col-2 m-2" style="overflow-y: auto; height: 500px;">
             <table class="table table-hover table-sm rounded-4 mt-5">
                 <thead class="text-white text-center" style="background-color: #406473;opacity: 0.80;">
                     <th>Folio</th>
@@ -38,9 +38,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="d-flex">
-                {{ $folios->links() }}
-            </div>
         </div>
         <div class=" container col-9">
             <div class="mt-4">
@@ -303,7 +300,7 @@
                                         <td>
                                             <input type="text" name="c_agua" id="c_agua" onchange="Suma()"
                                                 value="{{ old('c_agua') }}"
-                                                class="form-control mb-2 
+                                                class="form-control mb-2
                                                 @error('c_agua')
                                                 border border-danger rounded-2
                                                 @enderror" />
@@ -319,7 +316,7 @@
                                         <td>
                                             <input type="text" name="r_agua" id="r_agua" onchange="Suma()"
                                                 value="{{ old('r_agua') }}"
-                                                class="form-control mb-2 
+                                                class="form-control mb-2
                                                 @error('r_agua')
                                                 border border-danger rounded-2
                                                 @enderror" />
@@ -335,7 +332,7 @@
                                         <td>
                                             <input type="text" name="c_obra" id="c_obra"
                                                 value="{{ old('c_obra') }}"
-                                                class="form-control mb-2 
+                                                class="form-control mb-2
                                                 @error('c_obra')
                                                 border border-danger rounded-2
                                                 @enderror"
@@ -352,7 +349,7 @@
                                         <td>
                                             <input type="text" name="r_obra" id="r_obra"
                                                 value="{{ old('r_obra') }}"
-                                                class="form-control mb-2 
+                                                class="form-control mb-2
                                                 @error('r_obra')
                                                 border border-danger rounded-2
                                                 @enderror"
@@ -369,7 +366,7 @@
                                         <td>
                                             <input type="text" name="g_ejecucion" id="g_ejecucion"
                                                 value="{{ old('g_ejecucion') }}"
-                                                class="form-control mb-2  
+                                                class="form-control mb-2
                                                 @error('g_ejecucion')
                                                 border border-danger rounded-2
                                                 @enderror"
@@ -386,7 +383,7 @@
                                         <td>
                                             <input type="text" name="o_servicios" id="o_servicios"
                                                 value="{{ old('o_servicios') }}"
-                                                class="form-control mb-2 
+                                                class="form-control mb-2
                                                 @error('o_servicios')
                                                 border border-danger rounded-2
                                                 @enderror"
@@ -403,7 +400,7 @@
                                         <td>
                                             <input type="text" name="multas" id="multas"
                                                 value="{{ old('multas') }}"
-                                                class="form-control mb-2 
+                                                class="form-control mb-2
                                                 @error('multas')
                                                 border border-danger rounded-2
                                                 @enderror"
@@ -420,7 +417,7 @@
                                         <td>
                                             <input type="text" name="gastos_ejecucion" id="gastos_ejecucion"
                                                 value="{{ old('gastos_ejecucion') }}"
-                                                class="form-control mb-2 
+                                                class="form-control mb-2
                                                 @error('gastos_ejecucion')
                                                 border border-danger rounded-2
                                                 @enderror"
@@ -437,7 +434,7 @@
                                         <td>
                                             <input type="text" name="conv_vencido" id="conv_vencido"
                                                 value="{{ old('conv_vencido') }}"
-                                                class="form-control mb-2 
+                                                class="form-control mb-2
                                                 @error('conv_vencido')
                                                 border border-danger rounded-2
                                                 @enderror"
@@ -454,7 +451,7 @@
                                         <td>
                                             <input type="text" name="otros_gastos" id="otros_gastos"
                                                 value="{{ old('otros_gastos') }}"
-                                                class="form-control mb-2 
+                                                class="form-control mb-2
                                                 @error('otros_gastos')
                                                 border border-danger rounded-2
                                                 @enderror"
@@ -469,7 +466,7 @@
                                     <tr>
                                         <td>Saldo Total</td>
                                         <td><input type="text" name="total" id="total" value="{{ old('total') }}"
-                                                class="form-control mb-2  
+                                                class="form-control mb-2
                                                 @error('total')
                                                 border border-danger rounded-2
                                                 @enderror" readonly />
@@ -585,29 +582,28 @@
                                                 <td class="td">${{ number_format($item->RecargosAcumulados, 2) }}</td>
                                                 <td class="td">
                                                     <div class="row">
-                                                        
                                                         <button type="button" class="btn btn-secondary btn-sm" id="btnmodal"
-                                                        data-bs-toggle="modal" 
+                                                        data-bs-toggle="modal"
                                                         data-cuenta="{{ $item->cuenta }}"
                                                         data-meses="{{$item->meses}}"
                                                         data-periodo="{{$item->periodo}}"
                                                         data-fecha_vto="{{ $item->fecha_vto }}"
-                                                        data-lecturaFacturada="2"
-                                                        data-tarifa1="{{ number_format($item->tarifa1, 2) }}"
-                                                        data-tarifa2="{{ number_format($item->tarifa2, 2) }}"
-                                                        data-sumaTarifas="{{ number_format($item->sumaTarifas, 2) }}"
-                                                        data-factor="{{ number_format($item->factor, 4) }}"
-                                                        data-saldoAtraso="{{ number_format($item->saldoAtraso, 2) }}"
-                                                        data-saldoRezago="{{ number_format($item->saldoRezago, 2) }}"
-                                                        data-totalPeriodo="{{ number_format($item->totalPeriodo, 2) }}"
-                                                        data-importeMensual="{{ number_format($item->importeMensual, 2) }}"
-                                                        data-RecargosAcumulados="{{ number_format($item->RecargosAcumulados, 2) }}"
+                                                        data-lf="{{ $item->lecturaFacturada }}"
+                                                        data-t1="{{ number_format($item->tarifa1, 2) }}"
+                                                        {{-- data-t2="{{ number_format($item->tarifa2, 2) }}" --}}
+                                                        data-st="{{ number_format($item->sumaTarifas, 2) }}"
+                                                        data-f="{{ number_format($item->factor, 4) }}"
+                                                        data-sa="{{ number_format($item->saldoAtraso, 2) }}"
+                                                        data-sr="{{ number_format($item->saldoRezago, 2) }}"
+                                                        data-tp="{{ number_format($item->totalPeriodo, 2) }}"
+                                                        data-im="{{ number_format($item->importeMensual, 2) }}"
+                                                        data-ra="{{ number_format($item->RecargosAcumulados, 2) }}"
                                                         data-bs-target="#exampleModal">
                                                             <img src="https://img.icons8.com/fluency/18/null/edit.png"/>
                                                         </button>
-                                                        <button type="button" class="btn btn-danger btn-sm">
-                                                            <img src="https://img.icons8.com/fluency/18/null/cancel.png"/>
-                                                        </button>
+                                                            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarfila({{$item->cuenta}},{{$item->meses}})">
+                                                                <img src="https://img.icons8.com/fluency/18/null/cancel.png"/>
+                                                            </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -649,26 +645,26 @@
                     <h5 class="modal-title" id="exampleModalLabel">Impuesto Predial</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" method="post" novalidate>
+                <form action="{{ route('modificar_tabla') }}" method="post" novalidate>
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="cuentaT" name="cuentaT">
-                            <label for="lecturaFacturadaT" class="form-label">Lectura Facturada</label>
-                            <input type="text" class="form-control" id="lecturaFacturadaT" name="lecturaFacturadaT" readonly>
+                            <input type="text" class="form-control" id="cuentaT" name="cuentaT" hidden>
+                            <label for="lecturaFacturadaT" class="form-label">Meses </label>
+                            <input type="text" class="form-control" id="mesesT" name="mesesT" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="mesesT" class="form-label">Meses
+                            <label for="lecturaFacturadaT" class="form-label">Lectura Facturada
                             </label>
                             <input type="text"
-                                class="form-control 
-                            @error('mesesT')
+                                class="form-control
+                            @error('lecturaFacturadaT')
                             border border-danger rounded-2
                             @enderror"
-                                id="mesesT" name="mesesT">
-                            @error('mesesT')
+                                id="lecturaFacturadaT" name="lecturaFacturadaT">
+                            @error('lecturaFacturadaT')
                                 <div class="text-danger text-center">
-                                    El campo meses es requerido
+                                    El campo lectura facturada es requerido
                                 </div>
                             @enderror
                         </div>
@@ -676,7 +672,7 @@
                             <label for="periodoT" class="form-label">Periodo
                             </label>
                             <input type="text"
-                                class="form-control 
+                                class="form-control
                             @error('periodoT')
                             border border-danger rounded-2
                             @enderror"
@@ -690,7 +686,7 @@
                         <div class="mb-3">
                             <label for="fecha_vtoT" class="form-label">Fecha Vencimiento</label>
                             <input type="text"
-                                class="form-control 
+                                class="form-control
                             @error('fecha_vtoT')
                             border border-danger rounded-2
                             @enderror"
@@ -702,9 +698,37 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="tarifa1T" class="form-label">Tarifa 1</label>
+                            <input type="text"
+                                class="form-control
+                            @error('tarifa1T')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="tarifa1T" name="tarifa1T">
+                            @error('tarifa1T')
+                                <div class="text-danger text-center">
+                                    El campo tarifa uno es requerido
+                                </div>
+                            @enderror
+                        </div>
+                        {{-- <div class="mb-3">
+                            <label for="tarifa2T" class="form-label">Tarifa 2</label>
+                            <input type="text"
+                                class="form-control
+                            @error('tarifa2T')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="tarifa2T" name="tarifa2T">
+                            @error('tarifa2T')
+                                <div class="text-danger text-center">
+                                    El campo tarifa dos es requerido
+                                </div>
+                            @enderror
+                        </div> --}}
+                        <div class="mb-3">
                             <label for="sumaTarifasT" class="form-label">Suma Tarifas</label>
                             <input type="text"
-                                class="form-control 
+                                class="form-control
                             @error('sumaTarifasT')
                             border border-danger rounded-2
                             @enderror"
@@ -718,7 +742,7 @@
                         <div class="mb-3">
                             <label for="factorT" class="form-label">Factor</label>
                             <input type="text"
-                                class="form-control 
+                                class="form-control
                             @error('factorT')
                             border border-danger rounded-2
                             @enderror"
@@ -732,7 +756,7 @@
                         <div class="mb-3">
                             <label for="saldoAtrasoT" class="form-label">Saldo Atraso</label>
                             <input type="text"
-                                class="form-control 
+                                class="form-control
                             @error('saldoAtrasoT')
                             border border-danger rounded-2
                             @enderror"
@@ -746,7 +770,7 @@
                         <div class="mb-3">
                             <label for="saldoRezagoT" class="form-label">Saldo Rezago</label>
                             <input type="text"
-                                class="form-control 
+                                class="form-control
                             @error('saldoRezagoT')
                             border border-danger rounded-2
                             @enderror"
@@ -760,7 +784,7 @@
                         <div class="mb-3">
                             <label for="totalPeriodoT" class="form-label">Saldo Rezago</label>
                             <input type="text"
-                                class="form-control 
+                                class="form-control
                             @error('totalPeriodoT')
                             border border-danger rounded-2
                             @enderror"
@@ -774,7 +798,7 @@
                         <div class="mb-3">
                             <label for="importeMensualT" class="form-label">Importe mensual</label>
                             <input type="text"
-                                class="form-control 
+                                class="form-control
                             @error('importeMensualT')
                             border border-danger rounded-2
                             @enderror"
@@ -788,7 +812,7 @@
                         <div class="mb-3">
                             <label for="RecargosAcumuladosT" class="form-label">Recargos Acumulados</label>
                             <input type="text"
-                                class="form-control 
+                                class="form-control
                             @error('RecargosAcumuladosT')
                             border border-danger rounded-2
                             @enderror"
@@ -815,4 +839,5 @@
  {{-- Carga del modal con datos --}}
  <script src="{{ asset('js/modalTabla.js') }}"></script>
     <script src="{{ asset('js/suma.js') }}"></script>
+    <script src="{{ asset('js/deleteRow.js') }}"></script>
 @endsection
