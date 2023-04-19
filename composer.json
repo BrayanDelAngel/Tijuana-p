@@ -47,6 +47,7 @@
         },
         "files":[
             "app/Helpers/WebServiceCobranzaExterna.php",
+            "app/Helpers/firma.php",
             "app/Helpers/WebServiceImplementa.php"
         ]
     },
