@@ -7,10 +7,10 @@ use \Staudenmeir\EloquentParamLimitFix\ParamLimitFix;
 function webServiceCobranzaExterna($cuenta)
 {
     
-$serverName = "51.222.44.135";
-    $connectionInfo = array( 'Database'=>'implementtaTijuanaA', 'UID'=>'sa', 'PWD'=>'vrSxHH3TdC');
-    $cnx = sqlsrv_connect($serverName, $connectionInfo);
-    date_default_timezone_set('America/Mexico_City');
+// $serverName = "51.222.44.135";
+//     $connectionInfo = array( 'Database'=>'implementtaTijuanaA', 'UID'=>'sa', 'PWD'=>'vrSxHH3TdC');
+//     $cnx = sqlsrv_connect($serverName, $connectionInfo);
+//     date_default_timezone_set('America/Mexico_City');
 
     ini_set('max_execution_time', 0);
     ini_set('memory_limit', '-1');
@@ -60,9 +60,10 @@ $serverName = "51.222.44.135";
         //Se condiciona que si Historicos es mayor a 0 se realice el recorrido 
         $consult = cobranzaExternaHistoricos::where('NoCta',$cuenta)->count();
         if ($consult != 0) {
-            $del="DELETE FROM cobranzaExternaHistoricos WHERE NoCta='$cuenta'";
-    sqlsrv_query($cnx,$del);
-            // deleteCuenta($cuenta);
+            // dd($consult);
+            // $del="delete from cobranzaExternaHistoricosWS3 WHERE NoCta='$cuenta'";
+    // sqlsrv_query($cnx,$del);
+            deleteCuenta($cuenta);
             // $delete = cobranzaExternaHistoricos::where('NoCta',$cuenta)->delete();
         }
         if (count($historicos) > 0) {
@@ -83,11 +84,9 @@ $serverName = "51.222.44.135";
                 $SaldoRezago = (is_array($historico['SaldoRezago'])) ? '' : $historico['SaldoRezago'];
                 $RecargosAcum = (is_array($historico['RecargosAcum'])) ? '' : $historico['RecargosAcum'];
                 $IvaReacum = (is_array($historico['IvaReacum'])) ? '' : $historico['IvaReacum'];
-
-
+                $Fecha_vto = (is_array($historico['Fecha_vto'])) ? '' : convertDate($historico['Fecha_vto']);
                 //Capturamos errores si hay en la insercion
                 try {
-
                     $insert = new cobranzaExternaHistoricos();
                     $insert->NoCta = $NoCta;
                     $insert->noFact = $NoFactura;
@@ -104,7 +103,7 @@ $serverName = "51.222.44.135";
                     $insert->recargosAcum = $RecargosAcum;
                     $insert->ivaReacum = $IvaReacum;
                     $insert->cuentaImplementta = $NoCta;
-                    $insert->fechavto = '';
+                    $insert->fechavto = $Fecha_vto;
                     $insert->save();
                 } catch (Exception $e) {
                     return 'Error al insertar';
@@ -122,9 +121,6 @@ function consultCuenta($cuenta)
     $consult = DB::select('select count(NoCta) from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
     return $consult;
 }
-
-
-
 function deleteCuenta($cuenta)
 {
     $delete = cobranzaExternaHistoricos::where('NoCta',$cuenta)->delete();
