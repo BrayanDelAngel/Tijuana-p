@@ -362,7 +362,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Gastos De Ejecución</td>
+                                        <td>Gastos de Ejecución</td>
                                         <td>
                                             <input type="text" name="g_ejecucion" id="g_ejecucion"
                                                 value="{{ old('g_ejecucion') }}"
@@ -412,7 +412,7 @@
                                             @enderror
                                         </td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td>Gastos de Ejecucion</td>
                                         <td>
                                             <input type="text" name="gastos_ejecucion" id="gastos_ejecucion"
@@ -428,7 +428,7 @@
                                                 </div>
                                             @enderror
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td>Convenios Vencidos</td>
                                         <td>
