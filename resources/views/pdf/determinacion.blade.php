@@ -10,6 +10,7 @@
     <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
 </head>
 
+
 <body>
     <header>
         <img class="imgHeader1" src="{{ public_path('img/pdf/logo_baja_blanco.png') }}">
