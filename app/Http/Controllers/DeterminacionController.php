@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Luecano\NumeroALetras\NumeroALetras;
 use Carbon\Carbon;
-
+use App\Http\Requests\TablaModalRequest;
 class DeterminacionController extends Controller
 {
     public function exec($cuenta)
@@ -93,7 +93,6 @@ class DeterminacionController extends Controller
     }
     public function store(Request $request)
     {
-
         $request->validate([
             'folio' => ['required'],
             'propietario' => ['required'],
@@ -201,24 +200,11 @@ class DeterminacionController extends Controller
             return back()->with('errorPeticion', 'Error al generar');
         }
     }
-    public function update(Request $request)
+    public function update(TablaModalRequest $request)
     {
-        $request->validate([
-            'cuentaT' => ['required'],
-            'mesesT' => ['required'],
-            'periodoT' => ['required'],
-            'lecturaFacturadaT' => ['required'],
-            'fecha_vtoT' => ['required'],
-            'tarifa1T' => ['required'],
-            'sumaTarifasT' => ['required'],
-            'factorT' => ['required'],
-            'saldoAtrasoT' => ['required'],
-            'saldoRezagoT' => ['required'],
-            'totalPeriodoT' => ['required'],
-            'importeMensualT' => ['required'],
-            'RecargosAcumuladosT' => ['required'],
-        ]);
-        DB::update('
+        
+        $data = $request->validated();
+       $actualizado= DB::update('
         UPDATE [dbo].[tabla_da]
         SET [lecturaFacturada] = ?
       ,[periodo] = ?
@@ -232,7 +218,7 @@ class DeterminacionController extends Controller
       ,[importeMensual] = ?
       ,[RecargosAcumulados] = ?
       ,[fecha_vto] = ?
- WHERE cuenta = ? and meses = ?
+        WHERE cuenta = ? and meses = ?
         ', [
             $request->lecturaFacturadaT,
             $request->periodoT,
@@ -249,7 +235,12 @@ class DeterminacionController extends Controller
             $request->cuentaT,
             $request->mesesT,
         ]);
-        return back()->with('actualizado', 'Se actualizaron los datos correctamente');
+        if($actualizado){
+            return back()->with('actualizado', 'Se actualizaron los datos correctamente');
+        }
+        else{
+            return back()->with('errorActualizarTabla', 'Error al actualizar los datos');
+        }
     }
     public function delete ($cuenta, $meses ){
         DB::delete('delete from [dbo].[tabla_da] where cuenta = ? and meses=?', [$cuenta, $meses]);
