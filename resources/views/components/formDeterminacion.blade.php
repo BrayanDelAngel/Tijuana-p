@@ -664,7 +664,7 @@
                                 id="lecturaFacturadaT" name="lecturaFacturadaT">
                             @error('lecturaFacturadaT')
                                 <div class="text-danger text-center">
-                                    El campo lectura facturada es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
@@ -679,21 +679,21 @@
                                 id="periodoT" name="periodoT">
                             @error('periodoT')
                                 <div class="text-danger text-center">
-                                    El campo periodo es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="fecha_vtoT" class="form-label">Fecha Vencimiento</label>
+                            <label for="fecha_vtoT" class="form-label">Fecha Vencimiento (dia-mes-año ó año-mes-dia)</label>
                             <input type="text"
                                 class="form-control
                             @error('fecha_vtoT')
                             border border-danger rounded-2
                             @enderror"
-                                id="fecha_vtoT" name="fecha_vtoT">
+                                id="fecha_vtoT" name="fecha_vtoT" placeholder="dia-mes-año">
                             @error('fecha_vtoT')
                                 <div class="text-danger text-center">
-                                    El campo fecha vencimiento es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
@@ -707,7 +707,7 @@
                                 id="tarifa1T" name="tarifa1T">
                             @error('tarifa1T')
                                 <div class="text-danger text-center">
-                                    El campo tarifa uno es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
@@ -735,7 +735,7 @@
                                 id="sumaTarifasT" name="sumaTarifasT">
                             @error('sumaTarifasT')
                                 <div class="text-danger text-center">
-                                    El campo Suma Tarifas es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
@@ -749,7 +749,7 @@
                                 id="factorT" name="factorT">
                             @error('factorT')
                                 <div class="text-danger text-center">
-                                    El campo factor es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
@@ -763,7 +763,7 @@
                                 id="saldoAtrasoT" name="saldoAtrasoT">
                             @error('saldoAtrasoT')
                                 <div class="text-danger text-center">
-                                    El campo saldo atraso es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
@@ -777,7 +777,7 @@
                                 id="saldoRezagoT" name="saldoRezagoT">
                             @error('saldoRezagoT')
                                 <div class="text-danger text-center">
-                                    El campo saldo rezago es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
@@ -791,7 +791,7 @@
                                 id="totalPeriodoT" name="totalPeriodoT">
                             @error('totalPeriodoT')
                                 <div class="text-danger text-center">
-                                    El campo total periodo es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
@@ -805,7 +805,7 @@
                                 id="importeMensualT" name="importeMensualT">
                             @error('importeMensualT')
                                 <div class="text-danger text-center">
-                                    El campo importe mensual es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>
@@ -819,7 +819,7 @@
                                 id="RecargosAcumuladosT" name="RecargosAcumuladosT">
                             @error('RecargosAcumuladosT')
                                 <div class="text-danger text-center">
-                                    El campo recargos acumulados es requerido
+                                    {{$message}}
                                 </div>
                             @enderror
                         </div>

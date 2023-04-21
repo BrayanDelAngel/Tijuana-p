@@ -11,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Luecano\NumeroALetras\NumeroALetras;
+use App\Http\Requests\TablaModalRequest;
 
 class MandamientoController extends Controller
 {
@@ -220,24 +221,10 @@ class MandamientoController extends Controller
             return back()->with('errorPeticion', 'Error al generar');
         }
     }
-    public function update(Request $request)
+    public function update(TablaModalRequest $request)
     {
-        $request->validate([
-            'cuentaT' => ['required'],
-            'mesesT' => ['required'],
-            'periodoT' => ['required'],
-            'lecturaFacturadaT' => ['required'],
-            'fecha_vtoT' => ['required'],
-            'tarifa1T' => ['required'],
-            'sumaTarifasT' => ['required'],
-            'factorT' => ['required'],
-            'saldoAtrasoT' => ['required'],
-            'saldoRezagoT' => ['required'],
-            'totalPeriodoT' => ['required'],
-            'importeMensualT' => ['required'],
-            'RecargosAcumuladosT' => ['required'],
-        ]);
-        DB::update('
+        $data = $request->validated();
+        $actualizado=DB::update('
         UPDATE [dbo].[tabla_ma]
         SET [lecturaFacturada] = ?
       ,[periodo] = ?
@@ -251,7 +238,7 @@ class MandamientoController extends Controller
       ,[importeMensual] = ?
       ,[RecargosAcumulados] = ?
       ,[fecha_vto] = ?
- WHERE cuenta = ? and meses = ?
+        WHERE cuenta = ? and meses = ?
         ', [
             $request->lecturaFacturadaT,
             $request->periodoT,
@@ -268,7 +255,12 @@ class MandamientoController extends Controller
             $request->cuentaT,
             $request->mesesT,
         ]);
-        return back()->with('actualizado', 'Se actualizaron los datos correctamente');
+        if($actualizado){
+            return back()->with('actualizado', 'Se actualizaron los datos correctamente');
+        }
+        else{
+            return back()->with('errorActualizarTabla', 'Error al actualizar los datos');
+        }
     }
     public function delete($cuenta, $meses)
     {
@@ -391,29 +383,61 @@ class MandamientoController extends Controller
         }
          //Contador de meses
          $i=0;
-        $pdf = Pdf::loadView('pdf.mandamiento', [
-            'tabla' => $tabla,
-            'items' => $datos,
-            'folio' => $folio,
-            't_adeudo_t' => $t_adeudo_t,
-            'totales' => $totales,
-            't_adeudor' => $t_adeudo_t,
-            'tar' => $tar,
-            'ejecutores' => $ejecutoresformat,
-            'multas' => $multas,
-            'gastos_ejecucion' => $gastos_ejecucion,
-            'conv_vencido' => $conv_vencido,
-            'otros_gastos' => $otros_gastos,
-            'total_ar' => number_format($total_ar, 2),
-            'fechamanda' => $fechamanda,
-            'fechadeterminacion' => $fechadeterminacion,
-            'sobrerecaudador' => $sobrerecaudador,
-            'pagor' => $pagor,
-            'totalr' => $totalr,
-            'pagoe' => $pagoe,
-            'totale' => $totale,
-            'i'=>$i,
-        ]);
+         $cr = tabla_ma::select('cuenta')->where('cuenta', $datos[0]->cuenta)->count();
+        $condicion_firma=firmaMandamiento($cr);
+        //si esta bien 
+        if($condicion_firma!=1){
+            $pdf = Pdf::loadView('pdf.mandamiento', [
+                'tabla' => $tabla,
+                'items' => $datos,
+                'folio' => $folio,
+                't_adeudo_t' => $t_adeudo_t,
+                'totales' => $totales,
+                't_adeudor' => $t_adeudo_t,
+                'tar' => $tar,
+                'ejecutores' => $ejecutoresformat,
+                'multas' => $multas,
+                'gastos_ejecucion' => $gastos_ejecucion,
+                'conv_vencido' => $conv_vencido,
+                'otros_gastos' => $otros_gastos,
+                'total_ar' => number_format($total_ar, 2),
+                'fechamanda' => $fechamanda,
+                'fechadeterminacion' => $fechadeterminacion,
+                'sobrerecaudador' => $sobrerecaudador,
+                'pagor' => $pagor,
+                'totalr' => $totalr,
+                'pagoe' => $pagoe,
+                'totale' => $totale,
+                'i'=>$i,
+            ]);
+            
+        }
+        //Si no 
+        else{
+            $pdf = Pdf::loadView('pdf.mandamiento_firma', [
+                'tabla' => $tabla,
+                'items' => $datos,
+                'folio' => $folio,
+                't_adeudo_t' => $t_adeudo_t,
+                'totales' => $totales,
+                't_adeudor' => $t_adeudo_t,
+                'tar' => $tar,
+                'ejecutores' => $ejecutoresformat,
+                'multas' => $multas,
+                'gastos_ejecucion' => $gastos_ejecucion,
+                'conv_vencido' => $conv_vencido,
+                'otros_gastos' => $otros_gastos,
+                'total_ar' => number_format($total_ar, 2),
+                'fechamanda' => $fechamanda,
+                'fechadeterminacion' => $fechadeterminacion,
+                'sobrerecaudador' => $sobrerecaudador,
+                'pagor' => $pagor,
+                'totalr' => $totalr,
+                'pagoe' => $pagoe,
+                'totale' => $totale,
+                'i'=>$i,
+            ]);
+        }
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();

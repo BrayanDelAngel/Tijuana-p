@@ -41,6 +41,10 @@
     {{-- Muestra de sweetalert en caso que no haya  hecho un requerimiento --}}
         <script src="{{ asset('js/sweetAlert/successUpdateTabla.js') }}"></script>
     @endif
+    @if (session('errorActualizarTabla'))
+    {{-- Muestra de sweetalert en caso que no haya  hecho un requerimiento --}}
+        <script src="{{ asset('js/sweetAlert/errorUpdateTablaModal.js') }}"></script>
+    @endif
     {{-- Spinner de caraga --}}
     {{-- <div id="contenedor_carga">
         <div id="carga">
