@@ -111,7 +111,7 @@ class DeterminacionController extends Controller
             'g_ejecucion' => ['required'],
             'o_servicios' => ['required'],
             'multas' => ['required'],
-            'gastos_ejecucion' => ['required'],
+            // 'gastos_ejecucion' => ['required'],
             'conv_vencido' => ['required'],
             'otros_gastos' => ['required'],
             'total' => ['required'],
@@ -154,7 +154,7 @@ class DeterminacionController extends Controller
         $g_ejecucion = (float) str_replace(array('$', ','), '', $request->g_ejecucion);
         $o_servicios = (float) str_replace(array('$', ','), '', $request->o_servicios);
         $multas = (float) str_replace(array('$', ','), '', $request->multas);
-        $gastos_ejecucion = (float) str_replace(array('$', ','), '', $request->gastos_ejecucion);
+        // $gastos_ejecucion = (float) str_replace(array('$', ','), '', $request->gastos_ejecucion);
         $conv_vencido = (float) str_replace(array('$', ','), '', $request->conv_vencido);
         $otros_gastos = (float) str_replace(array('$', ','), '', $request->otros_gastos);
         $total = (float) str_replace(array('$', ','), '', $request->total);
@@ -181,7 +181,7 @@ class DeterminacionController extends Controller
         $r->gastos_ejecución = $g_ejecucion;
         $r->otros_servicios = $o_servicios;
         $r->multas = $multas;
-        $r->gastos_ejecucion = $gastos_ejecucion;
+        // $r->gastos_ejecucion = $gastos_ejecucion;
         $r->conv_vencido = $conv_vencido;
         $r->otros_gastos = $otros_gastos;
         $r->saldo_total = $total;
