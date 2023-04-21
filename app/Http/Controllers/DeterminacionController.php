@@ -84,7 +84,7 @@ class DeterminacionController extends Controller
             ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
         //obtenemos el periodo en el    ue se esta evaluando
         //se cincatena la fecha maxima y minima
-        $periodo = DB::select("select concat((select format(min(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechaLecturaActual),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
+        $periodo = DB::select("select concat((select format(min(fechavto),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechavto),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
 
         //Informacion de la tabla generada del propietario
         $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto', 'cuenta'])
@@ -291,7 +291,7 @@ class DeterminacionController extends Controller
             }
         }
         //Informacion de la tabla generada del propietario
-        $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto'])
+        $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', DB::raw("format(fecha_vto,'d') as fecha_vto")])
             ->where('cuenta', $data->cuenta)->orderBy('meses', 'ASC')->get();
         // dd($tabla);
         //Se extrae los años que debe el propietario
