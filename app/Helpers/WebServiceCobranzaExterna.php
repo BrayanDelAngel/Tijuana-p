@@ -135,7 +135,11 @@ function convertDate($fecha)
 }
 function remove($cuenta){
     $char = substr($cuenta, 0, 1);
-    if ($char == '0') {
+    $char2 = substr($cuenta, 0, 2);
+    if ($char2 == '00') {
+        $cuenta = substr($cuenta, 2);
+    }
+    else if ($char == '0') {
         $cuenta = substr($cuenta, 1);
     } 
     return $cuenta;
