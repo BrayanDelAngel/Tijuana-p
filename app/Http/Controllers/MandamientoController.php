@@ -16,7 +16,7 @@ class MandamientoController extends Controller
 {
     public function exec($cuenta)
     {
-        webServiceCobranzaExterna($cuenta);
+        // webServiceCobranzaExterna($cuenta);
         //validamos si existe en la tabla de cobranza historicos
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
         //si no existe mandar un error y redireccionarlo al index

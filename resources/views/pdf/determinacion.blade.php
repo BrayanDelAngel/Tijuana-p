@@ -10,6 +10,7 @@
     <link href="C:/wamp64/www/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
 </head>
 
+
 <body>
     <header>
         <img class="imgHeader1" src="{{ public_path('img/pdf/logo_baja_blanco.png') }}">
@@ -41,63 +42,25 @@
             <br />
             <span class="bold">PRESENTE. -</span>
         </p>
-        @if ($data->tipo_s == 'DOMESTICO')
-            <p class="text-justify">
-                El suscrito Dr.<span class="bold"> Víctor Daniel Amador Barragán</span>
-                Director General de la Comisión Estatal de Servicios Públicos de Tijuana, con fundamento en los
-                artículos 16 y 31 fracción IV de la Constitución Política de los Estado Unidos Mexicanos; artículo 22,
-                fracción II de la Ley de las Entidades Paraestatales del Estado de Baja California; los artículos 1, 2
-                fracción V, 16 fracción I, II, y VII , 21 de la Ley de las Comisiones Estatales de Servicios Públicos
-                del Estado de Baja California, en relación con lo dispuesto por el primer párrafo del artículo 17 de la
-                Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja California, y el acuerdo número
-                SE/004/14-07-22 de la séptima sesión extraordinaria del consejo de administración de fecha 14 de julio
-                de 2022, donde se otorga el nombramiento de Director General y de representación a la Comisión Estatal
-                Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley de Hacienda del Estado de Baja
-                California; articulo 14 BIS del Codigo Fiscal para el estado de baja california para el ejercicio fiscal
-                2022; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta el Servicio de Agua Potable en el
-                Estado de Baja California; artículo 11, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de
-                la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004</span>
-                ; artículo 11, sección lll y lV, incisoA), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos
-                para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011,
-                    2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll y IV, inciso A),
-                numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal 2020; artículo 9,
-                sección lV Y V, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio
-                fiscal 2021; artículo 9, sección Vl Y V, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de
-                Ingresos para el ejercicio fiscal 2022,2023; se procede a determinar el crédito fiscal en materia de
-                derechos por consumo de agua; lo cual queda contenido en la presente resolución, se concluye lo
-                siguiente:
-            </p>
-        @endif
         @if ($data->tipo_s == 'NO DOMESTICO')
             <p class="text-justify">
-                El suscrito Dr.<span class="bold"> Víctor Daniel Amador Barragán</span> Director General de la
-                Comisión Estatal de Servicios Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV
-                de la Constitución Política de los Estado Unidos Mexicanos; artículo 22, fracción II de la Ley de las
-                Entidades Paraestatales del Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II,
-                y VII , 21 de la Ley de las Comisiones Estatales de Servicios Públicos del Estado de Baja California, en
-                relación con lo dispuesto por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de
-                Agua Potable en el Estado de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión
-                extraordinaria del consejo de administración de fecha 14 de julio de 2022, donde se otorga el
-                nombramiento de Director General y de representación a la Comisión Estatal Servicios Públicos de
-                Tijuana, de acuerdo al artículo 4-1 de la Ley de Hacienda del Estado de Baja California; articulo 14 BIS
-                del Codigo Fiscal para el estado de baja california para el ejercicio fiscal 2023; artículo 3 fracciones
-                I, II lll y IV de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja California;
-                artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y
-                l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004</span>;
-                artículo 11, sección lll y lV,
-                inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos
-                para los ejercicios fiscales de los años
-                <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018
-                    Y 2019</span>;
-                artículo 10, sección lll y IV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos
-                para el ejercicio fiscal <span class="bold">2020</span>; artículo 9, sección lV Y V, inciso A),
-                numeral 2, subinciso a), b), c) y
-                d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021</span>; artículo 9, sección
-                Vl Y V, inciso A), numeral
-                2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
-                    class="bold">2022,2023</span>; se procede a
-                determinar el crédito fiscal en materia de derechos por consumo de agua; lo cual queda contenido en la
-                presente resolución, se concluye lo siguiente:
+            El suscrito Dr.<span class="bold">Víctor Daniel Amador Barragán</span> 
+            Director General de la Comisión Estatal de Servicios Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política de los Estado Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales del Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de las Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo dispuesto por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión extraordinaria del consejo de administración de fecha 14 de julio de 2022, donde se otorga el nombramiento de Director General y de representación a la Comisión Estatal Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley de Hacienda del Estado de Baja California; articulo 14 BIS del Codigo Fiscal para el Estado de Baja California para el ejercicio fiscal 2022; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004</span>; 
+            artículo 11, sección lll y lV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años 
+            <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll y IV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal 
+            <span class="bold">2020</span>; artículo 9, sección lV Y V, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal 
+            <span class="bold">2021</span>; artículo 9, sección Vl Y V, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal 
+            <span class="bold">2022,2023</span>; se procede a determinar el crédito fiscal en materia de derechos por consumo de agua; lo cual queda contenido en la presente resolución, se concluye lo siguiente:
+            </p>
+        @endif
+        @if ($data->tipo_s == 'DOMESTICO')
+            <p class="text-justify">
+            El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la Comisión Estatal de Servicios Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política de los Estado Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales del Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de las Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo dispuesto por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja California, y el acuerdo número SE/004/14-07-22 de la séptima sesión extraordinaria del consejo de administración de fecha 14 de julio de 2022, donde se otorga el nombramiento de Director General y de representación a la Comisión Estatal Servicios Públicos de Tijuana, de acuerdo al artículo 4-1 de la Ley de Hacienda del Estado de Baja California; articulo 14 BIS del Codigo Fiscal para el Estado de Baja California para el ejercicio fiscal 2023; artículo 3 fracciones I, II lll y IV de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004</span>;
+             artículo 11, sección lll y lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años 
+             <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>; artículo 10, sección lll y IV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal 
+             <span class="bold">2020</span>; artículo 9, sección lV Y V, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l)  de la Ley de Ingresos para el ejercicio fiscal 
+             <span class="bold">2021</span> artículo 9, sección V Y Vl, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal 
+             <span class="bold">2022,2023</span>; se procede a determinar el crédito fiscal en materia de derechos por consumo de agua; lo cual queda contenido en la presente resolución, se concluye lo siguiente:
             </p>
         @endif
         <p class="text-center bold">CONSIDERANDO ÚNICO:</p>
