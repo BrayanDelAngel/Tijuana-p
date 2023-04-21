@@ -14,18 +14,24 @@ $(document).on("click", "#btnmodal", function () {
     let totalPeriodo = $(this).data("tp");
     let importeMensual = $(this).data("im");
     let RecargosAcumulados = $(this).data("ra");
+
     $("#cuentaT").val(cuenta);
     $("#mesesT").val(meses);
     $("#periodoT").val(periodo);
     $("#lecturaFacturadaT").val(lecturaFacturada);
     $("#fecha_vtoT").val(fecha_vto);
-    $("#tarifa1T").val(tarifa1);
+    $("#tarifa1T").val(remplaceStr(tarifa1));
     // $("#tarifa2T").val(tarifa2);
-    $("#sumaTarifasT").val(sumaTarifas);
-    $("#factorT").val(factor);
-    $("#saldoAtrasoT").val(saldoAtraso);
-    $("#saldoRezagoT").val(saldoRezago);
-    $("#totalPeriodoT").val(totalPeriodo);
-    $("#importeMensualT").val(importeMensual);
-    $("#RecargosAcumuladosT").val(RecargosAcumulados);
+    $("#sumaTarifasT").val(remplaceStr(sumaTarifas));
+    $("#factorT").val(remplaceStr(factor));
+    $("#saldoAtrasoT").val(remplaceStr(saldoAtraso));
+    $("#saldoRezagoT").val(remplaceStr(saldoRezago));
+    $("#totalPeriodoT").val(remplaceStr(totalPeriodo));
+    $("#importeMensualT").val(remplaceStr(importeMensual));
+    $("#RecargosAcumuladosT").val(remplaceStr(RecargosAcumulados));
 })
+//La funcion sirve para eliminar , ya que en las validaciones mandar error por que no lo detecta como valor numerico
+function remplaceStr(str) {
+    var str = str.toString().replace(",", "");
+    return str;
+}
