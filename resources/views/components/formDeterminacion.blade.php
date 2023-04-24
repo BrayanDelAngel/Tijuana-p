@@ -24,6 +24,7 @@
                 <thead class="text-white text-center" style="background-color: #406473;opacity: 0.80;">
                     <th>Folio</th>
                     <th>Cuenta</th>
+                    <th>Año</th>
                 </thead>
                 <tbody>
                     @foreach ($folios as $item)
@@ -33,6 +34,9 @@
                             </td>
                             <td>
                                 {{ $item->cuenta }}
+                            </td>
+                            <td>
+                                {{ $item->anio }}
                             </td>
                         </tr>
                     @endforeach
@@ -72,13 +76,13 @@
                                                     border border-danger rounded-2
                                                     @enderror"
                                                 name="folio">
-                                            <input type="text" class="form-control mb-2" value="/{{ date('Y') }}"
-                                                disabled>
+                                            <input type="number" name="anio" class="form-control mb-2" value="{{ date('Y') }}"
+                                                >
                                         </div>
                                         @error('folio')
                                             <div class="text-danger text-center">
-                                                @if ($message == 'The folio has already been taken.')
-                                                    El campo folio ya ha sido tomado.
+                                                @if ($message == 'This combination of folio, anio already exists')
+                                                    El campo folio de ese año ya ha sido tomado.
                                                 @else
                                                     El campo folio es requerido
                                                 @endif
