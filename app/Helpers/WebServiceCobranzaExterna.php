@@ -58,13 +58,8 @@ function webServiceCobranzaExterna($cuenta)
     //Si no recibe un mensaje de error por parte de la API (Por ejemplo cuenta no existe)
     if (!isset($historicos['Mensaje'])) {
         //Se condiciona que si Historicos es mayor a 0 se realice el recorrido 
-        $consult = cobranzaExternaHistoricos::where('NoCta',$cuenta)->count();
-        if ($consult != 0) {
-            // dd($consult);
-            // $del="delete from cobranzaExternaHistoricosWS3 WHERE NoCta='$cuenta'";
-    // sqlsrv_query($cnx,$del);
+        if (consultCuenta($cuenta) != 0) {
             deleteCuenta($cuenta);
-            // $delete = cobranzaExternaHistoricos::where('NoCta',$cuenta)->delete();
         }
         if (count($historicos) > 0) {
             foreach ($historicos as $historico) {
@@ -118,7 +113,7 @@ function webServiceCobranzaExterna($cuenta)
 }
 function consultCuenta($cuenta)
 {
-    $consult = DB::select('select count(NoCta) from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
+    $consult = cobranzaExternaHistoricos::where('NoCta',$cuenta)->count();
     return $consult;
 }
 function deleteCuenta($cuenta)

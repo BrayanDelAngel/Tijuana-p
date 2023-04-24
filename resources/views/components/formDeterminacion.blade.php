@@ -299,7 +299,7 @@
                                         <td>Convenio De Agua</td>
                                         <td>
                                             <input type="text" name="c_agua" id="c_agua" onchange="Suma()"
-                                                value="{{ old('c_agua') }}"
+                                                value="${{$intereses->SdoConvAgua}}"
                                                 class="form-control mb-2
                                                 @error('c_agua')
                                                 border border-danger rounded-2
@@ -315,7 +315,7 @@
                                         <td>Recargos Convenio De Agua</td>
                                         <td>
                                             <input type="text" name="r_agua" id="r_agua" onchange="Suma()"
-                                                value="{{ old('r_agua') }}"
+                                                value="${{$intereses->RecargosConvenio}}"
                                                 class="form-control mb-2
                                                 @error('r_agua')
                                                 border border-danger rounded-2
@@ -331,7 +331,7 @@
                                         <td>Convenio De Obra</td>
                                         <td>
                                             <input type="text" name="c_obra" id="c_obra"
-                                                value="{{ old('c_obra') }}"
+                                                value="${{$intereses->SaldoConvObra}}"
                                                 class="form-control mb-2
                                                 @error('c_obra')
                                                 border border-danger rounded-2
@@ -348,7 +348,7 @@
                                         <td>Recargos Convenio De Obra</td>
                                         <td>
                                             <input type="text" name="r_obra" id="r_obra"
-                                                value="{{ old('r_obra') }}"
+                                                value="${{$intereses->RecargosContrato}}"
                                                 class="form-control mb-2
                                                 @error('r_obra')
                                                 border border-danger rounded-2
@@ -365,7 +365,7 @@
                                         <td>Gastos de Ejecución</td>
                                         <td>
                                             <input type="text" name="g_ejecucion" id="g_ejecucion"
-                                                value="{{ old('g_ejecucion') }}"
+                                                value="${{$intereses->GastosEjec}}"
                                                 class="form-control mb-2
                                                 @error('g_ejecucion')
                                                 border border-danger rounded-2
@@ -399,7 +399,7 @@
                                         <td>Multas</td>
                                         <td>
                                             <input type="text" name="multas" id="multas"
-                                                value="{{ old('multas') }}"
+                                                value="${{$intereses->Multas}}"
                                                 class="form-control mb-2
                                                 @error('multas')
                                                 border border-danger rounded-2

@@ -12,11 +12,15 @@ use Illuminate\Support\Facades\Http;
 use Luecano\NumeroALetras\NumeroALetras;
 use Carbon\Carbon;
 use App\Http\Requests\TablaModalRequest;
+use App\Models\interesesCuentaModel;
 class DeterminacionController extends Controller
 {
     public function exec($cuenta)
     {
+        //helper que extrae los datos del webservice y muestra el historico de la cuenta
         webServiceCobranzaExterna($cuenta);
+        //Este helper muestra los intereses de la cuenta por ejemplo multas,gastos,etc.
+        webServiceInteresesCuenta($cuenta);
         //  dd(webServiceCobranzaExterna($cuenta));
         //validamos si la cuenta existe dentro de la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
@@ -68,7 +72,6 @@ class DeterminacionController extends Controller
         } else {
             $ts = 'NO DOMESTICO';
         }
-
         //validar si esta cuenta ya tiene una determinacion
         $count_r = DB::select('select count(id) as c from determinacionesA where cuenta = ?', [$cuenta]);
         //si existe
@@ -78,7 +81,6 @@ class DeterminacionController extends Controller
         } else {
             $folio = 0;
         }
-
         //obtenemos los datos de la tabla de resumen
         $t_adeudo = tabla_da::select(['sumaTarifas', 'saldoIvaCor', 'saldoAtraso', 'saldoRezago', 'RecargosAcumulados'])
             ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
@@ -89,7 +91,10 @@ class DeterminacionController extends Controller
         //Informacion de la tabla generada del propietario
         $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto', 'cuenta'])
             ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->paginate(20);
-        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro, 'items' => $tabla]);
+
+        //consultamos la tabla abla_interesesCuenta que inserto el helper webServiceInteresesCuenta
+        $intereses=interesesCuentaModel::select('NoCta','RecargosConvenio','SaldoConvObra','RecargosContrato','SdoConvAgua','GastosEjec','Multas')->where('NoCta',$cuenta)->first();
+        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro, 'items' => $tabla,'intereses'=>$intereses]);
     }
     public function store(Request $request)
     {

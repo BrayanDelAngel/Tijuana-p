@@ -48,7 +48,7 @@
         "files":[
             "app/Helpers/WebServiceCobranzaExterna.php",
             "app/Helpers/firma.php",
-            "app/Helpers/WebServiceImplementa.php"
+            "app/Helpers/WebServiceInteresesCuenta.php"
         ]
     },
     "autoload-dev": {
