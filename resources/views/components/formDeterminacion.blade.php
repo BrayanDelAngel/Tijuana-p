@@ -76,7 +76,10 @@
                                                     border border-danger rounded-2
                                                     @enderror"
                                                 name="folio">
-                                            <input type="number" name="anio" class="form-control mb-2" value="{{ date('Y') }}"
+                                            <input type="number" name="anio" class="form-control mb-2 
+                                            @error('anio')
+                                            border border-danger rounded-2
+                                            @enderror" value="{{ date('Y') }}"
                                                 >
                                         </div>
                                         @error('folio')
@@ -86,6 +89,11 @@
                                                 @else
                                                     El campo folio es requerido
                                                 @endif
+                                            </div>
+                                        @enderror
+                                        @error('anio')
+                                            <div class="text-danger text-center">
+                                                    El campo año es requerido
                                             </div>
                                         @enderror
                                     </div>

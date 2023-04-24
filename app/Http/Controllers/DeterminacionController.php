@@ -18,9 +18,9 @@ class DeterminacionController extends Controller
     public function exec($cuenta)
     {
         //helper que extrae los datos del webservice y muestra el historico de la cuenta
-        // webServiceCobranzaExterna($cuenta);
+        webServiceCobranzaExterna($cuenta);
         //Este helper muestra los intereses de la cuenta por ejemplo multas,gastos,etc.
-        // webServiceInteresesCuenta($cuenta);
+        webServiceInteresesCuenta($cuenta);
         //  dd(webServiceCobranzaExterna($cuenta));
         //validamos si la cuenta existe dentro de la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
