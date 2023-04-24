@@ -5,6 +5,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MandamientoController;
 use App\Http\Controllers\RequerimientoController;
 use App\Http\Controllers\TarifasController;
+use App\Http\Controllers\INPCController;
 use Illuminate\Support\Facades\Route;
 use Svg\Tag\Rect;
 
@@ -24,9 +25,14 @@ Route::get('/index', [IndexController::class, 'index'])->name('index');
 Route::get('/search', [IndexController::class, 'show'])->name('search');
 //PDF existente
 Route::get('/pdf/{cuenta}', [IndexController::class, 'pdf'])->name('pdf');
-//Tarifas para que agreguen ellos
-Route::get('/tarifas', [TarifasController::class, 'index'])->name('tarifas');
-Route::post('/tarifas', [TarifasController::class, 'store'])->name('guardar-tarifas');
+//Tarifa
+Route::get('/tarifa', [TarifasController::class, 'index'])->name('tarifa');
+Route::post('/tarifa-store', [TarifasController::class, 'store'])->name('guardar-tarifa');
+Route::post('/tarifa-update', [TarifasController::class, 'update'])->name('modificar-tarifa');
+//INPC para que agreguen ellos
+Route::get('/INPC', [INPCController::class, 'index'])->name('inpc');
+Route::post('/INPC-store', [INPCController::class, 'store'])->name('guardar-inpc');
+Route::post('/INPC-update', [INPCController::class, 'update'])->name('modificar-inpc');
 /*Rutas de Mandamiento */
 Route::get('/calculoM/{cuenta}', [MandamientoController::class, 'exec'])->name('calculo');
 Route::get('/PDFMandamiento/{id}', [MandamientoController::class, 'pdf'])->name('pdf-mandamiento');

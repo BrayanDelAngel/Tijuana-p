@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TarifasUpdateRequest extends FormRequest
+class INPCRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,25 +26,25 @@ class TarifasUpdateRequest extends FormRequest
     {
         //Reglas para la validacion de cada uno de los campos
         return [
-            "anioM" => ['required'],
-            "mesM" => ['required'],
-            "tarifaM" => ['required'],
+            "anioA" => ['required'],
+            "mesA" => ['required'],
+            "incp" => ['required'],
         ];
     }
     public function messages()
     {
         //Mensajes personalizados por cada validación
         return [
-            'anioM.required' => 'El campo año es requerido',
-            'mesM.required' => 'El campo mes es requerido',
-            'tarifaM.required' => 'El campo tarifa es requerido',
+            'anioA.required' => 'El campo año es requerido',
+            'mesA.required' => 'El campo mes es requerido',
+            'incp.required' => 'El campo inpc es requerido',
         ];
     }
     public function withValidator($validator)
     {
-        //Ai hubo algun error retornamos el con siguiente mensaje y las validaciones que se hicieron
+         //Ai hubo algun error retornamos el con siguiente mensaje y las validaciones que se hicieron
         if ($validator->fails()) {
-            return back()->with('errorActualizar', 'Error al actualizar la nueva tarifa')->withErrors($validator);;
+            return back()->with('errorAgregar', 'Error al agregar la nueva tarifa')->withErrors($validator);;
         }
     }
 }

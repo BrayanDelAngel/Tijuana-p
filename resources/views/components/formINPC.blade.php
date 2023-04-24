@@ -27,7 +27,7 @@
         <div class="mt-4">
             <h2 style="text-shadow: 0px 0px 2px #717171;">
                 <img src="https://img.icons8.com/color/47/null/signature.png" />
-                Tarifa de Tijuana Agua
+                INPC de Tijuana Agua
             </h2>
             <h4 style="text-shadow: 0px 0px 2px #717171;">Tijuana</h4>
         </div>
@@ -38,7 +38,7 @@
                 <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
                     <div class="text-white m-2 align-items-end" style="text-align:right;">
                         <span class="bg-primary rounded-2 p-2"><img
-                                src="https://img.icons8.com/fluency/30/null/money.png" />Tabla de tarifa</span>
+                                src="https://img.icons8.com/fluency/30/null/money.png" />Tabla de INPC</span>
                     </div>
                     <div class="d-flex" style="margin-left: 85%">
                         <button type="button" id="btnmodal" class="btn btn-primary btn-sm" data-bs-toggle="modal"
@@ -56,7 +56,7 @@
                                     Mes
                                 </th>
                                 <th>
-                                    Tarifa
+                                    Inpc
                                 </th>
                                 <th>
                                     Acción
@@ -65,15 +65,15 @@
                         <tbody class="table-light">
                             @foreach ($tarifas as $item)
                                 <tr>
-                                    <td>{{ $item->anio }}</td>
-                                    <td>{{ $mes[$item->bim - 1] }}</td>
-                                    <td>{{ number_format($item->tarifa,2) }}</td>
-                                    <td>  
+                                    <td>{{ $item->Anio }}</td>
+                                    <td>{{ $mes[$item->Mes - 1] }}</td>
+                                    <td>{{ $item->INCP }}</td>
+                                    <td>
                                         <button type="button" class="btn btn-secondary btn-sm" id="btnmodal"
                                         data-bs-toggle="modal"
-                                        data-anio="{{ $item->anio }}"
-                                        data-mes="{{ $mes[$item->bim - 1] }}"
-                                        data-tarifa="{{ number_format($item->tarifa,2)}}"
+                                        data-anio="{{ $item->Anio }}"
+                                        data-mes="{{ $mes[$item->Mes - 1] }}"
+                                        data-inpc="{{ $item->INCP }}"
                                         data-bs-target="#exampleModalM">
                                             <img src="https://img.icons8.com/fluency/18/null/edit.png"/> 
                                         </button>
@@ -107,7 +107,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">INCP</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('guardar-tarifa') }}" method="post" novalidate>
+                <form action="{{ route('guardar-inpc') }}" method="post" novalidate>
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -140,14 +140,14 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="tarifa" class="form-label">Tarifa</label>
+                            <label for="incp" class="form-label">INCP</label>
                             <input type="text"
                                 class="form-control 
-                            @error('tarifa')
+                            @error('incp')
                             border border-danger rounded-2
                             @enderror"
-                                id="tarifa" name="tarifa">
-                            @error('tarifa')
+                                id="incp" name="incp">
+                            @error('incp')
                                 <div class="text-danger text-center">
                                     {{$message}}
                                 </div>
@@ -170,10 +170,10 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tarifa</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">INCP</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('modificar-tarifa') }}" method="post" novalidate>
+                <form action="{{ route('modificar-inpc') }}" method="post" novalidate>
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -204,20 +204,22 @@
                                 </div>
                             @enderror
                         </div>
+                        
                         <div class="mb-3">
-                            <label for="tarifaM" class="form-label">Tarifa</label>
+                            <label for="incpM" class="form-label">INCP</label>
                             <input type="text"
                                 class="form-control 
-                            @error('tarifaM')
+                            @error('incpM')
                             border border-danger rounded-2
                             @enderror"
-                                id="tarifaM" name="tarifaM">
-                            @error('tarifaM')
+                                id="incpM" name="incpM">
+                            @error('incpM')
                                 <div class="text-danger text-center">
                                     {{$message}}
                                 </div>
                             @enderror
                         </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><img
@@ -232,5 +234,6 @@
 @endsection
 @section('js')
     {{-- Carga del modal con datos --}}
-    <script src="{{ asset('js/modalTarifa.js') }}"></script>
+    <script src="{{ asset('js/modalPredial.js') }}"></script>
+    <script src="{{ asset('js/modalINPC.js') }}"></script>
 @endsection

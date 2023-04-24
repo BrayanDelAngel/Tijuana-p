@@ -24,6 +24,7 @@
                 <thead class="text-white text-center" style="background-color: #406473;opacity: 0.80;">
                     <th>Folio</th>
                     <th>Cuenta</th>
+                    <th>Año</th>
                 </thead>
                 <tbody>
                     @foreach ($folios as $item)
@@ -33,6 +34,9 @@
                             </td>
                             <td>
                                 {{ $item->cuenta }}
+                            </td>
+                            <td>
+                                {{ $item->anio }}
                             </td>
                         </tr>
                     @endforeach
@@ -72,16 +76,24 @@
                                                     border border-danger rounded-2
                                                     @enderror"
                                                 name="folio">
-                                            <input type="text" class="form-control mb-2" value="/{{ date('Y') }}"
-                                                disabled>
+                                            <input type="number" name="anio" class="form-control mb-2 
+                                            @error('anio')
+                                            border border-danger rounded-2
+                                            @enderror" value="{{ date('Y') }}"
+                                                >
                                         </div>
                                         @error('folio')
                                             <div class="text-danger text-center">
-                                                @if ($message == 'The folio has already been taken.')
-                                                    El campo folio ya ha sido tomado.
+                                                @if ($message == 'This combination of folio, anio already exists')
+                                                    El campo folio de ese año ya ha sido tomado.
                                                 @else
                                                     El campo folio es requerido
                                                 @endif
+                                            </div>
+                                        @enderror
+                                        @error('anio')
+                                            <div class="text-danger text-center">
+                                                    El campo año es requerido
                                             </div>
                                         @enderror
                                     </div>
@@ -299,7 +311,7 @@
                                         <td>Convenio De Agua</td>
                                         <td>
                                             <input type="text" name="c_agua" id="c_agua" onchange="Suma()"
-                                                value="{{ old('c_agua') }}"
+                                                value="${{$intereses->SdoConvAgua}}"
                                                 class="form-control mb-2
                                                 @error('c_agua')
                                                 border border-danger rounded-2
@@ -315,7 +327,7 @@
                                         <td>Recargos Convenio De Agua</td>
                                         <td>
                                             <input type="text" name="r_agua" id="r_agua" onchange="Suma()"
-                                                value="{{ old('r_agua') }}"
+                                                value="${{$intereses->RecargosConvenio}}"
                                                 class="form-control mb-2
                                                 @error('r_agua')
                                                 border border-danger rounded-2
@@ -331,7 +343,7 @@
                                         <td>Convenio De Obra</td>
                                         <td>
                                             <input type="text" name="c_obra" id="c_obra"
-                                                value="{{ old('c_obra') }}"
+                                                value="${{$intereses->SaldoConvObra}}"
                                                 class="form-control mb-2
                                                 @error('c_obra')
                                                 border border-danger rounded-2
@@ -348,7 +360,7 @@
                                         <td>Recargos Convenio De Obra</td>
                                         <td>
                                             <input type="text" name="r_obra" id="r_obra"
-                                                value="{{ old('r_obra') }}"
+                                                value="${{$intereses->RecargosContrato}}"
                                                 class="form-control mb-2
                                                 @error('r_obra')
                                                 border border-danger rounded-2
@@ -365,7 +377,7 @@
                                         <td>Gastos de Ejecución</td>
                                         <td>
                                             <input type="text" name="g_ejecucion" id="g_ejecucion"
-                                                value="{{ old('g_ejecucion') }}"
+                                                value="${{$intereses->GastosEjec}}"
                                                 class="form-control mb-2
                                                 @error('g_ejecucion')
                                                 border border-danger rounded-2
@@ -399,7 +411,7 @@
                                         <td>Multas</td>
                                         <td>
                                             <input type="text" name="multas" id="multas"
-                                                value="{{ old('multas') }}"
+                                                value="${{$intereses->Multas}}"
                                                 class="form-control mb-2
                                                 @error('multas')
                                                 border border-danger rounded-2

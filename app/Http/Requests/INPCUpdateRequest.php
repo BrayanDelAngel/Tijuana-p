@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TarifasUpdateRequest extends FormRequest
+class INPCUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,19 +16,13 @@ class TarifasUpdateRequest extends FormRequest
         //Autorizacion del request
         return true;
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         //Reglas para la validacion de cada uno de los campos
         return [
             "anioM" => ['required'],
             "mesM" => ['required'],
-            "tarifaM" => ['required'],
+            "incpM" => ['required'],
         ];
     }
     public function messages()
@@ -37,7 +31,7 @@ class TarifasUpdateRequest extends FormRequest
         return [
             'anioM.required' => 'El campo año es requerido',
             'mesM.required' => 'El campo mes es requerido',
-            'tarifaM.required' => 'El campo tarifa es requerido',
+            'incpM.required' => 'El campo inpc es requerido',
         ];
     }
     public function withValidator($validator)

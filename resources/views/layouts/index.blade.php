@@ -82,8 +82,10 @@
                 <h6 class="dropdown-header">Utilidades de la plaza</h6>
                 <a class="dropdown-item" href="{{ route('index') }}">
                     Inicio</a>
-                <a class="dropdown-item" href="{{ route('tarifas') }}">
+                <a class="dropdown-item" href="{{ route('inpc') }}">
                     INCP</a>
+                <a class="dropdown-item" href="{{ route('tarifa') }}">
+                    Tarifa</a>
             </ul>
         </div>
     </div>

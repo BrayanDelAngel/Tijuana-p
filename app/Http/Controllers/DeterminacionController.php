@@ -12,11 +12,15 @@ use Illuminate\Support\Facades\Http;
 use Luecano\NumeroALetras\NumeroALetras;
 use Carbon\Carbon;
 use App\Http\Requests\TablaModalRequest;
+use App\Models\interesesCuentaModel;
 class DeterminacionController extends Controller
 {
     public function exec($cuenta)
     {
+        //helper que extrae los datos del webservice y muestra el historico de la cuenta
         webServiceCobranzaExterna($cuenta);
+        //Este helper muestra los intereses de la cuenta por ejemplo multas,gastos,etc.
+        webServiceInteresesCuenta($cuenta);
         //  dd(webServiceCobranzaExterna($cuenta));
         //validamos si la cuenta existe dentro de la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
@@ -61,14 +65,13 @@ class DeterminacionController extends Controller
         if ($date[0]->Giro != 'NULL' || $date[0]->Giro != '' || $date[0]->Giro != null) {
             $giro = $date[0]->Giro;
         }
-        $folios = determinacionesA::select(['folio', 'cuenta'])->orderBy('folio', 'DESC')->get();
+        $folios = determinacionesA::select(['folio', 'cuenta','anio'])->orderBy('anio', 'DESC')->orderBy('folio', 'DESC')->get();
         //validamos el tipo de servicio
         if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL") {
             $ts = 'DOMESTICO';
         } else {
             $ts = 'NO DOMESTICO';
         }
-
         //validar si esta cuenta ya tiene una determinacion
         $count_r = DB::select('select count(id) as c from determinacionesA where cuenta = ?', [$cuenta]);
         //si existe
@@ -78,7 +81,6 @@ class DeterminacionController extends Controller
         } else {
             $folio = 0;
         }
-
         //obtenemos los datos de la tabla de resumen
         $t_adeudo = tabla_da::select(['sumaTarifas', 'saldoIvaCor', 'saldoAtraso', 'saldoRezago', 'RecargosAcumulados'])
             ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
@@ -89,7 +91,10 @@ class DeterminacionController extends Controller
         //Informacion de la tabla generada del propietario
         $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto', 'cuenta'])
             ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->paginate(20);
-        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro, 'items' => $tabla]);
+
+        //consultamos la tabla abla_interesesCuenta que inserto el helper webServiceInteresesCuenta
+        $intereses=interesesCuentaModel::select('NoCta','RecargosConvenio','SaldoConvObra','RecargosContrato','SdoConvAgua','GastosEjec','Multas')->where('NoCta',$cuenta)->first();
+        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro, 'items' => $tabla,'intereses'=>$intereses]);
     }
     public function store(Request $request)
     {
@@ -115,6 +120,7 @@ class DeterminacionController extends Controller
             'conv_vencido' => ['required'],
             'otros_gastos' => ['required'],
             'total' => ['required'],
+            'anio' => ['required'],
         ]);
         //validar si esta cuenta ya tiene una determinacion
         $count_d = DB::select('select count(id) as c from determinacionesA where cuenta = ?', [$request->cuenta]);
@@ -129,14 +135,14 @@ class DeterminacionController extends Controller
             $folio = DB::select('select folio from determinacionesA where cuenta = ?', [$request->cuenta]);
             if ($folio[0]->folio != $request->folio) {
                 $request->validate([
-                    'folio' => ['unique:determinacionesA'],
+                    'folio' => ['unique_with:determinacionesA,folio,anio'],
                 ]);
             }
         }
         //no existe
         else {
             $request->validate([
-                'folio' => ['unique:determinacionesA'],
+                'folio' => ['unique_with:determinacionesA,folio,anio'],
             ]);
             //declaramos que se creara un nuevo registro en requerimientosA
             $r = new determinacionesA();

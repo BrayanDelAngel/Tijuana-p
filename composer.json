@@ -12,6 +12,7 @@
         "ext-simplexml": "*",
         "barryvdh/laravel-dompdf": "^2.0",
         "dompdf/dompdf": "^2.0",
+        "felixkiss/uniquewith-validator": "^3.4",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.5",
@@ -48,7 +49,7 @@
         "files":[
             "app/Helpers/WebServiceCobranzaExterna.php",
             "app/Helpers/firma.php",
-            "app/Helpers/WebServiceImplementa.php"
+            "app/Helpers/WebServiceInteresesCuenta.php"
         ]
     },
     "autoload-dev": {
