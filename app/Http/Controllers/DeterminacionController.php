@@ -13,6 +13,7 @@ use Luecano\NumeroALetras\NumeroALetras;
 use Carbon\Carbon;
 use App\Http\Requests\TablaModalRequest;
 use App\Models\interesesCuentaModel;
+use App\Models\cobranzaExternaHistoricos;
 class DeterminacionController extends Controller
 {
     public function exec($cuenta)
@@ -81,16 +82,17 @@ class DeterminacionController extends Controller
         } else {
             $folio = 0;
         }
+        
         //obtenemos los datos de la tabla de resumen
         $t_adeudo = tabla_da::select(['sumaTarifas', 'saldoIvaCor', 'saldoAtraso', 'saldoRezago', 'RecargosAcumulados'])
-            ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
+            ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();        
         //obtenemos el periodo en el    ue se esta evaluando
         //se cincatena la fecha maxima y minima
         $periodo = DB::select("select concat((select format(min(fechavto),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechavto),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
 
         //Informacion de la tabla generada del propietario
         $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto', 'cuenta'])
-            ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->paginate(20);
+            ->where('cuenta', $cuenta)->where('estado', 0)->orderBy('meses', 'ASC')->paginate(20);
 
         //consultamos la tabla abla_interesesCuenta que inserto el helper webServiceInteresesCuenta
         $intereses=interesesCuentaModel::select('NoCta','RecargosConvenio','SaldoConvObra','RecargosContrato','SdoConvAgua','GastosEjec','Multas')->where('NoCta',$cuenta)->first();
@@ -249,7 +251,8 @@ class DeterminacionController extends Controller
         }
     }
     public function delete ($cuenta, $meses ){
-        DB::delete('delete from [dbo].[tabla_da] where cuenta = ? and meses=?', [$cuenta, $meses]);
+        DB::delete('update [dbo].[tabla_da]
+        SET [estado]=1 where cuenta = ? and meses=?', [$cuenta, $meses]);
         return back();
     }
     public function pdf($id)
@@ -289,7 +292,7 @@ class DeterminacionController extends Controller
         }
         //Informacion de la tabla generada del propietario
         $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', DB::raw("format(fecha_vto,'d') as fecha_vto")])
-            ->where('cuenta', $data->cuenta)->orderBy('meses', 'ASC')->get();
+            ->where('cuenta', $data->cuenta)->where('estado', 0)->orderBy('meses', 'ASC')->get();
         // dd($tabla);
         //Se extrae los años que debe el propietario
         $años = tabla_da::select('anio')

@@ -272,7 +272,7 @@
                                         <td>
                                             <input type="text" name="corriente" id="corriente" onchange="Suma()"
                                                 class="form-control mb-2"
-                                                value="${{ number_format($t_adeudo->sumaTarifas, 2) }}" readonly />
+                                                value="${{ number_format($t_adeudo->sumaTarifas, 2) }}"  />
                                         </td>
                                     </tr>
                                     <tr>
@@ -280,7 +280,7 @@
                                         <td>
                                             <input type="text" name="icorriente" id="icorriente"
                                                 class="form-control mb-2" onchange="Suma()"
-                                                value="${{ number_format($t_adeudo->saldoIvaCor, 2) }}" readonly />
+                                                value="${{ number_format($t_adeudo->saldoIvaCor, 2) }}"  />
                                         </td>
                                     </tr>
                                     <tr>
@@ -288,7 +288,7 @@
                                         <td>
                                             <input type="text" name="atraso" id="atraso"
                                                 class="form-control mb-2" onchange="Suma()"
-                                                value="${{ number_format($t_adeudo->saldoAtraso, 2) }}" readonly />
+                                                value="${{ number_format($t_adeudo->saldoAtraso, 2) }}"  />
                                         </td>
                                     </tr>
                                     <tr>
@@ -296,7 +296,7 @@
                                         <td>
                                             <input type="text" name="rezago" id="rezago"
                                                 class="form-control mb-2" onchange="Suma()"
-                                                value="${{ number_format($t_adeudo->saldoRezago, 2) }}" readonly />
+                                                value="${{ number_format($t_adeudo->saldoRezago, 2) }}"  />
                                         </td>
                                     </tr>
                                     <tr>
@@ -304,7 +304,7 @@
                                         <td>
                                             <input type="text" name="r_consumo" id="r_consumo"
                                                 class="form-control mb-2" onchange="Suma()"
-                                                value="${{ number_format($t_adeudo->RecargosAcumulados, 2) }}" readonly />
+                                                value="${{ number_format($t_adeudo->RecargosAcumulados, 2) }}"  />
                                         </td>
                                     </tr>
                                     <tr>
@@ -394,7 +394,7 @@
                                         <td>Otros Servicios</td>
                                         <td>
                                             <input type="text" name="o_servicios" id="o_servicios"
-                                                value="{{ old('o_servicios') }}"
+                                                value="${{$intereses->Multas}}"
                                                 class="form-control mb-2
                                                 @error('o_servicios')
                                                 border border-danger rounded-2
@@ -411,7 +411,7 @@
                                         <td>Multas</td>
                                         <td>
                                             <input type="text" name="multas" id="multas"
-                                                value="${{$intereses->Multas}}"
+                                                value="{{ old('multas') }}"
                                                 class="form-control mb-2
                                                 @error('multas')
                                                 border border-danger rounded-2

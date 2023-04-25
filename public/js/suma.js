@@ -59,11 +59,11 @@ function Suma() {
         // valor13 + 
         valor14 + valor15;
         //Se retorna el valor que ingreso el usuario haciendo un format al dato de moneda
-        $('#corriente').val('$' + valor1)
-        $('#icorriente').val('$' + valor2)
-        $('#atraso').val('$' + valor3)
-        $('#rezago').val('$' + valor4)
-        $('#r_consumo').val('$' + valor5)
+        $('#corriente').val(formatear( valor1))
+        $('#icorriente').val(formatear( valor2))
+        $('#atraso').val(formatear( valor3))
+        $('#rezago').val(formatear(valor4))
+        $('#r_consumo').val(formatear( valor5))
         $('#c_agua').val(formatear(valor6))
         $('#r_agua').val(formatear(valor7))
         $('#c_obra').val(formatear(valor8))
