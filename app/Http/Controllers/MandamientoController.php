@@ -139,7 +139,7 @@ class MandamientoController extends Controller
         $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
         //Informacion de la tabla generada del propietario
         $tabla = tabla_ma::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto','cuenta'])
-            ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->paginate(20);
+            ->where('cuenta', $cuenta)->where('estado', 0)->orderBy('meses', 'ASC')->paginate(20);
         return view('components.formMandamiento', ['date' => $date, 'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar, 'total_ar' => number_format($total_ar, 2),'items' => $tabla]);
 
     }
@@ -262,9 +262,9 @@ class MandamientoController extends Controller
             return back()->with('errorActualizarTabla', 'Error al actualizar los datos');
         }
     }
-    public function delete($cuenta, $meses)
-    {
-        DB::delete('delete from [dbo].[tabla_ma] where cuenta = ? and meses=?', [$cuenta, $meses]);
+    public function delete ($cuenta, $meses ){
+        DB::delete('update [dbo].[tabla_ma]
+        SET [estado]=1 where cuenta = ? and meses=?', [$cuenta, $meses]);
         return back();
     }
     public function pdf($id)
@@ -327,7 +327,7 @@ class MandamientoController extends Controller
         $otros_gastos = $datos[0]->otros_gastos;
         //Informacion de la tabla generada del propietario
         $tabla = tabla_ma::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto'])
-            ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->get();
+            ->where('cuenta', $datos[0]->cuenta)->where('estado', 0)->orderBy('meses', 'ASC')->get();
         //consultamos los totales de la tabla de adeudo
         $totales = DB::table('tabla_ma')
             ->select([DB::raw("sum(totalPeriodo) as TP"), DB::raw("sum(RecargosAcumulados) as RA"), DB::raw("sum(RecargosAcumulados+totalPeriodo) as total")])
