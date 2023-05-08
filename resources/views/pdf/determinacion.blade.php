@@ -126,7 +126,7 @@
                     para el Estado de Baja California; artículo 3 fracciones I, II ll, IV, 15 y 16 fracción l, ll,
                     inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
                     California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g),
-                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años 2004; artículo
+                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo
                     11, sección lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de
                     la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007,
                         2008, 2009, 2010,
@@ -160,7 +160,7 @@
                     para el Estado de Baja California; artículo 3 fracciones I, II ll, IV, 15 y 16 fraccion l, ll,
                     inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
                     California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g),
-                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años 2004; artículo
+                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo
                     11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de
                     la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007,
                         2008, 2009, 2010,
@@ -188,7 +188,7 @@
             registrada como Titular de la cuenta número <span class="bold">{{ $data->cuenta }}</span>, con número de
             medidor
             <span class="bold">{{ $data->seriem }}</span>, de uso <span class="bold">{{ $data->tipo_s }}</span>,
-            del domicilio ubicado en {{ $data->domicilio }} de esta ciudad de Tijuana, Baja California, con clave
+            del domicilio ubicado en <span class="bold">{{ $data->domicilio }}</span> de esta ciudad de Tijuana, Baja California, con clave
             catastral número
             <span class="bold">{{ $data->clavec }}</span> se desprende que ha omitido cubrir las contribuciones
             generadas por
@@ -217,6 +217,7 @@
                 Fiscal del mismo, las que podrán hacer uso del procedimiento económico-coactivo. Obtenido el pago, las
                 Oficinas Ejecutoras entregarán a la Comisión las sumas recaudadas.”
                 <br />
+                <br />
                 <span class="bold"> Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
                     California</span>
                 <br />
@@ -229,6 +230,7 @@
                 recaudadoras o en establecimientos autorizados por las autoridades fiscales, dentro de los quince días
                 naturales posteriores al periodo facturado.”
                 <br />
+                <br />
                 <span class="bold"> “ARTICULO 17.- </span> Cuando no se cubran los derechos a que se refiere el
                 artículo 15, en el plazo que señala
                 el artículo anterior, su pago y el de los accesorios legales respectivos, se hará efectivo en las
@@ -237,7 +239,6 @@
                 Gobierno del Estado brinde educación básica y servicios de salud pública, no podrán reducirse ni
                 suspenderse.
             </p>
-
         </div>
         <p class="text-justify">
             Por lo que, con fundamento en lo dispuesto por los artículos 7, 23, primer párrafo, 27, primer párrafo
@@ -264,7 +265,6 @@
             desde la fecha de su exigibilidad y hasta la fecha de la presente determinación.
         </p>
         <div class="article2">
-
             <p class="text-justify">
                 <span class="bold">“ARTÍCULO 7o.-</span> Son Derechos las contraprestaciones establecidas en las leyes
                 fiscales, por los servicios que presta el Estado, en su función de derecho público, incluso cuando se
@@ -291,6 +291,7 @@
             </p>
             <p class="text-justify">
                 <span class="bold"> “ARTÍCULO 35.- …………. </span>
+                <br/>
                 Cuando no se cubran las contribuciones dentro de los plazos señalados en las disposiciones fiscales o no
                 se cubran las parcialidades en los plazos convenidos, se pagarán recargos por concepto de indemnización
                 al fisco estatal a la tasa del 2.25% mensual.”
@@ -963,6 +964,7 @@
                     efectuar el pago de los derechos generados por consumo de agua potable que le fueron facturados por
                     periodo mensual dentro del plazo a que se refiere el primer dispositivo legal aludido en este
                     párrafo, generando en suma por concepto de recargos acumulados la cantidad de
+                    <span class="bold">{{ $ra }}</span>
                 </p>
             @endif
         @endif

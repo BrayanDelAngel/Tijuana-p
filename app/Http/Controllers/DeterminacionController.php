@@ -192,7 +192,7 @@ class DeterminacionController extends Controller
         $r->gastos_ejecución = $g_ejecucion;
         $r->otros_servicios = $o_servicios;
         $r->multas = $multas;
-        $r->id_distrito = $$request->distrito;
+        $r->id_distrito = $request->distrito;
         $r->conv_vencido = $conv_vencido;
         $r->otros_gastos = $otros_gastos;
         $r->saldo_total = $total;
@@ -260,6 +260,8 @@ class DeterminacionController extends Controller
     }
     public function pdf($id)
     {
+        ini_set('max_execution_time', 0);
+        ini_set('memory_limit', '-1');
         //Informacion del propietario
         $data = determinacionesA::select(
             'cuenta',
@@ -364,7 +366,7 @@ class DeterminacionController extends Controller
         //contamos cuantos registros tiene esta cuenta en la tabla_da
         $cr = tabla_da::select('cuenta')->where('cuenta', $data->cuenta)->count();
         $condicion_firma=firma($cr);
-        $IDdistrito=$data[0]->id_distrito;
+        $IDdistrito=$data->id_distrito;
         if($condicion_firma!=1){
             $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i,'IDdistrito'=>$IDdistrito]);
         }

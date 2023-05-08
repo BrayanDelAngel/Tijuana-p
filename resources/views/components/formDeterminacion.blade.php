@@ -263,9 +263,9 @@
                                             id="distrito" name="distrito">
                                             <option value="{{ $distrito->id_distrito }}">{{ $distrito->distrito }}
                                             </option>
-                                            @foreach ($academiclevels as $academiclevel)
-                                                <option value="{{ $distritos->id_distrito }}">
-                                                    {{ $distritos->distrito }}
+                                            @foreach ($distritos as $d)
+                                                <option value="{{ $d->id_distrito }}">
+                                                    {{ $d->distrito }}
                                                 </option>
                                             @endforeach
                                         </select>
