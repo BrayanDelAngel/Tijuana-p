@@ -77,6 +77,7 @@
                 </p>
             @endif
             @if ($IDdistrito != '1')
+            <p class="text-justify">
                 El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
                 Comisión Estatal de Servicios
                 Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política de
@@ -106,6 +107,7 @@
                     class="bold">2022,2023;</span> se
                 procede a determinar crédito fiscal por la omisión del pago de derechos por consumo de agua; lo cual
                 queda contenido en la presente, de conformidad a lo siguiente:
+            </p>
             @endif
         @endif
         @if ($data->tipo_s == 'DOMESTICO')
@@ -297,7 +299,7 @@
                 al fisco estatal a la tasa del 2.25% mensual.”
             </p>
         </div>
-        <p class="justify-center">
+        <p class="text-justify">
             Las tasas de recargos mensuales vigentes en los ejercicios <span class="bold">{{ $anioformat }}</span>;
             aplicables en la presente
             resolución

@@ -318,7 +318,7 @@ class DeterminacionController extends Controller
                 $anioformat = $anioformat . $años[$i]->anio . '';
             } else {
                 // si no re acomulan los años y se les agrega las ','
-                $anioformat = $anioformat . $años[$i]->anio . ',';
+                $anioformat = $anioformat . $años[$i]->anio . ', ';
             }
         }
         $cuenta = determinacionesA::select('cuenta')
