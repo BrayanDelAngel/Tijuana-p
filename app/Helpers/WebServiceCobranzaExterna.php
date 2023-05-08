@@ -6,12 +6,6 @@ use \Staudenmeir\EloquentParamLimitFix\ParamLimitFix;
 
 function webServiceCobranzaExterna($cuenta)
 {
-    
-// $serverName = "51.222.44.135";
-//     $connectionInfo = array( 'Database'=>'implementtaTijuanaA', 'UID'=>'sa', 'PWD'=>'vrSxHH3TdC');
-//     $cnx = sqlsrv_connect($serverName, $connectionInfo);
-//     date_default_timezone_set('America/Mexico_City');
-
     ini_set('max_execution_time', 0);
     ini_set('memory_limit', '-1');
     //Ruta del API que se va a concectar esto esta en el archivo .env
@@ -80,6 +74,8 @@ function webServiceCobranzaExterna($cuenta)
                 $RecargosAcum = (is_array($historico['RecargosAcum'])) ? '' : $historico['RecargosAcum'];
                 $IvaReacum = (is_array($historico['IvaReacum'])) ? '' : $historico['IvaReacum'];
                 $Fecha_vto = (is_array($historico['Fecha_vto'])) ? '' : convertDate($historico['Fecha_vto']);
+                //Se llama al helper de distrito ya que abra diferentes formatos dependiendo del tipo de distrito que sea
+                $id_distrito=webServiceDistrito($NoCta);
                 //Capturamos errores si hay en la insercion
                 try {
                     $insert = new cobranzaExternaHistoricos();
@@ -99,6 +95,7 @@ function webServiceCobranzaExterna($cuenta)
                     $insert->ivaReacum = $IvaReacum;
                     $insert->cuentaImplementta = $NoCta;
                     $insert->fechavto = $Fecha_vto;
+                    $insert->id_distrito = $id_distrito;
                     $insert->save();
                 } catch (Exception $e) {
                     return 'Error al insertar';
