@@ -12,6 +12,15 @@ class IndexController extends Controller
 {
     public function index()
     {
+    //     $cuentas=array(
+    //         '7666225',
+    //     );
+    //   $total=  count($cuentas);
+    //     for ($i=0; $i <$total ; $i++) { 
+    //       $id_distrito=  webServiceDistrito($cuentas[$i]);
+    //       DB::update('update [dbo].[determinacionesA] SET id_distrito = ? where cuenta= ?', [$id_distrito,remove($cuentas[$i])]);
+    //       DB::update('update [dbo].[cobranzaExternaHistoricosWS3] SET id_distrito = ? where NoCta= ?', [$id_distrito,remove($cuentas[$i])]);
+    //     }
         //Retornando a la vista de inicio
         return view('components.inicio');
     }
