@@ -3,19 +3,21 @@
     Determinación
 @endsection
 @section('css')
-<style>
-    table {
-      border-collapse: collapse;
-    }
-    .vrt-header th {
-      min-width: 50px; /* for firefox */
-      white-space: nowrap;
-      writing-mode: vertical-rl;
-      transform: scale(-1);
-      padding: 10px 5px 0;
-      vertical-align: top;
-    }
-  </style>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        .vrt-header th {
+            min-width: 50px;
+            /* for firefox */
+            white-space: nowrap;
+            writing-mode: vertical-rl;
+            transform: scale(-1);
+            padding: 10px 5px 0;
+            vertical-align: top;
+        }
+    </style>
 @endsection
 @section('contenido')
     <div class=" row">
@@ -76,11 +78,12 @@
                                                     border border-danger rounded-2
                                                     @enderror"
                                                 name="folio">
-                                            <input type="number" name="anio" class="form-control mb-2 
+                                            <input type="number" name="anio"
+                                                class="form-control mb-2 
                                             @error('anio')
                                             border border-danger rounded-2
-                                            @enderror" value="{{ date('Y') }}"
-                                                >
+                                            @enderror"
+                                                value="{{ date('Y') }}">
                                         </div>
                                         @error('folio')
                                             <div class="text-danger text-center">
@@ -93,7 +96,7 @@
                                         @enderror
                                         @error('anio')
                                             <div class="text-danger text-center">
-                                                    El campo año es requerido
+                                                El campo año es requerido
                                             </div>
                                         @enderror
                                     </div>
@@ -249,6 +252,30 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="md-form form-group">
+                                        <label for="distrito" class="form-label mb-2">Distrito:*</label>
+                                        <select
+                                            class="form-control mb-2
+                                                @error('distrito')
+                                                border border-danger rounded-2
+                                                @enderror"
+                                            id="distrito" name="distrito">
+                                            <option value="{{ $distrito->id_distrito }}">{{ $distrito->distrito }}
+                                            </option>
+                                            @foreach ($academiclevels as $academiclevel)
+                                                <option value="{{ $distritos->id_distrito }}">
+                                                    {{ $distritos->distrito }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('fechad')
+                                            <div class="text-danger text-center">
+                                                El campo distrito es requerido
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -272,7 +299,7 @@
                                         <td>
                                             <input type="text" name="corriente" id="corriente" onchange="Suma()"
                                                 class="form-control mb-2"
-                                                value="${{ number_format($t_adeudo->sumaTarifas, 2) }}"  />
+                                                value="${{ number_format($t_adeudo->sumaTarifas, 2) }}" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -280,7 +307,7 @@
                                         <td>
                                             <input type="text" name="icorriente" id="icorriente"
                                                 class="form-control mb-2" onchange="Suma()"
-                                                value="${{ number_format($t_adeudo->saldoIvaCor, 2) }}"  />
+                                                value="${{ number_format($t_adeudo->saldoIvaCor, 2) }}" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -288,7 +315,7 @@
                                         <td>
                                             <input type="text" name="atraso" id="atraso"
                                                 class="form-control mb-2" onchange="Suma()"
-                                                value="${{ number_format($t_adeudo->saldoAtraso, 2) }}"  />
+                                                value="${{ number_format($t_adeudo->saldoAtraso, 2) }}" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -296,7 +323,7 @@
                                         <td>
                                             <input type="text" name="rezago" id="rezago"
                                                 class="form-control mb-2" onchange="Suma()"
-                                                value="${{ number_format($t_adeudo->saldoRezago, 2) }}"  />
+                                                value="${{ number_format($t_adeudo->saldoRezago, 2) }}" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -304,14 +331,14 @@
                                         <td>
                                             <input type="text" name="r_consumo" id="r_consumo"
                                                 class="form-control mb-2" onchange="Suma()"
-                                                value="${{ number_format($t_adeudo->RecargosAcumulados, 2) }}"  />
+                                                value="${{ number_format($t_adeudo->RecargosAcumulados, 2) }}" />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Convenio De Agua</td>
                                         <td>
                                             <input type="text" name="c_agua" id="c_agua" onchange="Suma()"
-                                                value="${{$intereses->SdoConvAgua}}"
+                                                value="${{ $intereses->SdoConvAgua }}"
                                                 class="form-control mb-2
                                                 @error('c_agua')
                                                 border border-danger rounded-2
@@ -327,7 +354,7 @@
                                         <td>Recargos Convenio De Agua</td>
                                         <td>
                                             <input type="text" name="r_agua" id="r_agua" onchange="Suma()"
-                                                value="${{$intereses->RecargosConvenio}}"
+                                                value="${{ $intereses->RecargosConvenio }}"
                                                 class="form-control mb-2
                                                 @error('r_agua')
                                                 border border-danger rounded-2
@@ -343,7 +370,7 @@
                                         <td>Convenio De Obra</td>
                                         <td>
                                             <input type="text" name="c_obra" id="c_obra"
-                                                value="${{$intereses->SaldoConvObra}}"
+                                                value="${{ $intereses->SaldoConvObra }}"
                                                 class="form-control mb-2
                                                 @error('c_obra')
                                                 border border-danger rounded-2
@@ -360,7 +387,7 @@
                                         <td>Recargos Convenio De Obra</td>
                                         <td>
                                             <input type="text" name="r_obra" id="r_obra"
-                                                value="${{$intereses->RecargosContrato}}"
+                                                value="${{ $intereses->RecargosContrato }}"
                                                 class="form-control mb-2
                                                 @error('r_obra')
                                                 border border-danger rounded-2
@@ -377,7 +404,7 @@
                                         <td>Gastos de Ejecución</td>
                                         <td>
                                             <input type="text" name="g_ejecucion" id="g_ejecucion"
-                                                value="${{$intereses->GastosEjec}}"
+                                                value="${{ $intereses->GastosEjec }}"
                                                 class="form-control mb-2
                                                 @error('g_ejecucion')
                                                 border border-danger rounded-2
@@ -394,7 +421,7 @@
                                         <td>Otros Servicios</td>
                                         <td>
                                             <input type="text" name="o_servicios" id="o_servicios"
-                                                value="${{$intereses->Multas}}"
+                                                value="${{ $intereses->Multas }}"
                                                 class="form-control mb-2
                                                 @error('o_servicios')
                                                 border border-danger rounded-2
@@ -419,7 +446,7 @@
                                                 onchange="Suma()" />
                                             @error('multas')
                                                 <div class="text-danger text-center">
-                                                    El campo multas  es requerido
+                                                    El campo multas es requerido
                                                 </div>
                                             @enderror
                                         </td>
@@ -477,12 +504,14 @@
                                     </tr>
                                     <tr>
                                         <td>Saldo Total</td>
-                                        <td><input type="text" name="total" id="total" value="{{ old('total') }}"
+                                        <td><input type="text" name="total" id="total"
+                                                value="{{ old('total') }}"
                                                 class="form-control mb-2
                                                 @error('total')
                                                 border border-danger rounded-2
-                                                @enderror" readonly />
-                                                @error('total')
+                                                @enderror"
+                                                readonly />
+                                            @error('total')
                                                 <div class="text-danger text-center">
                                                     El campo total es requerido
                                                 </div>
@@ -498,7 +527,7 @@
                                         src="https://img.icons8.com/fluency/30/null/resume.png" />Resumen</span>
                             </div>
                             <div class="" style="overflow-x: auto;overflow-y: scroll;">
-                                <table  class="table table-hover table-sm table-dark my-2 mx-auto" >
+                                <table class="table table-hover table-sm table-dark my-2 mx-auto">
                                     <thead class="vrt-header">
                                         <tr class="tr">
                                             <th class="th">
@@ -594,28 +623,29 @@
                                                 <td class="td">${{ number_format($item->RecargosAcumulados, 2) }}</td>
                                                 <td class="td">
                                                     <div class="row">
-                                                        <button type="button" class="btn btn-secondary btn-sm" id="btnmodal"
-                                                        data-bs-toggle="modal"
-                                                        data-cuenta="{{ $item->cuenta }}"
-                                                        data-meses="{{$item->meses}}"
-                                                        data-periodo="{{$item->periodo}}"
-                                                        data-fecha_vto="{{ $item->fecha_vto }}"
-                                                        data-lf="{{ $item->lecturaFacturada }}"
-                                                        data-t1="{{ number_format($item->tarifa1, 2) }}"
-                                                        {{-- data-t2="{{ number_format($item->tarifa2, 2) }}" --}}
-                                                        data-st="{{ number_format($item->sumaTarifas, 2) }}"
-                                                        data-f="{{ number_format($item->factor, 4) }}"
-                                                        data-sa="{{ number_format($item->saldoAtraso, 2) }}"
-                                                        data-sr="{{ number_format($item->saldoRezago, 2) }}"
-                                                        data-tp="{{ number_format($item->totalPeriodo, 2) }}"
-                                                        data-im="{{ number_format($item->importeMensual, 2) }}"
-                                                        data-ra="{{ number_format($item->RecargosAcumulados, 2) }}"
-                                                        data-bs-target="#exampleModal">
-                                                            <img src="https://img.icons8.com/fluency/18/null/edit.png"/>
+                                                        <button type="button" class="btn btn-secondary btn-sm"
+                                                            id="btnmodal" data-bs-toggle="modal"
+                                                            data-cuenta="{{ $item->cuenta }}"
+                                                            data-meses="{{ $item->meses }}"
+                                                            data-periodo="{{ $item->periodo }}"
+                                                            data-fecha_vto="{{ $item->fecha_vto }}"
+                                                            data-lf="{{ $item->lecturaFacturada }}"
+                                                            data-t1="{{ number_format($item->tarifa1, 2) }}"
+                                                            {{-- data-t2="{{ number_format($item->tarifa2, 2) }}" --}}
+                                                            data-st="{{ number_format($item->sumaTarifas, 2) }}"
+                                                            data-f="{{ number_format($item->factor, 4) }}"
+                                                            data-sa="{{ number_format($item->saldoAtraso, 2) }}"
+                                                            data-sr="{{ number_format($item->saldoRezago, 2) }}"
+                                                            data-tp="{{ number_format($item->totalPeriodo, 2) }}"
+                                                            data-im="{{ number_format($item->importeMensual, 2) }}"
+                                                            data-ra="{{ number_format($item->RecargosAcumulados, 2) }}"
+                                                            data-bs-target="#exampleModal">
+                                                            <img src="https://img.icons8.com/fluency/18/null/edit.png" />
                                                         </button>
-                                                            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarfila({{$item->cuenta}},{{$item->meses}})">
-                                                                <img src="https://img.icons8.com/fluency/18/null/cancel.png"/>
-                                                            </button>
+                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                            onclick="eliminarfila({{ $item->cuenta }},{{ $item->meses }})">
+                                                            <img src="https://img.icons8.com/fluency/18/null/cancel.png" />
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -624,7 +654,7 @@
                                 </table>
                             </div>
                             <div>
-                                {{$items->links()}}
+                                {{ $items->links() }}
                             </div>
                         </div>
 
@@ -649,8 +679,8 @@
 
 
 
-     {{-- Modal de  Impuesto Predial --}}
-     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- Modal de  Impuesto Predial --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -676,7 +706,7 @@
                                 id="lecturaFacturadaT" name="lecturaFacturadaT">
                             @error('lecturaFacturadaT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -691,12 +721,13 @@
                                 id="periodoT" name="periodoT">
                             @error('periodoT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="fecha_vtoT" class="form-label">Fecha Vencimiento (dia-mes-año ó año-mes-dia)</label>
+                            <label for="fecha_vtoT" class="form-label">Fecha Vencimiento (dia-mes-año ó
+                                año-mes-dia)</label>
                             <input type="text"
                                 class="form-control
                             @error('fecha_vtoT')
@@ -705,7 +736,7 @@
                                 id="fecha_vtoT" name="fecha_vtoT" placeholder="dia-mes-año">
                             @error('fecha_vtoT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -719,7 +750,7 @@
                                 id="tarifa1T" name="tarifa1T">
                             @error('tarifa1T')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -747,7 +778,7 @@
                                 id="sumaTarifasT" name="sumaTarifasT">
                             @error('sumaTarifasT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -761,7 +792,7 @@
                                 id="factorT" name="factorT">
                             @error('factorT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -775,7 +806,7 @@
                                 id="saldoAtrasoT" name="saldoAtrasoT">
                             @error('saldoAtrasoT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -789,7 +820,7 @@
                                 id="saldoRezagoT" name="saldoRezagoT">
                             @error('saldoRezagoT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -803,7 +834,7 @@
                                 id="totalPeriodoT" name="totalPeriodoT">
                             @error('totalPeriodoT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -817,7 +848,7 @@
                                 id="importeMensualT" name="importeMensualT">
                             @error('importeMensualT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -831,7 +862,7 @@
                                 id="RecargosAcumuladosT" name="RecargosAcumuladosT">
                             @error('RecargosAcumuladosT')
                                 <div class="text-danger text-center">
-                                    {{$message}}
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -848,8 +879,8 @@
     </div>
 @endsection
 @section('js')
- {{-- Carga del modal con datos --}}
- <script src="{{ asset('js/modalTabla.js') }}"></script>
+    {{-- Carga del modal con datos --}}
+    <script src="{{ asset('js/modalTabla.js') }}"></script>
     <script src="{{ asset('js/suma.js') }}"></script>
     <script src="{{ asset('js/deleteRow.js') }}"></script>
 @endsection

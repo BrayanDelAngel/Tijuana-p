@@ -18,11 +18,11 @@ class DeterminacionController extends Controller
 {
     public function exec($cuenta)
     {
+        // dd(webServiceDistrito($cuenta));
         //helper que extrae los datos del webservice y muestra el historico de la cuenta
         webServiceCobranzaExterna($cuenta);
         //Este helper muestra los intereses de la cuenta por ejemplo multas,gastos,etc.
         webServiceInteresesCuenta($cuenta);
-        //  dd(webServiceCobranzaExterna($cuenta));
         //validamos si la cuenta existe dentro de la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
         //si no existe mandamos un error
@@ -89,14 +89,15 @@ class DeterminacionController extends Controller
         //obtenemos el periodo en el    ue se esta evaluando
         //se cincatena la fecha maxima y minima
         $periodo = DB::select("select concat((select format(min(fechavto),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechavto),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
-
+        //Consulta del  distrito
+        $distrito=consultDistrito($cuenta);
+        $distritos=DB::select('select id_distrito, distrito from catalago_distrito where id_distrito not in (:id)',[':id'=>$distrito->id_distrito]);
         //Informacion de la tabla generada del propietario
         $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto', 'cuenta'])
             ->where('cuenta', $cuenta)->where('estado', 0)->orderBy('meses', 'ASC')->paginate(20);
-
         //consultamos la tabla abla_interesesCuenta que inserto el helper webServiceInteresesCuenta
         $intereses=interesesCuentaModel::select('NoCta','RecargosConvenio','SaldoConvObra','RecargosContrato','SdoConvAgua','GastosEjec','Multas')->where('NoCta',$cuenta)->first();
-        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro, 'items' => $tabla,'intereses'=>$intereses]);
+        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro, 'items' => $tabla,'intereses'=>$intereses,'distrito'=>$distrito,'distritos'=>$distritos]);
     }
     public function store(Request $request)
     {
@@ -118,7 +119,7 @@ class DeterminacionController extends Controller
             'g_ejecucion' => ['required'],
             'o_servicios' => ['required'],
             'multas' => ['required'],
-            // 'gastos_ejecucion' => ['required'],
+            'distrito' => ['required'],
             'conv_vencido' => ['required'],
             'otros_gastos' => ['required'],
             'total' => ['required'],
@@ -149,6 +150,8 @@ class DeterminacionController extends Controller
             //declaramos que se creara un nuevo registro en requerimientosA
             $r = new determinacionesA();
         }
+        //Se consulta el distrito para insertar su id 
+        // $id_distrito=consultIdDistrito($request->distrito);
         //Remplazar $ por ''
         $corriente = (float) str_replace(array('$', ','), '', $request->corriente);
         $icorriente = (float) str_replace(array('$', ','), '', $request->icorriente);
@@ -166,7 +169,7 @@ class DeterminacionController extends Controller
         $conv_vencido = (float) str_replace(array('$', ','), '', $request->conv_vencido);
         $otros_gastos = (float) str_replace(array('$', ','), '', $request->otros_gastos);
         $total = (float) str_replace(array('$', ','), '', $request->total);
-        //guardamos los datos en requerimientosA
+        //guardamos los datos en determinacionesA
         $r->folio = $request->folio;
         $r->fechad = $request->fechad;
         $r->cuenta = $request->cuenta;
@@ -189,7 +192,7 @@ class DeterminacionController extends Controller
         $r->gastos_ejecución = $g_ejecucion;
         $r->otros_servicios = $o_servicios;
         $r->multas = $multas;
-        // $r->gastos_ejecucion = $gastos_ejecucion;
+        $r->id_distrito = $$request->distrito;
         $r->conv_vencido = $conv_vencido;
         $r->otros_gastos = $otros_gastos;
         $r->saldo_total = $total;
@@ -280,7 +283,8 @@ class DeterminacionController extends Controller
             'recargos_convenio_obra',
             'gastos_ejecución',
             'otros_servicios',
-            'saldo_total'
+            'saldo_total',
+            'id_distrito'
         )->where('id', $id)->first();
         $folio = $data->folio;
         $longitud = strlen($folio);
@@ -360,11 +364,12 @@ class DeterminacionController extends Controller
         //contamos cuantos registros tiene esta cuenta en la tabla_da
         $cr = tabla_da::select('cuenta')->where('cuenta', $data->cuenta)->count();
         $condicion_firma=firma($cr);
+        $IDdistrito=$data[0]->id_distrito;
         if($condicion_firma!=1){
-            $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i]);
+            $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i,'IDdistrito'=>$IDdistrito]);
         }
         else{
-            $pdf = Pdf::loadView('pdf.determinacion_firma', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i]);
+            $pdf = Pdf::loadView('pdf.determinacion_firma', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i,'IDdistrito'=>$IDdistrito]);
         }
         
         // setPaper('')->
