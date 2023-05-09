@@ -71,7 +71,7 @@ function consultIdDistrito($distrito)
 }
 function consultDistrito($cuenta)
 {
-   $cuenta=addStrlCuenta($cuenta);
+    $cuenta=addStrlCuenta($cuenta);
     $distrito=cobranzaExternaHistoricos::join('catalago_distrito as ct','cobranzaExternaHistoricosWS3.id_distrito','=','ct.id_distrito')->
     select('distrito','cobranzaExternaHistoricosWS3.id_distrito as id_distrito')->where('NoCta',$cuenta)->first();
     return $distrito;
@@ -85,10 +85,10 @@ function insertDistrito($Distrito)
 function addStrlCuenta($cuenta){
     $countCaracteres=strlen($cuenta);
     if($countCaracteres<=5){
-        $cuenta=$cuenta+'00';
+        $cuenta=$cuenta.'00';
     }
     if($countCaracteres<=6){
-        $cuenta=$cuenta+'0';
+        $cuenta=$cuenta.'0';
     }
     if($countCaracteres<=7){
         $cuenta=$cuenta;
