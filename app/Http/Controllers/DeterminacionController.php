@@ -20,9 +20,9 @@ class DeterminacionController extends Controller
     {
         // dd(webServiceDistrito($cuenta));
         //helper que extrae los datos del webservice y muestra el historico de la cuenta
-        webServiceCobranzaExterna($cuenta);
+        // webServiceCobranzaExterna($cuenta);
         //Este helper muestra los intereses de la cuenta por ejemplo multas,gastos,etc.
-        webServiceInteresesCuenta($cuenta);
+        // webServiceInteresesCuenta($cuenta);
         //validamos si la cuenta existe dentro de la tabla cobranza
         $existe = DB::select('select count(NoCta)as c from cobranzaExternaHistoricosWS3 where NoCta = ?', [$cuenta]);
         //si no existe mandamos un error
@@ -171,6 +171,7 @@ class DeterminacionController extends Controller
         $total = (float) str_replace(array('$', ','), '', $request->total);
         //guardamos los datos en determinacionesA
         $r->folio = $request->folio;
+        $r->anio = $request->anio;
         $r->fechad = $request->fechad;
         $r->cuenta = $request->cuenta;
         $r->propietario = $request->propietario;
