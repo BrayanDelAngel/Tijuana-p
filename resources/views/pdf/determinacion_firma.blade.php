@@ -1036,7 +1036,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="saltopagina"></div>
+        
         <p class="text-justify">
             La cantidad anterior y los recargos causados sobre las contribuciones omitidas, deberán ser enteradas en las
             oficinas de Recaudación de la Comisión Estatal de Servicios Públicos de Tijuana, dentro de los quince días
@@ -1047,6 +1047,7 @@
             determinado en el presente documento, será turnado para su cobro a la Sub Recaudación de Rentas adscrita a
             la Comisión Estatal de Servicios Públicos de Tijuana a través del procedimiento económico-coactivo.
         </p>
+        <div class="saltopagina"></div>
         <div style="max-height: 30px; margin-top:-2%">
             <p class="text-justify">
                 Queda enterado de conformidad con el artículo 62 de la Ley del Tribunal Estatal de Justicia
