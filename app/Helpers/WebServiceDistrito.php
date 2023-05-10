@@ -71,7 +71,7 @@ function consultIdDistrito($distrito)
 }
 function consultDistrito($cuenta)
 {
-    $cuenta=addStrlCuenta($cuenta);
+    // $cuenta=addStrlCuenta($cuenta);
     $distrito=cobranzaExternaHistoricos::join('catalago_distrito as ct','cobranzaExternaHistoricosWS3.id_distrito','=','ct.id_distrito')->
     select('distrito','cobranzaExternaHistoricosWS3.id_distrito as id_distrito')->where('NoCta',$cuenta)->first();
     return $distrito;
