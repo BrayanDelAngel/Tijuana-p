@@ -87,10 +87,10 @@
                                         </div>
                                         @error('folio')
                                             <div class="text-danger text-center">
-                                                @if ($message == 'This combination of folio, anio already exists')
-                                                    El campo folio de ese año ya ha sido tomado.
-                                                @else
+                                                @if ($message == 'The folio field is required.')
                                                     El campo folio es requerido
+                                                @else
+                                                    El campo folio de ese año ya ha sido tomado.
                                                 @endif
                                             </div>
                                         @enderror
@@ -255,12 +255,7 @@
                                 <div class="col-md-3">
                                     <div class="md-form form-group">
                                         <label for="distrito" class="form-label mb-2">Distrito:*</label>
-                                        <select
-                                            class="form-control mb-2
-                                                @error('distrito')
-                                                border border-danger rounded-2
-                                                @enderror"
-                                            id="distrito" name="distrito">
+                                        <select class="form-control mb-2" id="distrito" name="distrito">
                                             <option value="{{ $distrito->id_distrito }}">{{ $distrito->distrito }}
                                             </option>
                                             @foreach ($distritos as $d)
@@ -269,11 +264,6 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('fechad')
-                                            <div class="text-danger text-center">
-                                                El campo distrito es requerido
-                                            </div>
-                                        @enderror
                                     </div>
                                 </div>
 

@@ -119,7 +119,6 @@ class DeterminacionController extends Controller
             'g_ejecucion' => ['required'],
             'o_servicios' => ['required'],
             'multas' => ['required'],
-            'distrito' => ['required'],
             'conv_vencido' => ['required'],
             'otros_gastos' => ['required'],
             'total' => ['required'],
