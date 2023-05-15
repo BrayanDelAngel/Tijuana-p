@@ -322,7 +322,7 @@ class MandamientoController extends Controller
         $fechamanda = $datos[0]->fecham2 . ' del ' . mb_strtolower(substr($conversion, 0, -1), "UTF-8");
         $fechadeterminacion = $datos[0]->fechand2 . ' del ' . mb_strtolower(substr($conversion2, 0, -1), "UTF-8");
         $multas = $datos[0]->multas;
-        $gastos_ejecucion = $datos[0]->gastos_ejecucion;
+        $gastos_ejecucion = $datos[0]->gastos_ejecución;
         $conv_vencido = $datos[0]->conv_vencido;
         $otros_gastos = $datos[0]->otros_gastos;
         //Informacion de la tabla generada del propietario
@@ -397,7 +397,7 @@ class MandamientoController extends Controller
                 'tar' => $tar,
                 'ejecutores' => $ejecutoresformat,
                 'multas' => $multas,
-                'gastos_ejecución' => $gastos_ejecucion,
+                'gastos_ejecucion' => $gastos_ejecucion,
                 'conv_vencido' => $conv_vencido,
                 'otros_gastos' => $otros_gastos,
                 'total_ar' => number_format($total_ar, 2),
@@ -424,7 +424,7 @@ class MandamientoController extends Controller
                 'tar' => $tar,
                 'ejecutores' => $ejecutoresformat,
                 'multas' => $multas,
-                'gastos_ejecución' => $gastos_ejecucion,
+                'gastos_ejecucion' => $gastos_ejecucion,
                 'conv_vencido' => $conv_vencido,
                 'otros_gastos' => $otros_gastos,
                 'total_ar' => number_format($total_ar, 2),
