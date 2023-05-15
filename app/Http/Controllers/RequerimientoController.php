@@ -52,7 +52,7 @@ class RequerimientoController extends Controller
                     'domicilio as Domicilio',
                     'cuenta as Cuenta',
                     'multas',
-                    'gastos_ejecucion',
+                    'gastos_ejecución',
                     'conv_vencido',
                     'otros_gastos',
                     'saldo_total as total',
@@ -195,7 +195,7 @@ class RequerimientoController extends Controller
                     'id_d'
                 ),
                 'multas',
-                'gastos_ejecucion',
+                'gastos_ejecución',
                 'conv_vencido',
                 'otros_gastos',
                 'saldo_total as total',
