@@ -71,43 +71,56 @@
                     b), c) y d) de la Ley de
                     Ingresos para el ejercicio fiscal <span class="bold">2021;</span> artículo 9, sección Vl, inciso
                     A), numeral 2, subinciso a),
-                    b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2022,2023;</span> se procede a determinar
+                    b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2022,2023;</span> se
+                    procede a determinar
                     crédito fiscal por la omisión del pago de derechos por consumo de agua; lo cual queda contenido en
                     la presente, de conformidad a lo siguiente:
                 </p>
             @endif
             @if ($IDdistrito != '1')
-            <p class="text-justify">
-                El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
-                Comisión Estatal de Servicios
-                Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política de
-                los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales del
-                Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de las
-                Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo dispuesto
-                por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado
-                de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima sesión extraordinaria del
-                consejo de administración de la Comisión Estatal de Servicios Públicos de Tijuana celebrado en la fecha
-                14 de julio de 2022, donde se otorga el nombramiento de Director General y de representación de la
-                Comisión Estatal Servicios Públicos de Tijuana, de conformidad al artículo 4-1 de la Ley de Hacienda del
-                Estado de Baja California; artículo 14 BIS del Codigo Fiscal para el Estado de Baja California; artículo
-                3 fracciones I, II, lll, IV, 15 y 16 fracción l,ll, inciso a), b) y lll de la Ley que Reglamenta el
-                Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll, inciso A), numeral
-                2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                    class="bold">2004;</span>
-                artículo 11, sección lll , inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para
-                los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-                    2013, 2014, 2015,
-                    2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll, inciso A), numeral 2, subinciso a), b), c)
-                y d) de la
-                Ley de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9, sección lV ,
-                inciso A), numeral 2, subinciso
-                a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021;</span>
-                artículo 9, sección V, inciso A),
-                numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
-                    class="bold">2022,2023;</span> se
-                procede a determinar crédito fiscal por la omisión del pago de derechos por consumo de agua; lo cual
-                queda contenido en la presente, de conformidad a lo siguiente:
-            </p>
+                <p class="text-justify">
+                    El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
+                    Comisión Estatal de Servicios
+                    Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política
+                    de
+                    los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales del
+                    Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de
+                    las
+                    Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo
+                    dispuesto
+                    por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el
+                    Estado
+                    de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima sesión extraordinaria
+                    del
+                    consejo de administración de la Comisión Estatal de Servicios Públicos de Tijuana celebrado en la
+                    fecha
+                    14 de julio de 2022, donde se otorga el nombramiento de Director General y de representación de la
+                    Comisión Estatal Servicios Públicos de Tijuana, de conformidad al artículo 4-1 de la Ley de Hacienda
+                    del
+                    Estado de Baja California; artículo 14 BIS del Codigo Fiscal para el Estado de Baja California;
+                    artículo
+                    3 fracciones I, II, lll, IV, 15 y 16 fracción l,ll, inciso a), b) y lll de la Ley que Reglamenta el
+                    Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll, inciso A),
+                    numeral
+                    2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span
+                        class="bold">2004;</span>
+                    artículo 11, sección lll , inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos
+                    para
+                    los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011,
+                        2012,
+                        2013, 2014, 2015,
+                        2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll, inciso A), numeral 2, subinciso a),
+                    b), c)
+                    y d) de la
+                    Ley de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9, sección lV ,
+                    inciso A), numeral 2, subinciso
+                    a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021;</span>
+                    artículo 9, sección V, inciso A),
+                    numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
+                        class="bold">2022,2023;</span> se
+                    procede a determinar crédito fiscal por la omisión del pago de derechos por consumo de agua; lo cual
+                    queda contenido en la presente, de conformidad a lo siguiente:
+                </p>
             @endif
         @endif
         @if ($data->tipo_s == 'DOMESTICO')
@@ -128,7 +141,8 @@
                     para el Estado de Baja California; artículo 3 fracciones I, II ll, IV, 15 y 16 fracción l, ll,
                     inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
                     California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g),
-                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo
+                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
+                        class="bold">2004;</span> artículo
                     11, sección lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de
                     la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007,
                         2008, 2009, 2010,
@@ -162,7 +176,8 @@
                     para el Estado de Baja California; artículo 3 fracciones I, II ll, IV, 15 y 16 fraccion l, ll,
                     inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
                     California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g),
-                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo
+                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
+                        class="bold">2004;</span> artículo
                     11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de
                     la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007,
                         2008, 2009, 2010,
@@ -190,7 +205,8 @@
             registrada como Titular de la cuenta número <span class="bold">{{ $data->cuenta }}</span>, con número de
             medidor
             <span class="bold">{{ $data->seriem }}</span>, de uso <span class="bold">{{ $data->tipo_s }}</span>,
-            del domicilio ubicado en <span class="bold">{{ $data->domicilio }}</span> de esta ciudad de Tijuana, Baja California, con clave
+            del domicilio ubicado en <span class="bold">{{ $data->domicilio }}</span> de esta ciudad de Tijuana, Baja
+            California, con clave
             catastral número
             <span class="bold">{{ $data->clavec }}</span> se desprende que ha omitido cubrir las contribuciones
             generadas por
@@ -293,7 +309,7 @@
             </p>
             <p class="text-justify">
                 <span class="bold"> “ARTÍCULO 35.- …………. </span>
-                <br/>
+                <br />
                 Cuando no se cubran las contribuciones dentro de los plazos señalados en las disposiciones fiscales o no
                 se cubran las parcialidades en los plazos convenidos, se pagarán recargos por concepto de indemnización
                 al fisco estatal a la tasa del 2.25% mensual.”
@@ -750,7 +766,8 @@
             @if ($IDdistrito != '1')
                 <p class="text-justify">
                     De acuerdo al artículo artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e),
-                    f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span>
+                    f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
+                        class="bold">2004;</span>
                     artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k)
                     y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005,
                         2006, 2007, 2008, 2009,
@@ -807,18 +824,20 @@
         @if ($data->tipo_s == 'NO DOMESTICO')
             @if ($IDdistrito == '1')
                 <p class="text-justify">
-                    De acuerdo al artículo 11, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de
-                    Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo 11,
+                    De acuerdo al artículo <span class="bold">11</span>, sección lll, inciso A), numeral 2, subinciso
+                    a), b), c) y d) de la Ley de
+                    Ingresos para los Ejercicios Fiscales de los años <span class="bold">2004</span>; artículo 11,
                     sección lV, inciso A), numeral
-                    2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span
+                    2, subinciso a), b), c) y d) de la Ley de Ingresos para los Ejercicios Fiscales de los años <span
                         class="bold">2005,
-                        2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span>
+                        2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>;
                     artículo 10,
-                    sección lV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio
-                    fiscal <span class="bold">2020;</span> artículo 9, sección V, inciso A), numeral 2, subinciso a),
+                    sección lV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el Ejercicio
+                    Fiscal <span class="bold">2020</span>; artículo 9, sección V, inciso A), numeral 2, subinciso a),
                     b), c) y d) de la Ley de
-                    Ingresos para el ejercicio fiscal 2021; artículo 9, sección Vl, inciso A), numeral 2, subinciso a),
-                    b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2022,2023;</span>
+                    Ingresos para el Ejercicio Fiscal <span class="bold">2021</span>; artículo 9, sección Vl, inciso
+                    A), numeral 2, subinciso a),
+                    b), c) y d) de la Ley de Ingresos para el Ejercicio Fiscal <span class="bold">2022,2023</span>;
                     vigente en cada año las
                     Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de Agua”, se
                     actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir el
@@ -831,19 +850,21 @@
                     haya publicado el índice citado, se tomarán los últimos publicados.
                 </p>
             @endif
-            @if ($IDdistrito == '1')
+            @if ($IDdistrito != '1')
                 <p class="text-justify">
-                    De acuerdo al artículo 11, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de
-                    Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo 11,
+                    De acuerdo al artículo <span class="bold">11</span>, sección lll, inciso A), numeral 2, subinciso
+                    a), b), c) y d) de la Ley de
+                    Ingresos para los ejercicios fiscales de los años <span class="bold">2004</span>; artículo 11,
                     sección lll , inciso A),
                     numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años
                     <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
-                        2018 Y 2019;</span> artículo
+                        2018 Y 2019</span>; artículo
                     10, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el
                     ejercicio fiscal 2020; artículo 9, sección lV, inciso A), numeral 2, subinciso a), b), c) y d) de la
-                    Ley de Ingresos para el ejercicio fiscal 2021; artículo 9, sección V, inciso A), numeral 2,
+                    Ley de Ingresos para el ejercicio fiscal <span class="bold">2021</span>; artículo 9, sección V,
+                    inciso A), numeral 2,
                     subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
-                        class="bold">2022,2023;</span> vigente en cada
+                        class="bold">2022,2023</span>; vigente en cada
                     año las Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de Agua”,
                     se actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir
                     el Índice Nacional de Precios al Consumidor, que se publique en el Diario Oficial de la Federación
