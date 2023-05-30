@@ -49,6 +49,7 @@ class TarifasController extends Controller
         $r->anio = $request->anioA;
         $r->bim = $mes_insert;
         $r->tarifa = $request->tarifa;
+        $r->tarifa2 = $request->tarifa2;
         $r->save();
         //Si se inserto se retorna a la vista con el siguiente mensage 
         if ($r) {
@@ -71,7 +72,8 @@ class TarifasController extends Controller
         $update=DB::update('update [dbo].[porcentajes_ta]
         SET 
            [tarifa] = ?
-        WHERE anio= ? and bim=?', [$request->tarifaM,$request->anioM,$mes_insert]);
+           ,tarifa2=?
+        WHERE anio= ? and bim=?', [$request->tarifaM,$request->tarifaM2,$request->anioM,$mes_insert]);
         if ($update) {
             return back()->with('success_Updatetarifa', 'Se actualizo correctmente');
         }
