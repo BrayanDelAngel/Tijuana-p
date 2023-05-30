@@ -758,9 +758,14 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="saltopagina"></div>
         <br />
         <br />
         <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">{{ $tp }}</span>
+        </p>
+        {{-- Salto de linea p --}}
+        <p>
+            <br />
         </p>
         @if ($data->tipo_s == 'DOMESTICO')
             @if ($IDdistrito != '1')
@@ -877,17 +882,23 @@
                 </p>
             @endif
         @endif
-
+        {{-- Salto de linea p --}}
+        <p>
+            <br />
+        </p>
         <p class="text-justify bold">Fórmula para determinar factor de actualización mensual</p>
         <p class="text-justify">
             INPC del último mes inmediato anterior al mes por el cual se hace el ajuste
             <br />
+            <br />
             INPC del penúltimo mes inmediato anterior al del mismo mes que se actualiza
         </p>
-
         <p class="bold">Para el año 2022 se agregará al factor de actualización un 0.5% acumulable cada mes</p>
         <p class="bold">Para el año 2023 se agregará al factor de actualización un 1% acumulable cada mes</p>
-
+        {{-- Salto de linea p --}}
+        <p>
+            <br />
+        </p>
         @if ($data->tipo_s == 'NO DOMESTICO')
             @if ($IDdistrito == '1')
                 <p class="text-justify">
@@ -992,11 +1003,17 @@
             @endif
         @endif
         </p>
+        {{-- Salto de linea p --}}
+        <div class="saltopagina"></div>
+        <p>
+            <br />
+        </p>
         <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número
             <span class="bold">{{ $data->cuenta }}</span>, por la suma de
             <span class="bold">${{ $total_ar }} {{ $tar }} </span>, integrado de la siguiente forma:
         </p>
-        <br />
+        <br/>
+        <br/>
         <table class="table2">
             <thead>
                 <tr>
@@ -1057,6 +1074,10 @@
                 </tr>
             </tbody>
         </table>
+        {{-- Salto de linea --}}
+        <p>
+            <br/>
+        </p>
         <p class="text-justify">
             La cantidad anterior y los recargos causados sobre las contribuciones omitidas, deberán ser enteradas en las
             oficinas de Recaudación de la Comisión Estatal de Servicios Públicos de Tijuana, dentro de los quince días
@@ -1067,26 +1088,30 @@
             determinado en el presente documento, será turnado para su cobro a la Sub Recaudación de Rentas adscrita a
             la Comisión Estatal de Servicios Públicos de Tijuana a través del procedimiento económico-coactivo.
         </p>
-        <div style="max-height: 30px; margin-top:-2%">
-            <p class="text-justify">
-                Queda enterado de conformidad con el artículo 62 de la Ley del Tribunal Estatal de Justicia
-                Administrativa del Estado de Baja California, en contra de la presente resolución podrá interponer
-                demanda de nulidad, ante el Tribunal Estatal de Justicia Administrativa del Estado de Baja California,
-                dentro del plazo de <span class="bold">QUINCE DIAS</span> hábiles siguientes a la fecha en que surta
-                efectos su notificación.
-            </p>
-            <p class="bold">Notifíquese personalmente.</p>
-            <p class="text-center bold">
-                A T E N T A M E N T E
-            </p>
-            <p class="firm bold text-center">
-                _____________________________________________
-                <br />
-                Dr. Víctor Daniel Amador Barragán
-                Director General de la Comisión Estatal de Servicios Públicos de Tijuana.
+        <br/>
+        {{-- <div style="max-height: 30px; margin-top:-2%"> --}}
+        <p class="text-justify">
+            Queda enterado de conformidad con el artículo 62 de la Ley del Tribunal Estatal de Justicia
+            Administrativa del Estado de Baja California, en contra de la presente resolución podrá interponer
+            demanda de nulidad, ante el Tribunal Estatal de Justicia Administrativa del Estado de Baja California,
+            dentro del plazo de <span class="bold">QUINCE DIAS</span> hábiles siguientes a la fecha en que surta
+            efectos su notificación.
+        </p>
+        {{-- Salto de linea p --}}
+        <br />
 
-            </p>
-        </div>
+        <p class="bold">Notifíquese personalmente.</p>
+        <p class="text-center bold">
+            A T E N T A M E N T E
+        </p>
+        <p class="firm bold text-center">
+            _____________________________________________
+            <br />
+            Dr. Víctor Daniel Amador Barragán
+            Director General de la Comisión Estatal de Servicios Públicos de Tijuana.
+
+        </p>
+        {{-- </div> --}}
     </main>
 </body>
 

@@ -184,12 +184,15 @@ class RequerimientoController extends Controller
     }
     public function pdf($id)
     {
+        ini_set('max_execution_time', 0);
+        ini_set('memory_limit', '-1');
         //Consulta de la determinacion y del requerimiento
         $datos = determinacionesA::join('requerimientosA as r', 'r.id_d', '=', 'determinacionesA.id')
             ->select([
                 'r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM','es-es') as fechad"),
                 'cuenta', 'propietario', 'domicilio', 'clavec', 'r.tipo_s as tipo_s', 'seriem', 'razons', 'periodo', 'fechand',
                 DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
+                DB::raw("format(fechar,'dd'' días del mes de ''MMMM'' del año ''yyyy','es-es') as fechar2"),
                 DB::raw(
                     "format(fechand,'dd'' de ''MMMM','es-es') as fd",
                     'id_d'
@@ -262,7 +265,7 @@ class RequerimientoController extends Controller
             }
         }
         //declaramos la variable pdf y mandamos los parametros
-        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter, 'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar, 'ejecutores' => $ejecutoresformat,'total'=>$total_ar]);
+        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter,'fechar'=>$datos[0]->fechar, 'fechar2'=>$datos[0]->fechar2,'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar, 'ejecutores' => $ejecutoresformat,'total'=>$total_ar]);
         return $pdf->stream();
     }
 }
