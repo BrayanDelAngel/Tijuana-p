@@ -759,8 +759,8 @@
             </tbody>
         </table>
         <div class="saltopagina"></div>
-        {{-- <br />
-        <br /> --}}
+        <br />
+        <br />
         <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">{{ $tp }}</span>
         </p>
         {{-- Salto de linea p --}}
@@ -1004,6 +1004,7 @@
         @endif
         </p>
         {{-- Salto de linea p --}}
+        <div class="saltopagina"></div>
         <p>
             <br />
         </p>
@@ -1011,6 +1012,8 @@
             <span class="bold">{{ $data->cuenta }}</span>, por la suma de
             <span class="bold">${{ $total_ar }} {{ $tar }} </span>, integrado de la siguiente forma:
         </p>
+        <br/>
+        <br/>
         <table class="table2">
             <thead>
                 <tr>
@@ -1073,7 +1076,6 @@
         </table>
         {{-- Salto de linea --}}
         <p>
-            <br />
             <br/>
         </p>
         <p class="text-justify">
