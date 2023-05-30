@@ -170,5 +170,8 @@ td {
 .saltopagina {
     page-break-after: always;
 }
-
-
+.relative-right{
+    position: relative;
+    text-align: right;
+    margin-left: -50px;
+}

@@ -758,8 +758,9 @@
                 @endforeach
             </tbody>
         </table>
-        <br />
-        <br />
+        <div class="saltopagina"></div>
+        {{-- <br />
+        <br /> --}}
         <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">{{ $tp }}</span>
         </p>
         @if ($data->tipo_s == 'DOMESTICO')
@@ -877,17 +878,16 @@
                 </p>
             @endif
         @endif
-
         <p class="text-justify bold">Fórmula para determinar factor de actualización mensual</p>
         <p class="text-justify">
             INPC del último mes inmediato anterior al mes por el cual se hace el ajuste
+            <br />
             <br />
             INPC del penúltimo mes inmediato anterior al del mismo mes que se actualiza
         </p>
 
         <p class="bold">Para el año 2022 se agregará al factor de actualización un 0.5% acumulable cada mes</p>
         <p class="bold">Para el año 2023 se agregará al factor de actualización un 1% acumulable cada mes</p>
-
         @if ($data->tipo_s == 'NO DOMESTICO')
             @if ($IDdistrito == '1')
                 <p class="text-justify">
@@ -997,6 +997,7 @@
             <span class="bold">${{ $total_ar }} {{ $tar }} </span>, integrado de la siguiente forma:
         </p>
         <br />
+        <br />
         <table class="table2">
             <thead>
                 <tr>
@@ -1057,6 +1058,8 @@
                 </tr>
             </tbody>
         </table>
+        <br />
+        <br />
         <p class="text-justify">
             La cantidad anterior y los recargos causados sobre las contribuciones omitidas, deberán ser enteradas en las
             oficinas de Recaudación de la Comisión Estatal de Servicios Públicos de Tijuana, dentro de los quince días

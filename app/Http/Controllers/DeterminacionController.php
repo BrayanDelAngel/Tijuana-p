@@ -365,14 +365,14 @@ class DeterminacionController extends Controller
         $tp = '$' . number_format($t_adeudo->totalPeriodo, 2) . '**(' . $texto_entero2 . ' ' . $decimal2 . '/100 M.N.)**';
         //contamos cuantos registros tiene esta cuenta en la tabla_da
         $cr = tabla_da::select('cuenta')->where('cuenta', $data->cuenta)->count();
-        $condicion_firma=firma($cr);
+        // $condicion_firma=firma($cr);
         $IDdistrito=$data->id_distrito;
-        if($condicion_firma!=1){
+        // if($condicion_firma!=1){
             $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i,'IDdistrito'=>$IDdistrito]);
-        }
-        else{
-            $pdf = Pdf::loadView('pdf.determinacion_firma', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i,'IDdistrito'=>$IDdistrito]);
-        }
+        // }
+        // else{
+        //     $pdf = Pdf::loadView('pdf.determinacion_firma', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i,'IDdistrito'=>$IDdistrito]);
+        // }
         
         // setPaper('')->
         //A4 -> carta
