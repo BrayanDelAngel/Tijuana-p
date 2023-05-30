@@ -1011,7 +1011,6 @@
             <span class="bold">{{ $data->cuenta }}</span>, por la suma de
             <span class="bold">${{ $total_ar }} {{ $tar }} </span>, integrado de la siguiente forma:
         </p>
-        <br />
         <table class="table2">
             <thead>
                 <tr>
@@ -1072,7 +1071,6 @@
                 </tr>
             </tbody>
         </table>
-        <div class="saltopagina"></div>
         {{-- Salto de linea --}}
         <p>
             <br />
