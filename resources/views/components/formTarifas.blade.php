@@ -56,7 +56,10 @@
                                     Mes
                                 </th>
                                 <th>
-                                    Tarifa
+                                    Tarifa Domestico
+                                </th>
+                                <th>
+                                    Tarifa Comercial
                                 </th>
                                 <th>
                                     Acción
@@ -68,12 +71,14 @@
                                     <td>{{ $item->anio }}</td>
                                     <td>{{ $mes[$item->bim - 1] }}</td>
                                     <td>{{ number_format($item->tarifa,2) }}</td>
+                                    <td>{{ number_format($item->tarifa2,2) }}</td>
                                     <td>  
                                         <button type="button" class="btn btn-secondary btn-sm" id="btnmodal"
                                         data-bs-toggle="modal"
                                         data-anio="{{ $item->anio }}"
                                         data-mes="{{ $mes[$item->bim - 1] }}"
                                         data-tarifa="{{ number_format($item->tarifa,2)}}"
+                                        data-tarifa2="{{ number_format($item->tarifa2,2)}}"
                                         data-bs-target="#exampleModalM">
                                             <img src="https://img.icons8.com/fluency/18/null/edit.png"/> 
                                         </button>
@@ -140,13 +145,27 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="tarifa" class="form-label">Tarifa</label>
+                            <label for="tarifa" class="form-label">Tarifa Domestico</label>
                             <input type="text"
                                 class="form-control 
                             @error('tarifa')
                             border border-danger rounded-2
                             @enderror"
                                 id="tarifa" name="tarifa">
+                            @error('tarifa')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="tarifa2" class="form-label">Tarifa Comercial</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('tarifa2')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="tarifa2" name="tarifa2">
                             @error('tarifa')
                                 <div class="text-danger text-center">
                                     {{$message}}
@@ -205,7 +224,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="tarifaM" class="form-label">Tarifa</label>
+                            <label for="tarifaM" class="form-label">Tarifa Domestico</label>
                             <input type="text"
                                 class="form-control 
                             @error('tarifaM')
@@ -213,6 +232,20 @@
                             @enderror"
                                 id="tarifaM" name="tarifaM">
                             @error('tarifaM')
+                                <div class="text-danger text-center">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="tarifaM2" class="form-label">Tarifa Comercial</label>
+                            <input type="text"
+                                class="form-control 
+                            @error('tarifaM2')
+                            border border-danger rounded-2
+                            @enderror"
+                                id="tarifaM2" name="tarifaM2">
+                            @error('tarifaM2')
                                 <div class="text-danger text-center">
                                     {{$message}}
                                 </div>
