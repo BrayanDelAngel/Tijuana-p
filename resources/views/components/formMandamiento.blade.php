@@ -372,7 +372,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="table table-hover table-sm table-dark my-4">
+                        {{-- <table class="table table-hover table-sm table-dark my-4">
                             <thead class="table-dark text-center">
                                 <tr>
                                     <th>TIPO DE DILIGENCIA</th>
@@ -443,10 +443,10 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> --}}
 
                     </div>
-                    <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
+                    {{-- <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
                         <div class="text-white m-2 align-items-end" style="text-align:right;">
                             <span class="bg-success rounded-2 p-2"><img
                                     src="https://img.icons8.com/fluency/30/null/resume.png" />Resumen</span>
@@ -556,7 +556,7 @@
                                                         data-fecha_vto="{{ $item->fecha_vto }}"
                                                         data-lf="{{ $item->lecturaFacturada }}"
                                                         data-t1="{{ number_format($item->tarifa1, 2) }}"
-                                                        {{-- data-t2="{{ number_format($item->tarifa2, 2) }}" --}}
+                                                        data-t2="{{ number_format($item->tarifa2, 2) }}"
                                                         data-st="{{ number_format($item->sumaTarifas, 2) }}"
                                                         data-f="{{ number_format($item->factor, 4) }}"
                                                         data-sa="{{ number_format($item->saldoAtraso, 2) }}"
@@ -581,7 +581,7 @@
                         <div>
                             {{ $items->links() }}
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-row p-4">
                         <div class="col">
                             <div style="text-align:right;">
