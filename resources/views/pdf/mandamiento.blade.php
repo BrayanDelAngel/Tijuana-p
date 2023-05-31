@@ -120,6 +120,7 @@
                         administrativo de ejecución en su contra.
                     </p>
                 </li>
+                <div class="saltopagina"></div>
                 <li>
                     <p class="text-justify">
                         Que del acta de notificación remitida por el notificador designado en el requerimiento de pago
@@ -165,8 +166,8 @@
                 Con la facultad prevista en la fracción V del artículo 1º. del Acuerdo Delegatorio de Facultades
                 publicado en el periódico oficial del Estado de fecha 04 de marzo de 2005 y para dar cumplimiento a lo
                 anteriormente señalado, se designa como NOTIFICADOR(ES)-EJECUTOR(ES) del presente mandamiento, al (los)
-                C.C.__________________________________
-                y _____________________________________________; con nombramiento(s) de fecha_____________________, para
+                C.C.______________________________________
+                y _____________________________________________; con nombramiento(s) de fecha _________________________, para
                 que de manera conjunta o separada, den cumplimiento a la presente orden; quien(es) al inicio de la
                 diligencia deberá(n) identificarse con la constancia de nombramiento vigente en la que aparece su
                 fotografía y su firma y que lo(s) acredita como notificadores-ejecutores adscritos a esta Subrecaudacion
@@ -259,6 +260,9 @@
                 y otros bienes embargables. Si no fuere factible romper o forzar las cerraduras, la traba del embargo se
                 realizara en términos del segundo párrafo del artículo 141 en cuestión.
             </p>
+            <div class="saltopagina"></div>
+            <br/>
+            <br/>
             <p class="text-justify">
                 c).- Con base a lo previsto en el artículo 152 del Código en cita, se le comunica que una vez
                 transcurridos quince días hábiles posteriores a la práctica del embargo, se procederá al remate de los
