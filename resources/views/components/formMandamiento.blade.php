@@ -32,9 +32,9 @@
             <form action="{{ route('guardar-mandamiento') }}" method="post" novalidate>
                 @csrf
                 @foreach ($date as $item)
-                    <div class="row">
+                    <div class="row m-2">
                         <input type="hidden" name="id" value="{{ $item->id }}">
-                        <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
+                        <div class="p-2 rounded-4 col-md-12" style=" background-color: #E8ECEF; border: inherit;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
                                         src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Datos
@@ -290,7 +290,7 @@
 
                             </div>
                         </div>
-                        <div class="p-2 rounded-4 col-md-4"
+                        {{-- <div class="p-2 rounded-4 col-md-4"
                             style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
@@ -322,7 +322,7 @@
                                 </div>
                             </div>
                             <div id="contenedor"></div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="p-2 rounded-4" style=" background-color: #E8ECEF; border: inherit;">
                         <div class="text-white m-2 align-items-end" style="text-align:right;">

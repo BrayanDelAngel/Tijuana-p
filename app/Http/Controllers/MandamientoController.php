@@ -294,10 +294,11 @@ class MandamientoController extends Controller
                 'fecham as fecha_converter',
                 'fechand as fecha_converternd',
                 DB::raw("format(fechad,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechad"),
-                DB::raw("format(fecham,'dd'' de ''MMMM'' de ''yyyy','es-es') as fecham"),
+                DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
+                DB::raw("format(fecham,'dd'' dias del mes de ''MMMM'' del año ''yyyy','es-es') as fecham"),
                 DB::raw("format(fechanr,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechanr"),
-                DB::raw("format(fechand,'dd'' del mes de ''MMMM','es-es') as fechand2"),
-                DB::raw("format(fecham,'dd'' del mes de ''MMMM','es-es') as fecham2")
+                DB::raw("format(fechand,'dd'' del mes de ''MMMM'' del ''yyyy','es-es') as fechand2"),
+                DB::raw("format(fecham,'dd'' dias del mes de ''MMMM','es-es') as fecham2")
             )
             ->where('m.id', $id)
             ->get();
@@ -320,7 +321,10 @@ class MandamientoController extends Controller
         $conversion2 = $formato->toString($aniond);
         //Concatenando la fecha
         $fechamanda = $datos[0]->fecham2 . ' del ' . mb_strtolower(substr($conversion, 0, -1), "UTF-8");
-        $fechadeterminacion = $datos[0]->fechand2 . ' del ' . mb_strtolower(substr($conversion2, 0, -1), "UTF-8");
+        $fecharequi = $datos[0]->fechar;
+        $fechanr = $datos[0]->fechanr;
+        // $fechadeterminacion = $datos[0]->fechand2 . ' del ' . mb_strtolower(substr($conversion2, 0, -1), "UTF-8");
+        $fechadeterminacion = $datos[0]->fechand2 ;
         $multas = $datos[0]->multas;
         $gastos_ejecucion = $datos[0]->gastos_ejecución;
         $conv_vencido = $datos[0]->conv_vencido;
@@ -384,9 +388,9 @@ class MandamientoController extends Controller
          //Contador de meses
          $i=0;
          $cr = tabla_ma::select('cuenta')->where('cuenta', $datos[0]->cuenta)->count();
-        $condicion_firma=firmaMandamiento($cr);
+        // $condicion_firma=firmaMandamiento($cr);
         //si esta bien 
-        if($condicion_firma!=1){
+        // if($condicion_firma!=1){
             $pdf = Pdf::loadView('pdf.mandamiento', [
                 'tabla' => $tabla,
                 'items' => $datos,
@@ -402,6 +406,8 @@ class MandamientoController extends Controller
                 'otros_gastos' => $otros_gastos,
                 'total_ar' => number_format($total_ar, 2),
                 'fechamanda' => $fechamanda,
+                'fecharequi' => $fecharequi,
+                'fechanr' => $fechanr,
                 'fechadeterminacion' => $fechadeterminacion,
                 'sobrerecaudador' => $sobrerecaudador,
                 'pagor' => $pagor,
@@ -411,33 +417,33 @@ class MandamientoController extends Controller
                 'i'=>$i,
             ]);
             
-        }
+        // }
         //Si no 
-        else{
-            $pdf = Pdf::loadView('pdf.mandamiento_firma', [
-                'tabla' => $tabla,
-                'items' => $datos,
-                'folio' => $folio,
-                't_adeudo_t' => $t_adeudo_t,
-                'totales' => $totales,
-                't_adeudor' => $t_adeudo_t,
-                'tar' => $tar,
-                'ejecutores' => $ejecutoresformat,
-                'multas' => $multas,
-                'gastos_ejecucion' => $gastos_ejecucion,
-                'conv_vencido' => $conv_vencido,
-                'otros_gastos' => $otros_gastos,
-                'total_ar' => number_format($total_ar, 2),
-                'fechamanda' => $fechamanda,
-                'fechadeterminacion' => $fechadeterminacion,
-                'sobrerecaudador' => $sobrerecaudador,
-                'pagor' => $pagor,
-                'totalr' => $totalr,
-                'pagoe' => $pagoe,
-                'totale' => $totale,
-                'i'=>$i,
-            ]);
-        }
+        // else{
+        //     $pdf = Pdf::loadView('pdf.mandamiento_firma', [
+        //         'tabla' => $tabla,
+        //         'items' => $datos,
+        //         'folio' => $folio,
+        //         't_adeudo_t' => $t_adeudo_t,
+        //         'totales' => $totales,
+        //         't_adeudor' => $t_adeudo_t,
+        //         'tar' => $tar,
+        //         'ejecutores' => $ejecutoresformat,
+        //         'multas' => $multas,
+        //         'gastos_ejecucion' => $gastos_ejecucion,
+        //         'conv_vencido' => $conv_vencido,
+        //         'otros_gastos' => $otros_gastos,
+        //         'total_ar' => number_format($total_ar, 2),
+        //         'fechamanda' => $fechamanda,
+        //         'fechadeterminacion' => $fechadeterminacion,
+        //         'sobrerecaudador' => $sobrerecaudador,
+        //         'pagor' => $pagor,
+        //         'totalr' => $totalr,
+        //         'pagoe' => $pagoe,
+        //         'totale' => $totale,
+        //         'i'=>$i,
+        //     ]);
+        // }
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();
