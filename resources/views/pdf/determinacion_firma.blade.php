@@ -199,7 +199,7 @@
             registrada como Titular de la cuenta número <span class="bold">{{ $data->cuenta }}</span>, con número de
             medidor
             <span class="bold">{{ $data->seriem }}</span>, de uso <span class="bold">{{ $data->tipo_s }}</span>,
-            del domicilio ubicado en <span class="bold">{{ $data->domicilio }}</span> de esta ciudad de Tijuana, Baja
+            del domicilio ubicado en <span class="bold">{{ $data->domicilio }}</span> de esta ciudad de @if ($IDdistrito == '1') Rosarito, @else Tijuana, @endif Baja
             California, con clave
             catastral número
             <span class="bold">{{ $data->clavec }}</span> se desprende que ha omitido cubrir las contribuciones
