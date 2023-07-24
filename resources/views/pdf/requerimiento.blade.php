@@ -22,7 +22,7 @@
     </footer> --}}
     <main>
         @foreach ($items as $item)
-            <h4 class="text-center">ACUERDO REQUERIMIENTO DE PAGO</h4>
+            <h4 class="text-center">REQUERIMIENTO DE PAGO</h4>
             <div class="data">
                 <div class="data-center">
                     <p>

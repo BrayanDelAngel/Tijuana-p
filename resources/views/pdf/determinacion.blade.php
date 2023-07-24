@@ -1026,23 +1026,23 @@
             <tbody>
                 <tr>
                     <td>Corriente</td>
-                    <td>${{ number_format($t_adeudo->sumaTarifas, 2) }}</td>
+                    <td>${{ number_format($data->corriente, 2) }}</td>
                 </tr>
                 <tr>
                     <td>IVA Corriente</td>
-                    <td>${{ number_format($t_adeudo->saldoIvaCor, 2) }}</td>
+                    <td>${{ number_format($data->iva_corriente, 2) }}</td>
                 </tr>
                 <tr>
                     <td>Atraso</td>
-                    <td>${{ number_format($t_adeudo->saldoAtraso, 2) }}</td>
+                    <td>${{ number_format($data->atraso, 2) }}</td>
                 </tr>
                 <tr>
                     <td>Rezago</td>
-                    <td>${{ number_format($t_adeudo->saldoRezago, 2) }}</td>
+                    <td>${{ number_format($data->rezago, 2) }}</td>
                 </tr>
                 <tr>
                     <td>Recargos Consumo</td>
-                    <td>${{ number_format($t_adeudo->RecargosAcumulados, 2) }}</td>
+                    <td>${{ number_format($data->recargos_consumo, 2) }}</td>
                 </tr>
                 <tr>
                     <td>Convenio De Agua</td>

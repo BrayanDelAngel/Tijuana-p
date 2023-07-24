@@ -326,14 +326,17 @@ class DeterminacionController extends Controller
         //obtenemos los datos de la tabla de resumen
         $t_adeudo = tabla_da::select(['sumaTarifas', 'saldoIvaCor', 'saldoAtraso', 'saldoRezago', 'RecargosAcumulados', 'totalPeriodo'])
             ->where('cuenta', $cuenta->cuenta)->orderBy('meses', 'ASC')->first();
-        $total_ar = $t_adeudo->totalPeriodo +
-        $t_adeudo->RecargosAcumulados +
-        $data->convenio_agua +
-        $data->recargos_convenio_agua +
-        $data->convenio_obra +
-        $data->recargos_convenio_obra +
-        $data->gastos_ejecución +
-        $data->otros_gastos;
+        $total_ar = 
+        // $t_adeudo->totalPeriodo +
+        // $data->recargos_consumo +
+        // $data->convenio_agua +
+        // $data->recargos_convenio_agua +
+        // $data->convenio_obra +
+        // $data->recargos_convenio_obra +
+        // $data->gastos_ejecución +
+        // $data->otros_gastos
+        $data->saldo_total
+        ;
         // dd($total_ar);
         //convertiremos los recargos acumulados a texto
         $formatter = new NumeroALetras();
@@ -353,18 +356,18 @@ class DeterminacionController extends Controller
         //convertimos en texto el entero
         $texto_entero2 = $formatter->toMoney($entero2);
         //concatenamos para obtener todo el texto
-        $entero3 = floor($t_adeudo->RecargosAcumulados);
+        $entero3 = floor($data->recargos_consumo);
         //extraemos el decimal
-        $decimal3 = round($t_adeudo->RecargosAcumulados - $entero3, 2) * 100;
+        $decimal3 = round($data->recargos_consumo - $entero3, 2) * 100;
         //convertimos en texto el entero
         $texto_entero3 = $formatter->toMoney($entero3);
         //Contador de meses
         $i=0;
         //concatenamos para obtener todo el texto
-        $ra = '$' . number_format($t_adeudo->RecargosAcumulados, 2) . '**(' . $texto_entero3 . ' ' . $decimal3 . '/100 M.N.)**';
+        $ra = '$' . number_format($data->recargos_consumo, 2) . '**(' . $texto_entero3 . ' ' . $decimal3 . '/100 M.N.)**';
         $tp = '$' . number_format($t_adeudo->totalPeriodo, 2) . '**(' . $texto_entero2 . ' ' . $decimal2 . '/100 M.N.)**';
         //contamos cuantos registros tiene esta cuenta en la tabla_da
-        $cr = tabla_da::select('cuenta')->where('cuenta', $data->cuenta)->count();
+        // $cr = tabla_da::select('cuenta')->where('cuenta', $data->cuenta)->count();
         // $condicion_firma=firma($cr);
         $IDdistrito=$data->id_distrito;
         // if($condicion_firma!=1){
