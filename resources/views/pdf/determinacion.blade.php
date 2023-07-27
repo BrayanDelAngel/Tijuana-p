@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Determinación</title>
-    <link href="C:/wamp64/www/Tijuana-p/public/css/pdf.css" rel="stylesheet">
-    <link href="C:/wamp64/www/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
+    <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/pdf.css" rel="stylesheet">
+    <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
 </head>
 
 

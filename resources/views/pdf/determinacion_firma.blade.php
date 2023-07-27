@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Determinación</title>
-    <link href="C:/wamp64/www/Tijuana-p/public/css/pdf.css" rel="stylesheet">
-    <link href="C:/wamp64/www/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
+    <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/pdf.css" rel="stylesheet">
+    <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
 </head>
 
 
@@ -43,164 +43,158 @@
             <span class="bold">PRESENTE. -</span>
         </p>
         @if ($data->tipo_s == 'NO DOMESTICO')
-            @if ($IDdistrito == '1')
-                <p class="text-justify">
-                    El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
-                    Comisión Estatal de Servicios
-                    Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política
-                    de los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales
-                    del Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la
-                    Ley de las Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con
-                    lo dispuesto por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua
-                    Potable en el Estado de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima
-                    sesión extraordinaria del consejo de administración de la Comisión Estatal de Servicios Públicos de
-                    Tijuana celebrado en la fecha 14 de julio de 2022, donde se otorga el nombramiento de Director
-                    General y de representación de la Comisión Estatal Servicios Públicos de Tijuana, de conformidad al
-                    artículo 4-1 de la Ley de Hacienda del Estado de Baja California; artículo 14 BIS del Codigo Fiscal
-                    para el Estado de Baja California; artículo 3 fracciones I, II, lll, IV, 15 y 16 fracción l,ll,
-                    inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
-                    California; artículo 11, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de
-                    Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo 11,
-                    sección lV, inciso A), numeral
-                    2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                        class="bold">2005,
-                        2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span>
-                    artículo 10,
-                    sección lV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio
-                    fiscal <span class="bold">2020;</span> artículo 9, sección V , inciso A), numeral 2, subinciso a),
-                    b), c) y d) de la Ley de
-                    Ingresos para el ejercicio fiscal <span class="bold">2021;</span> artículo 9, sección Vl, inciso
-                    A), numeral 2, subinciso a),
-                    b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2022,2023;</span> se
-                    procede a determinar
-                    crédito fiscal por la omisión del pago de derechos por consumo de agua; lo cual queda contenido en
-                    la presente, de conformidad a lo siguiente:
-                </p>
-            @endif
-            @if ($IDdistrito != '1')
-                <p class="text-justify">
-                    El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
-                    Comisión Estatal de Servicios
-                    Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política
-                    de
-                    los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales del
-                    Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de
-                    las
-                    Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo
-                    dispuesto
-                    por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el
-                    Estado
-                    de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima sesión extraordinaria
-                    del
-                    consejo de administración de la Comisión Estatal de Servicios Públicos de Tijuana celebrado en la
-                    fecha
-                    14 de julio de 2022, donde se otorga el nombramiento de Director General y de representación de la
-                    Comisión Estatal Servicios Públicos de Tijuana, de conformidad al artículo 4-1 de la Ley de Hacienda
-                    del
-                    Estado de Baja California; artículo 14 BIS del Codigo Fiscal para el Estado de Baja California;
-                    artículo
-                    3 fracciones I, II, lll, IV, 15 y 16 fracción l,ll, inciso a), b) y lll de la Ley que Reglamenta el
-                    Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll, inciso A),
-                    numeral
-                    2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                        class="bold">2004;</span>
-                    artículo 11, sección lll , inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos
-                    para
-                    los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011,
-                        2012,
-                        2013, 2014, 2015,
-                        2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll, inciso A), numeral 2, subinciso a),
-                    b), c)
-                    y d) de la
-                    Ley de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9, sección lV ,
-                    inciso A), numeral 2, subinciso
-                    a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021;</span>
-                    artículo 9, sección V, inciso A),
-                    numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
-                        class="bold">2022,2023;</span> se
-                    procede a determinar crédito fiscal por la omisión del pago de derechos por consumo de agua; lo cual
-                    queda contenido en la presente, de conformidad a lo siguiente:
-                </p>
-            @endif
+        @if ($IDdistrito == '1')
+        <p class="text-justify">
+            El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
+            Comisión Estatal de Servicios
+            Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política
+            de los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales
+            del Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la
+            Ley de las Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con
+            lo dispuesto por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua
+            Potable en el Estado de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima
+            sesión extraordinaria del consejo de administración de la Comisión Estatal de Servicios Públicos de
+            Tijuana celebrado en la fecha 14 de julio de 2022, donde se otorga el nombramiento de Director
+            General y de representación de la Comisión Estatal Servicios Públicos de Tijuana, de conformidad al
+            artículo 4-1 de la Ley de Hacienda del Estado de Baja California; artículo 14 BIS del Codigo Fiscal
+            para el Estado de Baja California; artículo 3 fracciones I, II, lll, IV, 15 y 16 fracción l,ll,
+            inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
+            California; artículo 11, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de
+            Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo 11,
+            sección lV, inciso A), numeral
+            2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005,
+                2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span>
+            artículo 10,
+            sección lV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio
+            fiscal <span class="bold">2020;</span> artículo 9, sección V , inciso A), numeral 2, subinciso a),
+            b), c) y d) de la Ley de
+            Ingresos para el ejercicio fiscal <span class="bold">2021;</span> artículo 9, sección Vl, inciso
+            A), numeral 2, subinciso a),
+            b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2022,2023;</span> se
+            procede a determinar
+            crédito fiscal por la omisión del pago de derechos por consumo de agua; lo cual queda contenido en
+            la presente, de conformidad a lo siguiente:
+        </p>
+        @endif
+        @if ($IDdistrito != '1')
+        <p class="text-justify">
+            El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
+            Comisión Estatal de Servicios
+            Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política
+            de
+            los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales del
+            Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la Ley de
+            las
+            Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con lo
+            dispuesto
+            por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua Potable en el
+            Estado
+            de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima sesión extraordinaria
+            del
+            consejo de administración de la Comisión Estatal de Servicios Públicos de Tijuana celebrado en la
+            fecha
+            14 de julio de 2022, donde se otorga el nombramiento de Director General y de representación de la
+            Comisión Estatal Servicios Públicos de Tijuana, de conformidad al artículo 4-1 de la Ley de Hacienda
+            del
+            Estado de Baja California; artículo 14 BIS del Codigo Fiscal para el Estado de Baja California;
+            artículo
+            3 fracciones I, II, lll, IV, 15 y 16 fracción l,ll, inciso a), b) y lll de la Ley que Reglamenta el
+            Servicio de Agua Potable en el Estado de Baja California; artículo 11, sección lll, inciso A),
+            numeral
+            2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span>
+            artículo 11, sección lll , inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos
+            para
+            los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011,
+                2012,
+                2013, 2014, 2015,
+                2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll, inciso A), numeral 2, subinciso a),
+            b), c)
+            y d) de la
+            Ley de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9, sección lV ,
+            inciso A), numeral 2, subinciso
+            a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021;</span>
+            artículo 9, sección V, inciso A),
+            numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2022,2023;</span> se
+            procede a determinar crédito fiscal por la omisión del pago de derechos por consumo de agua; lo cual
+            queda contenido en la presente, de conformidad a lo siguiente:
+        </p>
+        @endif
         @endif
         @if ($data->tipo_s == 'DOMESTICO')
-            @if ($IDdistrito == '1')
-                <p class="text-justify">
-                    El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
-                    Comisión Estatal de Servicios
-                    Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política
-                    de los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales
-                    del Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la
-                    Ley de las Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con
-                    lo dispuesto por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua
-                    Potable en el Estado de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima
-                    sesión extraordinaria del consejo de administración de la Comisión Estatal de Servicios Públicos de
-                    Tijuana celebrado en la fecha 14 de julio de 2022, donde se otorga el nombramiento de Director
-                    General y de representación de la Comisión Estatal Servicios Públicos de Tijuana, de conformidad al
-                    artículo 4-1 de la Ley de Hacienda del Estado de Baja California; artículo 14 BIS del Codigo Fiscal
-                    para el Estado de Baja California; artículo 3 fracciones I, II ll, IV, 15 y 16 fracción l, ll,
-                    inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
-                    California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g),
-                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                        class="bold">2004;</span> artículo
-                    11, sección lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de
-                    la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007,
-                        2008, 2009, 2010,
-                        2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lV, inciso
-                    A), numeral
-                    1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio
-                    fiscal <span class="bold">2020;</span> artículo 9, sección V, inciso A), numeral 1, subinciso a),
-                    b), c), d), e), f), g), h),
-                    i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021</span>
-                    artículo 9, sección Vl, inciso
-                    A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para
-                    el ejercicio fiscal <span class="bold">2022,2023;</span> se procede a determinar crédito fiscal
-                    por la omisión del pago de
-                    derechos por consumo de agua; lo cual queda contenido en la presente, de conformidad lo siguiente:
-                </p>
-            @endif
-            @if ($IDdistrito != '1')
-                <p class="text-justify">
-                    El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
-                    Comisión Estatal de Servicios
-                    Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política
-                    de los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales
-                    del Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la
-                    Ley de las Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con
-                    lo dispuesto por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua
-                    Potable en el Estado de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima
-                    sesión extraordinaria del consejo de administración de la Comisión Estatal de Servicios Públicos de
-                    Tijuana celebrado en la fecha 14 de julio de 2022, donde se otorga el nombramiento de Director
-                    General y de representación de la Comisión Estatal Servicios Públicos de Tijuana, de conformidad al
-                    artículo 4-1 de la Ley de Hacienda del Estado de Baja California; artículo 14 BIS del Codigo Fiscal
-                    para el Estado de Baja California; artículo 3 fracciones I, II ll, IV, 15 y 16 fraccion l, ll,
-                    inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
-                    California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g),
-                    h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                        class="bold">2004;</span> artículo
-                    11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de
-                    la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007,
-                        2008, 2009, 2010,
-                        2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll, inciso
-                    A), numeral
-                    1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio
-                    fiscal <span class="bold">2020</span>; artículo 9, sección lV, inciso A), numeral 1, subinciso a),
-                    b), c), d), e), f), g), h),
-                    i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021</span>
-                    artículo 9, sección V, inciso
-                    A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para
-                    el ejercicio fiscal <span class="bold">2022,2023;</span> se procede a determinar crédito fiscal
-                    por la omisión del pago de
-                    derechos por consumo de agua; lo cual queda contenido en la presente, de conformidad lo siguiente:
-                </p>
-            @endif
+        @if ($IDdistrito == '1')
+        <p class="text-justify">
+            El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
+            Comisión Estatal de Servicios
+            Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política
+            de los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales
+            del Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la
+            Ley de las Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con
+            lo dispuesto por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua
+            Potable en el Estado de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima
+            sesión extraordinaria del consejo de administración de la Comisión Estatal de Servicios Públicos de
+            Tijuana celebrado en la fecha 14 de julio de 2022, donde se otorga el nombramiento de Director
+            General y de representación de la Comisión Estatal Servicios Públicos de Tijuana, de conformidad al
+            artículo 4-1 de la Ley de Hacienda del Estado de Baja California; artículo 14 BIS del Codigo Fiscal
+            para el Estado de Baja California; artículo 3 fracciones I, II ll, IV, 15 y 16 fracción l, ll,
+            inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
+            California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g),
+            h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo
+            11, sección lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de
+            la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007,
+                2008, 2009, 2010,
+                2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lV, inciso
+            A), numeral
+            1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio
+            fiscal <span class="bold">2020;</span> artículo 9, sección V, inciso A), numeral 1, subinciso a),
+            b), c), d), e), f), g), h),
+            i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021</span>
+            artículo 9, sección Vl, inciso
+            A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para
+            el ejercicio fiscal <span class="bold">2022,2023;</span> se procede a determinar crédito fiscal
+            por la omisión del pago de
+            derechos por consumo de agua; lo cual queda contenido en la presente, de conformidad lo siguiente:
+        </p>
+        @endif
+        @if ($IDdistrito != '1')
+        <p class="text-justify">
+            El suscrito Dr. <span class="bold">Víctor Daniel Amador Barragán</span> Director General de la
+            Comisión Estatal de Servicios
+            Públicos de Tijuana, con fundamento en los artículos 16 y 31 fracción IV de la Constitución Política
+            de los Estados Unidos Mexicanos; artículo 22, fracción II de la Ley de las Entidades Paraestatales
+            del Estado de Baja California; los artículos 1, 2 fracción V, 16 fracción I, II, y VII , 21 de la
+            Ley de las Comisiones Estatales de Servicios Públicos del Estado de Baja California, en relación con
+            lo dispuesto por el primer párrafo del artículo 17 de la Ley que Reglamenta el Servicio de Agua
+            Potable en el Estado de Baja California, y el acuerdo número SE/004/14-07-22 aprobado en la séptima
+            sesión extraordinaria del consejo de administración de la Comisión Estatal de Servicios Públicos de
+            Tijuana celebrado en la fecha 14 de julio de 2022, donde se otorga el nombramiento de Director
+            General y de representación de la Comisión Estatal Servicios Públicos de Tijuana, de conformidad al
+            artículo 4-1 de la Ley de Hacienda del Estado de Baja California; artículo 14 BIS del Codigo Fiscal
+            para el Estado de Baja California; artículo 3 fracciones I, II ll, IV, 15 y 16 fraccion l, ll,
+            inciso a), b) y lll de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
+            California; artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g),
+            h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span> artículo
+            11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de
+            la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007,
+                2008, 2009, 2010,
+                2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll, inciso
+            A), numeral
+            1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio
+            fiscal <span class="bold">2020</span>; artículo 9, sección lV, inciso A), numeral 1, subinciso a),
+            b), c), d), e), f), g), h),
+            i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021</span>
+            artículo 9, sección V, inciso
+            A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para
+            el ejercicio fiscal <span class="bold">2022,2023;</span> se procede a determinar crédito fiscal
+            por la omisión del pago de
+            derechos por consumo de agua; lo cual queda contenido en la presente, de conformidad lo siguiente:
+        </p>
+        @endif
 
         @endif
         <p class="text-center bold">CONSIDERANDO ÚNICO:</p>
         <p class="text-justify">
             En virtud que de acuerdo a la información registrada en los archivos digitales del sistema electrónico de la
-            Comisión Estatal de Servicios Públicos de Tijuana a cargo de la usuaria <span
-                class="bold">{{ $data->propietario }}</span>, quien se
+            Comisión Estatal de Servicios Públicos de Tijuana a cargo de la usuaria <span class="bold">{{ $data->propietario }}</span>, quien se
             encuentra
             registrada como Titular de la cuenta número <span class="bold">{{ $data->cuenta }}</span>, con número de
             medidor
@@ -323,332 +317,332 @@
             detalla:
         </p>
         @foreach ($años as $item)
-            @if ($item->anio == 2004)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2004.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 34 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2004,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2003, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2005)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2005.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 35 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2005,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2004, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2006)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2006.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2006,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2005, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2007)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2007.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2006,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2005, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2008)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2008.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2008,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2007, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2009)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2009.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2009,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2008, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2010)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2010.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2010,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2009, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2011)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2011.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2011,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2010, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2012)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2012.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2012,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2011, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2013)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2013.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2013,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2012, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2014)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2014.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2014,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja California
-                    de fecha 31 de diciembre de 2013, la tasa de recargos por el mes de enero fue de 2.25%, febrero del
-                    2.25%,
-                    marzo
-                    de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre
-                    de
-                    2.25%,
-                    octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2015)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2015.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2015,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2014, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2016)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2016.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2016,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2015, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2017)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2017.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 segundo párrafo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2017,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2016, la tasa de recargos por el mes de enero de 2.25%,
-                    febrero de
-                    2.25%, marzo de 2.25% abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2018)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2018.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2018,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2017, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2019)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2019.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2019,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2018, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2020)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2020.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 35 párrafo segundo de la Ley de Ingresos del Estado
-                    de Baja
-                    California <span class="bold">para el ejercicio fiscal de 2020,</span> fue publicada en el
-                    Periódico
-                    Oficial del Estado de Baja
-                    California de fecha 31 de diciembre de 2019, la tasa de recargos por el mes de enero fue de 2.25%,
-                    febrero
-                    del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
-                    2.25%,
-                    septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2021)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2021.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 35 Ley de Ingresos del Estado de Baja California
-                    <span class="bold">para el
-                        ejercicio fiscal de 2021,</span> fue publicada en el Periódico Oficial del Estado de Baja
-                    California de
-                    fecha 28 de
-                    diciembre de 2020, la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de
-                    2.25%,
-                    abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%,
-                    octubre
-                    de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2022)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2022</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 37 Ley de Ingresos del Estado de Baja California
-                    <span class="bold">para el
-                        ejercicio fiscal de 2022,</span> fue publicada en el Periódico Oficial del Estado de Baja
-                    California de
-                    fecha 31 de
-                    diciembre de 2021,
-                    la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de
-                    2.25%,
-                    mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de
-                    2.25%,
-                    noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
-            @if ($item->anio == 2023)
-                <p class="text-justify">
-                    <span class="bold">Recargos para el año 2023.</span>
-                    <br />
-                    De conformidad con lo dispuesto por el artículo 36 de la Ley de Ingresos del Estado de Baja
-                    California <span class="bold">para
-                        el ejercicio fiscal de 2023,</span> publicada en el Periódico Oficial del Estado de Baja
-                    California de
-                    fecha 21 de
-                    diciembre de 2022, cuando no se cubran las contribuciones dentro de los plazos señalados en las
-                    disposiciones fiscales, se pagarán recargos por concepto de indemnización al fisco la tasa de 2.25%
-                    mensual,
-                    la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de
-                    2.25%,
-                    mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de
-                    2.25%,
-                    noviembre de 2.25% y diciembre de 2.25%.
-                </p>
-            @endif
+        @if ($item->anio == 2004)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2004.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 34 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2004,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2003, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2005)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2005.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 35 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2005,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2004, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2006)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2006.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2006,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2005, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2007)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2007.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2006,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2005, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2008)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2008.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2008,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2007, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2009)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2009.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2009,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2008, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2010)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2010.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 36 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2010,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2009, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2011)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2011.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2011,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2010, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2012)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2012.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2012,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2011, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2013)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2013.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2013,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2012, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2014)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2014.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2014,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja California
+            de fecha 31 de diciembre de 2013, la tasa de recargos por el mes de enero fue de 2.25%, febrero del
+            2.25%,
+            marzo
+            de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre
+            de
+            2.25%,
+            octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2015)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2015.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2015,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2014, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2016)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2016.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2016,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2015, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2017)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2017.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 segundo párrafo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2017,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2016, la tasa de recargos por el mes de enero de 2.25%,
+            febrero de
+            2.25%, marzo de 2.25% abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2018)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2018.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2018,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2017, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2019)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2019.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2019,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2018, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2020)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2020.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 35 párrafo segundo de la Ley de Ingresos del Estado
+            de Baja
+            California <span class="bold">para el ejercicio fiscal de 2020,</span> fue publicada en el
+            Periódico
+            Oficial del Estado de Baja
+            California de fecha 31 de diciembre de 2019, la tasa de recargos por el mes de enero fue de 2.25%,
+            febrero
+            del 2.25%, marzo de 2.25%, abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de
+            2.25%,
+            septiembre de 2.25%, octubre de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2021)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2021.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 35 Ley de Ingresos del Estado de Baja California
+            <span class="bold">para el
+                ejercicio fiscal de 2021,</span> fue publicada en el Periódico Oficial del Estado de Baja
+            California de
+            fecha 28 de
+            diciembre de 2020, la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de
+            2.25%,
+            abril de 2.25%, mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%,
+            octubre
+            de 2.25%, noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2022)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2022</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 37 Ley de Ingresos del Estado de Baja California
+            <span class="bold">para el
+                ejercicio fiscal de 2022,</span> fue publicada en el Periódico Oficial del Estado de Baja
+            California de
+            fecha 31 de
+            diciembre de 2021,
+            la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de
+            2.25%,
+            mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de
+            2.25%,
+            noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
+        @if ($item->anio == 2023)
+        <p class="text-justify">
+            <span class="bold">Recargos para el año 2023.</span>
+            <br />
+            De conformidad con lo dispuesto por el artículo 36 de la Ley de Ingresos del Estado de Baja
+            California <span class="bold">para
+                el ejercicio fiscal de 2023,</span> publicada en el Periódico Oficial del Estado de Baja
+            California de
+            fecha 21 de
+            diciembre de 2022, cuando no se cubran las contribuciones dentro de los plazos señalados en las
+            disposiciones fiscales, se pagarán recargos por concepto de indemnización al fisco la tasa de 2.25%
+            mensual,
+            la tasa de recargos por el mes de enero fue de 2.25%, febrero del 2.25%, marzo de 2.25%, abril de
+            2.25%,
+            mayo de 2.25%, junio de 2.25%, julio de 2.25%, agosto de 2.25%, septiembre de 2.25%, octubre de
+            2.25%,
+            noviembre de 2.25% y diciembre de 2.25%.
+        </p>
+        @endif
         @endforeach
         <p class="bold text-justify">Suma de las tasas de recargos calculados en forma mensual para los derechos por
             periodos
@@ -739,148 +733,145 @@
             </thead>
             <tbody class="tbody">
                 @foreach ($items as $item)
-                    <tr class="tr">
-                        <td class="td">{{ $i += 1 }}</td>
-                        <td class="td">{{ $item->periodo }}</td>
-                        <td class="td">{{ $item->fecha_vto }}</td>
-                        <td class="td">{{ $item->lecturaFacturada }}</td>
-                        <td class="td">${{ number_format($item->tarifa1, 2) }}</td>
-                        <td class="td">${{ number_format($item->tarifa2, 2) }}</td>
-                        <td class="td">${{ number_format($item->sumaTarifas, 2) }}</td>
-                        <td class="td">{{ number_format($item->factor, 4) }}</td>
-                        <td class="td">${{ number_format($item->saldoAtraso, 2) }}</td>
-                        <td class="td">${{ number_format($item->saldoRezago, 2) }}</td>
-                        <td class="td">${{ number_format($item->totalPeriodo, 2) }}</td>
-                        <td class="td">2.25</td>
-                        <td class="td">${{ number_format($item->importeMensual, 2) }}</td>
-                        <td class="td">${{ number_format($item->RecargosAcumulados, 2) }}</td>
-                    </tr>
+                <tr class="tr">
+                    <td class="td">{{ $i += 1 }}</td>
+                    <td class="td">{{ $item->periodo }}</td>
+                    <td class="td">{{ $item->fecha_vto }}</td>
+                    <td class="td">{{ $item->lecturaFacturada }}</td>
+                    <td class="td">${{ number_format($item->tarifa1, 2) }}</td>
+                    <td class="td">${{ number_format($item->tarifa2, 2) }}</td>
+                    <td class="td">${{ number_format($item->sumaTarifas, 2) }}</td>
+                    <td class="td">{{ number_format($item->factor, 4) }}</td>
+                    <td class="td">${{ number_format($item->saldoAtraso, 2) }}</td>
+                    <td class="td">${{ number_format($item->saldoRezago, 2) }}</td>
+                    <td class="td">${{ number_format($item->totalPeriodo, 2) }}</td>
+                    <td class="td">2.25</td>
+                    <td class="td">${{ number_format($item->importeMensual, 2) }}</td>
+                    <td class="td">${{ number_format($item->RecargosAcumulados, 2) }}</td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
         <br />
         <br />
         <p>TOTAL, A PAGAR POR CONCEPTO DE CONSUMO DE AGUA POTABLE <span class="bold">{{ $tp }}</span>
+        <br/>
         </p>
         @if ($data->tipo_s == 'DOMESTICO')
-            @if ($IDdistrito != '1')
-                <p class="text-justify">
-                    De acuerdo al artículo artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e),
-                    f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                        class="bold">2004;</span>
-                    artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k)
-                    y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005,
-                        2006, 2007, 2008, 2009,
-                        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll,
-                    inciso A),
-                    numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el
-                    ejercicio fiscal <span class="bold">2020</span>; artículo 9, sección lV, inciso A), numeral 1,
-                    subinciso a), b), c), d), e),
-                    f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
-                        class="bold">2021</span> artículo 9, sección
-                    V, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de
-                    Ingresos para el ejercicio fiscal <span class="bold">2022,2023</span> vigente en cada año las
-                    Tarifas y Cuotas contenidas en
-                    cada una de las secciones del Capítulo I “Servicios de Agua”, se actualizarán mensualmente, a partir
-                    del mes de febrero, con el factor que se obtenga de dividir el Índice Nacional de Precios al
-                    Consumidor, que se publique en el Diario Oficial de la Federación por el Instituto Nacional de
-                    Estadística y Geografía, o por la dependencia federal que en sustitución de ésta lo publique, del
-                    último mes inmediato anterior al mes por el cual se hace el ajuste, entre el citado índice del
-                    penúltimo mes inmediato anterior al del mismo mes que se actualiza. Los Índices Nacionales de
-                    Precios al Consumidor se publicarán los días 10 de cada mes en el Diario Oficial de la Federación o
-                    por la dependencia correspondiente. En caso de que a la fecha de la actualización no se haya
-                    publicado el índice citado, se tomarán los últimos publicados.
-                </p>
-            @endif
-            @if ($IDdistrito == '1')
-                <p class="text-justify">
-                    De acuerdo al artículo artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e),
-                    f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                        class="bold">2004</span>;
-                    artículo 11, sección lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k)
-                    y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005,
-                        2006, 2007, 2008, 2009,
-                        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lV,
-                    inciso A),
-                    numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el
-                    ejercicio fiscal <span class="bold">2020</span>; artículo 9, sección V, inciso A), numeral 1,
-                    subinciso a), b), c), d), e),
-                    f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal 2021 artículo 9, sección
-                    Vl, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de
-                    Ingresos para el ejercicio fiscal <span class="bold">2022,2023</span> vigente en cada año las
-                    Tarifas y Cuotas contenidas en
-                    cada una de las secciones del Capítulo I “Servicios de Agua”, se actualizarán mensualmente, a partir
-                    del mes de febrero, con el factor que se obtenga de dividir el Índice Nacional de Precios al
-                    Consumidor, que se publique en el Diario Oficial de la Federación por el Instituto Nacional de
-                    Estadística y Geografía, o por la dependencia federal que en sustitución de ésta lo publique, del
-                    último mes inmediato anterior al mes por el cual se hace el ajuste, entre el citado índice del
-                    penúltimo mes inmediato anterior al del mismo mes que se actualiza. Los Índices Nacionales de
-                    Precios al Consumidor se publicarán los días 10 de cada mes en el Diario Oficial de la Federación o
-                    por la dependencia correspondiente. En caso de que a la fecha de la actualización no se haya
-                    publicado el índice citado, se tomarán los últimos publicados.
-                </p>
-            @endif
+        @if ($IDdistrito != '1')
+        <p class="text-justify">
+            De acuerdo al artículo artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e),
+            f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004;</span>
+            artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k)
+            y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005,
+                2006, 2007, 2008, 2009,
+                2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll,
+            inciso A),
+            numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el
+            ejercicio fiscal <span class="bold">2020</span>; artículo 9, sección lV, inciso A), numeral 1,
+            subinciso a), b), c), d), e),
+            f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021</span> artículo 9, sección
+            V, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de
+            Ingresos para el ejercicio fiscal <span class="bold">2022,2023</span> vigente en cada año las
+            Tarifas y Cuotas contenidas en
+            cada una de las secciones del Capítulo I “Servicios de Agua”, se actualizarán mensualmente, a partir
+            del mes de febrero, con el factor que se obtenga de dividir el Índice Nacional de Precios al
+            Consumidor, que se publique en el Diario Oficial de la Federación por el Instituto Nacional de
+            Estadística y Geografía, o por la dependencia federal que en sustitución de ésta lo publique, del
+            último mes inmediato anterior al mes por el cual se hace el ajuste, entre el citado índice del
+            penúltimo mes inmediato anterior al del mismo mes que se actualiza. Los Índices Nacionales de
+            Precios al Consumidor se publicarán los días 10 de cada mes en el Diario Oficial de la Federación o
+            por la dependencia correspondiente. En caso de que a la fecha de la actualización no se haya
+            publicado el índice citado, se tomarán los últimos publicados.
+        </p>
+        @endif
+        @if ($IDdistrito == '1')
+        <p class="text-justify">
+            De acuerdo al artículo artículo 11, sección lll, inciso A), numeral 1, subinciso a), b), c), d), e),
+            f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2004</span>;
+            artículo 11, sección lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k)
+            y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005,
+                2006, 2007, 2008, 2009,
+                2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lV,
+            inciso A),
+            numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el
+            ejercicio fiscal <span class="bold">2020</span>; artículo 9, sección V, inciso A), numeral 1,
+            subinciso a), b), c), d), e),
+            f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal 2021 artículo 9, sección
+            Vl, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de
+            Ingresos para el ejercicio fiscal <span class="bold">2022,2023</span> vigente en cada año las
+            Tarifas y Cuotas contenidas en
+            cada una de las secciones del Capítulo I “Servicios de Agua”, se actualizarán mensualmente, a partir
+            del mes de febrero, con el factor que se obtenga de dividir el Índice Nacional de Precios al
+            Consumidor, que se publique en el Diario Oficial de la Federación por el Instituto Nacional de
+            Estadística y Geografía, o por la dependencia federal que en sustitución de ésta lo publique, del
+            último mes inmediato anterior al mes por el cual se hace el ajuste, entre el citado índice del
+            penúltimo mes inmediato anterior al del mismo mes que se actualiza. Los Índices Nacionales de
+            Precios al Consumidor se publicarán los días 10 de cada mes en el Diario Oficial de la Federación o
+            por la dependencia correspondiente. En caso de que a la fecha de la actualización no se haya
+            publicado el índice citado, se tomarán los últimos publicados.
+        </p>
+        @endif
         @endif
         @if ($data->tipo_s == 'NO DOMESTICO')
-            @if ($IDdistrito == '1')
-                <p class="text-justify">
-                    De acuerdo al artículo <span class="bold">11</span>, sección lll, inciso A), numeral 2, subinciso
-                    a), b), c) y d) de la Ley de
-                    Ingresos para los Ejercicios Fiscales de los años <span class="bold">2004</span>; artículo 11,
-                    sección lV, inciso A), numeral
-                    2, subinciso a), b), c) y d) de la Ley de Ingresos para los Ejercicios Fiscales de los años <span
-                        class="bold">2005,
-                        2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>;
-                    artículo 10,
-                    sección lV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el Ejercicio
-                    Fiscal <span class="bold">2020</span>; artículo 9, sección V, inciso A), numeral 2, subinciso a),
-                    b), c) y d) de la Ley de
-                    Ingresos para el Ejercicio Fiscal <span class="bold">2021</span>; artículo 9, sección Vl, inciso
-                    A), numeral 2, subinciso a),
-                    b), c) y d) de la Ley de Ingresos para el Ejercicio Fiscal <span class="bold">2022,2023</span>;
-                    vigente en cada año las
-                    Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de Agua”, se
-                    actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir el
-                    Índice Nacional de Precios al Consumidor, que se publique en el Diario Oficial de la Federación por
-                    el Instituto Nacional de Estadística y Geografía, o por la dependencia federal que en sustitución de
-                    ésta lo publique, del último mes inmediato anterior al mes por el cual se hace el ajuste, entre el
-                    citado índice del penúltimo mes inmediato anterior al del mismo mes que se actualiza. Los Índices
-                    Nacionales de Precios al Consumidor se publicarán los días 10 de cada mes en el Diario Oficial de la
-                    Federación o por la dependencia correspondiente. En caso de que a la fecha de la actualización no se
-                    haya publicado el índice citado, se tomarán los últimos publicados.
-                </p>
-            @endif
-            @if ($IDdistrito != '1')
-                <p class="text-justify">
-                    De acuerdo al artículo <span class="bold">11</span>, sección lll, inciso A), numeral 2, subinciso
-                    a), b), c) y d) de la Ley de
-                    Ingresos para los ejercicios fiscales de los años <span class="bold">2004</span>; artículo 11,
-                    sección lll , inciso A),
-                    numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años
-                    <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
-                        2018 Y 2019</span>; artículo
-                    10, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el
-                    ejercicio fiscal 2020; artículo 9, sección lV, inciso A), numeral 2, subinciso a), b), c) y d) de la
-                    Ley de Ingresos para el ejercicio fiscal <span class="bold">2021</span>; artículo 9, sección V,
-                    inciso A), numeral 2,
-                    subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
-                        class="bold">2022,2023</span>; vigente en cada
-                    año las Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de Agua”,
-                    se actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir
-                    el Índice Nacional de Precios al Consumidor, que se publique en el Diario Oficial de la Federación
-                    por el Instituto Nacional de Estadística y Geografía, o por la dependencia federal que en
-                    sustitución de ésta lo publique, del último mes inmediato anterior al mes por el cual se hace el
-                    ajuste, entre el citado índice del penúltimo mes inmediato anterior al del mismo mes que se
-                    actualiza. Los Índices Nacionales de Precios al Consumidor se publicarán los días 10 de cada mes en
-                    el Diario Oficial de la Federación o por la dependencia correspondiente. En caso de que a la fecha
-                    de la actualización no se haya publicado el índice citado, se tomarán los últimos publicados.
-                </p>
-            @endif
+        @if ($IDdistrito == '1')
+        <p class="text-justify">
+            De acuerdo al artículo <span class="bold">11</span>, sección lll, inciso A), numeral 2, subinciso
+            a), b), c) y d) de la Ley de
+            Ingresos para los Ejercicios Fiscales de los años <span class="bold">2004</span>; artículo 11,
+            sección lV, inciso A), numeral
+            2, subinciso a), b), c) y d) de la Ley de Ingresos para los Ejercicios Fiscales de los años <span class="bold">2005,
+                2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019</span>;
+            artículo 10,
+            sección lV, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el Ejercicio
+            Fiscal <span class="bold">2020</span>; artículo 9, sección V, inciso A), numeral 2, subinciso a),
+            b), c) y d) de la Ley de
+            Ingresos para el Ejercicio Fiscal <span class="bold">2021</span>; artículo 9, sección Vl, inciso
+            A), numeral 2, subinciso a),
+            b), c) y d) de la Ley de Ingresos para el Ejercicio Fiscal <span class="bold">2022,2023</span>;
+            vigente en cada año las
+            Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de Agua”, se
+            actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir el
+            Índice Nacional de Precios al Consumidor, que se publique en el Diario Oficial de la Federación por
+            el Instituto Nacional de Estadística y Geografía, o por la dependencia federal que en sustitución de
+            ésta lo publique, del último mes inmediato anterior al mes por el cual se hace el ajuste, entre el
+            citado índice del penúltimo mes inmediato anterior al del mismo mes que se actualiza. Los Índices
+            Nacionales de Precios al Consumidor se publicarán los días 10 de cada mes en el Diario Oficial de la
+            Federación o por la dependencia correspondiente. En caso de que a la fecha de la actualización no se
+            haya publicado el índice citado, se tomarán los últimos publicados.
+        </p>
+        @endif
+        @if ($IDdistrito != '1')
+        <p class="text-justify">
+            De acuerdo al artículo <span class="bold">11</span>, sección lll, inciso A), numeral 2, subinciso
+            a), b), c) y d) de la Ley de
+            Ingresos para los ejercicios fiscales de los años <span class="bold">2004</span>; artículo 11,
+            sección lll , inciso A),
+            numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años
+            <span class="bold">2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
+                2018 Y 2019</span>; artículo
+            10, sección lll, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el
+            ejercicio fiscal 2020; artículo 9, sección lV, inciso A), numeral 2, subinciso a), b), c) y d) de la
+            Ley de Ingresos para el ejercicio fiscal <span class="bold">2021</span>; artículo 9, sección V,
+            inciso A), numeral 2,
+            subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2022,2023</span>; vigente en cada
+            año las Tarifas y Cuotas contenidas en cada una de las secciones del Capítulo I “Servicios de Agua”,
+            se actualizarán mensualmente, a partir del mes de febrero, con el factor que se obtenga de dividir
+            el Índice Nacional de Precios al Consumidor, que se publique en el Diario Oficial de la Federación
+            por el Instituto Nacional de Estadística y Geografía, o por la dependencia federal que en
+            sustitución de ésta lo publique, del último mes inmediato anterior al mes por el cual se hace el
+            ajuste, entre el citado índice del penúltimo mes inmediato anterior al del mismo mes que se
+            actualiza. Los Índices Nacionales de Precios al Consumidor se publicarán los días 10 de cada mes en
+            el Diario Oficial de la Federación o por la dependencia correspondiente. En caso de que a la fecha
+            de la actualización no se haya publicado el índice citado, se tomarán los últimos publicados.
+        </p>
+        @endif
         @endif
 
         <p class="text-justify bold">Fórmula para determinar factor de actualización mensual</p>
         <p class="text-justify">
             INPC del último mes inmediato anterior al mes por el cual se hace el ajuste
+            <br />
             <br />
             INPC del penúltimo mes inmediato anterior al del mismo mes que se actualiza
         </p>
@@ -889,107 +880,101 @@
         <p class="bold">Para el año 2023 se agregará al factor de actualización un 1% acumulable cada mes</p>
 
         @if ($data->tipo_s == 'NO DOMESTICO')
-            @if ($IDdistrito == '1')
-                <p class="text-justify">
-                    Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último
-                    párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
-                    California, en relación con lo previsto por el artículo al artículo 11, sección lll, inciso A),
-                    numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años
-                    2004; artículo 11, sección lV inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos
-                    para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009, 2010,
-                        2011, 2012, 2013, 2014,
-                        2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lV, inciso A), numeral 2, subinciso
-                    a), b), c) y
-                    d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9,
-                    sección V, inciso A), numeral 2,
-                    subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
-                        class="bold">2021;</span> artículo 9, sección
-                    Vl, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal
-                    <span class="bold">2022,2023</span> toda vez que omitió efectuar el pago de los derechos
-                    generados por consumo de agua potable
-                    que le fueron facturados por periodo mensual dentro del plazo a que se refiere el primer dispositivo
-                    legal aludido en este párrafo, generando en suma por concepto de recargos acumulados la cantidad de
-                    <span class="bold">{{ $ra }}</span>
-                </p>
-            @endif
-            @if ($IDdistrito != '1')
-                <p class="text-justify">
-                    Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último
-                    párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
-                    California, en relación con lo previsto por el artículo al artículo 11, sección lll, inciso A),
-                    numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años
-                    <span class="bold">2004;</span> artículo 11, sección lll inciso A), numeral 2, subinciso a), b),
-                    c) y d) de la Ley de Ingresos
-                    para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009, 2010,
-                        2011, 2012, 2013, 2014,
-                        2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll , inciso A), numeral 2, subinciso
-                    a), b), c)
-                    y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9,
-                    sección lV, inciso A), numeral
-                    2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span
-                        class="bold">2021;</span> artículo 9,
-                    sección V, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio
-                    fiscal <span class="bold">2022,2023</span> toda vez que omitió efectuar el pago de los derechos
-                    generados por consumo de agua
-                    potable que le fueron facturados por periodo mensual dentro del plazo a que se refiere el primer
-                    dispositivo legal aludido en este párrafo, generando en suma por concepto de recargos acumulados la
-                    cantidad de <span class="bold">{{ $ra }}</span>
-                </p>
-            @endif
+        @if ($IDdistrito == '1')
+        <p class="text-justify">
+            Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último
+            párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
+            California, en relación con lo previsto por el artículo al artículo 11, sección lll, inciso A),
+            numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años
+            2004; artículo 11, sección lV inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos
+            para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009, 2010,
+                2011, 2012, 2013, 2014,
+                2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lV, inciso A), numeral 2, subinciso
+            a), b), c) y
+            d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9,
+            sección V, inciso A), numeral 2,
+            subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021;</span> artículo 9, sección
+            Vl, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal
+            <span class="bold">2022,2023</span> toda vez que omitió efectuar el pago de los derechos
+            generados por consumo de agua potable
+            que le fueron facturados por periodo mensual dentro del plazo a que se refiere el primer dispositivo
+            legal aludido en este párrafo, generando en suma por concepto de recargos acumulados la cantidad de
+            <span class="bold">{{ $ra }}</span>
+        </p>
+        @endif
+        @if ($IDdistrito != '1')
+        <p class="text-justify">
+            Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último
+            párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
+            California, en relación con lo previsto por el artículo al artículo 11, sección lll, inciso A),
+            numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para los ejercicios fiscales de los años
+            <span class="bold">2004;</span> artículo 11, sección lll inciso A), numeral 2, subinciso a), b),
+            c) y d) de la Ley de Ingresos
+            para los ejercicios fiscales de los años <span class="bold">2005, 2006, 2007, 2008, 2009, 2010,
+                2011, 2012, 2013, 2014,
+                2015, 2016, 2017, 2018 Y 2019;</span> artículo 10, sección lll , inciso A), numeral 2, subinciso
+            a), b), c)
+            y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2020;</span> artículo 9,
+            sección lV, inciso A), numeral
+            2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2021;</span> artículo 9,
+            sección V, inciso A), numeral 2, subinciso a), b), c) y d) de la Ley de Ingresos para el ejercicio
+            fiscal <span class="bold">2022,2023</span> toda vez que omitió efectuar el pago de los derechos
+            generados por consumo de agua
+            potable que le fueron facturados por periodo mensual dentro del plazo a que se refiere el primer
+            dispositivo legal aludido en este párrafo, generando en suma por concepto de recargos acumulados la
+            cantidad de <span class="bold">{{ $ra }}</span>
+        </p>
+        @endif
         @endif
         @if ($data->tipo_s == 'DOMESTICO')
-            @if ($IDdistrito != '1')
-                <p class="text-justify">
-                    Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último
-                    párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
-                    California, en relación con lo previsto por artículo 11, sección lll, inciso A), numeral 1,
-                    subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios
-                    fiscales de los años <span class="bold">2004</span>; artículo 11, sección lll, inciso A), numeral
-                    1, subinciso a), b), c), d),
-                    e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                        class="bold">2005,
-                        2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span>
-                    artículo 10,
-                    sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la
-                    Ley de Ingresos para el ejercicio fiscal <span class="bold">2020</span>; artículo 9, sección lV,
-                    inciso A), numeral 1,
-                    subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio
-                    fiscal <span class="bold">2021</span> artículo 9, sección V, inciso A), numeral 1, subinciso a),
-                    b), c), d), e), f), g), h),
-                    i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
-                        class="bold">2022,2023;</span> toda vez que omitió
-                    efectuar el pago de los derechos generados por consumo de agua potable que le fueron facturados por
-                    periodo mensual dentro del plazo a que se refiere el primer dispositivo legal aludido en este
-                    párrafo, generando en suma por concepto de recargos acumulados la cantidad de
-                    <span class="bold">{{ $ra }}</span>
-                </p>
-            @endif
-            @if ($IDdistrito == '1')
-                <p class="text-justify">
-                    Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último
-                    párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
-                    California, en relación con lo previsto por artículo 11, sección lll, inciso A), numeral 1,
-                    subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios
-                    fiscales de los años <span class="bold">2004</span>; artículo 11, sección lV, inciso A), numeral
-                    1, subinciso a), b), c), d),
-                    e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span
-                        class="bold">2005,
-                        2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span>
-                    artículo 10,
-                    sección lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la
-                    Ley de Ingresos para el ejercicio fiscal <span class="bold">2020</span>; artículo 9, sección V,
-                    inciso A), numeral 1,
-                    subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio
-                    fiscal <span class="bold">2021</span> artículo 9, sección Vl, inciso A), numeral 1, subinciso a),
-                    b), c), d), e), f), g), h),
-                    i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span
-                        class="bold">2022,2023;</span> toda vez que omitió
-                    efectuar el pago de los derechos generados por consumo de agua potable que le fueron facturados por
-                    periodo mensual dentro del plazo a que se refiere el primer dispositivo legal aludido en este
-                    párrafo, generando en suma por concepto de recargos acumulados la cantidad de
-                    <span class="bold">{{ $ra }}</span>
-                </p>
-            @endif
+        @if ($IDdistrito != '1')
+        <p class="text-justify">
+            Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último
+            párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
+            California, en relación con lo previsto por artículo 11, sección lll, inciso A), numeral 1,
+            subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios
+            fiscales de los años <span class="bold">2004</span>; artículo 11, sección lll, inciso A), numeral
+            1, subinciso a), b), c), d),
+            e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005,
+                2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span>
+            artículo 10,
+            sección lll, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la
+            Ley de Ingresos para el ejercicio fiscal <span class="bold">2020</span>; artículo 9, sección lV,
+            inciso A), numeral 1,
+            subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio
+            fiscal <span class="bold">2021</span> artículo 9, sección V, inciso A), numeral 1, subinciso a),
+            b), c), d), e), f), g), h),
+            i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2022,2023;</span> toda vez que omitió
+            efectuar el pago de los derechos generados por consumo de agua potable que le fueron facturados por
+            periodo mensual dentro del plazo a que se refiere el primer dispositivo legal aludido en este
+            párrafo, generando en suma por concepto de recargos acumulados la cantidad de
+            <span class="bold">{{ $ra }}</span>
+        </p>
+        @endif
+        @if ($IDdistrito == '1')
+        <p class="text-justify">
+            Lo anterior, en virtud de que el contribuyente no dio cumplimiento a lo dispuesto en el último
+            párrafo del artículo 16 de la Ley que Reglamenta el Servicio de Agua Potable en el Estado de Baja
+            California, en relación con lo previsto por artículo 11, sección lll, inciso A), numeral 1,
+            subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios
+            fiscales de los años <span class="bold">2004</span>; artículo 11, sección lV, inciso A), numeral
+            1, subinciso a), b), c), d),
+            e), f), g), h), i), j), k) y l) de la Ley de Ingresos para los ejercicios fiscales de los años <span class="bold">2005,
+                2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Y 2019;</span>
+            artículo 10,
+            sección lV, inciso A), numeral 1, subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la
+            Ley de Ingresos para el ejercicio fiscal <span class="bold">2020</span>; artículo 9, sección V,
+            inciso A), numeral 1,
+            subinciso a), b), c), d), e), f), g), h), i), j), k) y l) de la Ley de Ingresos para el ejercicio
+            fiscal <span class="bold">2021</span> artículo 9, sección Vl, inciso A), numeral 1, subinciso a),
+            b), c), d), e), f), g), h),
+            i), j), k) y l) de la Ley de Ingresos para el ejercicio fiscal <span class="bold">2022,2023;</span> toda vez que omitió
+            efectuar el pago de los derechos generados por consumo de agua potable que le fueron facturados por
+            periodo mensual dentro del plazo a que se refiere el primer dispositivo legal aludido en este
+            párrafo, generando en suma por concepto de recargos acumulados la cantidad de
+            <span class="bold">{{ $ra }}</span>
+        </p>
+        @endif
         @endif
         </p>
         <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número
@@ -1057,6 +1042,7 @@
                 </tr>
             </tbody>
         </table>
+        <br />
         <p class="text-justify">
             La cantidad anterior y los recargos causados sobre las contribuciones omitidas, deberán ser enteradas en las
             oficinas de Recaudación de la Comisión Estatal de Servicios Públicos de Tijuana, dentro de los quince días
