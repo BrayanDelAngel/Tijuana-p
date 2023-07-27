@@ -288,7 +288,7 @@
                                         </div>
                                     @enderror
                                     <button class="btn btn-warning puntero ocultar mt-4"
-                                        style="width: 5%; position: absolute; left: 78%;" type="button">
+                                        style="width: 5%; position: absolute; margin-left: 17%" type="button">
                                         <img src="https://img.icons8.com/fluency/24/null/minus.png" />
                                     </button>
                                 </div>

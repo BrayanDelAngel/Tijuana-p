@@ -13,7 +13,7 @@ function Suma() {
     let ingreso10 = document.getElementById("g_ejecucion").value;
     let ingreso11 = document.getElementById("o_servicios").value;
     let ingreso12 = document.getElementById("multas").value;
-    let ingreso13 = document.getElementById("gastos_ejecucion").value;
+    // let ingreso13 = document.getElementById("gastos_ejecucion").value;
     let ingreso14 = document.getElementById("conv_vencido").value;
     let ingreso15 = document.getElementById("otros_gastos").value;
     let total;
@@ -30,7 +30,7 @@ function Suma() {
     ingreso10 = desformatear(ingreso10);
     ingreso11 = desformatear(ingreso11);
     ingreso12 = desformatear(ingreso12);
-    ingreso13 = desformatear(ingreso13);
+    // ingreso13 = desformatear(ingreso13);
     ingreso14 = desformatear(ingreso14);
     ingreso15 = desformatear(ingreso15);
     try {
@@ -44,24 +44,26 @@ function Suma() {
         let valor4 = (isNaN(parseFloat(remplazo(ingreso4)))) ? 0 : parseFloat(remplazo(ingreso4));
         let valor5 = (isNaN(parseFloat(remplazo(ingreso5)))) ? 0 : parseFloat(remplazo(ingreso5));
         /*Para los datos ingresados por el usuario se le hace un parseo y se valida si es vacio o no */
-        let valor6 = (isNaN(parseFloat(ingreso6))) ? 0 : parseFloat(ingreso6);
-        let valor7 = (isNaN(parseFloat(ingreso7))) ? 0 : parseFloat(ingreso7);
-        let valor8 = (isNaN(parseFloat(ingreso8))) ? 0 : parseFloat(ingreso8);
-        let valor9 = (isNaN(parseFloat(ingreso9))) ? 0 : parseFloat(ingreso9);
-        let valor10 = (isNaN(parseFloat(ingreso10))) ? 0 : parseFloat(ingreso10);
-        let valor11 = (isNaN(parseFloat(ingreso11))) ? 0 : parseFloat(ingreso11);
-        let valor12 = (isNaN(parseFloat(ingreso12))) ? 0 : parseFloat(ingreso12);
-        let valor13 = (isNaN(parseFloat(ingreso13))) ? 0 : parseFloat(ingreso13);
-        let valor14 = (isNaN(parseFloat(ingreso14))) ? 0 : parseFloat(ingreso14);
-        let valor15 = (isNaN(parseFloat(ingreso15))) ? 0 : parseFloat(ingreso15);
+        let valor6 = (isNaN(parseFloat(remplazo(ingreso6)))) ? 0 : parseFloat(remplazo(ingreso6));
+        let valor7 = (isNaN(parseFloat(remplazo(ingreso7)))) ? 0 : parseFloat(remplazo(ingreso7));
+        let valor8 = (isNaN(parseFloat(remplazo(ingreso8)))) ? 0 : parseFloat(remplazo(ingreso8));
+        let valor9 = (isNaN(parseFloat(remplazo(ingreso9)))) ? 0 : parseFloat(remplazo(ingreso9));
+        let valor10 = (isNaN(parseFloat(remplazo(ingreso10)))) ? 0 : parseFloat(remplazo(ingreso10));
+        let valor11 = (isNaN(parseFloat(remplazo(ingreso11)))) ? 0 : parseFloat(remplazo(ingreso11));
+        let valor12 = (isNaN(parseFloat(remplazo(ingreso12)))) ? 0 : parseFloat(remplazo(ingreso12));
+        // let valor13 = (isNaN(parseFloat(remplazo(ingreso13)))) ? 0 : parseFloat(remplazo(ingreso13));
+        let valor14 = (isNaN(parseFloat(remplazo(ingreso14)))) ? 0 : parseFloat(remplazo(ingreso14));
+        let valor15 = (isNaN(parseFloat(remplazo(ingreso15)))) ? 0 : parseFloat(remplazo(ingreso15));
         /*Se suman los datos */
-        total = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + valor12 + valor13 + valor14 + valor15;
+        total = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7 + valor8 + valor9 + valor10 + valor11 + valor12 + 
+        // valor13 + 
+        valor14 + valor15;
         //Se retorna el valor que ingreso el usuario haciendo un format al dato de moneda
-        $('#corriente').val('$' + valor1)
-        $('#icorriente').val('$' + valor2)
-        $('#atraso').val('$' + valor3)
-        $('#rezago').val('$' + valor4)
-        $('#r_consumo').val('$' + valor5)
+        $('#corriente').val(formatear( valor1))
+        $('#icorriente').val(formatear( valor2))
+        $('#atraso').val(formatear( valor3))
+        $('#rezago').val(formatear(valor4))
+        $('#r_consumo').val(formatear( valor5))
         $('#c_agua').val(formatear(valor6))
         $('#r_agua').val(formatear(valor7))
         $('#c_obra').val(formatear(valor8))
@@ -69,10 +71,11 @@ function Suma() {
         $('#g_ejecucion').val(formatear(valor10))
         $('#o_servicios').val(formatear(valor11))
         $('#multas').val(formatear(valor12))
-        $('#gastos_ejecucion').val(formatear(valor13))
+        // $('#gastos_ejecucion').val(formatear(valor13))
         $('#conv_vencido').val(formatear(valor14))
         $('#otros_gastos').val(formatear(valor15))
         $("#total").val(formatear(total));
+        //comentario
     }
     //Si se produce un error lo mandamos en consola
     catch (e) {

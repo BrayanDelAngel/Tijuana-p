@@ -41,6 +41,14 @@
     {{-- Muestra de sweetalert en caso que no haya  hecho un requerimiento --}}
         <script src="{{ asset('js/sweetAlert/accessDeniedRequerimiento.js') }}"></script>
     @endif
+    @if (session('actualizado'))
+    {{-- Muestra de sweetalert en caso que no haya  hecho un requerimiento --}}
+        <script src="{{ asset('js/sweetAlert/successUpdateTabla.js') }}"></script>
+    @endif
+    @if (session('errorActualizarTabla'))
+    {{-- Muestra de sweetalert en caso que no haya  hecho un requerimiento --}}
+        <script src="{{ asset('js/sweetAlert/errorUpdateTablaModal.js') }}"></script>
+    @endif
     {{-- Spinner de caraga --}}
     {{-- <div id="contenedor_carga">
         <div id="carga">
@@ -74,8 +82,10 @@
                 <h6 class="dropdown-header">Utilidades de la plaza</h6>
                 <a class="dropdown-item" href="{{ route('index') }}">
                     Inicio</a>
-                <a class="dropdown-item" href="{{ route('tarifas') }}">
+                <a class="dropdown-item" href="{{ route('inpc') }}">
                     INCP</a>
+                <a class="dropdown-item" href="{{ route('tarifa') }}">
+                    Tarifa</a>
             </ul>
         </div>
     </div>

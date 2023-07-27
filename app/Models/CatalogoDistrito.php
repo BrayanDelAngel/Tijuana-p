@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use \Staudenmeir\EloquentParamLimitFix\ParamLimitFix;
 
-class cobranzaExternaHistoricos extends Model
+class CatalogoDistrito extends Model
 {
-  
-    protected $table = 'cobranzaExternaHistoricosWS3';
+    protected $table = 'catalago_distrito';
     public $timestamps = false;
 }
