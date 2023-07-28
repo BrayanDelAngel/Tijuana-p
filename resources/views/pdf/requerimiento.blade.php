@@ -6,7 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Requerimiento</title>
-    <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/pdf.css" rel="stylesheet">
+    <link href="C:/wamp64/www/Tijuana-p/public/css/pdf.css" rel="stylesheet">
+    <style>
+        br {
+            display: block;
+            /* Cambiar el comportamiento predeterminado a un elemento en bloque */
+            margin: 1em 0;
+            /* Espacio vertical antes y después del <br/> */
+            content: " ";
+            /* Añadir un espacio en el contenido para asegurar que se muestre */
+        }
+    </style>
 </head>
 
 <body>
@@ -191,7 +201,7 @@
                     el importe líquido
                     que aquí se precisa:</span>
             </p>
-            <br/>
+            <br />
             <table class="text-center">
                 <thead>
                     <tr>
@@ -241,7 +251,8 @@
                     </tr>
                 </tbody>
             </table>
-            <br/>
+            <br />
+            <br />
             <p class="text-justify">
                 Por lo que, con la facultad prevista en la fracción V del artículo 1 del Acuerdo Delegatorio de
                 Facultades publicado en el periódico oficial del Estado de baja California de fecha 04 de marzo de 2005
@@ -253,32 +264,39 @@
                 los acredita como notificadores adscritos a esta Subrecaudacion de la Comisión Estatal de Servicios
                 Públicos de Tijuana.
             </p>
+            <br />
             <p class="text-justify">
                 Se hace del conocimiento del deudor y/o atendiente, que, para el caso que impida materialmente al (los)
                 notificador(es) designado(s) el cumplimiento del presente, oponiéndose u obstaculizando la diligencia;
                 este se encuentra facultado en términos de la fracción X del artículo 95 del Código Fiscal del Estado de
                 Baja California, a emplear cualquiera de los medios de apremio ahí consignados.
             </p>
+            <br />
+              {{-- Salto de linea p --}}
+              <div class="saltopagina"></div>
             <p class="text-justify">
                 Se le informa al deudor que podrá realizar el pago de las cantidades reclamadas, de los vencimientos
                 ocurridos y de los gastos de ejecución en Boulevard Federico Benítez López 4057, Colonia 20 de
                 Noviembre, C.P.22430, Tijuana, Baja California; en cuyo caso la Autoridad Fiscal dará por terminado el
                 procedimiento administrativo de ejecución.
             </p>
+            <br />
             <p class="text-justify">
                 Queda enterado que, de manera optativa, podrá interponer de conformidad con el artículo 181 del Código
                 Fiscal del Estado de Baja California, el recurso administrativo de revocación ante la Procuraduría
                 Fiscal del Estado o bien, juicio, ante el Tribunal Estatal de Justicia Administrativa del Estado de Baja
                 California.
             </p>
+            <br />
             <p class="text-justify">
                 NOTIFIQUESE PERSONALMENTE en términos de los artículos 68 fracción I,69, 70,71,72,73,74,75 y 76, todos,
                 del Código Fiscal del Estado de Baja California
             </p>
+            <br />
             <p class="text-justify">
                 Así lo resolvió la C. Subrecaudadora de Rentas adscrita a la Comisión Estatal de Servicios Públicos de
-                Tijuana a los {{$fechar2}}; con nombramiento bajo oficio {{ $folio }}, de
-                fecha {{$fechar}}; realizado por el Secretario de Hacienda del Estado de Baja California, en
+                Tijuana a los {{ $fechar2 }}; con nombramiento bajo oficio {{ $folio }}, de
+                fecha {{ $fechar }}; realizado por el Secretario de Hacienda del Estado de Baja California, en
                 el
                 ejercicio de sus facultades conferidas en los artículos 32 fracciones XX y XXXI de la Ley Orgánica del
                 Poder
