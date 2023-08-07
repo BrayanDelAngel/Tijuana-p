@@ -1104,7 +1104,7 @@
             la Comisión Estatal de Servicios Públicos de Tijuana a través del procedimiento económico-coactivo.
         </p>
         {{-- <br /> --}}
-        @if ($ejecutores == 'none')
+        @if ($ejecutores == 'C. none')
         <p class="text-justify">
             Para dar cumplimiento a lo anteriormente determinado, se designa como NOTIFICADOR(ES) del presente, al (los)
             C.C.____________________________________________ y _______________________________________________
@@ -1115,7 +1115,7 @@
             Tijuana.
         </p>
         @endif
-        @if ($ejecutores != 'none')
+        @if ($ejecutores != 'C. none')
         <p class="text-justify">
             Para dar cumplimiento a lo anteriormente determinado, se designa como NOTIFICADOR(ES) del presente, al (los)
             {{$ejecutores}}
