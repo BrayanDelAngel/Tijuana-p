@@ -37,8 +37,6 @@
             <br />
             <span class="bold"> USUARIO:</span> {{ $data->propietario }}
             <br />
-            <span class="bold">DIRECCION INDISTINTA:</span> {{ $data->domicilio }}
-            <br />
             <span class="bold">CLAVE CATASTRAL:</span> {{ $data->clavec }}
             <br />
             <span class="bold"> TIPO DE SERVICIO:</span> {{ $data->tipo_s }}
@@ -46,6 +44,8 @@
             <span class="bold"> NÚMERO DE MEDIDOR:</span> {{ $data->seriem }}
             <br />
             <span class="bold"> RAZON SOCIAL:</span>{{ $data->razons }}
+            <br />
+            <span class="bold">DIRECCION INDISTINTA:</span> {{ $data->domicilio }}
             <br />
             <span class="bold">PRESENTE. -</span>
         </p>
