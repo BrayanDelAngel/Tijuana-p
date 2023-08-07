@@ -132,12 +132,12 @@ class DeterminacionController extends Controller
         if (($count_d[0]->c) != 0) {
             //consultar el id de la determinacion
             $id = DB::select('select id from determinacionesA where cuenta = ?', [$request->cuenta]);
-              //Conteo del total de ejecutores
-         $count_ejecutor = determinacionesA::join('ejecutores_da as e', 'e.id_d', '=', 'determinacionesA.id')->select('ejecutor')->where('id', $id[0]->id)->count();
-         if($count_ejecutor!=0){
-             //Eliminar los ejecutores
-             $ejecutores_da = ejecutores_da::where('id_d', $id[0]->id)->delete();
-         }
+            //Conteo del total de ejecutores
+            $count_ejecutor = determinacionesA::join('ejecutores_da as e', 'e.id_d', '=', 'determinacionesA.id')->select('ejecutor')->where('id', $id[0]->id)->count();
+            if ($count_ejecutor != 0) {
+                //Eliminar los ejecutores
+                $ejecutores_da = ejecutores_da::where('id_d', $id[0]->id)->delete();
+            }
             //declaramos que se va a modificar el registro de la determinacion
             $r = determinacionesA::findOrFail($id[0]->id);
             //validamos que si el oficio es diferente al que inserto que sea unico
@@ -229,10 +229,10 @@ class DeterminacionController extends Controller
             if ($e->save()) {
                 //retirnamos al pdf y le pasamos la cuenta
                 return '<script type="text/javascript">window.open("PDFDeterminacion/' . $id[0]->id . '")</script>' .
-                redirect()->action(
-                    [IndexController::class, 'index']
-                );
-            } 
+                    redirect()->action(
+                        [IndexController::class, 'index']
+                    );
+            }
         } else {
             return back()->with('errorPeticion', 'Error al generar');
         }
@@ -396,33 +396,57 @@ class DeterminacionController extends Controller
         // $condicion_firma=firma($cr);
         $IDdistrito = $data->id_distrito;
 
-         //Obtenemos los ejecutores
-         $ejecutores = determinacionesA::join('ejecutores_da as e', 'e.id_d', '=', 'determinacionesA.id')->select('ejecutor')->where('id', $id)->get();
-         //Conteo del total de ejecutores
-         $count_ejecutor = determinacionesA::join('ejecutores_da as e', 'e.id_d', '=', 'determinacionesA.id')->select('ejecutor')->where('id', $id)->count();
-         //Formateando ejecutores
-         $ejecutoresformat = '';
-         //Se he un recorrido
-         for ($i = 0; $i < $count_ejecutor; $i++) {
-             if ($ejecutores[$i]->ejecutor != 'none') {
-                 //si el ultimo dato 
-                 if ($i == ($count_ejecutor - 1)) {
-                     // en el amcomulador se le agrega un Y
-                     $ejecutoresformat = $ejecutoresformat . ' y ' . $ejecutores[$i]->ejecutor;
-                 } else if ($i == ($count_ejecutor - 2)) {
-                     // si es el penultimo no se le agrega el ','
-                     $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . '';
-                 } else {
-                     // si no re acomulan los años y se les agrega las ','
-                     $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . ',';
-                 }
-             } else {
-                 $ejecutoresformat = 'none';
-             }
-         }
+        //Obtenemos los ejecutores
+        $ejecutores = determinacionesA::join('ejecutores_da as e', 'e.id_d', '=', 'determinacionesA.id')->select('ejecutor')->where('id', $id)->get();
+        // Conteo del total de ejecutores
+        $count_ejecutor = determinacionesA::join('ejecutores_da as e', 'e.id_d', '=', 'determinacionesA.id')->select('ejecutor')->where('id', $id)->count();
 
+        // Formateando ejecutores
+        $ejecutoresformat = '';
+
+        if ($count_ejecutor > 0) {
+            // Recorriendo los ejecutores
+            for ($i = 0; $i < $count_ejecutor; $i++) {
+                if ($ejecutores[$i]->ejecutor != 'none') {
+                    if ($i == ($count_ejecutor - 1)) {
+                        if ($count_ejecutor > 1) {
+                            $ejecutoresformat .= ' y ' . $ejecutores[$i]->ejecutor;
+                        } else {
+                            $ejecutoresformat .= $ejecutores[$i]->ejecutor;
+                        }
+                    } else if ($i == ($count_ejecutor - 2)) {
+                        $ejecutoresformat .= $ejecutores[$i]->ejecutor;
+                    } else {
+                        $ejecutoresformat .= $ejecutores[$i]->ejecutor . ', ';
+                    }
+                } else {
+                    $ejecutoresformat = 'none';
+                    break; // Salir del bucle si se encuentra "none"
+                }
+            }
+
+            // Validar si es un solo ejecutor o varios
+            if ($count_ejecutor > 1) {
+                $ejecutoresformat = 'C.C. ' . $ejecutoresformat;
+            } else {
+                $ejecutoresformat = 'C. ' . $ejecutoresformat;
+            }
+        } else {
+            $ejecutoresformat = 'none';
+        }
+        // Separar la cadena en segmentos utilizando el delimitador ";" para el domiclio
+        $rawSegments = explode(";", $data->domicilio);
+        $segmentos = [];
+
+        // Limpiar y formatear los segmentos
+        foreach ($rawSegments as $rawSegment) {
+            $cleanedSegment = trim(preg_replace('/\s+/', ' ', $rawSegment));
+            if ($cleanedSegment) {
+                $segmentos[] = $cleanedSegment;
+            }
+        }
         // if($condicion_firma!=1){
-        $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat, 'i' => $i, 'IDdistrito' => $IDdistrito,'ejecutores' => $ejecutoresformat]);
+        $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat, 'i' => $i, 'IDdistrito' => $IDdistrito, 'ejecutores' => $ejecutoresformat, 'segmentos' => $segmentos]);
         // }
         // else{
         //     $pdf = Pdf::loadView('pdf.determinacion_firma', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i,'IDdistrito'=>$IDdistrito]);

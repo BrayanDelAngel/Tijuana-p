@@ -251,6 +251,9 @@ Determinación
                                 @enderror
                             </div>
                         </div>
+                        <div class="bg-info text-dark text-center col-md-4 mt-5">
+                            Si quiere agregar mas de un domicilio agregue ';' al final
+                        </div>
                     </div>
                 </div>
                 <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Determinación</title>
+
     
     <link
         href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/pdf.css"
@@ -45,8 +46,14 @@
             <br />
             <span class="bold"> RAZON SOCIAL:</span>{{ $data->razons }}
             <br />
-            <span class="bold">DIRECCION INDISTINTA:</span> {{ $data->domicilio }}
-            <br />
+            <span class="bold">DIRECCION INDISTINTA:</span>
+            <br/>
+            {{-- {{ $data->domicilio }} --}}
+            {{-- Recorrer los segmentos e imprimirlos en el formato requerido de domicilio--}}
+            @foreach ($segmentos as $index => $segmento)
+            {{rtrim($segmento, "; ") }} <br/>
+            @endforeach
+            <br/>
             <span class="bold">PRESENTE. -</span>
         </p>
         @if ($data->tipo_s == 'NO DOMESTICO')
@@ -1018,7 +1025,7 @@
         </p>
         <p>En resumen, resulta a su cargo un <span class="bold">CRÉDITO FISCAL</span> relativo a la cuenta número
             <span class="bold">{{ $data->cuenta }}</span>, por la suma de
-            <span class="bold">${{ $total_ar }} {{ $tar }} </span>, integrado de la siguiente forma:
+            <span class="bold">${{ number_format($total_ar, 2) }} {{ $tar }} </span>, integrado de la siguiente forma:
         </p>
         <br />
         <br />
@@ -1101,7 +1108,7 @@
         <p class="text-justify">
             Para dar cumplimiento a lo anteriormente determinado, se designa como NOTIFICADOR(ES) del presente, al (los)
             C.C.____________________________________________ y _______________________________________________
-            __________________________________con nombramiento(s) de fecha_____________________, para que de manera
+            __________________________________con nombramiento(s) de fecha 17 de abril del 2023, para que de manera
             conjunta o separada den cumplimiento a la presente orden, quien(es) al inicio de la diligencia deberá(n)
             identificarse con la constancia de nombramiento vigente en la que aparece su fotografía y su firma y que los
             acredita como notificadores adscritos a esta Subrecaudacion de la Comisión Estatal de Servicios Públicos de
@@ -1111,8 +1118,8 @@
         @if ($ejecutores != 'none')
         <p class="text-justify">
             Para dar cumplimiento a lo anteriormente determinado, se designa como NOTIFICADOR(ES) del presente, al (los)
-            C.C. {{$ejecutores}}
-            con nombramiento(s) de fecha {{$data->fechad}}, para que de manera
+            {{$ejecutores}}
+            con nombramiento(s) de fecha 17 de abril del 2023, para que de manera
             conjunta o separada den cumplimiento a la presente orden, quien(es) al inicio de la diligencia deberá(n)
             identificarse con la constancia de nombramiento vigente en la que aparece su fotografía y su firma y que los
             acredita como notificadores adscritos a esta Subrecaudacion de la Comisión Estatal de Servicios Públicos de
