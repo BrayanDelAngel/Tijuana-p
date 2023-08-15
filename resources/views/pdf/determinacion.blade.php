@@ -1111,7 +1111,7 @@
             __________________________________con nombramiento(s) de fecha 17 de abril del 2023, para que de manera
             conjunta o separada den cumplimiento a la presente orden, quien(es) al inicio de la diligencia deberá(n)
             identificarse con la constancia de nombramiento vigente en la que aparece su fotografía y su firma y que los
-            acredita como notificadores adscritos a esta Subrecaudacion de la Comisión Estatal de Servicios Públicos de
+            acredita como notificadores adscritos a esta Comisión Estatal de Servicios Públicos de
             Tijuana.
         </p>
         @endif
@@ -1122,7 +1122,7 @@
             con nombramiento(s) de fecha 17 de abril del 2023, para que de manera
             conjunta o separada den cumplimiento a la presente orden, quien(es) al inicio de la diligencia deberá(n)
             identificarse con la constancia de nombramiento vigente en la que aparece su fotografía y su firma y que los
-            acredita como notificadores adscritos a esta Subrecaudacion de la Comisión Estatal de Servicios Públicos de
+            acredita como notificadores adscritos a esta Comisión Estatal de Servicios Públicos de
             Tijuana.
         </p>
         @endif
