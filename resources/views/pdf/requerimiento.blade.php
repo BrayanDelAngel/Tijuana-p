@@ -75,7 +75,7 @@
                 La Subrecaudación de Rentas adscrita a la Comisión Estatal de Servicios Públicos de Tijuana, hace
                 constar la remisión del crédito fiscal número <span
                     class=" bold">CESPT/EDM/{{ $folio }}/{{ date('Y') }}</span>,
-                de fecha <span class="bold">{{ $item->fechar }}</span>, emitido por
+                de fecha <span class="bold">{{ $item->fechad }}</span>, emitido por
                 la Comisión Estatal de Servicios Públicos de Tijuana, debido que el usuario del servicio no realizó el
                 pago de los derechos de consumo de agua potable y alcantarillado, correspondiente a los períodos
                 comprendidos del <span class="bold">{{ $item->periodo }}</span>, dentro del plazo que indica la Ley
@@ -257,8 +257,7 @@
                 Por lo que, con la facultad prevista en la fracción V del artículo 1 del Acuerdo Delegatorio de
                 Facultades publicado en el periódico oficial del Estado de baja California de fecha 04 de marzo de 2005
                 y para dar cumplimiento a lo anteriormente determinado, se designa como NOTIFICADOR(ES) del presente, al
-                (los) C.C.___________________________________ y ___________
-                __________________________________con nombramiento(s) de fecha_____________________, para que de manera
+                (los) C.C. {{ $item->ejecutores }} con nombramiento(s) de fecha {{ $item->nombramiento }}, para que de manera
                 conjunta o separada den cumplimiento a la presente orden, quien(es) al inicio de la diligencia deberá(n)
                 identificarse con la constancia de nombramiento vigente en la que aparece su fotografía y su firma y que
                 los acredita como notificadores adscritos a esta Subrecaudacion de la Comisión Estatal de Servicios
@@ -309,8 +308,9 @@
                     ______________________________________________
                     <br />
                     <span class="bold">
-                        EL C. {{ $item->sobrerecaudador }} SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA
-                        COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA.
+                        SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA
+                        COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA
+                        <span></span> C. {{ $item->sobrerecaudador }}
                     </span>
                 </p>
             </div>

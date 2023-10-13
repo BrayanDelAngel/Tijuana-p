@@ -121,6 +121,8 @@ class RequerimientoController extends Controller
             'tservicio' =>  ['required'],
             'notificacion' =>  ['required'],
             'sobrerecaudador' =>  ['required'],
+            'ejecutores' =>  ['required'],
+            'nombramiento' =>  ['required'],
         ]);
         //validar si esta cuenta ya tiene un requerimiento
         $validar = requerimientosA::join('determinacionesA as d', 'requerimientosA.id_d', '=', 'd.id')
@@ -131,8 +133,6 @@ class RequerimientoController extends Controller
         if ($validar != 0) {
             //consultar el id del requerimiento
             $id = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
-            //eliminamos los ejecutores existentes
-            $ejecutores_ra = ejecutores_ra::where('id_r', $id->id)->delete();
             //declaramos que se va a modificar el registro de requerimiento
             $r = requerimientosA::findOrFail($id->id);
         }
@@ -147,37 +147,24 @@ class RequerimientoController extends Controller
         $r->fechand = $request->notificacion;
         $r->sobrerecaudador = $request->sobrerecaudador;
         $r->tipo_s = $request->tservicio;
+        $r->ejecutores = $request->ejecutores;
+        $r->nombramiento = $request->nombramiento;
         $r->save();
         //validamos si se guardaron los datos
         if ($r->save()) {
+           
             //consultamos su id
             $requirimiento = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
             $id = $requirimiento->id;
+            
 
-            //recorremos el array de los ejecutores
-            for ($i = 0; $i < count($request->ejecutor); $i++) {
-                //declaramos que se hara un nuevo registro en ejecutores_ra
-                $e = new ejecutores_ra();
-                //Si el ejecutor es nulo se le agrega a la tabla none 
-                if ($request->ejecutor[$i] == null) {
-                    $e->ejecutor = 'none';
-                }
-                //Si no se agrega el ejecutor recibido 
-                else {
-                    $e->ejecutor = $request->ejecutor[$i];
-                }
-                $e->id_r = $id;
-                $e->save();
-            }
             //si se guardaron los datos retornamos el pdf
-            if ($e->save()) {
+            
                 return '<script type="text/javascript">window.open("PDFRequerimiento/' . $id . '")</script>' .
                     redirect()->action(
                         [IndexController::class, 'index']
                     );
-            } else {
-                return back()->with('errorPeticion', 'Error al generar');
-            }
+            
         } else {
             return back()->with('errorPeticion', 'Error al generar');
         }
@@ -189,7 +176,7 @@ class RequerimientoController extends Controller
         //Consulta de la determinacion y del requerimiento
         $datos = determinacionesA::join('requerimientosA as r', 'r.id_d', '=', 'determinacionesA.id')
             ->select([
-                'r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM','es-es') as fechad"),
+                'r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechad"),
                 'cuenta', 'propietario', 'domicilio', 'clavec', 'r.tipo_s as tipo_s', 'seriem', 'razons', 'periodo', 'fechand',
                 DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
                 DB::raw("format(fechar,'dd'' días del mes de ''MMMM'' del año ''yyyy','es-es') as fechar2"),
@@ -202,7 +189,7 @@ class RequerimientoController extends Controller
                 'conv_vencido',
                 'otros_gastos',
                 'saldo_total as total',
-                'sobrerecaudador'
+                'sobrerecaudador','r.ejecutores','r.nombramiento'
             ])
             ->where('r.id', $id)
             ->get();

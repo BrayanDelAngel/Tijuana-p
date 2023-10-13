@@ -279,8 +279,9 @@
                         ______________________________________________
                         <br />
                         <span class="bold">
-                            EL C. {{ $item->sobrerecaudador }} SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA
-                            COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA.
+                            SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA
+                            COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA
+                            C. {{ $item->sobrerecaudador }} 
                         </span>
                     </p>
                 </div>
