@@ -19,6 +19,7 @@
 
                 @foreach ($date as $item)
                     <div class="row">
+                        {{-- hidden --}}
                         <input type="hidden" name="id_d" value="{{ $item->id }}">
                         <div class="p-2 rounded-4 col-md-12" style=" background-color: #E8ECEF; border: inherit;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
@@ -352,27 +353,17 @@
                             <span class="bg-success rounded-2 p-2"><img
                                     src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Adeudo</span>
                         </div>
+                        
                         <table class="table table-hover table-sm table-dark my-2">
                             <thead class="table-dark text-center">
                                 <tr>
-                                    <th>DESCRIPCIÓN DE
-                                        CONCEPTO
-                                    </th>
-                                    <th>ADEUDO CONSUMO
-                                        DE AGUA Y ALCANTARILLADO
-                                    </th>
-                                    <th>RECARGOS
-                                    </th>
+                                    <th>DESCRIPCIÓN DE CONCEPTO</th>
+                                    <th>ADEUDO CONSUMO DE AGUA Y ALCANTARILLADO</th>
+                                    <th>RECARGOS</th>
                                     <th>MULTAS</th>
-                                    <th>GASTOS
-                                        DE EJECUCIÓN
-                                    </th>
-                                    <th>SUSP. DEL SERVICIO
-                                        OTROS GASTOS
-                                    </th>
-                                    <th>CONV.
-                                        VENCIDOS
-                                    </th>
+                                    <th>GASTOS DE EJECUCIÓN </th>
+                                    <th>SUSP. DEL SERVICIO OTROS GASTOS</th>
+                                    <th>CONV. VENCIDOS</th>
                                     <th>IMPORTE TOTAL DEL ADEUDO</th>
                                 </tr>
                             </thead>
@@ -380,13 +371,13 @@
 
                                 <tr>
                                     <td>Totales</td>
-                                    <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
-                                    <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
-                                    <td>${{ number_format($multas, 2) }}</td>
-                                    <td>${{ number_format($gastos_ejecucion, 2) }}</td>
-                                    <td>${{ number_format($item->otros_gastos, 2) }}</td>
-                                    <td>${{ number_format($item->conv_vencido, 2) }}</td>
-                                    <td>${{ $total_ar }}</td>
+                                    <td>$ {{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
+                                    <td>$ {{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
+                                    <td>$ {{ number_format($item->multas, 2) }}</td>
+                                    <td>$ {{ $gastos_ejecucion }}</td>
+                                    <td>$ {{ $otros_gastos }}</td>
+                                    <td>$ {{ $conv_vencido }}</td>
+                                    <td>$ {{ $total_ar }}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center"> Total del adeudo requerido</td>

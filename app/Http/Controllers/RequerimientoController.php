@@ -40,7 +40,7 @@ class RequerimientoController extends Controller
             //en caso que ya tiene una determinacion
             else {
                 //consultamos los datos para la tabla
-                $sql = cobranzaExternaHistoricos::select(['NoCta', 'anio', 'mes'])->where('NoCta', $cuenta)->orderBy('anio', 'ASC')->get();
+                // $sql = cobranzaExternaHistoricos::select(['NoCta', 'anio', 'mes'])->where('NoCta', $cuenta)->orderBy('anio', 'ASC')->get();
                 //consultamos el id de la determinacion
                 $id = DB::select('select id from determinacionesA where cuenta = ?', [$cuenta]);
                 //consultamos los datos de la tabla de determinacion
@@ -53,8 +53,8 @@ class RequerimientoController extends Controller
                     'cuenta as Cuenta',
                     'multas',
                     'gastos_ejecución',
-                    'conv_vencido',
-                    'otros_gastos',
+                    DB::raw('(convenio_obra+convenio_agua) as con_vencido'),
+                    'otros_servicios',
                     'saldo_total as total',
                     'fechad',
                     'id',
@@ -64,15 +64,26 @@ class RequerimientoController extends Controller
                     ->where('id', $id[0]->id)
                     ->get();
                 $multas = $date[0]->multas;
-                $gastos_ejecucion = $date[0]->gastos_ejecucion;
-                $conv_vencido = $date[0]->conv_vencido;
-                $otros_gastos = $date[0]->otros_gastos;
+                $gastos_ejecucion = $date[0]->gastos_ejecución;
+                $conv_vencido = $date[0]->con_vencido;
+                $otros_gastos = $date[0]->otros_servicios;// se cambio el item -> otros_gastos a otros servicios, lo demas sige igual
+                
                 //obtenemos los datos de la tabla adeudo
                 $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
                     ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
-                $tipos = implementta::select('TipoServicio')
-                    ->where('implementta.Cuenta', $cuenta)
-                    ->get();
+                // $x = $t_adeudo_t->RecargosAcumulados;
+                // dd($x);
+                // $tipos = implementta::select('TipoServicio')
+                //     ->where('implementta.Cuenta', $cuenta)
+                //     ->get();
+                // $convenio = determinacionesA::select('convenio_obra', 'recargos_convenio_obra')
+                //     ->where('cuenta', $cuenta)
+                //     ->get();
+                // $co = $convenio->convenio_obra;
+                // $rco = $convenio->recargos_convenio_obra;
+                // dd($convenio);
+                // $conv_vencido = $co+$rco;
+                
                 //validamos el tipo de servicio
                 if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL"|| $date[0]->TipoServicio == "DOMESTICO") {
                     $ts = 'DOMESTICO';
@@ -104,10 +115,10 @@ class RequerimientoController extends Controller
                     'folio' => $folio,
                     'ts' => $ts,
                     'multas' => $multas,
-                    'gastos_ejecucion' => $gastos_ejecucion,
-                    'conv_vencido' => $conv_vencido,
-                    'otros_gastos' => $otros_gastos,
-                    't_adeudo_t' => $t_adeudo_t,
+                    'gastos_ejecucion' => number_format($gastos_ejecucion, 2),
+                    'conv_vencido' => number_format($conv_vencido, 2),
+                    'otros_gastos' => number_format($otros_gastos, 2),
+                    't_adeudo_t' => $t_adeudo_t, 
                     'total_ar' => number_format($total_ar, 2),
                     'tar' => $tar,
                 ]);
@@ -180,16 +191,15 @@ class RequerimientoController extends Controller
                 'cuenta', 'propietario', 'domicilio', 'clavec', 'r.tipo_s as tipo_s', 'seriem', 'razons', 'periodo', 'fechand',
                 DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
                 DB::raw("format(fechar,'dd'' días del mes de ''MMMM'' del año ''yyyy','es-es') as fechar2"),
-                DB::raw(
-                    "format(fechand,'dd'' de ''MMMM','es-es') as fd",
-                    'id_d'
-                ),
+                DB::raw("format(fechand,'dd'' de ''MMMM','es-es') as fd",'id_d'),
                 'multas',
                 'gastos_ejecución',
-                'conv_vencido',
-                'otros_gastos',
+                DB::raw("(convenio_obra+convenio_agua) as con_vencido"),
+                'otros_servicios',
                 'saldo_total as total',
-                'sobrerecaudador','r.ejecutores','r.nombramiento'
+                'sobrerecaudador',
+                'r.ejecutores',
+                'r.nombramiento'
             ])
             ->where('r.id', $id)
             ->get();
