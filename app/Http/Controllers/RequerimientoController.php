@@ -53,7 +53,7 @@ class RequerimientoController extends Controller
                     'cuenta as Cuenta',
                     'multas',
                     'gastos_ejecución',
-                    DB::raw('(convenio_obra+convenio_agua) as con_vencido'),
+                    DB::raw('(convenio_agua+recargos_convenio_agua+convenio_obra+recargos_convenio_obra) as con_vencido'),
                     'otros_servicios',
                     'saldo_total as total',
                     'fechad',
@@ -71,18 +71,10 @@ class RequerimientoController extends Controller
                 //obtenemos los datos de la tabla adeudo
                 $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
                     ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
-                // $x = $t_adeudo_t->RecargosAcumulados;
-                // dd($x);
                 // $tipos = implementta::select('TipoServicio')
                 //     ->where('implementta.Cuenta', $cuenta)
                 //     ->get();
-                // $convenio = determinacionesA::select('convenio_obra', 'recargos_convenio_obra')
-                //     ->where('cuenta', $cuenta)
-                //     ->get();
-                // $co = $convenio->convenio_obra;
-                // $rco = $convenio->recargos_convenio_obra;
-                // dd($convenio);
-                // $conv_vencido = $co+$rco;
+             
                 
                 //validamos el tipo de servicio
                 if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL"|| $date[0]->TipoServicio == "DOMESTICO") {
@@ -99,7 +91,7 @@ class RequerimientoController extends Controller
                         $longitud = strlen($folio);
                     }
                 }
-                $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + number_format($date[0]->multas, 2) + $date[0]->gastos_ejecucion + $date[0]->conv_vencido + $date[0]->otros_gastos;
+                $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + number_format($multas, 2) + $gastos_ejecucion + $conv_vencido + $otros_gastos;
                 //extraemos el entero
                 $entero = floor($total_ar);
                 //extraemos el decimal
@@ -194,7 +186,7 @@ class RequerimientoController extends Controller
                 DB::raw("format(fechand,'dd'' de ''MMMM','es-es') as fd",'id_d'),
                 'multas',
                 'gastos_ejecución',
-                DB::raw("(convenio_obra+convenio_agua) as con_vencido"),
+                DB::raw('(convenio_agua+recargos_convenio_agua+convenio_obra+recargos_convenio_obra) as con_vencido'),
                 'otros_servicios',
                 'saldo_total as total',
                 'sobrerecaudador',
@@ -203,6 +195,10 @@ class RequerimientoController extends Controller
             ])
             ->where('r.id', $id)
             ->get();
+            $multas = $datos[0]->multas;
+            $gastos_ejecucion = $datos[0]->gastos_ejecución;
+            $conv_vencido = $datos[0]->con_vencido;
+            $otros_gastos = $datos[0]->otros_servicios;
         //obtenemos los datos de la tabla adeudo
         $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
             ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->first();
@@ -228,7 +224,7 @@ class RequerimientoController extends Controller
         //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + number_format($datos[0]->multas, 2) + $datos[0]->gastos_ejecucion + $datos[0]->conv_vencido + $datos[0]->otros_gastos;
+        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + number_format($multas, 2) + $gastos_ejecucion + $conv_vencido + $otros_gastos;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal
