@@ -187,6 +187,10 @@ class RequerimientoController extends Controller
                 'multas',
                 'gastos_ejecución',
                 DB::raw('(convenio_agua+recargos_convenio_agua+convenio_obra+recargos_convenio_obra) as con_vencido'),
+                'recargos_consumo',
+                'rezago',
+                'atraso',
+                'corriente',
                 'otros_servicios',
                 'saldo_total as total',
                 'sobrerecaudador',
@@ -195,13 +199,9 @@ class RequerimientoController extends Controller
             ])
             ->where('r.id', $id)
             ->get();
-            $multas = $datos[0]->multas;
-            $gastos_ejecucion = $datos[0]->gastos_ejecución;
-            $conv_vencido = $datos[0]->con_vencido;
-            $otros_gastos = $datos[0]->otros_servicios;
+           
         //obtenemos los datos de la tabla adeudo
-        $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
-            ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->first();
+       
         //convertivos la fecha en año para convertirlo en texto y concatenarlo con la fecha fd
         $formato = new NumeroALetras();
         //Convirtiendo la fecha en fecha corta
@@ -224,7 +224,7 @@ class RequerimientoController extends Controller
         //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + number_format($multas, 2) + $gastos_ejecucion + $conv_vencido + $otros_gastos;
+        $total_ar = $datos[0]->total;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal
@@ -233,32 +233,9 @@ class RequerimientoController extends Controller
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
-        //Obtenemos los ejecutores
-        $ejecutores = requerimientosA::join('ejecutores_ra as e', 'e.id_r', '=', 'requerimientosA.id')->select('ejecutor')->where('id', $id)->get();
-        //Conteo del total de ejecutores
-        $count_ejecutor = requerimientosA::join('ejecutores_ra as e', 'e.id_r', '=', 'requerimientosA.id')->select('ejecutor')->where('id', $id)->count();
-        //Formateando ejecutores
-        $ejecutoresformat = '';
-        //Se he un recorrido
-        for ($i = 0; $i < $count_ejecutor; $i++) {
-            if ($ejecutores[$i]->ejecutor != 'none') {
-                //si el ultimo dato 
-                if ($i == ($count_ejecutor - 1)) {
-                    // en el amcomulador se le agrega un Y
-                    $ejecutoresformat = $ejecutoresformat . ' y ' . $ejecutores[$i]->ejecutor;
-                } else if ($i == ($count_ejecutor - 2)) {
-                    // si es el penultimo no se le agrega el ','
-                    $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . '';
-                } else {
-                    // si no re acomulan los años y se les agrega las ','
-                    $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . ',';
-                }
-            } else {
-                $ejecutoresformat = 'none';
-            }
-        }
+        
         //declaramos la variable pdf y mandamos los parametros
-        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter,'fechar'=>$datos[0]->fechar, 'fechar2'=>$datos[0]->fechar2,'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar, 'ejecutores' => $ejecutoresformat,'total'=>$total_ar]);
+        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter,'fechar'=>$datos[0]->fechar, 'fechar2'=>$datos[0]->fechar2,'folio' => $folio, 'tar' => $tar, 'total'=>$total_ar]);
         return $pdf->stream();
     }
 }

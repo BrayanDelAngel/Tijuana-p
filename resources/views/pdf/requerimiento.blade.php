@@ -16,6 +16,11 @@
             content: " ";
             /* Añadir un espacio en el contenido para asegurar que se muestre */
         }
+        #mi-parrafo span {
+    display: block; /* Hace que los elementos span se muestren en la misma línea */
+    margin-top: -2px; /* Agrega un espacio entre los elementos span si es necesario */
+}
+
     </style>
 </head>
 
@@ -53,7 +58,7 @@
                 <span class="bold">
                     Domicilio:
                 </span>
-                {{ $item->domicilio }} de la ciudad de Tijuana, Baja California.
+                {{ $item->domicilio }} 
             </p>
             <p>
                 <span class="bold"> Cuenta:</span> <span>{{ $item->cuenta }}</span>
@@ -231,19 +236,19 @@
                 <tbody>
                     <tr>
                         <td>Totales</td>
-                        <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
-                        <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
+                        <td>${{ number_format(($item->rezago + $item->atraso + $item->corriente), 2) }}</td>
+                        <td>${{ number_format($item->recargos_consumo, 2) }}</td>
                         <td>${{ number_format($item->multas, 2) }}</td>
                         <td>${{ number_format($item->gastos_ejecución, 2) }}</td>
                         <td>${{ number_format($item->otros_servicios, 2) }}</td>
                         <td>${{ number_format($item->con_vencido, 2) }}</td>
-                        <td>${{ $total }}</td>
+                        <td>${{ number_format($total,2) }}</td>
                     </tr>
                     <tr>
                         <td>Total, del adeudo requerido</td>
 
                         <td class="text-center bold" colspan="7">
-                            ${{ $total }}
+                            ${{ number_format($total,2) }}
                             <br />
                             {{ $tar }}
                         </td>
@@ -302,17 +307,19 @@
                 fracción
                 III del Reglamento del Servicio de Administración Tributaria, todos del Estado de Baja California.
             </p>
-            <div class="firm">
-                <p class="text-center">
-                    _________________________________________________
-                    <br />
-                    
-                    <span class="bold">
-                        C. {{ $item->sobrerecaudador }}<br>SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA
-                        COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA
-                    </span>
-                </p>
-            </div>
+           <br>
+           <br>
+           <br>
+           <br>
+            <p class="text-center bold" id="mi-parrafo">
+                _________________________________________________
+                <br />
+                <span>C. {{ $item->sobrerecaudador }}</span>
+                <span>SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA</span>
+                <span>COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA</span>
+            </p>
+            
+           
         @endforeach
     </main>
 </body>
