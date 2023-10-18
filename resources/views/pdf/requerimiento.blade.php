@@ -306,9 +306,9 @@
                 <p class="text-center">
                     _________________________________________________
                     <br />
-                    C. {{ $item->sobrerecaudador }}
+                    
                     <span class="bold">
-                        <br>SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA
+                        C. {{ $item->sobrerecaudador }}<br>SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA
                         COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA
                     </span>
                 </p>
