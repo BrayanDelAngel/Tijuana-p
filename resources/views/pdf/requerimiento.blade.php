@@ -212,7 +212,6 @@
                             ADEUDO POR
                             CONSUMO
                             DE AGUA
-                            (Período 11-febrero-2004 al 21-octubre-2022
                         </th>
                         <th>RECARGOS
                         </th>
