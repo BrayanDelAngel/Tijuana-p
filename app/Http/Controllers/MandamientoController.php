@@ -109,6 +109,8 @@ class MandamientoController extends Controller
                     'conv_vencido',
                     'otros_gastos',
                     'saldo_total as total',
+                    'r.ejecutores',
+                    'r.nombramiento',
                 ]
             )
             ->where('determinacionesA.cuenta', $cuenta)
@@ -150,6 +152,8 @@ class MandamientoController extends Controller
             'fecham' => ['required'],
             'notificacion' => ['required'],
             'sobrerecaudador' => ['required'],
+            'ejecutores' =>  ['required'],
+            'nombramiento' =>  ['required'],
             /*'pagor' => ['required'],
             'totalr' => ['required'],
             'pagoe' => ['required'],
@@ -182,6 +186,9 @@ class MandamientoController extends Controller
         $r->fechanr = $request->notificacion;
         $r->sobrerecaudador = $request->sobrerecaudador;
         $r->id_r = $request->id;
+        $r->ejecutores = $request->ejecutores;
+        $r->nombramiento = $request->nombramiento;
+        
        /* $r->pago_requerimiento = $pagor;
         $r->total_requerimiento = $totalr;
         $r->pago_embargo = $pagoe;
@@ -293,6 +300,8 @@ class MandamientoController extends Controller
                 'r.tipo_s',
                 'fecham as fecha_converter',
                 'fechand as fecha_converternd',
+                'r.ejecutores',
+                'r.nombramiento',
                 DB::raw("format(fechad,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechad"),
                 DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
                 DB::raw("format(fecham,'dd'' dias del mes de ''MMMM'' del año ''yyyy','es-es') as fecham"),
@@ -302,6 +311,7 @@ class MandamientoController extends Controller
             )
             ->where('m.id', $id)
             ->get();
+        
         //Obteniendo datos que no se pueden visualizar en el pdf por medio del foreach
         $sobrerecaudador = $datos[0]->sobrerecaudador;
         $pagor = $datos[0]->pagor;
@@ -361,30 +371,7 @@ class MandamientoController extends Controller
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
-        //Obtenemos los ejecutores
-        $ejecutores = mandamientosA::join('ejecutores_ma as e', 'e.id_m', '=', 'mandamientosA.id')->select('ejecutor')->where('id', $id)->get();
-        //Conteo del total de ejecutores
-        $count_ejecutor = mandamientosA::join('ejecutores_ma as e', 'e.id_m', '=', 'mandamientosA.id')->select('ejecutor')->where('id', $id)->count();
-        //Formateando ejecutores
-        $ejecutoresformat = '';
-        //Se he un recorrido
-        for ($i = 0; $i < $count_ejecutor; $i++) {
-            if ($ejecutores[$i]->ejecutor != 'none') {
-                //si el ultimo dato
-                if ($i == ($count_ejecutor - 1)) {
-                    // en el amcomulador se le agrega un Y
-                    $ejecutoresformat = $ejecutoresformat . ' y ' . $ejecutores[$i]->ejecutor;
-                } else if ($i == ($count_ejecutor - 2)) {
-                    // si es el penultimo no se le agrega el ','
-                    $ejecutoresformat = $ejecutoresformat . $ejecutores[$i]->ejecutor . '';
-                } else {
-                    // si no re acomulan los años y se les agrega las ','
-                    $ejecutoresformat = $ejecutoresformat . $ejecutores[$i]->ejecutor . ',';
-                }
-            } else {
-                $ejecutoresformat = 'none';
-            }
-        }
+        
          //Contador de meses
          $i=0;
          $cr = tabla_ma::select('cuenta')->where('cuenta', $datos[0]->cuenta)->count();
@@ -399,7 +386,6 @@ class MandamientoController extends Controller
                 'totales' => $totales,
                 't_adeudor' => $t_adeudo_t,
                 'tar' => $tar,
-                'ejecutores' => $ejecutoresformat,
                 'multas' => $multas,
                 'gastos_ejecucion' => $gastos_ejecucion,
                 'conv_vencido' => $conv_vencido,
@@ -415,6 +401,7 @@ class MandamientoController extends Controller
                 'pagoe' => $pagoe,
                 'totale' => $totale,
                 'i'=>$i,
+                
             ]);
             
         // }

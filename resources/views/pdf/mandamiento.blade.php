@@ -169,8 +169,7 @@
                 Con la facultad prevista en la fracción V del artículo 1º. del Acuerdo Delegatorio de Facultades
                 publicado en el periódico oficial del Estado de fecha 04 de marzo de 2005 y para dar cumplimiento a lo
                 anteriormente señalado, se designa como NOTIFICADOR(ES)-EJECUTOR(ES) del presente mandamiento, al (los)
-                C.C.______________________________________
-                y _____________________________________________; con nombramiento(s) de fecha _________________________, para
+                C.C.{{ $item->ejecutores }} con nombramiento(s) de fecha {{ $item->nombramiento }}, para
                 que de manera conjunta o separada, den cumplimiento a la presente orden; quien(es) al inicio de la
                 diligencia deberá(n) identificarse con la constancia de nombramiento vigente en la que aparece su
                 fotografía y su firma y que lo(s) acredita como notificadores-ejecutores adscritos a esta Subrecaudacion

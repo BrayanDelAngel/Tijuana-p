@@ -287,7 +287,46 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                <div class="row align-items-start form-row">
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <div class="form-floating">
+                                                <textarea
+                                                    class="form-control
+                                                @error('ejecutores')
+                                                    border border-danger rounded-2
+                                                @enderror"
+                                                    name="ejecutores" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"> {{ old(
+                                                        'ejecutores') }} {{ $item->ejecutores }}</textarea>
+                                                @error('ejecutores')
+                                                    <div class="text-danger text-center">
+                                                        El campo ejecutores es requerido
+                                                    </div>
+                                                @enderror
+                                                <label for="floatingTextarea2">Ejecutores</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <div class="form-floating">
+                                                <textarea
+                                                    class="form-control
+                                                @error('nombramiento')
+                                                    border border-danger rounded-2
+                                                @enderror"
+                                                    name="nombramiento" placeholder="Fecha de nombramiento" id="floatingTextarea2" style="height: 100px">{{ old(
+                                                        'nombramiento') }} {{ $item->nombramiento}} </textarea>
+                                                @error('nombramiento')
+                                                    <div class="text-danger text-center">
+                                                        El campo nombramiento es requerido
+                                                    </div>
+                                                @enderror
+                                                <label for="floatingTextarea2">Fecha de nombramiento: </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         {{-- <div class="p-2 rounded-4 col-md-4"
