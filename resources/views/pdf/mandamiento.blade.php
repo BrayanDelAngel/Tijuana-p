@@ -12,6 +12,14 @@
 
     <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/pdf.css" rel="stylesheet">
     <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
+
+    <style>
+        #mi-parrafo span {
+            display: block; /* Hace que los elementos span se muestren en la misma línea */
+            margin-top: -2px; /* Agrega un espacio entre los elementos span si es necesario */
+        }
+    </style>
+
 </head>
 
 <body>
@@ -192,7 +200,6 @@
                             ADEUDO POR
                             CONSUMO
                             DE AGUA
-                            (Período 11-febrero-2004 al 21-octubre-2022
                         </th>
                         <th>RECARGOS
                         </th>
@@ -295,16 +302,13 @@
                 California.
             </p>
 
-            <div class="firm">
-                <p class="text-center">
-                    ______________________________________________
-                    <br />
-                    <span class="bold">
-                        EL C. {{ $sobrerecaudador }} SUBRECAUDADOR DE RENTAS ADSCRITA A LA COMISIÓN
-                        ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA
-                    </span>
-                </p>
-            </div>
+            <p class="text-center bold" id="mi-parrafo">
+                _________________________________________________
+                <br />
+                <span>C. {{ $item->sobrerecaudador }}</span>
+                <span>SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA</span>
+                <span>COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA</span>
+            </p>
         @endforeach
     </main>
     {{-- <script type="text/php">

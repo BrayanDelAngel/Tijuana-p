@@ -107,7 +107,7 @@ class MandamientoController extends Controller
                     'multas',
                     'gastos_ejecución',
                     'conv_vencido',
-                    'otros_gastos',
+                    'otros_servicios',
                     'saldo_total as total',
                     'r.ejecutores',
                     'r.nombramiento',

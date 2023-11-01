@@ -376,8 +376,8 @@
                                     <th>RECARGOS</th>
                                     <th>MULTAS</th>
                                     <th>GASTOSDE EJECUCIÓN</th>
-                                    <th>SUSP. DEL SERVICIOOTROS GASTOS</th>
-                                    <th>CONV.VENCIDOS</th>
+                                    <th>SUSP. DEL SERVICIO OTROS GASTOS</th>
+                                    <th>CONV. VENCIDOS</th>
                                     <th>IMPORTE TOTAL DEL ADEUDO</th>
                                 </tr>
                             </thead>
@@ -388,7 +388,7 @@
                                     <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
                                     <td>${{ number_format($item->multas, 2) }}</td>
                                     <td>${{ number_format($item->gastos_ejecución, 2) }}</td>
-                                    <td>${{ number_format($item->otros_gastos, 2) }}</td>
+                                    <td>${{ number_format($item->otros_servicios, 2) }}</td>
                                     <td>${{ number_format($item->conv_vencido, 2) }}</td>
                                     <td>${{ $total_ar }}</td>
                                 </tr>
