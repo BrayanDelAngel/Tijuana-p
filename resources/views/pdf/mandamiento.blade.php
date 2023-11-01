@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Mandamiento</title>
-    <link href="../../../public/css/pdf.css" rel="stylesheet">
-    <link href="../../../public/css/pdf.css" rel="stylesheet">
+    {{-- <link href="../../../public/css/pdf.css" rel="stylesheet">
+    <link href="../../../public/css/pdf.css" rel="stylesheet"> --}}
 
     <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/pdf.css" rel="stylesheet">
     <link href="D:/Plesk/Vhosts/gallant-driscoll.198-71-62-113.plesk.page/httpdocs/implementta/modulos/Tijuana-p/public/css/tablaResumen.css" rel="stylesheet">
