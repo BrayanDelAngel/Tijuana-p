@@ -223,7 +223,7 @@
                                         @error('ndeterminacion')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="ndeterminacion" name="ndeterminacion" value="{{ $item->Fecha_noti_d }}"
+                                            id="ndeterminacion" name="ndeterminacion" value="{{ $item->Fecha_remi_c }}"
                                             disabled>
                                         @error('ndeterminacion')
                                             <div class="text-danger text-center">
@@ -332,24 +332,13 @@
                         <table class="table table-hover table-sm table-dark my-4">
                             <thead class="table-dark text-center">
                                 <tr>
-                                    <th>DESCRIPCIÓN DE
-                                        CONCEPTO
-                                    </th>
-                                    <th>ADEUDO CONSUMO
-                                        DE AGUA Y ALCANTARILLADO
-                                    </th>
-                                    <th>RECARGOS
-                                    </th>
+                                    <th>DESCRIPCIÓN DE CONCEPTO</th>
+                                    <th>ADEUDO CONSUMODE AGUA Y ALCANTARILLADO</th>
+                                    <th>RECARGOS</th>
                                     <th>MULTAS</th>
-                                    <th>GASTOS
-                                        DE EJECUCIÓN
-                                    </th>
-                                    <th>SUSP. DEL SERVICIO
-                                        OTROS GASTOS
-                                    </th>
-                                    <th>CONV.
-                                        VENCIDOS
-                                    </th>
+                                    <th>GASTOSDE EJECUCIÓN</th>
+                                    <th>SUSP. DEL SERVICIOOTROS GASTOS</th>
+                                    <th>CONV.VENCIDOS</th>
                                     <th>IMPORTE TOTAL DEL ADEUDO</th>
                                 </tr>
                             </thead>
@@ -359,7 +348,7 @@
                                     <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
                                     <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
                                     <td>${{ number_format($item->multas, 2) }}</td>
-                                    <td>${{ number_format($item->gastos_ejecucion, 2) }}</td>
+                                    <td>${{ number_format($item->gastos_ejecución, 2) }}</td>
                                     <td>${{ number_format($item->otros_gastos, 2) }}</td>
                                     <td>${{ number_format($item->conv_vencido, 2) }}</td>
                                     <td>${{ $total_ar }}</td>

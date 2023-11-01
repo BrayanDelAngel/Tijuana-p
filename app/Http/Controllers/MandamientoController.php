@@ -150,20 +150,20 @@ class MandamientoController extends Controller
             'fecham' => ['required'],
             'notificacion' => ['required'],
             'sobrerecaudador' => ['required'],
-            'pagor' => ['required'],
+            /*'pagor' => ['required'],
             'totalr' => ['required'],
             'pagoe' => ['required'],
-            'totale' => ['required'],
+            'totale' => ['required'],*/
         ]);
-
+        
         //validar si esta cuenta ya tiene un mandamiento
         $count_r = DB::select('select count(id) as c from mandamientosA where id_r = ?', [$request->id]);
-        //si existe
+        //si existe 
         if (($count_r[0]->c) != 0) {
             //consultar el id del mandamiento
             $id = DB::select('select id from mandamientosA where id_r = ?', [$request->id]);
             //eliminamos los ejecutores existentes
-            $deleted = DB::delete('delete ejecutores_ma where id_m = ?', [$id[0]->id]);
+           // $deleted = DB::delete('delete ejecutores_ma where id_m = ?', [$id[0]->id]);
             //declaramos que se va a modificar el registro de requerimiento
             $r = mandamientosA::findOrFail($id[0]->id);
         }
@@ -173,40 +173,40 @@ class MandamientoController extends Controller
             //declaramos que se creara un nuevo registro en mandamientosA
             $r = new mandamientosA();
         }
-        $pagor = (float) str_replace(array('$', ','), '', $request->pagor);
+       /* $pagor = (float) str_replace(array('$', ','), '', $request->pagor);
         $totalr = (float) str_replace(array('$', ','), '', $request->totalr);
         $pagoe = (float) str_replace(array('$', ','), '', $request->pagoe);
-        $totale = (float) str_replace(array('$', ','), '', $request->totale);
+        $totale = (float) str_replace(array('$', ','), '', $request->totale);*/
         //guardamos los datos en requerimientosA
         $r->fecham = $request->fecham;
         $r->fechanr = $request->notificacion;
         $r->sobrerecaudador = $request->sobrerecaudador;
         $r->id_r = $request->id;
-        $r->pago_requerimiento = $pagor;
+       /* $r->pago_requerimiento = $pagor;
         $r->total_requerimiento = $totalr;
         $r->pago_embargo = $pagoe;
-        $r->total_embargo = $totale;
+        $r->total_embargo = $totale;*/
         $r->save();
 
         //validamos si se guardaron los datos
         if ($r->save()) {
             //consultamos su id
             $id = DB::select('select id from mandamientosA where id_r = ?', [$request->id]);
-            //recorremos el array de los ejecutores
-            for ($i = 0; $i < count($request->ejecutor); $i++) {
+           // dd(count($request->ejecutor)); //recorremos el array de los ejecutores
+            //for ($i = 0; $i < count($request->ejecutor); $i++) {
                 //declaramos que se hara un nuevo registro en ejecutores_ra
                 $e = new ejecutores_ma();
                 //Si el ejecutor es nulo se le agrega a la tabla none
-                if ($request->ejecutor[$i] == null) {
+                if ($request->ejecutor == null) {
                     $e->ejecutor = 'none';
                 }
                 //Si no se agrega el ejecutor recibido
                 else {
-                    $e->ejecutor = $request->ejecutor[$i];
+                    $e->ejecutor = $request->ejecutor;
                 }
                 $e->id_m = $id[0]->id;
                 $e->save();
-            }
+            //}
             //si se guardaron los datos retornamos el pdf
             if ($e->save()) {
 
