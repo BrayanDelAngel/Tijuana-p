@@ -289,7 +289,7 @@ class MandamientoController extends Controller
                 'multas',
                 'gastos_ejecución',
                 'conv_vencido',
-                'otros_gastos',
+                'otros_servicios',
                 'periodo',
                 'm.pago_requerimiento as pagor',
                 'm.total_requerimiento as totalr',
@@ -338,7 +338,7 @@ class MandamientoController extends Controller
         $multas = $datos[0]->multas;
         $gastos_ejecucion = $datos[0]->gastos_ejecución;
         $conv_vencido = $datos[0]->conv_vencido;
-        $otros_gastos = $datos[0]->otros_gastos;
+        $otros_gastos = $datos[0]->otros_servicios;
         //Informacion de la tabla generada del propietario
         $tabla = tabla_ma::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto'])
             ->where('cuenta', $datos[0]->cuenta)->where('estado', 0)->orderBy('meses', 'ASC')->get();
