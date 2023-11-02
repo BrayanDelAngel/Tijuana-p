@@ -130,7 +130,7 @@ class MandamientoController extends Controller
         //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + $date[0]->multas + $date[0]->gastos_ejecucion + $date[0]->conv_vencido + $date[0]->otros_gastos;
+        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + $date[0]->multas + $date[0]->gastos_ejecución + $date[0]->conv_vencido + $date[0]->otros_servicios;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal
