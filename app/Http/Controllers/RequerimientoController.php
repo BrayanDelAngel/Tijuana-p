@@ -213,7 +213,7 @@ class RequerimientoController extends Controller
             ->where('r.id', $id)
             ->get();
            
-        //obtenemos los datos de la tabla adeudo
+        //obtenemos los datos de la tabla adeudo-
        
         //convertivos la fecha en año para convertirlo en texto y concatenarlo con la fecha fd
         $formato = new NumeroALetras();
