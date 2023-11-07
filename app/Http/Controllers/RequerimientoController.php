@@ -234,7 +234,7 @@ class RequerimientoController extends Controller
                 $longitud = strlen($folio);
             }
         }
-        //convertiremos el total del adeudo requerido en letras--
+        //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
         $total_ar = $datos[0]->total;
