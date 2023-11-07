@@ -9,7 +9,7 @@ function eliminarfila(cuenta,meses){
         cancelButtonText: 'Cancelar',
       }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "/eliminarTablaD/" + cuenta+"/"+meses;
+            window.location.href = "https://gallant-driscoll.198-71-62-113.plesk.page/implementta/modulos/Tijuana-p/public/eliminarTablaD/" + cuenta+"/"+meses;
           Swal.fire(
             'Eliminado',
             'Se ha eliminado la fila',

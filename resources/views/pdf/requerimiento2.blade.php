@@ -185,9 +185,9 @@
                             <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
                             <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
                             <td>${{ number_format($item->multas, 2) }}</td>
-                            <td>${{ number_format($item->gastos_ejecucion, 2) }}</td>
-                            <td>${{ number_format($item->otros_gastos, 2) }}</td>
-                            <td>${{ number_format($item->conv_vencido, 2) }}</td>
+                            <td>${{ number_format($item->gastos_ejecución, 2) }}</td>
+                            <td>${{ number_format($item->otros_servicios, 2) }}</td>
+                            <td>${{ number_format($item->con_vencido, 2) }}</td>
                             <td>${{ $total }}</td>
                         </tr>
                         <tr>
@@ -278,9 +278,10 @@
                     <p class="text-center">
                         ______________________________________________
                         <br />
+                        <p>C. {{ $item->sobrerecaudador }} </p>
                         <span class="bold">
-                            EL C. {{ $item->sobrerecaudador }} SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA
-                            COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA.
+                            <br>SUBRECAUDADOR DE RENTAS DEL ESTADO ADSCRITO A LA
+                            COMISIÓN ESTATAL DE SERVICIOS PÚBLICOS DE TIJUANA
                         </span>
                     </p>
                 </div>

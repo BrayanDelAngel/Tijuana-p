@@ -19,8 +19,9 @@
 
                 @foreach ($date as $item)
                     <div class="row">
+                        {{-- hidden --}}
                         <input type="hidden" name="id_d" value="{{ $item->id }}">
-                        <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
+                        <div class="p-2 rounded-4 col-md-12" style=" background-color: #E8ECEF; border: inherit;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
                                         src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Datos
@@ -262,7 +263,7 @@
                             </div>
                         </div>
 
-                        <div class="p-2 rounded-4 col-md-4"
+                        {{-- <div class="p-2 rounded-4 col-md-4"
                             style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
@@ -295,34 +296,74 @@
 
                             </div>
                             <div id="contenedor"></div>
+                        </div> --}}
+                        <div class="p-2 rounded-4 mt-4" style=" background-color: #E8ECEF; border: inherit;">
+                            <div class="text-white m-2 align-items-end" style="text-align:right;">
+                                <span class="bg-danger rounded-2 p-2"><img
+                                        src="https://img.icons8.com/fluency/30/null/group.png" />
+                                    Ejecutores
+                                </span>
+                            </div>
+
+                            <div class="row align-items-start form-row">
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <div class="form-floating">
+                                            <textarea
+                                                class="form-control
+                                            @error('ejecutores')
+                                                border border-danger rounded-2
+                                            @enderror"
+                                                name="ejecutores" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ old(
+                                                    'ejecutores') }}</textarea>
+                                            @error('ejecutores')
+                                                <div class="text-danger text-center">
+                                                    El campo ejecutores es requerido
+                                                </div>
+                                            @enderror
+                                            <label for="floatingTextarea2">Ejecutores</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form form-group">
+                                        <div class="form-floating">
+                                            <textarea
+                                                class="form-control
+                                            @error('nombramiento')
+                                                border border-danger rounded-2
+                                            @enderror"
+                                                name="nombramiento" placeholder="Fecha de nombramiento" id="floatingTextarea2" style="height: 100px">{{ old(
+                                                    'nombramiento') }}</textarea>
+                                            @error('nombramiento')
+                                                <div class="text-danger text-center">
+                                                    El campo nombramiento es requerido
+                                                </div>
+                                            @enderror
+                                            <label for="floatingTextarea2">Fecha de nombramiento: </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                     <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
                         <div class="text-white m-2 align-items-end" style="text-align:right;">
                             <span class="bg-success rounded-2 p-2"><img
                                     src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Adeudo</span>
                         </div>
+                        
                         <table class="table table-hover table-sm table-dark my-2">
                             <thead class="table-dark text-center">
                                 <tr>
-                                    <th>DESCRIPCIÓN DE
-                                        CONCEPTO
-                                    </th>
-                                    <th>ADEUDO CONSUMO
-                                        DE AGUA Y ALCANTARILLADO
-                                    </th>
-                                    <th>RECARGOS
-                                    </th>
+                                    <th>DESCRIPCIÓN DE CONCEPTO</th>
+                                    <th>ADEUDO CONSUMO DE AGUA Y ALCANTARILLADO</th>
+                                    <th>RECARGOS</th>
                                     <th>MULTAS</th>
-                                    <th>GASTOS
-                                        DE EJECUCIÓN
-                                    </th>
-                                    <th>SUSP. DEL SERVICIO
-                                        OTROS GASTOS
-                                    </th>
-                                    <th>CONV.
-                                        VENCIDOS
-                                    </th>
+                                    <th>GASTOS DE EJECUCIÓN </th>
+                                    <th>SUSP. DEL SERVICIO OTROS GASTOS</th>
+                                    <th>CONV. VENCIDOS</th>
                                     <th>IMPORTE TOTAL DEL ADEUDO</th>
                                 </tr>
                             </thead>
@@ -330,13 +371,13 @@
 
                                 <tr>
                                     <td>Totales</td>
-                                    <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
-                                    <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
-                                    <td>${{ number_format($multas, 2) }}</td>
-                                    <td>${{ number_format($gastos_ejecucion, 2) }}</td>
-                                    <td>${{ number_format($item->otros_gastos, 2) }}</td>
-                                    <td>${{ number_format($item->conv_vencido, 2) }}</td>
-                                    <td>${{ $total_ar }}</td>
+                                    <td>$ {{ number_format(($item->rezago + $item->atraso + $item->corriente), 2) }}</td>
+                                    <td>$ {{ number_format($item->recargos_consumo, 2) }}</td>
+                                    <td>$ {{ number_format($item->multas, 2) }}</td>
+                                    <td>$ {{ $gastos_ejecucion }}</td>
+                                    <td>$ {{ $otros_gastos }}</td>
+                                    <td>$ {{ $conv_vencido }}</td>
+                                    <td>$ {{ $total_ar }}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center"> Total del adeudo requerido</td>

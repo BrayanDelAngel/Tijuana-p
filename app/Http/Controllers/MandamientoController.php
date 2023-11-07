@@ -107,8 +107,14 @@ class MandamientoController extends Controller
                     'multas',
                     'gastos_ejecución',
                     'conv_vencido',
-                    'otros_gastos',
+                    'otros_servicios',
                     'saldo_total as total',
+                    'r.ejecutores',
+                    'r.nombramiento',
+                    'recargos_consumo',
+                    'rezago',
+                    'atraso',
+                    'corriente'
                 ]
             )
             ->where('determinacionesA.cuenta', $cuenta)
@@ -128,7 +134,7 @@ class MandamientoController extends Controller
         //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + $date[0]->multas + $date[0]->gastos_ejecucion + $date[0]->conv_vencido + $date[0]->otros_gastos;
+        $total_ar = ($date[0]->rezago + $date[0]->atraso + $date[0]->corriente )+ $date[0]->recargos_consumo + $date[0]->multas + $date[0]->gastos_ejecución + $date[0]->conv_vencido + $date[0]->otros_servicios;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal
@@ -150,20 +156,22 @@ class MandamientoController extends Controller
             'fecham' => ['required'],
             'notificacion' => ['required'],
             'sobrerecaudador' => ['required'],
-            'pagor' => ['required'],
+            'ejecutores' =>  ['required'],
+            'nombramiento' =>  ['required'],
+            /*'pagor' => ['required'],
             'totalr' => ['required'],
             'pagoe' => ['required'],
-            'totale' => ['required'],
+            'totale' => ['required'],*/
         ]);
-
+        
         //validar si esta cuenta ya tiene un mandamiento
         $count_r = DB::select('select count(id) as c from mandamientosA where id_r = ?', [$request->id]);
-        //si existe
+        //si existe 
         if (($count_r[0]->c) != 0) {
             //consultar el id del mandamiento
             $id = DB::select('select id from mandamientosA where id_r = ?', [$request->id]);
             //eliminamos los ejecutores existentes
-            $deleted = DB::delete('delete ejecutores_ma where id_m = ?', [$id[0]->id]);
+           // $deleted = DB::delete('delete ejecutores_ma where id_m = ?', [$id[0]->id]);
             //declaramos que se va a modificar el registro de requerimiento
             $r = mandamientosA::findOrFail($id[0]->id);
         }
@@ -173,40 +181,43 @@ class MandamientoController extends Controller
             //declaramos que se creara un nuevo registro en mandamientosA
             $r = new mandamientosA();
         }
-        $pagor = (float) str_replace(array('$', ','), '', $request->pagor);
+       /* $pagor = (float) str_replace(array('$', ','), '', $request->pagor);
         $totalr = (float) str_replace(array('$', ','), '', $request->totalr);
         $pagoe = (float) str_replace(array('$', ','), '', $request->pagoe);
-        $totale = (float) str_replace(array('$', ','), '', $request->totale);
+        $totale = (float) str_replace(array('$', ','), '', $request->totale);*/
         //guardamos los datos en requerimientosA
         $r->fecham = $request->fecham;
         $r->fechanr = $request->notificacion;
         $r->sobrerecaudador = $request->sobrerecaudador;
         $r->id_r = $request->id;
-        $r->pago_requerimiento = $pagor;
+        $r->ejecutores = $request->ejecutores;
+        $r->nombramiento = $request->nombramiento;
+        
+       /* $r->pago_requerimiento = $pagor;
         $r->total_requerimiento = $totalr;
         $r->pago_embargo = $pagoe;
-        $r->total_embargo = $totale;
+        $r->total_embargo = $totale;*/
         $r->save();
 
         //validamos si se guardaron los datos
         if ($r->save()) {
             //consultamos su id
             $id = DB::select('select id from mandamientosA where id_r = ?', [$request->id]);
-            //recorremos el array de los ejecutores
-            for ($i = 0; $i < count($request->ejecutor); $i++) {
+           // dd(count($request->ejecutor)); //recorremos el array de los ejecutores
+            //for ($i = 0; $i < count($request->ejecutor); $i++) {
                 //declaramos que se hara un nuevo registro en ejecutores_ra
                 $e = new ejecutores_ma();
                 //Si el ejecutor es nulo se le agrega a la tabla none
-                if ($request->ejecutor[$i] == null) {
+                if ($request->ejecutor == null) {
                     $e->ejecutor = 'none';
                 }
                 //Si no se agrega el ejecutor recibido
                 else {
-                    $e->ejecutor = $request->ejecutor[$i];
+                    $e->ejecutor = $request->ejecutor;
                 }
                 $e->id_m = $id[0]->id;
                 $e->save();
-            }
+            //}
             //si se guardaron los datos retornamos el pdf
             if ($e->save()) {
 
@@ -282,7 +293,7 @@ class MandamientoController extends Controller
                 'multas',
                 'gastos_ejecución',
                 'conv_vencido',
-                'otros_gastos',
+                'otros_servicios',
                 'periodo',
                 'm.pago_requerimiento as pagor',
                 'm.total_requerimiento as totalr',
@@ -293,14 +304,22 @@ class MandamientoController extends Controller
                 'r.tipo_s',
                 'fecham as fecha_converter',
                 'fechand as fecha_converternd',
+                'r.ejecutores',
+                'r.nombramiento',
+                'recargos_consumo',
+                'rezago',
+                'atraso',
+                'corriente',
                 DB::raw("format(fechad,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechad"),
-                DB::raw("format(fecham,'dd'' de ''MMMM'' de ''yyyy','es-es') as fecham"),
+                DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
+                DB::raw("format(fecham,'dd'' dias del mes de ''MMMM'' del año ''yyyy','es-es') as fecham"),
                 DB::raw("format(fechanr,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechanr"),
-                DB::raw("format(fechand,'dd'' del mes de ''MMMM','es-es') as fechand2"),
-                DB::raw("format(fecham,'dd'' del mes de ''MMMM','es-es') as fecham2")
+                DB::raw("format(fechand,'dd'' del mes de ''MMMM'' del ''yyyy','es-es') as fechand2"),
+                DB::raw("format(fecham,'dd'' dias del mes de ''MMMM','es-es') as fecham2")
             )
             ->where('m.id', $id)
             ->get();
+        
         //Obteniendo datos que no se pueden visualizar en el pdf por medio del foreach
         $sobrerecaudador = $datos[0]->sobrerecaudador;
         $pagor = $datos[0]->pagor;
@@ -320,11 +339,14 @@ class MandamientoController extends Controller
         $conversion2 = $formato->toString($aniond);
         //Concatenando la fecha
         $fechamanda = $datos[0]->fecham2 . ' del ' . mb_strtolower(substr($conversion, 0, -1), "UTF-8");
-        $fechadeterminacion = $datos[0]->fechand2 . ' del ' . mb_strtolower(substr($conversion2, 0, -1), "UTF-8");
+        $fecharequi = $datos[0]->fechar;
+        $fechanr = $datos[0]->fechanr;
+        // $fechadeterminacion = $datos[0]->fechand2 . ' del ' . mb_strtolower(substr($conversion2, 0, -1), "UTF-8");
+        $fechadeterminacion = $datos[0]->fechand2 ;
         $multas = $datos[0]->multas;
         $gastos_ejecucion = $datos[0]->gastos_ejecución;
         $conv_vencido = $datos[0]->conv_vencido;
-        $otros_gastos = $datos[0]->otros_gastos;
+        $otros_gastos = $datos[0]->otros_servicios;
         //Informacion de la tabla generada del propietario
         $tabla = tabla_ma::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto'])
             ->where('cuenta', $datos[0]->cuenta)->where('estado', 0)->orderBy('meses', 'ASC')->get();
@@ -348,7 +370,7 @@ class MandamientoController extends Controller
         //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + $datos[0]->multas + $datos[0]->gastos_ejecucion + $datos[0]->conv_vencido + $datos[0]->otros_gastos;
+        $total_ar = ($datos[0]->rezago + $datos[0]->atraso + $datos[0]->corriente )+ $datos[0]->recargos_consumo + $datos[0]->multas + $datos[0]->gastos_ejecución + $datos[0]->conv_vencido + $datos[0]->otros_servicios;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal
@@ -357,36 +379,13 @@ class MandamientoController extends Controller
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
-        //Obtenemos los ejecutores
-        $ejecutores = mandamientosA::join('ejecutores_ma as e', 'e.id_m', '=', 'mandamientosA.id')->select('ejecutor')->where('id', $id)->get();
-        //Conteo del total de ejecutores
-        $count_ejecutor = mandamientosA::join('ejecutores_ma as e', 'e.id_m', '=', 'mandamientosA.id')->select('ejecutor')->where('id', $id)->count();
-        //Formateando ejecutores
-        $ejecutoresformat = '';
-        //Se he un recorrido
-        for ($i = 0; $i < $count_ejecutor; $i++) {
-            if ($ejecutores[$i]->ejecutor != 'none') {
-                //si el ultimo dato
-                if ($i == ($count_ejecutor - 1)) {
-                    // en el amcomulador se le agrega un Y
-                    $ejecutoresformat = $ejecutoresformat . ' y ' . $ejecutores[$i]->ejecutor;
-                } else if ($i == ($count_ejecutor - 2)) {
-                    // si es el penultimo no se le agrega el ','
-                    $ejecutoresformat = $ejecutoresformat . $ejecutores[$i]->ejecutor . '';
-                } else {
-                    // si no re acomulan los años y se les agrega las ','
-                    $ejecutoresformat = $ejecutoresformat . $ejecutores[$i]->ejecutor . ',';
-                }
-            } else {
-                $ejecutoresformat = 'none';
-            }
-        }
+        
          //Contador de meses
          $i=0;
          $cr = tabla_ma::select('cuenta')->where('cuenta', $datos[0]->cuenta)->count();
-        $condicion_firma=firmaMandamiento($cr);
+        // $condicion_firma=firmaMandamiento($cr);
         //si esta bien 
-        if($condicion_firma!=1){
+        // if($condicion_firma!=1){
             $pdf = Pdf::loadView('pdf.mandamiento', [
                 'tabla' => $tabla,
                 'items' => $datos,
@@ -395,13 +394,14 @@ class MandamientoController extends Controller
                 'totales' => $totales,
                 't_adeudor' => $t_adeudo_t,
                 'tar' => $tar,
-                'ejecutores' => $ejecutoresformat,
                 'multas' => $multas,
                 'gastos_ejecucion' => $gastos_ejecucion,
                 'conv_vencido' => $conv_vencido,
                 'otros_gastos' => $otros_gastos,
                 'total_ar' => number_format($total_ar, 2),
                 'fechamanda' => $fechamanda,
+                'fecharequi' => $fecharequi,
+                'fechanr' => $fechanr,
                 'fechadeterminacion' => $fechadeterminacion,
                 'sobrerecaudador' => $sobrerecaudador,
                 'pagor' => $pagor,
@@ -409,35 +409,36 @@ class MandamientoController extends Controller
                 'pagoe' => $pagoe,
                 'totale' => $totale,
                 'i'=>$i,
+                
             ]);
             
-        }
+        // }
         //Si no 
-        else{
-            $pdf = Pdf::loadView('pdf.mandamiento_firma', [
-                'tabla' => $tabla,
-                'items' => $datos,
-                'folio' => $folio,
-                't_adeudo_t' => $t_adeudo_t,
-                'totales' => $totales,
-                't_adeudor' => $t_adeudo_t,
-                'tar' => $tar,
-                'ejecutores' => $ejecutoresformat,
-                'multas' => $multas,
-                'gastos_ejecucion' => $gastos_ejecucion,
-                'conv_vencido' => $conv_vencido,
-                'otros_gastos' => $otros_gastos,
-                'total_ar' => number_format($total_ar, 2),
-                'fechamanda' => $fechamanda,
-                'fechadeterminacion' => $fechadeterminacion,
-                'sobrerecaudador' => $sobrerecaudador,
-                'pagor' => $pagor,
-                'totalr' => $totalr,
-                'pagoe' => $pagoe,
-                'totale' => $totale,
-                'i'=>$i,
-            ]);
-        }
+        // else{
+        //     $pdf = Pdf::loadView('pdf.mandamiento_firma', [
+        //         'tabla' => $tabla,
+        //         'items' => $datos,
+        //         'folio' => $folio,
+        //         't_adeudo_t' => $t_adeudo_t,
+        //         'totales' => $totales,
+        //         't_adeudor' => $t_adeudo_t,
+        //         'tar' => $tar,
+        //         'ejecutores' => $ejecutoresformat,
+        //         'multas' => $multas,
+        //         'gastos_ejecucion' => $gastos_ejecucion,
+        //         'conv_vencido' => $conv_vencido,
+        //         'otros_gastos' => $otros_gastos,
+        //         'total_ar' => number_format($total_ar, 2),
+        //         'fechamanda' => $fechamanda,
+        //         'fechadeterminacion' => $fechadeterminacion,
+        //         'sobrerecaudador' => $sobrerecaudador,
+        //         'pagor' => $pagor,
+        //         'totalr' => $totalr,
+        //         'pagoe' => $pagoe,
+        //         'totale' => $totale,
+        //         'i'=>$i,
+        //     ]);
+        // }
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();

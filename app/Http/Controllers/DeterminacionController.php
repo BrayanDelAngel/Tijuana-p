@@ -14,6 +14,8 @@ use Carbon\Carbon;
 use App\Http\Requests\TablaModalRequest;
 use App\Models\interesesCuentaModel;
 use App\Models\cobranzaExternaHistoricos;
+use App\Models\ejecutores_da;
+
 class DeterminacionController extends Controller
 {
     public function exec($cuenta)
@@ -66,7 +68,7 @@ class DeterminacionController extends Controller
         if ($date[0]->Giro != 'NULL' || $date[0]->Giro != '' || $date[0]->Giro != null) {
             $giro = $date[0]->Giro;
         }
-        $folios = determinacionesA::select(['folio', 'cuenta','anio'])->orderBy('anio', 'DESC')->orderBy('folio', 'DESC')->get();
+        $folios = determinacionesA::select(['folio', 'cuenta', 'anio'])->orderBy('anio', 'DESC')->orderBy('folio', 'DESC')->get();
         //validamos el tipo de servicio
         if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL") {
             $ts = 'DOMESTICO';
@@ -82,22 +84,22 @@ class DeterminacionController extends Controller
         } else {
             $folio = 0;
         }
-        
+
         //obtenemos los datos de la tabla de resumen
         $t_adeudo = tabla_da::select(['sumaTarifas', 'saldoIvaCor', 'saldoAtraso', 'saldoRezago', 'RecargosAcumulados'])
-            ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();        
+            ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
         //obtenemos el periodo en el    ue se esta evaluando
         //se cincatena la fecha maxima y minima
         $periodo = DB::select("select concat((select format(min(fechavto),'dd'' de ''MMMM'' de ''yyyy','es-es')), ' al ' ,(select format(max(fechavto),'dd'' de ''MMMM'' de ''yyyy','es-es'))) as periodo from cobranzaExternaHistoricosWS3 where cuentaImplementta=?", [$cuenta]);
         //Consulta del  distrito
-        $distrito=consultDistrito($cuenta);
-        $distritos=DB::select('select id_distrito, distrito from catalago_distrito where id_distrito not in (:id)',[':id'=>$distrito->id_distrito]);
+        $distrito = consultDistrito($cuenta);
+        $distritos = DB::select('select id_distrito, distrito from catalago_distrito where id_distrito not in (:id)', [':id' => $distrito->id_distrito]);
         //Informacion de la tabla generada del propietario
         $tabla = tabla_da::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto', 'cuenta'])
             ->where('cuenta', $cuenta)->where('estado', 0)->orderBy('meses', 'ASC')->paginate(20);
         //consultamos la tabla abla_interesesCuenta que inserto el helper webServiceInteresesCuenta
-        $intereses=interesesCuentaModel::select('NoCta','RecargosConvenio','SaldoConvObra','RecargosContrato','SdoConvAgua','GastosEjec','Multas')->where('NoCta',$cuenta)->first();
-        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro, 'items' => $tabla,'intereses'=>$intereses,'distrito'=>$distrito,'distritos'=>$distritos]);
+        $intereses = interesesCuentaModel::select('NoCta', 'RecargosConvenio', 'SaldoConvObra', 'RecargosContrato', 'SdoConvAgua', 'GastosEjec', 'Multas')->where('NoCta', $cuenta)->first();
+        return view('components.formDeterminacion', ['date' => $date, 'folio' => $folio, 'periodo' => $periodo, 'ts' => $ts, 't_adeudo' => $t_adeudo, 'folios' => $folios, 'giro' => $giro, 'items' => $tabla, 'intereses' => $intereses, 'distrito' => $distrito, 'distritos' => $distritos]);
     }
     public function store(Request $request)
     {
@@ -130,6 +132,12 @@ class DeterminacionController extends Controller
         if (($count_d[0]->c) != 0) {
             //consultar el id de la determinacion
             $id = DB::select('select id from determinacionesA where cuenta = ?', [$request->cuenta]);
+            //Conteo del total de ejecutores
+            $count_ejecutor = determinacionesA::join('ejecutores_da as e', 'e.id_d', '=', 'determinacionesA.id')->select('ejecutor')->where('id', $id[0]->id)->count();
+            if ($count_ejecutor != 0) {
+                //Eliminar los ejecutores
+                $ejecutores_da = ejecutores_da::where('id_d', $id[0]->id)->delete();
+            }
             //declaramos que se va a modificar el registro de la determinacion
             $r = determinacionesA::findOrFail($id[0]->id);
             //validamos que si el oficio es diferente al que inserto que sea unico
@@ -146,7 +154,7 @@ class DeterminacionController extends Controller
             $request->validate([
                 'folio' => ['unique_with:determinacionesA,folio,anio'],
             ]);
-            //declaramos que se creara un nuevo registro en requerimientosA
+            //declaramos que se creara un nuevo registro en determinacionesA
             $r = new determinacionesA();
         }
         //Se consulta el distrito para insertar su id 
@@ -202,20 +210,38 @@ class DeterminacionController extends Controller
 
             //consultamos el id de la determinacion en base a la cuenta
             $id = DB::select('select id from determinacionesA where cuenta = ?', [$request->cuenta]);
-            //retirnamos al pdf y le pasamos la cuenta
-            return '<script type="text/javascript">window.open("PDFDeterminacion/' . $id[0]->id . '")</script>' .
-            redirect()->action(
-                [IndexController::class, 'index']
-            );
+            //recorremos el array de los ejecutores
+            for ($i = 0; $i < count($request->ejecutor); $i++) {
+                //declaramos que se hara un nuevo registro en ejecutores_ra
+                $e = new ejecutores_da();
+                //Si el ejecutor es nulo se le agrega a la tabla none 
+                if ($request->ejecutor[$i] == null) {
+                    $e->ejecutor = 'none';
+                }
+                //Si no se agrega el ejecutor recibido 
+                else {
+                    $e->ejecutor = $request->ejecutor[$i];
+                }
+                $e->id_d = $id[0]->id;
+                $e->save();
+            }
+            //si se guardaron los datos retornamos el pdf
+            if ($e->save()) {
+                //retirnamos al pdf y le pasamos la cuenta
+                return '<script type="text/javascript">window.open("PDFDeterminacion/' . $id[0]->id . '")</script>' .
+                    redirect()->action(
+                        [IndexController::class, 'index']
+                    );
+            }
         } else {
             return back()->with('errorPeticion', 'Error al generar');
         }
     }
     public function update(TablaModalRequest $request)
     {
-        
+
         $data = $request->validated();
-       $actualizado= DB::update('
+        $actualizado = DB::update('
         UPDATE [dbo].[tabla_da]
         SET [lecturaFacturada] = ?
       ,[periodo] = ?
@@ -233,7 +259,7 @@ class DeterminacionController extends Controller
         ', [
             $request->lecturaFacturadaT,
             $request->periodoT,
-            convertDate( $request->fecha_vtoT),
+            convertDate($request->fecha_vtoT),
             floatval($request->tarifa1T),
             $request->sumaTarifasT,
             floatval($request->factorT),
@@ -246,14 +272,14 @@ class DeterminacionController extends Controller
             $request->cuentaT,
             $request->mesesT,
         ]);
-        if($actualizado){
+        if ($actualizado) {
             return back()->with('actualizado', 'Se actualizaron los datos correctamente');
-        }
-        else{
+        } else {
             return back()->with('errorActualizarTabla', 'Error al actualizar los datos');
         }
     }
-    public function delete ($cuenta, $meses ){
+    public function delete($cuenta, $meses)
+    {
         DB::delete('update [dbo].[tabla_da]
         SET [estado]=1 where cuenta = ? and meses=?', [$cuenta, $meses]);
         return back();
@@ -326,14 +352,16 @@ class DeterminacionController extends Controller
         //obtenemos los datos de la tabla de resumen
         $t_adeudo = tabla_da::select(['sumaTarifas', 'saldoIvaCor', 'saldoAtraso', 'saldoRezago', 'RecargosAcumulados', 'totalPeriodo'])
             ->where('cuenta', $cuenta->cuenta)->orderBy('meses', 'ASC')->first();
-        $total_ar = $t_adeudo->totalPeriodo +
-        $t_adeudo->RecargosAcumulados +
-        $data->convenio_agua +
-        $data->recargos_convenio_agua +
-        $data->convenio_obra +
-        $data->recargos_convenio_obra +
-        $data->gastos_ejecución +
-        $data->otros_gastos;
+        $total_ar =
+            // $t_adeudo->totalPeriodo +
+            // $data->recargos_consumo +
+            // $data->convenio_agua +
+            // $data->recargos_convenio_agua +
+            // $data->convenio_obra +
+            // $data->recargos_convenio_obra +
+            // $data->gastos_ejecución +
+            // $data->otros_gastos
+            $data->saldo_total;
         // dd($total_ar);
         //convertiremos los recargos acumulados a texto
         $formatter = new NumeroALetras();
@@ -353,30 +381,79 @@ class DeterminacionController extends Controller
         //convertimos en texto el entero
         $texto_entero2 = $formatter->toMoney($entero2);
         //concatenamos para obtener todo el texto
-        $entero3 = floor($t_adeudo->RecargosAcumulados);
+        $entero3 = floor($data->recargos_consumo);
         //extraemos el decimal
-        $decimal3 = round($t_adeudo->RecargosAcumulados - $entero3, 2) * 100;
+        $decimal3 = round($data->recargos_consumo - $entero3, 2) * 100;
         //convertimos en texto el entero
         $texto_entero3 = $formatter->toMoney($entero3);
         //Contador de meses
-        $i=0;
+        $i = 0;
         //concatenamos para obtener todo el texto
-        $ra = '$' . number_format($t_adeudo->RecargosAcumulados, 2) . '**(' . $texto_entero3 . ' ' . $decimal3 . '/100 M.N.)**';
+        $ra = '$' . number_format($data->recargos_consumo, 2) . '**(' . $texto_entero3 . ' ' . $decimal3 . '/100 M.N.)**';
         $tp = '$' . number_format($t_adeudo->totalPeriodo, 2) . '**(' . $texto_entero2 . ' ' . $decimal2 . '/100 M.N.)**';
         //contamos cuantos registros tiene esta cuenta en la tabla_da
-        $cr = tabla_da::select('cuenta')->where('cuenta', $data->cuenta)->count();
+        // $cr = tabla_da::select('cuenta')->where('cuenta', $data->cuenta)->count();
         // $condicion_firma=firma($cr);
-        $IDdistrito=$data->id_distrito;
+        $IDdistrito = $data->id_distrito;
+
+        //Obtenemos los ejecutores
+        $ejecutores = determinacionesA::join('ejecutores_da as e', 'e.id_d', '=', 'determinacionesA.id')->select('ejecutor')->where('id', $id)->get();
+        // Conteo del total de ejecutores
+        $count_ejecutor = determinacionesA::join('ejecutores_da as e', 'e.id_d', '=', 'determinacionesA.id')->select('ejecutor')->where('id', $id)->count();
+
+        // Formateando ejecutores
+        $ejecutoresformat = '';
+
+        if ($count_ejecutor > 0) {
+            // Recorriendo los ejecutores
+            for ($i = 0; $i < $count_ejecutor; $i++) {
+                if ($ejecutores[$i]->ejecutor != 'none') {
+                    if ($i == ($count_ejecutor - 1)) {
+                        if ($count_ejecutor > 1) {
+                            $ejecutoresformat .= ' y ' . $ejecutores[$i]->ejecutor;
+                        } else {
+                            $ejecutoresformat .= $ejecutores[$i]->ejecutor;
+                        }
+                    } else if ($i == ($count_ejecutor - 2)) {
+                        $ejecutoresformat .= $ejecutores[$i]->ejecutor;
+                    } else {
+                        $ejecutoresformat .= $ejecutores[$i]->ejecutor . ', ';
+                    }
+                } else {
+                    $ejecutoresformat = 'none';
+                    break; // Salir del bucle si se encuentra "none"
+                }
+            }
+
+            // Validar si es un solo ejecutor o varios
+            if ($count_ejecutor > 1) {
+                $ejecutoresformat = 'C.C. ' . $ejecutoresformat;
+            } else {
+                $ejecutoresformat = 'C. ' . $ejecutoresformat;
+            }
+        } else {
+            $ejecutoresformat = 'none';
+        }
+        // Separar la cadena en segmentos utilizando el delimitador ";" para el domiclio
+        $rawSegments = explode(";", $data->domicilio);
+        $segmentos = [];
+
+        // Limpiar y formatear los segmentos
+        foreach ($rawSegments as $rawSegment) {
+            $cleanedSegment = trim(preg_replace('/\s+/', ' ', $rawSegment));
+            if ($cleanedSegment) {
+                $segmentos[] = $cleanedSegment;
+            }
+        }
         // if($condicion_firma!=1){
-            $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i,'IDdistrito'=>$IDdistrito]);
+        $pdf = Pdf::loadView('pdf.determinacion', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat, 'i' => $i, 'IDdistrito' => $IDdistrito, 'ejecutores' => $ejecutoresformat, 'segmentos' => $segmentos]);
         // }
         // else{
         //     $pdf = Pdf::loadView('pdf.determinacion_firma', ['items' => $tabla, 'cuenta' => $cuenta->cuenta, 'ra' => $ra, 't_adeudo' => $t_adeudo, 'total_ar' => $total_ar, 'tar' => $tar, 'data' => $data, 'tp' => $tp, 'folio' => $folio, 'años' => $años, 'anioformat' => $anioformat,'i'=>$i,'IDdistrito'=>$IDdistrito]);
         // }
-        
+
         // setPaper('')->
         //A4 -> carta
         return $pdf->stream();
     }
-    
 }

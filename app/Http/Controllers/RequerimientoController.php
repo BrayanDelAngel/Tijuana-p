@@ -40,7 +40,7 @@ class RequerimientoController extends Controller
             //en caso que ya tiene una determinacion
             else {
                 //consultamos los datos para la tabla
-                $sql = cobranzaExternaHistoricos::select(['NoCta', 'anio', 'mes'])->where('NoCta', $cuenta)->orderBy('anio', 'ASC')->get();
+                // $sql = cobranzaExternaHistoricos::select(['NoCta', 'anio', 'mes'])->where('NoCta', $cuenta)->orderBy('anio', 'ASC')->get();
                 //consultamos el id de la determinacion
                 $id = DB::select('select id from determinacionesA where cuenta = ?', [$cuenta]);
                 //consultamos los datos de la tabla de determinacion
@@ -53,26 +53,38 @@ class RequerimientoController extends Controller
                     'cuenta as Cuenta',
                     'multas',
                     'gastos_ejecución',
-                    'conv_vencido',
-                    'otros_gastos',
+                    DB::raw('(convenio_agua+recargos_convenio_agua+convenio_obra+recargos_convenio_obra) as con_vencido'),
+                    'otros_servicios',
                     'saldo_total as total',
                     'fechad',
                     'id',
                     'periodo',
-                    'tipo_s as TipoServicio'
+                    'tipo_s as TipoServicio',
+                    'recargos_consumo',
+                    'rezago',
+                    'atraso',
+                    'corriente'
                 )
                     ->where('id', $id[0]->id)
                     ->get();
+                $recargos = $date[0]->recargos_consumo;
+                $rezago = $date[0]->rezago;
+                $atraso = $date[0]->atraso;
+                $corriente = $date[0]->corriente;
+
                 $multas = $date[0]->multas;
-                $gastos_ejecucion = $date[0]->gastos_ejecucion;
-                $conv_vencido = $date[0]->conv_vencido;
-                $otros_gastos = $date[0]->otros_gastos;
+                $gastos_ejecucion = $date[0]->gastos_ejecución;
+                $conv_vencido = $date[0]->con_vencido;
+                $otros_gastos = $date[0]->otros_servicios;// se cambio el item -> otros_gastos a otros servicios, lo demas sigue igual
+                
                 //obtenemos los datos de la tabla adeudo
                 $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
                     ->where('cuenta', $cuenta)->orderBy('meses', 'ASC')->first();
-                $tipos = implementta::select('TipoServicio')
-                    ->where('implementta.Cuenta', $cuenta)
-                    ->get();
+                // $tipos = implementta::select('TipoServicio')
+                //     ->where('implementta.Cuenta', $cuenta)
+                //     ->get();
+             
+                
                 //validamos el tipo de servicio
                 if ($date[0]->TipoServicio == "R" || $date[0]->TipoServicio == "RESIDENCIAL"|| $date[0]->TipoServicio == "DOMESTICO") {
                     $ts = 'DOMESTICO';
@@ -88,7 +100,7 @@ class RequerimientoController extends Controller
                         $longitud = strlen($folio);
                     }
                 }
-                $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + number_format($date[0]->multas, 2) + $date[0]->gastos_ejecucion + $date[0]->conv_vencido + $date[0]->otros_gastos;
+                $total_ar = ($rezago + $atraso + $corriente) + $recargos + number_format($multas, 2) + $gastos_ejecucion + $conv_vencido + $otros_gastos;
                 //extraemos el entero
                 $entero = floor($total_ar);
                 //extraemos el decimal
@@ -104,12 +116,16 @@ class RequerimientoController extends Controller
                     'folio' => $folio,
                     'ts' => $ts,
                     'multas' => $multas,
-                    'gastos_ejecucion' => $gastos_ejecucion,
-                    'conv_vencido' => $conv_vencido,
-                    'otros_gastos' => $otros_gastos,
-                    't_adeudo_t' => $t_adeudo_t,
+                    'gastos_ejecucion' => number_format($gastos_ejecucion, 2),
+                    'conv_vencido' => number_format($conv_vencido, 2),
+                    'otros_gastos' => number_format($otros_gastos, 2),
+                    't_adeudo_t' => $t_adeudo_t, 
                     'total_ar' => number_format($total_ar, 2),
                     'tar' => $tar,
+                    'recargos_consumo' =>  number_format($recargos, 2),
+                    'rezago' =>  number_format($rezago, 2),
+                    'atraso' =>  number_format($atraso, 2),
+                    'corriente' =>  number_format($corriente, 2),
                 ]);
             }
         }
@@ -121,6 +137,8 @@ class RequerimientoController extends Controller
             'tservicio' =>  ['required'],
             'notificacion' =>  ['required'],
             'sobrerecaudador' =>  ['required'],
+            'ejecutores' =>  ['required'],
+            'nombramiento' =>  ['required'],
         ]);
         //validar si esta cuenta ya tiene un requerimiento
         $validar = requerimientosA::join('determinacionesA as d', 'requerimientosA.id_d', '=', 'd.id')
@@ -131,8 +149,6 @@ class RequerimientoController extends Controller
         if ($validar != 0) {
             //consultar el id del requerimiento
             $id = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
-            //eliminamos los ejecutores existentes
-            $ejecutores_ra = ejecutores_ra::where('id_r', $id->id)->delete();
             //declaramos que se va a modificar el registro de requerimiento
             $r = requerimientosA::findOrFail($id->id);
         }
@@ -147,37 +163,24 @@ class RequerimientoController extends Controller
         $r->fechand = $request->notificacion;
         $r->sobrerecaudador = $request->sobrerecaudador;
         $r->tipo_s = $request->tservicio;
+        $r->ejecutores = $request->ejecutores;
+        $r->nombramiento = $request->nombramiento;
         $r->save();
         //validamos si se guardaron los datos
         if ($r->save()) {
+           
             //consultamos su id
             $requirimiento = requerimientosA::select('id')->where('id_d', $request->id_d)->first();
             $id = $requirimiento->id;
+            
 
-            //recorremos el array de los ejecutores
-            for ($i = 0; $i < count($request->ejecutor); $i++) {
-                //declaramos que se hara un nuevo registro en ejecutores_ra
-                $e = new ejecutores_ra();
-                //Si el ejecutor es nulo se le agrega a la tabla none 
-                if ($request->ejecutor[$i] == null) {
-                    $e->ejecutor = 'none';
-                }
-                //Si no se agrega el ejecutor recibido 
-                else {
-                    $e->ejecutor = $request->ejecutor[$i];
-                }
-                $e->id_r = $id;
-                $e->save();
-            }
             //si se guardaron los datos retornamos el pdf
-            if ($e->save()) {
+            
                 return '<script type="text/javascript">window.open("PDFRequerimiento/' . $id . '")</script>' .
                     redirect()->action(
                         [IndexController::class, 'index']
                     );
-            } else {
-                return back()->with('errorPeticion', 'Error al generar');
-            }
+            
         } else {
             return back()->with('errorPeticion', 'Error al generar');
         }
@@ -189,26 +192,29 @@ class RequerimientoController extends Controller
         //Consulta de la determinacion y del requerimiento
         $datos = determinacionesA::join('requerimientosA as r', 'r.id_d', '=', 'determinacionesA.id')
             ->select([
-                'r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM','es-es') as fechad"),
+                'r.id', 'folio', DB::raw("format(fechad,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechad"),
                 'cuenta', 'propietario', 'domicilio', 'clavec', 'r.tipo_s as tipo_s', 'seriem', 'razons', 'periodo', 'fechand',
                 DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
                 DB::raw("format(fechar,'dd'' días del mes de ''MMMM'' del año ''yyyy','es-es') as fechar2"),
-                DB::raw(
-                    "format(fechand,'dd'' de ''MMMM','es-es') as fd",
-                    'id_d'
-                ),
+                DB::raw("format(fechand,'dd'' de ''MMMM','es-es') as fd",'id_d'),
                 'multas',
                 'gastos_ejecución',
-                'conv_vencido',
-                'otros_gastos',
+                DB::raw('(convenio_agua+recargos_convenio_agua+convenio_obra+recargos_convenio_obra) as con_vencido'),
+                'recargos_consumo',
+                'rezago',
+                'atraso',
+                'corriente',
+                'otros_servicios',
                 'saldo_total as total',
-                'sobrerecaudador'
+                'sobrerecaudador',
+                'r.ejecutores',
+                'r.nombramiento'
             ])
             ->where('r.id', $id)
             ->get();
+           
         //obtenemos los datos de la tabla adeudo
-        $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
-            ->where('cuenta', $datos[0]->cuenta)->orderBy('meses', 'ASC')->first();
+       
         //convertivos la fecha en año para convertirlo en texto y concatenarlo con la fecha fd
         $formato = new NumeroALetras();
         //Convirtiendo la fecha en fecha corta
@@ -228,10 +234,10 @@ class RequerimientoController extends Controller
                 $longitud = strlen($folio);
             }
         }
-        //convertiremos el total del adeudo requerido en letras
+        //convertiremos el total del adeudo requerido en letras--
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + number_format($datos[0]->multas, 2) + $datos[0]->gastos_ejecucion + $datos[0]->conv_vencido + $datos[0]->otros_gastos;
+        $total_ar = $datos[0]->total;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal
@@ -240,32 +246,9 @@ class RequerimientoController extends Controller
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
-        //Obtenemos los ejecutores
-        $ejecutores = requerimientosA::join('ejecutores_ra as e', 'e.id_r', '=', 'requerimientosA.id')->select('ejecutor')->where('id', $id)->get();
-        //Conteo del total de ejecutores
-        $count_ejecutor = requerimientosA::join('ejecutores_ra as e', 'e.id_r', '=', 'requerimientosA.id')->select('ejecutor')->where('id', $id)->count();
-        //Formateando ejecutores
-        $ejecutoresformat = '';
-        //Se he un recorrido
-        for ($i = 0; $i < $count_ejecutor; $i++) {
-            if ($ejecutores[$i]->ejecutor != 'none') {
-                //si el ultimo dato 
-                if ($i == ($count_ejecutor - 1)) {
-                    // en el amcomulador se le agrega un Y
-                    $ejecutoresformat = $ejecutoresformat . ' y ' . $ejecutores[$i]->ejecutor;
-                } else if ($i == ($count_ejecutor - 2)) {
-                    // si es el penultimo no se le agrega el ','
-                    $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . '';
-                } else {
-                    // si no re acomulan los años y se les agrega las ','
-                    $ejecutoresformat = $ejecutoresformat .  $ejecutores[$i]->ejecutor . ',';
-                }
-            } else {
-                $ejecutoresformat = 'none';
-            }
-        }
+        
         //declaramos la variable pdf y mandamos los parametros
-        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter,'fechar'=>$datos[0]->fechar, 'fechar2'=>$datos[0]->fechar2,'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar, 'ejecutores' => $ejecutoresformat,'total'=>$total_ar]);
+        $pdf = Pdf::loadView('pdf.requerimiento', ['items' => $datos, 'fechaNotiDeter' => $fechaNotiDeter,'fechar'=>$datos[0]->fechar, 'fechar2'=>$datos[0]->fechar2,'folio' => $folio, 'tar' => $tar, 'total'=>$total_ar]);
         return $pdf->stream();
     }
 }

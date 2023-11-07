@@ -29,6 +29,7 @@ class TarifasUpdateRequest extends FormRequest
             "anioM" => ['required'],
             "mesM" => ['required'],
             "tarifaM" => ['required'],
+            "tarifaM2" => ['required'],
         ];
     }
     public function messages()
@@ -38,6 +39,7 @@ class TarifasUpdateRequest extends FormRequest
             'anioM.required' => 'El campo año es requerido',
             'mesM.required' => 'El campo mes es requerido',
             'tarifaM.required' => 'El campo tarifa es requerido',
+            'tarifaM2.required' => 'El campo tarifa es requerido',
         ];
     }
     public function withValidator($validator)

@@ -32,9 +32,9 @@
             <form action="{{ route('guardar-mandamiento') }}" method="post" novalidate>
                 @csrf
                 @foreach ($date as $item)
-                    <div class="row">
+                    <div class="row m-2">
                         <input type="hidden" name="id" value="{{ $item->id }}">
-                        <div class="p-2 rounded-4 col-md-7" style=" background-color: #E8ECEF; border: inherit;">
+                        <div class="p-2 rounded-4 col-md-12" style=" background-color: #E8ECEF; border: inherit;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
                                         src="https://img.icons8.com/fluency/30/000000/user-manual.png" />Datos
@@ -223,7 +223,7 @@
                                         @error('ndeterminacion')
                                         border border-danger rounded-2
                                         @enderror"
-                                            id="ndeterminacion" name="ndeterminacion" value="{{ $item->Fecha_noti_d }}"
+                                            id="ndeterminacion" name="ndeterminacion" value="{{ $item->Fecha_remi_c }}"
                                             disabled>
                                         @error('ndeterminacion')
                                             <div class="text-danger text-center">
@@ -287,10 +287,49 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                <div class="row align-items-start form-row">
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <div class="form-floating">
+                                                <textarea
+                                                    class="form-control
+                                                @error('ejecutores')
+                                                    border border-danger rounded-2
+                                                @enderror"
+                                                    name="ejecutores" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"> {{ old(
+                                                        'ejecutores') }} {{ $item->ejecutores }}</textarea>
+                                                @error('ejecutores')
+                                                    <div class="text-danger text-center">
+                                                        El campo ejecutores es requerido
+                                                    </div>
+                                                @enderror
+                                                <label for="floatingTextarea2">Ejecutores</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form form-group">
+                                            <div class="form-floating">
+                                                <textarea
+                                                    class="form-control
+                                                @error('nombramiento')
+                                                    border border-danger rounded-2
+                                                @enderror"
+                                                    name="nombramiento" placeholder="Fecha de nombramiento" id="floatingTextarea2" style="height: 100px">{{ old(
+                                                        'nombramiento') }} {{ $item->nombramiento}} </textarea>
+                                                @error('nombramiento')
+                                                    <div class="text-danger text-center">
+                                                        El campo nombramiento es requerido
+                                                    </div>
+                                                @enderror
+                                                <label for="floatingTextarea2">Fecha de nombramiento: </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="p-2 rounded-4 col-md-4"
+                        {{-- <div class="p-2 rounded-4 col-md-4"
                             style=" background-color: #E8ECEF; border: inherit; margin-left: 10px;">
                             <div class="text-white m-2 align-items-end" style="text-align:right;">
                                 <span class="bg-success rounded-2 p-2"><img
@@ -322,7 +361,7 @@
                                 </div>
                             </div>
                             <div id="contenedor"></div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="p-2 rounded-4" style=" background-color: #E8ECEF; border: inherit;">
                         <div class="text-white m-2 align-items-end" style="text-align:right;">
@@ -332,35 +371,24 @@
                         <table class="table table-hover table-sm table-dark my-4">
                             <thead class="table-dark text-center">
                                 <tr>
-                                    <th>DESCRIPCIÓN DE
-                                        CONCEPTO
-                                    </th>
-                                    <th>ADEUDO CONSUMO
-                                        DE AGUA Y ALCANTARILLADO
-                                    </th>
-                                    <th>RECARGOS
-                                    </th>
+                                    <th>DESCRIPCIÓN DE CONCEPTO</th>
+                                    <th>ADEUDO CONSUMODE AGUA Y ALCANTARILLADO</th>
+                                    <th>RECARGOS</th>
                                     <th>MULTAS</th>
-                                    <th>GASTOS
-                                        DE EJECUCIÓN
-                                    </th>
-                                    <th>SUSP. DEL SERVICIO
-                                        OTROS GASTOS
-                                    </th>
-                                    <th>CONV.
-                                        VENCIDOS
-                                    </th>
+                                    <th>GASTOSDE EJECUCIÓN</th>
+                                    <th>SUSP. DEL SERVICIO OTROS GASTOS</th>
+                                    <th>CONV. VENCIDOS</th>
                                     <th>IMPORTE TOTAL DEL ADEUDO</th>
                                 </tr>
                             </thead>
                             <tbody class="table-light text-center">
                                 <tr>
                                     <td>Totales</td>
-                                    <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
-                                    <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
+                                    <td>$ {{ number_format(($item->rezago + $item->atraso + $item->corriente), 2) }}</td>
+                                    <td>$ {{ number_format($item->recargos_consumo, 2) }}</td>
                                     <td>${{ number_format($item->multas, 2) }}</td>
-                                    <td>${{ number_format($item->gastos_ejecucion, 2) }}</td>
-                                    <td>${{ number_format($item->otros_gastos, 2) }}</td>
+                                    <td>${{ number_format($item->gastos_ejecución, 2) }}</td>
+                                    <td>${{ number_format($item->otros_servicios, 2) }}</td>
                                     <td>${{ number_format($item->conv_vencido, 2) }}</td>
                                     <td>${{ $total_ar }}</td>
                                 </tr>
@@ -372,7 +400,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="table table-hover table-sm table-dark my-4">
+                        {{-- <table class="table table-hover table-sm table-dark my-4">
                             <thead class="table-dark text-center">
                                 <tr>
                                     <th>TIPO DE DILIGENCIA</th>
@@ -443,10 +471,10 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> --}}
 
                     </div>
-                    <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
+                    {{-- <div class="p-2 rounded-4 mt-3" style=" background-color: #E8ECEF; border: inherit;">
                         <div class="text-white m-2 align-items-end" style="text-align:right;">
                             <span class="bg-success rounded-2 p-2"><img
                                     src="https://img.icons8.com/fluency/30/null/resume.png" />Resumen</span>
@@ -556,7 +584,7 @@
                                                         data-fecha_vto="{{ $item->fecha_vto }}"
                                                         data-lf="{{ $item->lecturaFacturada }}"
                                                         data-t1="{{ number_format($item->tarifa1, 2) }}"
-                                                        {{-- data-t2="{{ number_format($item->tarifa2, 2) }}" --}}
+                                                        data-t2="{{ number_format($item->tarifa2, 2) }}"
                                                         data-st="{{ number_format($item->sumaTarifas, 2) }}"
                                                         data-f="{{ number_format($item->factor, 4) }}"
                                                         data-sa="{{ number_format($item->saldoAtraso, 2) }}"
@@ -581,7 +609,7 @@
                         <div>
                             {{ $items->links() }}
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-row p-4">
                         <div class="col">
                             <div style="text-align:right;">
