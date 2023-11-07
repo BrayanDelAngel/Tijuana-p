@@ -59,14 +59,23 @@ class RequerimientoController extends Controller
                     'fechad',
                     'id',
                     'periodo',
-                    'tipo_s as TipoServicio'
+                    'tipo_s as TipoServicio',
+                    'recargos_consumo',
+                    'rezago',
+                    'atraso',
+                    'corriente'
                 )
                     ->where('id', $id[0]->id)
                     ->get();
+                $recargos = $date[0]->recargos_consumo;
+                $rezago = $date[0]->rezago;
+                $atraso = $date[0]->atraso;
+                $corriente = $date[0]->corriente;
+
                 $multas = $date[0]->multas;
                 $gastos_ejecucion = $date[0]->gastos_ejecución;
                 $conv_vencido = $date[0]->con_vencido;
-                $otros_gastos = $date[0]->otros_servicios;// se cambio el item -> otros_gastos a otros servicios, lo demas sige igual
+                $otros_gastos = $date[0]->otros_servicios;// se cambio el item -> otros_gastos a otros servicios, lo demas sigue igual
                 
                 //obtenemos los datos de la tabla adeudo
                 $t_adeudo_t = tabla_da::select(['totalPeriodo', 'RecargosAcumulados', DB::raw("(RecargosAcumulados+totalPeriodo) as total")])
@@ -91,7 +100,7 @@ class RequerimientoController extends Controller
                         $longitud = strlen($folio);
                     }
                 }
-                $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + number_format($multas, 2) + $gastos_ejecucion + $conv_vencido + $otros_gastos;
+                $total_ar = ($rezago + $atraso + $corriente) + $recargos + number_format($multas, 2) + $gastos_ejecucion + $conv_vencido + $otros_gastos;
                 //extraemos el entero
                 $entero = floor($total_ar);
                 //extraemos el decimal
@@ -113,6 +122,10 @@ class RequerimientoController extends Controller
                     't_adeudo_t' => $t_adeudo_t, 
                     'total_ar' => number_format($total_ar, 2),
                     'tar' => $tar,
+                    'recargos_consumo' =>  number_format($recargos, 2),
+                    'rezago' =>  number_format($rezago, 2),
+                    'atraso' =>  number_format($atraso, 2),
+                    'corriente' =>  number_format($corriente, 2),
                 ]);
             }
         }

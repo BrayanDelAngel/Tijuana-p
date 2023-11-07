@@ -111,6 +111,10 @@ class MandamientoController extends Controller
                     'saldo_total as total',
                     'r.ejecutores',
                     'r.nombramiento',
+                    'recargos_consumo',
+                    'rezago',
+                    'atraso',
+                    'corriente'
                 ]
             )
             ->where('determinacionesA.cuenta', $cuenta)
@@ -130,7 +134,7 @@ class MandamientoController extends Controller
         //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + $date[0]->multas + $date[0]->gastos_ejecución + $date[0]->conv_vencido + $date[0]->otros_servicios;
+        $total_ar = ($date[0]->rezago + $date[0]->atraso + $date[0]->corriente )+ $date[0]->recargos_consumo + $date[0]->multas + $date[0]->gastos_ejecución + $date[0]->conv_vencido + $date[0]->otros_servicios;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal
@@ -302,6 +306,10 @@ class MandamientoController extends Controller
                 'fechand as fecha_converternd',
                 'r.ejecutores',
                 'r.nombramiento',
+                'recargos_consumo',
+                'rezago',
+                'atraso',
+                'corriente',
                 DB::raw("format(fechad,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechad"),
                 DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
                 DB::raw("format(fecham,'dd'' dias del mes de ''MMMM'' del año ''yyyy','es-es') as fecham"),
@@ -362,7 +370,7 @@ class MandamientoController extends Controller
         //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = $t_adeudo_t->totalPeriodo + $t_adeudo_t->RecargosAcumulados + $datos[0]->multas + $datos[0]->gastos_ejecucion + $datos[0]->conv_vencido + $datos[0]->otros_gastos;
+        $total_ar = ($datos[0]->rezago + $datos[0]->atraso + $datos[0]->corriente )+ $datos[0]->recargos_consumo + $datos[0]->multas + $datos[0]->gastos_ejecución + $datos[0]->conv_vencido + $datos[0]->otros_servicios;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal

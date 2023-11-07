@@ -210,26 +210,13 @@
             <table class="text-center">
                 <thead>
                     <tr>
-                        <th>
-                            CONCEPTO
-                        </th>
-                        <th>
-                            ADEUDO POR
-                            CONSUMO
-                            DE AGUA
-                        </th>
-                        <th>RECARGOS
-                        </th>
+                        <th>CONCEPTO</th>
+                        <th>ADEUDO POR CONSUMO DE AGUA</th>
+                        <th>RECARGOS</th>
                         <th>MULTAS</th>
-                        <th>GASTOS
-                            DE EJECUCIÓN
-                        </th>
-                        <th>SUSP. DEL SERVICIO
-                            OTROS GASTOS
-                        </th>
-                        <th>CONV.
-                            VENCIDOS
-                        </th>
+                        <th>GASTOS DE EJECUCIÓN </th>
+                        <th>SUSP. DEL SERVICIO OTROS GASTOS</th>
+                        <th>CONV. VENCIDOS</th>
                         <th>IMPORTE TOTAL DEL ADEUDO</th>
                     </tr>
                 </thead>

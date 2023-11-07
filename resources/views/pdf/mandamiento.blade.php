@@ -219,8 +219,8 @@
                 <tbody>
                     <tr>
                         <td>Totales</td>
-                        <td>${{ number_format($t_adeudo_t->totalPeriodo, 2) }}</td>
-                        <td>${{ number_format($t_adeudo_t->RecargosAcumulados, 2) }}</td>
+                        <td>$ {{ number_format(($item->rezago + $item->atraso + $item->corriente), 2) }}</td>
+                        <td>$ {{ number_format($item->recargos_consumo, 2) }}</td>
                         <td>${{ number_format($multas, 2) }}</td>
                         <td>${{ number_format($gastos_ejecucion, 2) }}</td>
                         <td>${{ number_format($item->otros_servicios, 2) }}</td>
