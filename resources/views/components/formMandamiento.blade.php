@@ -389,7 +389,7 @@
                                     <td>${{ number_format($item->multas, 2) }}</td>
                                     <td>${{ number_format($item->gastos_ejecución, 2) }}</td>
                                     <td>${{ number_format($item->otros_servicios, 2) }}</td>
-                                    <td>${{ number_format($item->conv_vencido, 2) }}</td>
+                                    <td>${{ number_format($item->con_vencido, 2) }}</td>
                                     <td>${{ $total_ar }}</td>
                                 </tr>
                                 <tr>

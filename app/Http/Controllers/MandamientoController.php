@@ -106,7 +106,6 @@ class MandamientoController extends Controller
                     'periodo',
                     'multas',
                     'gastos_ejecución',
-                    'conv_vencido',
                     'otros_servicios',
                     'saldo_total as total',
                     'r.ejecutores',
@@ -114,7 +113,8 @@ class MandamientoController extends Controller
                     'recargos_consumo',
                     'rezago',
                     'atraso',
-                    'corriente'
+                    'corriente',
+                    DB::raw('(convenio_agua + recargos_convenio_agua + convenio_obra + recargos_convenio_obra) as con_vencido'),
                 ]
             )
             ->where('determinacionesA.cuenta', $cuenta)
@@ -134,7 +134,7 @@ class MandamientoController extends Controller
         //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = ($date[0]->rezago + $date[0]->atraso + $date[0]->corriente )+ $date[0]->recargos_consumo + $date[0]->multas + $date[0]->gastos_ejecución + $date[0]->conv_vencido + $date[0]->otros_servicios;
+        $total_ar = ($date[0]->rezago + $date[0]->atraso + $date[0]->corriente )+ $date[0]->recargos_consumo+ $date[0]->multas + $date[0]->gastos_ejecución + $date[0]->con_vencido + $date[0]->otros_servicios;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal
@@ -292,7 +292,6 @@ class MandamientoController extends Controller
                 'seriem',
                 'multas',
                 'gastos_ejecución',
-                'conv_vencido',
                 'otros_servicios',
                 'periodo',
                 'm.pago_requerimiento as pagor',
@@ -310,6 +309,7 @@ class MandamientoController extends Controller
                 'rezago',
                 'atraso',
                 'corriente',
+                DB::raw('(convenio_agua+recargos_convenio_agua+convenio_obra+recargos_convenio_obra) as con_vencido'),
                 DB::raw("format(fechad,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechad"),
                 DB::raw("format(fechar,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechar"),
                 DB::raw("format(fecham,'dd'' dias del mes de ''MMMM'' del año ''yyyy','es-es') as fecham"),
@@ -370,7 +370,7 @@ class MandamientoController extends Controller
         //convertiremos el total del adeudo requerido en letras
         $formatter = new NumeroALetras();
         //obtenemos el total del adeuto requerido
-        $total_ar = ($datos[0]->rezago + $datos[0]->atraso + $datos[0]->corriente )+ $datos[0]->recargos_consumo + $datos[0]->multas + $datos[0]->gastos_ejecución + $datos[0]->conv_vencido + $datos[0]->otros_servicios;
+        $total_ar = ($datos[0]->rezago + $datos[0]->atraso + $datos[0]->corriente )+ $datos[0]->recargos_consumo + $datos[0]->multas + $datos[0]->gastos_ejecución + $datos[0]->con_vencido + $datos[0]->otros_servicios;
         //extraemos el entero
         $entero = floor($total_ar);
         //extraemos el decimal
@@ -396,7 +396,6 @@ class MandamientoController extends Controller
                 'tar' => $tar,
                 'multas' => $multas,
                 'gastos_ejecucion' => $gastos_ejecucion,
-                'conv_vencido' => $conv_vencido,
                 'otros_gastos' => $otros_gastos,
                 'total_ar' => number_format($total_ar, 2),
                 'fechamanda' => $fechamanda,
