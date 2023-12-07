@@ -285,8 +285,8 @@
             <br />
             <p class="text-justify">
                 Así lo resolvió la C. Subrecaudadora de Rentas adscrita a la Comisión Estatal de Servicios Públicos de
-                Tijuana a los {{ $fechar2 }}; con nombramiento bajo oficio {{ $folio }}, de
-                fecha {{ $fechar }}; realizado por el Secretario de Hacienda del Estado de Baja California, en
+                Tijuana a los {{ $fechar2 }}; con nombramiento bajo oficio Oficio 0000282, de fecha 27 de febrero de 2023;
+                 realizado por el Secretario de Hacienda del Estado de Baja California, en
                 el
                 ejercicio de sus facultades conferidas en los artículos 32 fracciones XX y XXXI de la Ley Orgánica del
                 Poder
@@ -294,6 +294,17 @@
                 fracción
                 III del Reglamento del Servicio de Administración Tributaria, todos del Estado de Baja California.
             </p>
+            {{-- <p class="text-justify">
+                Así lo resolvió la C. Subrecaudadora de Rentas adscrita a la Comisión Estatal de Servicios Públicos de
+                Tijuana a los {{ $fechar2 }}; con nombramiento bajo oficio {{ $folio }}, de
+                fecha {{ $fechar2 }}; realizado por el Secretario de Hacienda del Estado de Baja California, en
+                el
+                ejercicio de sus facultades conferidas en los artículos 32 fracciones XX y XXXI de la Ley Orgánica del
+                Poder
+                Ejecutivo; 2,9 y 11 fracción XIV, del Reglamento Interno de la Secretaria de Hacienda; 45 octies,
+                fracción
+                III del Reglamento del Servicio de Administración Tributaria, todos del Estado de Baja California.
+            </p> --}}
            <br>
            <br>
            <br>
