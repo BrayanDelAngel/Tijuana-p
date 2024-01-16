@@ -87,8 +87,52 @@ class MandamientoController extends Controller
     }
     public function index($cuenta)
     {
-        //consultamos los datos del form
-        $date = determinacionesA::join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
+        $id = DB::table('determinacionesA')
+        ->join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
+        ->select('r.id as id')
+        ->get();
+        
+        //validar si esta cuenta ya tiene un mandamiento
+        $count_r = DB::select('select count(id) as c from mandamientosA where id_r = ?', [$id[0]->id]);
+        //si existe 
+        if (($count_r[0]->c) != 0) {
+            $date = DB::table('determinacionesA')
+            ->join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
+            ->join('mandamientosA as m', 'r.id', '=', 'm.id_r')
+            ->select([
+                'folio',
+                'r.fechar as Fecha_r',
+                'cuenta as Cuenta',
+                'clavec as Clave',
+                'fechad as Fecha_remi_c',
+                'fechand',
+                'propietario as Propietario',
+                'r.tipo_s as TipoServicio',
+                'seriem as SerieMedidor',
+                'domicilio as Domicilio',
+                'r.sobrerecaudador as Recaudador',
+                'r.id',
+                'periodo',
+                'multas',
+                'gastos_ejecución',
+                'otros_servicios',
+                'saldo_total as total',
+                'r.ejecutores',
+                'm.nombramiento',
+                'recargos_consumo',
+                'rezago',
+                'atraso',
+                DB::raw('(convenio_agua + recargos_convenio_agua + convenio_obra + recargos_convenio_obra) as con_vencido'),
+                'corriente',
+            ])
+            ->where('cuenta', '=', $cuenta)
+            ->get();
+
+        }
+        //no existe
+        else {
+            //consultamos los datos del form
+            $date = determinacionesA::join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
             ->select(
                 [
                     'folio',
@@ -119,6 +163,7 @@ class MandamientoController extends Controller
             )
             ->where('determinacionesA.cuenta', $cuenta)
             ->get();
+        }
         //establecemos los ceros en los folios
         $folio = $date[0]->folio;
         $longitud = strlen($folio);
@@ -174,6 +219,7 @@ class MandamientoController extends Controller
            // $deleted = DB::delete('delete ejecutores_ma where id_m = ?', [$id[0]->id]);
             //declaramos que se va a modificar el registro de requerimiento
             $r = mandamientosA::findOrFail($id[0]->id);
+            //declaramos que se va a modificar el registro de requerimiento
         }
         //no existe
         else {
@@ -304,7 +350,7 @@ class MandamientoController extends Controller
                 'fecham as fecha_converter',
                 'fechand as fecha_converternd',
                 'r.ejecutores',
-                'r.nombramiento',
+                'm.nombramiento',
                 'recargos_consumo',
                 'rezago',
                 'atraso',
