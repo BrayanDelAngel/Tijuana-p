@@ -90,12 +90,13 @@ class MandamientoController extends Controller
         $id = DB::table('determinacionesA')
         ->join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
         ->select('r.id as id')
+        ->where('cuenta', '=', $cuenta)
         ->get();
         
         //validar si esta cuenta ya tiene un mandamiento
-        $count_r = DB::select('select count(id) as c from mandamientosA where id_r = ?', [$id[0]->id]);
+        $tieneM = DB::select('select count(id) as c from mandamientosA where id_r = ?', [$id[0]->id]);
         //si existe 
-        if (($count_r[0]->c) != 0) {
+        if (($tieneM[0]->c) != 0) {
             $date = DB::table('determinacionesA')
             ->join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
             ->join('mandamientosA as m', 'r.id', '=', 'm.id_r')
@@ -129,8 +130,8 @@ class MandamientoController extends Controller
             ->get();
 
         }
-        //no existe
-        else {
+        
+        else {//no existe
             //consultamos los datos del form
             $date = determinacionesA::join('requerimientosA as r', 'determinacionesA.id', '=', 'r.id_d')
             ->select(
