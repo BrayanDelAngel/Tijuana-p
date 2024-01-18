@@ -350,7 +350,7 @@ class MandamientoController extends Controller
                 'r.tipo_s',
                 'fecham as fecha_converter',
                 'fechand as fecha_converternd',
-                'r.ejecutores',
+                'm.ejecutores',
                 'm.nombramiento',
                 'recargos_consumo',
                 'rezago',
