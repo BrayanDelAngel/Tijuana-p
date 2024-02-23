@@ -125,6 +125,7 @@ class MandamientoController extends Controller
                 'atraso',
                 DB::raw('(convenio_agua + recargos_convenio_agua + convenio_obra + recargos_convenio_obra) as con_vencido'),
                 'corriente',
+                DB::raw("FORMAT(fechand, 'yyyy') AS año")
             ])
             ->where('cuenta', '=', $cuenta)
             ->get();
@@ -160,6 +161,7 @@ class MandamientoController extends Controller
                     'atraso',
                     'corriente',
                     DB::raw('(convenio_agua + recargos_convenio_agua + convenio_obra + recargos_convenio_obra) as con_vencido'),
+                    DB::raw("FORMAT(fechand, 'yyyy') AS año"),
                 ]
             )
             ->where('determinacionesA.cuenta', $cuenta)
@@ -189,10 +191,11 @@ class MandamientoController extends Controller
         $texto_entero = $formatter->toMoney($entero);
         //concatenamos para obtener todo el texto
         $tar = ' (' . $texto_entero . ' ' . $decimal . '/100 Moneda Nacional)';
+        $año = $date[0]->año;
         //Informacion de la tabla generada del propietario
         $tabla = tabla_ma::select(['meses', 'periodo', 'fechaVencimiento', 'lecturaFacturada', 'tarifa1', 'sumaTarifas', 'tarifa2', 'factor', 'saldoAtraso', 'saldoRezago', 'totalPeriodo', 'importeMensual', 'RecargosAcumulados', 'fecha_vto','cuenta'])
             ->where('cuenta', $cuenta)->where('estado', 0)->orderBy('meses', 'ASC')->paginate(20);
-        return view('components.formMandamiento', ['date' => $date, 'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar, 'total_ar' => number_format($total_ar, 2),'items' => $tabla]);
+        return view('components.formMandamiento', ['año'=>$año,'date' => $date, 'folio' => $folio, 't_adeudo_t' => $t_adeudo_t, 'tar' => $tar, 'total_ar' => number_format($total_ar, 2),'items' => $tabla]);
 
     }
     public function store(Request $request)
@@ -362,7 +365,8 @@ class MandamientoController extends Controller
                 DB::raw("format(fecham,'dd'' dias del mes de ''MMMM'' del año ''yyyy','es-es') as fecham"),
                 DB::raw("format(fechanr,'dd'' de ''MMMM'' de ''yyyy','es-es') as fechanr"),
                 DB::raw("format(fechand,'dd'' del mes de ''MMMM'' del ''yyyy','es-es') as fechand2"),
-                DB::raw("format(fecham,'dd'' dias del mes de ''MMMM','es-es') as fecham2")
+                DB::raw("format(fecham,'dd'' dias del mes de ''MMMM','es-es') as fecham2"),
+                DB::raw("FORMAT(fechad, 'yyyy') AS año"),                
             )
             ->where('m.id', $id)
             ->get();
@@ -433,6 +437,7 @@ class MandamientoController extends Controller
         // $condicion_firma=firmaMandamiento($cr);
         //si esta bien 
         // if($condicion_firma!=1){
+        $año = $datos[0]->año;
             $pdf = Pdf::loadView('pdf.mandamiento', [
                 'tabla' => $tabla,
                 'items' => $datos,
@@ -455,7 +460,7 @@ class MandamientoController extends Controller
                 'pagoe' => $pagoe,
                 'totale' => $totale,
                 'i'=>$i,
-                
+                'año'=>$año,                
             ]);
             
         // }

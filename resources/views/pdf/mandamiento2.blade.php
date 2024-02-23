@@ -27,7 +27,7 @@
             <div class="data">
                 <div class="data-center">
                     <p>
-                        Oficio: <span class="underline">CESPT/EDM/{{ $folio }}/{{ date('Y') }}</span>
+                        Oficio: <span class="underline">CESPT/EDM/{{ $folio }}/{{  }}</span>
                     </p>
                     <p>
                         Crédito número:<span

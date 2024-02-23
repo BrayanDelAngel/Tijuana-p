@@ -39,7 +39,7 @@
                 <div class="data-center">
                     <p>
                         Crédito fiscal número: <span
-                            class="">CESPT/EDM/{{ $folio }}/{{ date('Y') }}</span>
+                            class="">CESPT/EDM/{{ $folio }}/{{ $item->año }}</span><!-- date('Y')  -->
                     </p>
                 </div>
             </div>

@@ -68,8 +68,7 @@
                                             border border-danger rounded-2
                                             @enderror"
                                                 name="oficio" disabled>
-                                            <input type="text" class="form-control mb-2" value="/{{ date('Y') }}"
-                                                disabled>
+                                            <input type="text" class="form-control mb-2" value="/{{ $item->año }}" disabled>
                                         </div>
                                         @error('oficio')
                                             <div class="text-danger text-center">
